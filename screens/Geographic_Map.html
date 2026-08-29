@@ -1,333 +1,635 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MPLAD INSIGHT - Geographic Risk Map</title>
+<title>MPLAD INSIGHT - Geographic Map</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "error": "#ba1a1a",
-                      "surface-tint": "#3755c3",
-                      "on-secondary-container": "#00714e",
-                      "on-secondary": "#ffffff",
-                      "secondary-fixed-dim": "#68dba9",
-                      "inverse-primary": "#b8c4ff",
-                      "on-tertiary": "#ffffff",
-                      "surface-container": "#e7eeff",
-                      "secondary": "#006c4a",
-                      "background": "#f9f9ff",
-                      "surface-variant": "#d8e3fb",
-                      "surface": "#f9f9ff",
-                      "inverse-surface": "#263143",
-                      "on-tertiary-container": "#ffa85d",
-                      "primary-container": "#1e40af",
-                      "on-primary": "#ffffff",
-                      "surface-container-low": "#f0f3ff",
-                      "surface-container-lowest": "#ffffff",
-                      "tertiary-container": "#743d00",
-                      "inverse-on-surface": "#ecf1ff",
-                      "on-primary-fixed-variant": "#173bab",
-                      "tertiary-fixed-dim": "#ffb77d",
-                      "outline": "#757684",
-                      "error-container": "#ffdad6",
-                      "primary-fixed": "#dde1ff",
-                      "on-tertiary-fixed": "#2f1500",
-                      "surface-bright": "#f9f9ff",
-                      "outline-variant": "#c4c5d5",
-                      "on-primary-container": "#a8b8ff",
-                      "on-error-container": "#93000a",
-                      "tertiary": "#532a00",
-                      "on-surface-variant": "#444653",
-                      "on-surface": "#111c2d",
-                      "primary": "#00288e",
-                      "surface-container-highest": "#d8e3fb",
-                      "tertiary-fixed": "#ffdcc3",
-                      "on-secondary-fixed": "#002114",
-                      "on-background": "#111c2d",
-                      "surface-container-high": "#dee8ff",
-                      "primary-fixed-dim": "#b8c4ff",
-                      "surface-dim": "#cfdaf2",
-                      "on-tertiary-fixed-variant": "#6e3900",
-                      "secondary-fixed": "#85f8c4",
-                      "on-error": "#ffffff",
-                      "secondary-container": "#82f5c1",
-                      "on-primary-fixed": "#001453",
-                      "on-secondary-fixed-variant": "#005137"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "stack_md": "16px",
-                      "container_max_width": "1440px",
-                      "margin_mobile": "16px",
-                      "stack_lg": "24px",
-                      "sidebar_width": "260px",
-                      "stack_sm": "8px",
-                      "margin_desktop": "32px",
-                      "gutter": "24px"
-              },
-              "fontFamily": {
-                      "headline-md": ["Inter"],
-                      "body-lg": ["Inter"],
-                      "headline-lg": ["Inter"],
-                      "headline-lg-mobile": ["Inter"],
-                      "label-md": ["Inter"],
-                      "body-md": ["Inter"],
-                      "display-lg": ["Inter"]
-              },
-              "fontSize": {
-                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                      "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
-                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                      "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-              }
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "error": "#ba1a1a",
+                "surface-tint": "#3755c3",
+                "on-secondary-container": "#00714e",
+                "on-secondary": "#ffffff",
+                "secondary-fixed-dim": "#68dba9",
+                "inverse-primary": "#b8c4ff",
+                "on-tertiary": "#ffffff",
+                "surface-container": "#e7eeff",
+                "secondary": "#006c4a",
+                "background": "#f9f9ff",
+                "surface-variant": "#d8e3fb",
+                "surface": "#f9f9ff",
+                "inverse-surface": "#263143",
+                "on-tertiary-container": "#ffa85d",
+                "primary-container": "#1e40af",
+                "on-primary": "#ffffff",
+                "surface-container-low": "#f0f3ff",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-container": "#743d00",
+                "inverse-on-surface": "#ecf1ff",
+                "on-primary-fixed-variant": "#173bab",
+                "tertiary-fixed-dim": "#ffb77d",
+                "outline": "#757684",
+                "error-container": "#ffdad6",
+                "primary-fixed": "#dde1ff",
+                "on-tertiary-fixed": "#2f1500",
+                "surface-bright": "#f9f9ff",
+                "outline-variant": "#c4c5d5",
+                "on-primary-container": "#a8b8ff",
+                "on-error-container": "#93000a",
+                "tertiary": "#532a00",
+                "on-surface-variant": "#444653",
+                "on-surface": "#111c2d",
+                "primary": "#00288e",
+                "surface-container-highest": "#d8e3fb",
+                "tertiary-fixed": "#ffdcc3",
+                "on-secondary-fixed": "#002114",
+                "on-background": "#111c2d",
+                "surface-container-high": "#dee8ff",
+                "primary-fixed-dim": "#b8c4ff",
+                "surface-dim": "#cfdaf2",
+                "on-tertiary-fixed-variant": "#6e3900",
+                "secondary-fixed": "#85f8c4",
+                "on-error": "#ffffff",
+                "secondary-container": "#82f5c1",
+                "on-primary-fixed": "#001453"
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif']
             }
-          }
         }
-    </script>
+    }
+}
+</script>
+
+<style>
+body { font-family: 'Inter', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+#map { width: 100%; height: 100%; z-index: 1; }
+.leaflet-control-attribution { font-size: 10px; opacity: 0.7; }
+.custom-pin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.custom-pin:hover {
+    transform: scale(1.25);
+    z-index: 1000 !important;
+}
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: pulseAnimation 2s infinite ease-out;
+}
+@keyframes pulseAnimation {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    70% { transform: scale(2.2); opacity: 0; }
+    100% { transform: scale(2.4); opacity: 0; }
+}
+</style>
 </head>
-<body class="bg-background text-on-background font-body-md text-body-md overflow-hidden antialiased">
-<!-- Shared Components: SideNavBar -->
+<body class="bg-background text-on-background flex min-h-screen overflow-hidden">
+
+<!-- SideNavBar -->
 <nav class="w-[260px] h-screen flex flex-col fixed left-0 top-0 border-r border-outline-variant bg-inverse-surface dark:bg-inverse-surface z-50">
-<div class="px-6 py-8 flex items-center gap-3">
-<img alt="MPLAD Insight Logo" class="w-8 h-8 rounded" data-alt="A minimalist vector logo representing a stylized magnifying glass or analytics chart, rendered in pristine white against a very dark slate background, communicating institutional oversight and modern tech." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXJEoqo5m3rGLovsow4_t5-RKIDTAjQVsOotQN5OQpvgJZJmivltyKu9iXBCm6MBIz88AnUPArUsp1KRwiq81GF-i4yK-goNvT0pskIU8lvi1Q2a54rNZv9sjdASjL1TPVkLQzCFzYMGKyChpeRTap5npBSA3e8sNgQBmD5WbFHBc8NyPB4MdCwEiNa5Km_3Mu9qMSug2jblvXHOnB6eRFBtIGcEWBes8iDodZf3-VRF90U1zkg1hTxQ">
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-white tracking-tight">MPLAD INSIGHT</h1>
-<p class="font-label-md text-label-md text-surface-variant opacity-80 uppercase tracking-widest mt-1">GovTech Oversight</p>
-</div>
-</div>
-<div class="flex-1 flex flex-col gap-2 mt-4">
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Overview_Dashboard.html">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
-<span class="font-body-lg text-body-lg">Overview</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Flagged_Cases.html">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">report_problem</span>
-<span class="font-body-lg text-body-lg">Flagged Cases</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container border-l-4 border-primary-fixed hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Geographic_Map.html">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
-<span class="font-body-lg text-body-lg font-bold">Map</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Analytics.html">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">insights</span>
-<span class="font-body-lg text-body-lg">Analytics</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Data_Explorer.html">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">database</span>
-<span class="font-body-lg text-body-lg">Data Explorer</span>
-</a>
-</div>
-<div class="mt-auto border-t border-outline-variant/30 py-4 flex flex-col gap-1">
-<div class="flex items-center gap-3 px-6 py-2 text-surface-variant opacity-75">
-<span class="material-symbols-outlined text-[16px]">sensors</span>
-<span class="font-label-md text-label-md">Live Status</span>
-</div>
-<div class="flex items-center gap-3 px-6 py-2 text-surface-variant opacity-75">
-<span class="material-symbols-outlined text-[16px]">update</span>
-<span class="font-label-md text-label-md">Update Info</span>
-</div>
-<div class="flex items-center gap-3 px-6 py-2 text-surface-variant opacity-75">
-<span class="material-symbols-outlined text-[16px]">check_circle</span>
-<span class="font-label-md text-label-md">System Status</span>
-</div>
-</div>
+    <div class="px-6 py-8 flex items-center gap-3 border-b border-white/10">
+        <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+            <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-bold text-white text-base tracking-tight">MPLAD INSIGHT</span>
+            <span class="text-xs text-primary-fixed uppercase tracking-widest">GovTech Oversight</span>
+        </div>
+    </div>
+    
+    <div class="flex-1 flex flex-col gap-1 px-3 py-6 overflow-y-auto">
+        <a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-white/10 rounded-lg transition-colors cursor-pointer text-sm font-medium" href="Overview_Dashboard.html">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span>Overview</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-white/10 rounded-lg transition-colors cursor-pointer text-sm font-medium" href="Flagged_Cases.html">
+            <span class="material-symbols-outlined">report_problem</span>
+            <span>Flagged Cases</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-white border-l-4 border-primary-fixed rounded-r-lg text-sm font-bold shadow-sm" href="Geographic_Map.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+            <span>Map</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-white/10 rounded-lg transition-colors cursor-pointer text-sm font-medium" href="Analytics.html">
+            <span class="material-symbols-outlined">insights</span>
+            <span>Analytics</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-white/10 rounded-lg transition-colors cursor-pointer text-sm font-medium" href="Data_Explorer.html">
+            <span class="material-symbols-outlined">database</span>
+            <span>Data Explorer</span>
+        </a>
+    </div>
+    
+    <div class="border-t border-white/10 p-4">
+        <div class="flex flex-col gap-1">
+            <a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-white/10 rounded-lg text-xs opacity-80 hover:opacity-100" href="Flagged_Cases.html">
+                <span class="material-symbols-outlined text-[18px]">sensors</span>
+                <span>Live Status</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-white/10 rounded-lg text-xs opacity-80 hover:opacity-100" href="#">
+                <span class="material-symbols-outlined text-[18px] text-emerald-400">check_circle</span>
+                <span>System Normal</span>
+            </a>
+        </div>
+    </div>
 </nav>
-<!-- Main Content Area -->
+
+<!-- Main Wrapper -->
 <div class="ml-[260px] flex flex-col h-screen w-[calc(100%-260px)] relative">
-<!-- Shared Components: TopNavBar -->
-<header class="h-16 w-full sticky top-0 bg-surface dark:bg-surface-dim shadow-sm flex justify-between items-center px-margin_desktop z-40 border-b border-outline-variant">
-<div class="flex items-center gap-4 flex-1">
-<div class="relative w-64">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search locations, projects..." type="text">
+    <!-- Header -->
+    <header class="h-16 w-full sticky top-0 bg-white shadow-sm flex justify-between items-center px-8 z-40 border-b border-outline-variant">
+        <div class="flex items-center gap-4 flex-1">
+            <div class="relative w-80">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+                <input id="map-search" class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-4 py-2 text-sm focus:border-blue-700 focus:ring-2 focus:ring-blue-700/20 transition-all outline-none" placeholder="Search state, district, or project ID..." type="text">
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="showToast('No new unread alerts', 'info')" class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-100 transition-all relative">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-600 rounded-full"></span>
+            </button>
+            <button onclick="showToast('Settings saved', 'success')" class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-100 transition-all">
+                <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div class="h-8 w-px bg-slate-200 mx-1"></div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-blue-900 text-white flex items-center justify-center font-bold text-xs">GOV</div>
+                <div class="text-xs">
+                    <p class="font-bold text-slate-800">Oversight Admin</p>
+                    <p class="text-slate-500">Ministry of Stats & PI</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Map & Floating Controls -->
+    <main class="flex-1 relative w-full h-full flex bg-slate-100">
+        <!-- Interactive Leaflet Map Container -->
+        <div id="map" class="absolute inset-0 z-0"></div>
+
+        <!-- Left Filter & Summary Panel -->
+        <div class="relative z-20 w-[360px] m-6 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-slate-200 flex flex-col overflow-hidden max-h-[calc(100vh-112px)]">
+            <div class="p-6 border-b border-slate-100 bg-slate-50/80">
+                <h2 class="text-xl font-bold text-slate-900">Geographic Risk Map</h2>
+                <p class="text-xs text-slate-500 mt-1">Real-time geospatial project anomaly mapping</p>
+            </div>
+            
+            <div class="p-6 flex-1 overflow-y-auto space-y-6">
+                <!-- Filters Section -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Filters</h3>
+                    
+                    <div>
+                        <label class="text-xs font-semibold text-slate-700 block mb-1">State / Territory</label>
+                        <select id="state-select" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm focus:border-blue-700 focus:ring-2 focus:ring-blue-700/20 outline-none">
+                            <option value="all">All India (National View)</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Delhi">Delhi NCR</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Telangana">Telangana</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-semibold text-slate-700 block mb-1.5">Risk Level</label>
+                        <div class="flex gap-2">
+                            <button id="btn-filter-high" onclick="toggleRiskFilter('high')" class="flex-1 py-1.5 border border-red-600 text-red-700 rounded-md text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors shadow-sm">High</button>
+                            <button id="btn-filter-med" onclick="toggleRiskFilter('med')" class="flex-1 py-1.5 border border-amber-500 text-amber-700 rounded-md text-xs font-bold bg-amber-50 hover:bg-amber-100 transition-colors shadow-sm">Med</button>
+                            <button id="btn-filter-low" onclick="toggleRiskFilter('low')" class="flex-1 py-1.5 border border-emerald-600 text-emerald-700 rounded-md text-xs font-bold bg-emerald-50 hover:bg-emerald-100 transition-colors shadow-sm">Low</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-semibold text-slate-700 block mb-1">Anomaly Type</label>
+                        <select id="anomaly-select" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm focus:border-blue-700 focus:ring-2 focus:ring-blue-700/20 outline-none">
+                            <option value="all">All Anomalies</option>
+                            <option value="delay">Completion Delay (>200%)</option>
+                            <option value="cost">Amount Deviation</option>
+                            <option value="agency">Agency Concentration Risk</option>
+                            <option value="cert">Utilization Cert. Mismatch</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- National / State Level Summary -->
+                <div class="space-y-3 pt-2 border-t border-slate-100">
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Metrics Overview</h3>
+                    
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-200/80">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-slate-600">Works Analyzed</span>
+                            <span id="stat-works" class="text-lg font-bold text-slate-900">14,205</span>
+                        </div>
+                        <div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                            <div class="h-full bg-blue-700 w-[85%]"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50/70 rounded-lg p-4 border border-red-200">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-red-700 font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">warning</span>
+                                Flagged Projects
+                            </span>
+                            <span id="stat-flagged" class="text-lg font-bold text-red-700">1,142</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 mt-1">8.0% of total analyzed require audit</p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-200/80">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs text-slate-600">Total Sanctioned</span>
+                            <span id="stat-amount" class="text-lg font-bold text-slate-900">₹4,250 Cr</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 mt-1">Across 28 States & 8 UTs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Right Legend -->
+        <div class="absolute top-6 right-6 z-20 bg-white/95 backdrop-blur-md px-4 py-3 rounded-lg shadow-lg border border-slate-200">
+            <h4 class="text-xs font-bold text-slate-800 mb-2">Risk Severity</h4>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-1.5">
+                    <div class="w-3.5 h-3.5 rounded-full bg-red-600 shadow-sm"></div>
+                    <span class="text-xs text-slate-600 font-medium">High (&gt;80)</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <div class="w-3.5 h-3.5 rounded-full bg-amber-500 shadow-sm"></div>
+                    <span class="text-xs text-slate-600 font-medium">Med (50-79)</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <div class="w-3.5 h-3.5 rounded-full bg-emerald-600 shadow-sm"></div>
+                    <span class="text-xs text-slate-600 font-medium">Low (&lt;50)</span>
+                </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400 uppercase font-semibold">
+                <span>Click any pin to inspect</span>
+            </div>
+        </div>
+
+        <!-- Bottom Right Floating Detail Card -->
+        <div id="project-card" class="absolute bottom-6 right-6 z-20 w-[420px] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300">
+            <div id="card-risk-bar" class="h-2 w-full bg-red-600"></div>
+            <div class="p-5">
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <span id="card-badge" class="inline-block px-2.5 py-0.5 bg-red-100 text-red-700 rounded text-xs font-bold mb-1.5">High Risk</span>
+                        <h4 id="card-title" class="text-lg font-bold text-slate-900 leading-tight">Rural Road Construction</h4>
+                        <p id="card-id" class="text-xs text-slate-500 mt-0.5">Project #MPLAD-84920 • Nagpur, Maharashtra</p>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <div id="card-score" class="flex items-center justify-center w-11 h-11 rounded-full bg-red-600 text-white font-black text-base shadow-md">
+                            91
+                        </div>
+                        <span class="text-[10px] text-slate-400 uppercase mt-1 font-bold">Risk Score</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 my-3 py-3 border-y border-slate-100">
+                    <div>
+                        <p class="text-xs text-slate-500 mb-0.5">Sanctioned Amount</p>
+                        <p id="card-sanctioned" class="text-base font-bold text-slate-900">₹42.8 Lakhs</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-500 mb-0.5">Primary Anomaly</p>
+                        <p id="card-anomaly" class="text-base font-bold text-red-600">Completion Delay (>200%)</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 mt-2">
+                    <a id="card-view-btn" href="Case_Details.html" class="flex-1 bg-blue-800 text-white py-2.5 rounded-lg text-xs font-bold hover:bg-blue-900 transition-all flex items-center justify-center gap-2 shadow-sm">
+                        <span class="material-symbols-outlined text-[16px]">visibility</span>
+                        View Full Case Dossier
+                    </a>
+                    <button onclick="hideProjectCard()" class="w-10 h-10 border border-slate-200 rounded-lg flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors">
+                        <span class="material-symbols-outlined text-[18px]">close</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
-</div>
-<div class="flex items-center gap-4">
-<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95 duration-150 relative">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
-</button>
-<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95 duration-150">
-<span class="material-symbols-outlined">settings</span>
-</button>
-<div class="h-8 w-px bg-outline-variant mx-2"></div>
-<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all" data-alt="A professional headshot of a government administrator, well-lit, wearing a sharp suit, conveying authority and competence, set against a neutral corporate background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCceV3z1Cxv-eVUXZBTuv_KIOlmKzPXpboNhKV9vfRWD0tFewiqAk5E4uzUBrz8FnerIvwryIv1DH7J8fmtE_FNlS1okJy_g0MK7yCo4Zj4vTVw3PQkqqQutq_pYxEy9Z0SSENPMXXQMj02CA_5opdfm-6dInpsZIf2FDOp6lECYoEwzLBWVVqNatLIjVMXJHuw8JMxxLF35SClG2A0XlPte2NvzQCZvRm7EnuDWZIK9fcKveM-VY_RdQ">
-</div>
-</header>
-<!-- Map Container & Interactive Elements -->
-<main class="flex-1 relative w-full h-full flex bg-surface-container-lowest">
-<!-- Map Layer -->
-<div class="absolute inset-0 z-0">
-<img alt="Map of India" class="w-full h-full object-cover opacity-80" data-alt="A highly detailed, intelligence-grade interactive map of India displayed on a modern UI dashboard. The map is rendered in a very light, minimalist style (light mode) with subtle state borders in light gray. The background is a clean, crisp white. The style is strictly technical and data-focused, not a satellite image, but a vector-style data visualization map." data-location="India" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO90GrMjg3Ex2qPGDNfu4L0J5FioyTHUhw_rNJLvpWyAY9zuutJlbLitsO7bAWj6RmMwz3KvJRVu3y2gBbIIgAlvCd7APU6LKLaa3iK_P41h35j83w6DzYIiXOHyOcKEjv7mW81KxZIwdSdpw_awtZnFdkpC--Km_F0O-47imcC1YygP1JDRHq4yQssbxvq2h2jmHroer6ryyQKw198u_kvE4hWtOup-xIBFmyc1RFv2Qm4Y9N9JQeXw">
-<!-- Simulated Map Markers -->
-<div class="absolute top-[40%] left-[35%]">
-<div class="relative w-12 h-12 flex items-center justify-center group cursor-pointer">
-<div class="absolute inset-0 bg-error/20 rounded-full animate-ping"></div>
-<div class="w-6 h-6 bg-error rounded-full border-2 border-white shadow-sm z-10 flex items-center justify-center"></div>
-</div>
-</div>
-<div class="absolute top-[60%] left-[25%]">
-<div class="relative w-8 h-8 flex items-center justify-center group cursor-pointer">
-<div class="w-4 h-4 bg-on-tertiary-container rounded-full border-2 border-white shadow-sm z-10"></div>
-</div>
-</div>
-<div class="absolute top-[50%] left-[60%]">
-<div class="relative w-16 h-16 flex items-center justify-center group cursor-pointer">
-<div class="absolute inset-0 bg-error/20 rounded-full animate-ping delay-150"></div>
-<div class="w-8 h-8 bg-error rounded-full border-2 border-white shadow-sm z-10"></div>
-</div>
-</div>
-<div class="absolute top-[30%] left-[50%]">
-<div class="relative w-10 h-10 flex items-center justify-center group cursor-pointer">
-<div class="w-5 h-5 bg-secondary rounded-full border-2 border-white shadow-sm z-10"></div>
-</div>
-</div>
-</div>
-<!-- Left Floating Panel: Filters & Summary -->
-<div class="relative z-10 w-[360px] m-6 bg-white/95 backdrop-blur-md rounded-xl shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)] border border-outline-variant flex flex-col overflow-hidden max-h-[calc(100vh-112px)]">
-<div class="p-6 border-b border-outline-variant bg-surface-bright">
-<h2 class="font-headline-md text-headline-md text-on-surface">Geographic Risk Map</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">Intelligence-grade project visualization</p>
-</div>
-<div class="p-6 flex-1 overflow-y-auto">
-<!-- Filters Section -->
-<div class="mb-8 space-y-4">
-<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Filters</h3>
-<div class="space-y-3">
-<label class="block">
-<span class="font-label-md text-label-md text-on-surface mb-1 block">State / Territory</span>
-<select class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none">
-<option>All India</option>
-<option>Maharashtra</option>
-<option>Uttar Pradesh</option>
-<option>Karnataka</option>
-</select>
-</label>
-<label class="block">
-<span class="font-label-md text-label-md text-on-surface mb-1 block">Risk Level</span>
-<div class="flex gap-2">
-<button class="flex-1 py-1.5 border border-error text-error rounded-md text-xs font-semibold bg-error/5 hover:bg-error/10 transition-colors">High</button>
-<button class="flex-1 py-1.5 border border-on-tertiary-container text-tertiary-container rounded-md text-xs font-semibold bg-tertiary-container/5 hover:bg-tertiary-container/10 transition-colors">Med</button>
-<button class="flex-1 py-1.5 border border-secondary text-secondary rounded-md text-xs font-semibold bg-secondary/5 hover:bg-secondary/10 transition-colors">Low</button>
-</div>
-</label>
-<label class="block">
-<span class="font-label-md text-label-md text-on-surface mb-1 block">Anomaly Type</span>
-<select class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none">
-<option>All Anomalies</option>
-<option>Cost Overrun</option>
-<option>Completion Delay</option>
-<option>Vendor Irregularity</option>
-</select>
-</label>
-</div>
-</div>
-<!-- State Level Summary -->
-<div class="space-y-4">
-<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">National Summary</h3>
-<div class="bg-surface-container-low rounded-lg p-4 border border-outline-variant/50">
-<div class="flex justify-between items-center mb-1">
-<span class="font-body-md text-body-md text-on-surface-variant">Works Analyzed</span>
-<span class="font-headline-md text-headline-md text-on-surface">14,205</span>
-</div>
-<div class="h-1.5 w-full bg-outline-variant/30 rounded-full overflow-hidden">
-<div class="h-full bg-primary w-[85%]"></div>
-</div>
-</div>
-<div class="bg-error-container/30 rounded-lg p-4 border border-error/20">
-<div class="flex justify-between items-center mb-1">
-<span class="font-body-md text-body-md text-error flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]">warning</span>
-                                    Flagged Works
-                                </span>
-<span class="font-headline-md text-headline-md text-error">1,142</span>
-</div>
-<p class="text-xs text-on-surface-variant mt-1">8.0% of total analyzed</p>
-</div>
-<div class="bg-surface-container-low rounded-lg p-4 border border-outline-variant/50">
-<div class="flex justify-between items-center mb-1">
-<span class="font-body-md text-body-md text-on-surface-variant">Total Sanctioned</span>
-<span class="font-headline-md text-headline-md text-on-surface">₹4,250 Cr</span>
-</div>
-<p class="text-xs text-on-surface-variant mt-1">Across 28 states &amp; 8 UTs</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Interactive Project Card (Simulated Active State) -->
-<div class="absolute bottom-6 right-6 z-20 w-[400px] bg-white rounded-xl shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)] border border-outline-variant overflow-hidden">
-<div class="h-2 w-full bg-error"></div>
-<div class="p-5">
-<div class="flex justify-between items-start mb-3">
-<div>
-<span class="inline-block px-2 py-0.5 bg-error/10 text-error rounded text-xs font-bold mb-2">High Risk</span>
-<h4 class="font-headline-md text-headline-md text-on-surface leading-tight">Rural Road Construction</h4>
-<p class="font-label-md text-label-md text-on-surface-variant mt-1">Project #MPLAD-84920</p>
-</div>
-<div class="flex flex-col items-end">
-<div class="flex items-center justify-center w-10 h-10 rounded-full bg-error text-white font-bold text-sm">
-                                91
-                            </div>
-<span class="text-[10px] text-on-surface-variant uppercase mt-1 font-semibold">Risk Score</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4 my-4 py-4 border-y border-outline-variant/50">
-<div>
-<p class="font-label-md text-label-md text-on-surface-variant mb-1">Sanctioned Amt</p>
-<p class="font-body-lg text-body-lg font-semibold text-on-surface">₹42.8L</p>
-</div>
-<div>
-<p class="font-label-md text-label-md text-on-surface-variant mb-1">Primary Anomaly</p>
-<p class="font-body-lg text-body-lg font-semibold text-error">Completion Delay</p>
-</div>
-</div>
-<div class="flex gap-3 mt-2">
-<button class="flex-1 bg-primary-container text-white py-2 rounded-lg font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[18px]">visibility</span>
-                            View Case
-                        </button>
-<button class="w-10 h-10 border border-outline-variant rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
-<span class="material-symbols-outlined text-[18px]">close</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Map Legend -->
-<div class="absolute top-6 right-6 z-10 bg-white/95 backdrop-blur-md px-4 py-3 rounded-lg shadow-sm border border-outline-variant">
-<h4 class="font-label-md text-label-md text-on-surface mb-2">Risk Severity</h4>
-<div class="flex items-center gap-4">
-<div class="flex items-center gap-1.5">
-<div class="w-3 h-3 rounded-full bg-error"></div>
-<span class="text-xs text-on-surface-variant">High (&gt;80)</span>
-</div>
-<div class="flex items-center gap-1.5">
-<div class="w-3 h-3 rounded-full bg-on-tertiary-container"></div>
-<span class="text-xs text-on-surface-variant">Med (50-79)</span>
-</div>
-<div class="flex items-center gap-1.5">
-<div class="w-3 h-3 rounded-full bg-secondary"></div>
-<span class="text-xs text-on-surface-variant">Low (&lt;50)</span>
-</div>
-</div>
-<div class="mt-3 pt-2 border-t border-outline-variant/50">
-<span class="text-[10px] text-on-surface-variant uppercase">Marker Size = Sanctioned Amount</span>
-</div>
-</div>
-</main>
-</div>
+
 <script src="app.js"></script>
-</body></html>
+
+<!-- Leaflet Map Initialization & Interactive Filtering Script -->
+<script>
+// Project Dataset
+const projects = [
+    {
+        id: "MPLAD-84920",
+        title: "Rural Road Construction",
+        state: "Maharashtra",
+        city: "Nagpur",
+        lat: 21.1458,
+        lng: 79.0882,
+        risk: "high",
+        riskScore: 91,
+        sanctioned: "₹42.8 Lakhs",
+        anomaly: "Completion Delay (>200%)",
+        type: "delay"
+    },
+    {
+        id: "MPLAD-73019",
+        title: "Solar Mini-Grid Installation",
+        state: "Rajasthan",
+        city: "Jaipur",
+        lat: 26.9124,
+        lng: 75.7873,
+        risk: "high",
+        riskScore: 88,
+        sanctioned: "₹1.45 Crore",
+        anomaly: "Amount Deviation (+42%)",
+        type: "cost"
+    },
+    {
+        id: "MPLAD-91044",
+        title: "District Hospital Oxygen Wing",
+        state: "Uttar Pradesh",
+        city: "Varanasi",
+        lat: 25.3176,
+        lng: 82.9739,
+        risk: "high",
+        riskScore: 95,
+        sanctioned: "₹2.10 Crore",
+        anomaly: "Agency Concentration Risk",
+        type: "agency"
+    },
+    {
+        id: "MPLAD-63910",
+        title: "Community RO Water Plant",
+        state: "West Bengal",
+        city: "Kolkata",
+        lat: 22.5726,
+        lng: 88.3639,
+        risk: "high",
+        riskScore: 84,
+        sanctioned: "₹38.5 Lakhs",
+        anomaly: "Utilization Cert. Mismatch",
+        type: "cert"
+    },
+    {
+        id: "MPLAD-48201",
+        title: "Skill Development Youth Center",
+        state: "Karnataka",
+        city: "Bengaluru",
+        lat: 12.9716,
+        lng: 77.5946,
+        risk: "med",
+        riskScore: 68,
+        sanctioned: "₹75.0 Lakhs",
+        anomaly: "Pending Milestone Audit",
+        type: "delay"
+    },
+    {
+        id: "MPLAD-29184",
+        title: "Government School Smart Classes",
+        state: "Delhi",
+        city: "New Delhi",
+        lat: 28.6139,
+        lng: 77.2090,
+        risk: "low",
+        riskScore: 28,
+        sanctioned: "₹50.0 Lakhs",
+        anomaly: "None (On Schedule)",
+        type: "none"
+    },
+    {
+        id: "MPLAD-55102",
+        title: "Inter-Village Bridge Construction",
+        state: "Bihar",
+        city: "Patna",
+        lat: 25.5941,
+        lng: 85.1376,
+        risk: "high",
+        riskScore: 89,
+        sanctioned: "₹1.80 Crore",
+        anomaly: "Cost Escalation & Delay",
+        type: "cost"
+    },
+    {
+        id: "MPLAD-38290",
+        title: "Coastal Fishermen Cold Storage",
+        state: "Tamil Nadu",
+        city: "Chennai",
+        lat: 13.0827,
+        lng: 80.2707,
+        risk: "med",
+        riskScore: 62,
+        sanctioned: "₹92.0 Lakhs",
+        anomaly: "Vendor Concentration",
+        type: "agency"
+    },
+    {
+        id: "MPLAD-19402",
+        title: "Public Park & Community Hall",
+        state: "Gujarat",
+        city: "Ahmedabad",
+        lat: 23.0225,
+        lng: 72.5714,
+        risk: "low",
+        riskScore: 32,
+        sanctioned: "₹65.0 Lakhs",
+        anomaly: "None (85% Completed)",
+        type: "none"
+    },
+    {
+        id: "MPLAD-88219",
+        title: "Underground Drainage System",
+        state: "Telangana",
+        city: "Hyderabad",
+        lat: 17.3850,
+        lng: 78.4867,
+        risk: "med",
+        riskScore: 71,
+        sanctioned: "₹1.15 Crore",
+        anomaly: "Contract Deviation",
+        type: "cost"
+    }
+];
+
+let activeRiskFilters = { high: true, med: true, low: true };
+let map, markerGroup;
+
+function initMap() {
+    // Initialize Map on India
+    map = L.map('map', {
+        center: [22.8, 80.5],
+        zoom: 5,
+        minZoom: 4,
+        maxZoom: 14,
+        zoomControl: false
+    });
+
+    L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+    // CartoDB Positron clean map tiles
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; OpenStreetMap',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
+
+    markerGroup = L.layerGroup().addTo(map);
+    renderMarkers();
+}
+
+function renderMarkers() {
+    markerGroup.clearLayers();
+
+    const stateFilter = document.getElementById('state-select').value;
+    const anomalyFilter = document.getElementById('anomaly-select').value;
+    const searchQuery = document.getElementById('map-search').value.toLowerCase().trim();
+
+    projects.forEach(p => {
+        // Filter checks
+        if (!activeRiskFilters[p.risk]) return;
+        if (stateFilter !== 'all' && p.state !== stateFilter) return;
+        if (anomalyFilter !== 'all' && p.type !== anomalyFilter) return;
+        if (searchQuery) {
+            const match = p.title.toLowerCase().includes(searchQuery) || 
+                          p.city.toLowerCase().includes(searchQuery) || 
+                          p.state.toLowerCase().includes(searchQuery) || 
+                          p.id.toLowerCase().includes(searchQuery);
+            if (!match) return;
+        }
+
+        const colorMap = {
+            high: { bg: '#ba1a1a', pulse: 'rgba(186,26,26,0.3)', border: '#ffffff' },
+            med: { bg: '#d97706', pulse: 'rgba(217,119,6,0.3)', border: '#ffffff' },
+            low: { bg: '#006c4a', pulse: 'rgba(0,108,74,0.3)', border: '#ffffff' }
+        };
+
+        const style = colorMap[p.risk] || colorMap.high;
+        const size = p.risk === 'high' ? 28 : 22;
+
+        const iconHtml = `
+            <div class="relative w-[${size}px] h-[${size}px] flex items-center justify-center custom-pin">
+                ${p.risk === 'high' ? `<div class="pulse-ring" style="background:${style.pulse};"></div>` : ''}
+                <div style="background:${style.bg}; width:${size}px; height:${size}px; border:2.5px solid ${style.border}; border-radius:50%; box-shadow:0 3px 8px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">
+                    <span style="color:#ffffff; font-size:10px; font-weight:800;">${p.riskScore}</span>
+                </div>
+            </div>
+        `;
+
+        const icon = L.divIcon({
+            html: iconHtml,
+            className: '',
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2]
+        });
+
+        const marker = L.marker([p.lat, p.lng], { icon: icon });
+        
+        marker.on('click', () => {
+            selectProject(p);
+            map.flyTo([p.lat, p.lng], Math.max(map.getZoom(), 7), { duration: 0.8 });
+        });
+
+        marker.bindTooltip(`<b>${p.title}</b><br><span style="color:${style.bg}; font-weight:bold;">${p.anomaly}</span>`, {
+            direction: 'top',
+            offset: [0, -size / 2]
+        });
+
+        markerGroup.addLayer(marker);
+    });
+}
+
+function selectProject(p) {
+    const card = document.getElementById('project-card');
+    const riskColors = {
+        high: { bar: 'bg-red-600', badgeBg: 'bg-red-100 text-red-700', badgeText: 'High Risk', scoreBg: 'bg-red-600', anomalyColor: 'text-red-600' },
+        med: { bar: 'bg-amber-500', badgeBg: 'bg-amber-100 text-amber-700', badgeText: 'Medium Risk', scoreBg: 'bg-amber-500', anomalyColor: 'text-amber-600' },
+        low: { bar: 'bg-emerald-600', badgeBg: 'bg-emerald-100 text-emerald-700', badgeText: 'Low Risk', scoreBg: 'bg-emerald-600', anomalyColor: 'text-emerald-600' }
+    };
+
+    const c = riskColors[p.risk];
+    document.getElementById('card-risk-bar').className = `h-2 w-full ${c.bar}`;
+    document.getElementById('card-badge').className = `inline-block px-2.5 py-0.5 rounded text-xs font-bold mb-1.5 ${c.badgeBg}`;
+    document.getElementById('card-badge').innerText = c.badgeText;
+    document.getElementById('card-title').innerText = p.title;
+    document.getElementById('card-id').innerText = `Project #${p.id} • ${p.city}, ${p.state}`;
+    document.getElementById('card-score').className = `flex items-center justify-center w-11 h-11 rounded-full text-white font-black text-base shadow-md ${c.scoreBg}`;
+    document.getElementById('card-score').innerText = p.riskScore;
+    document.getElementById('card-sanctioned').innerText = p.sanctioned;
+    document.getElementById('card-anomaly').className = `text-base font-bold ${c.anomalyColor}`;
+    document.getElementById('card-anomaly').innerText = p.anomaly;
+
+    card.classList.remove('hidden', 'translate-y-8', 'opacity-0');
+}
+
+function hideProjectCard() {
+    const card = document.getElementById('project-card');
+    card.classList.add('hidden');
+}
+
+function toggleRiskFilter(level) {
+    activeRiskFilters[level] = !activeRiskFilters[level];
+    const btn = document.getElementById(`btn-filter-${level}`);
+    if (activeRiskFilters[level]) {
+        btn.classList.remove('opacity-40', 'bg-transparent');
+    } else {
+        btn.classList.add('opacity-40', 'bg-transparent');
+    }
+    renderMarkers();
+}
+
+// State navigation bounds
+const stateCoordinates = {
+    all: [22.8, 80.5, 5],
+    Maharashtra: [19.7515, 75.7139, 6],
+    "Uttar Pradesh": [26.8467, 80.9462, 6],
+    Karnataka: [15.3173, 75.7139, 6],
+    "West Bengal": [22.9868, 87.8550, 6],
+    Rajasthan: [27.0238, 74.2179, 6],
+    Delhi: [28.7041, 77.1025, 9],
+    Bihar: [25.0961, 85.3131, 6],
+    "Tamil Nadu": [11.1271, 78.6569, 6],
+    Gujarat: [22.2587, 71.1924, 6],
+    Telangana: [18.1124, 79.0193, 6]
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    initMap();
+
+    document.getElementById('state-select').addEventListener('change', (e) => {
+        const val = e.target.value;
+        const coords = stateCoordinates[val] || stateCoordinates.all;
+        map.flyTo([coords[0], coords[1]], coords[2], { duration: 1.2 });
+        renderMarkers();
+    });
+
+    document.getElementById('anomaly-select').addEventListener('change', renderMarkers);
+
+    document.getElementById('map-search').addEventListener('input', renderMarkers);
+});
+</script>
+</body>
+</html>
