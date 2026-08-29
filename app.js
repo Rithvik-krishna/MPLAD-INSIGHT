@@ -1,6 +1,6 @@
-// MPLAD Insight AI - Global Interactive Application Script
+// MPLAD Insight AI - Forensic Audit & GovTech Oversight Client
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Toast Notification System
+    // 1. Toast Notification Utility
     function showToast(message, type = 'info') {
         let container = document.getElementById('toast-container');
         if (!container) {
@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const toast = document.createElement('div');
         const bgColors = {
-            success: 'bg-emerald-600 text-white',
-            error: 'bg-red-600 text-white',
-            warning: 'bg-amber-600 text-white',
-            info: 'bg-slate-800 text-white'
+            success: 'bg-emerald-800 text-emerald-50 border border-emerald-600',
+            error: 'bg-red-800 text-red-50 border border-red-600',
+            warning: 'bg-amber-800 text-amber-50 border border-amber-600',
+            info: 'bg-slate-900 text-slate-100 border border-slate-700'
         };
         const iconNames = {
             success: 'check_circle',
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             warning: 'warning',
             info: 'info'
         };
-        toast.className = `flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg text-sm font-medium transition-all transform translate-y-2 opacity-0 pointer-events-auto ${bgColors[type] || bgColors.info}`;
+        toast.className = `flex items-center gap-3 px-4 py-3 rounded-lg shadow-xl text-xs font-semibold tracking-wide transition-all transform translate-y-2 opacity-0 pointer-events-auto ${bgColors[type] || bgColors.info}`;
         toast.innerHTML = `<span class="material-symbols-outlined text-lg">${iconNames[type] || 'info'}</span><span>${message}</span>`;
         container.appendChild(toast);
         
@@ -37,59 +37,99 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.showToast = showToast;
 
-    // 2. Interactive action buttons
+    // 2. Universal Global Actions (Export, Audit, Escalations)
     document.querySelectorAll('button, a').forEach(btn => {
         const text = (btn.textContent || '').trim().toLowerCase();
         const href = btn.getAttribute('href');
         
         if (!href || href === '#' || href === 'javascript:void(0)') {
             btn.addEventListener('click', (e) => {
+                if (btn.classList.contains('no-toast-intercept') || btn.closest('[data-custom-handler]')) return;
                 e.preventDefault();
+                
                 if (text.includes('export') || text.includes('download')) {
-                    showToast('Generating export report...', 'info');
-                    setTimeout(() => showToast('Report downloaded successfully!', 'success'), 1200);
+                    showToast('Generating official GovTech audit export...', 'info');
+                    setTimeout(() => {
+                        exportTableToCSV('mplad-audit-export.csv');
+                        showToast('Audit report exported successfully!', 'success');
+                    }, 900);
                 } else if (text.includes('approve')) {
-                    showToast('Case marked as Approved and Compliant.', 'success');
+                    showToast('Work compliance approved. Status logged to central ledger.', 'success');
                 } else if (text.includes('escalate')) {
-                    showToast('Case escalated to District Oversight Committee.', 'warning');
-                } else if (text.includes('audit')) {
-                    showToast('Physical audit request submitted.', 'info');
+                    showToast('Dossier escalated to District Magistrate & Central Vigilance.', 'warning');
+                } else if (text.includes('audit') || text.includes('request audit')) {
+                    showToast('Physical verification audit order generated (#ORD-2026-X).', 'info');
                 } else if (text.includes('filter') || text.includes('apply')) {
-                    showToast('Filters updated.', 'success');
-                } else if (text.includes('action req') || text.includes('review case')) {
-                    window.location.href = 'Flagged_Cases.html';
-                } else if (text.includes('view details') || text.includes('case-')) {
-                    window.location.href = 'Case_Details.html';
-                } else {
-                    showToast('Action: ' + (btn.textContent || 'Click').trim().substring(0, 30), 'info');
+                    showToast('Audit filter matrix updated.', 'info');
+                } else if (text.includes('retry') || text.includes('reload')) {
+                    showToast('Re-connecting to MoSPI central data pipeline...', 'info');
+                    setTimeout(() => location.reload(), 600);
                 }
             });
         }
     });
 
-    // 3. Make table rows in Flagged Cases clickable
-    document.querySelectorAll('tbody tr').forEach(row => {
-        row.style.cursor = 'pointer';
-        row.addEventListener('click', (e) => {
-            if (e.target.closest('button') || e.target.closest('input') || e.target.closest('a')) return;
-            const current = window.location.pathname;
-            if (current.includes('Flagged_Cases') || current.includes('Overview_Dashboard') || current.includes('index') || current.endsWith('/')) {
-                window.location.href = 'Case_Details.html';
-            }
-        });
-    });
-
-    // 4. Search bar functionality
-    document.querySelectorAll('input[type="search"], input[placeholder*="Search"], input[placeholder*="search"]').forEach(input => {
+    // 3. Quick Global Search Navigation (Enter key & Cmd/Ctrl+K)
+    const searchInputs = document.querySelectorAll('input[type="search"], input[placeholder*="Search"], input[placeholder*="search"]');
+    searchInputs.forEach(input => {
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && input.value.trim()) {
                 const q = encodeURIComponent(input.value.trim());
                 if (!window.location.pathname.includes('Data_Explorer')) {
                     window.location.href = `Data_Explorer.html?q=${q}`;
                 } else {
-                    showToast(`Filtered for: "${input.value.trim()}"`, 'info');
+                    if (window.filterTableRows) window.filterTableRows(input.value.trim());
+                    showToast(`Filtered database for query: "${input.value.trim()}"`, 'info');
                 }
             }
         });
     });
+
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            const firstSearch = document.querySelector('header input');
+            if (firstSearch) firstSearch.focus();
+        }
+    });
+
+    // 4. Utility: Export Table to CSV
+    function exportTableToCSV(filename = 'mplad_data.csv') {
+        const table = document.querySelector('table');
+        if (!table) return;
+        let csv = [];
+        const rows = table.querySelectorAll('tr');
+        for (let i = 0; i < rows.length; i++) {
+            const row = [], cols = rows[i].querySelectorAll('td, th');
+            for (let j = 0; j < cols.length; j++) {
+                let cellText = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, ' ').replace(/"/g, '""').trim();
+                row.push('"' + cellText + '"');
+            }
+            csv.push(row.join(','));
+        }
+        const csvFile = new Blob([csv.join('\n')], { type: 'text/csv' });
+        const downloadLink = document.createElement('a');
+        downloadLink.download = filename;
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+    window.exportTableToCSV = exportTableToCSV;
+
+    // 5. Automatic Query String filter handling on Data Explorer
+    if (window.location.pathname.includes('Data_Explorer')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const q = urlParams.get('q');
+        if (q) {
+            const tableSearch = document.getElementById('table-search') || document.querySelector('input[placeholder*="Search"]');
+            if (tableSearch) {
+                tableSearch.value = q;
+                setTimeout(() => {
+                    if (window.filterTableRows) window.filterTableRows(q);
+                }, 100);
+            }
+        }
+    }
 });

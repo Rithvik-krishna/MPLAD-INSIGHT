@@ -1,508 +1,553 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MPLAD INSIGHT - Flagged Cases</title>
+<title>MPLAD Insight — Flagged Cases Triage Workbench</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
 <script id="tailwind-config">
-  tailwind.config = {
+tailwind.config = {
     darkMode: "class",
     theme: {
-      extend: {
-        "colors": {
-                "error": "#ba1a1a",
-                "surface-tint": "#3755c3",
-                "on-secondary-container": "#00714e",
-                "on-secondary": "#ffffff",
-                "secondary-fixed-dim": "#68dba9",
-                "inverse-primary": "#b8c4ff",
-                "on-tertiary": "#ffffff",
-                "surface-container": "#e7eeff",
-                "secondary": "#006c4a",
-                "background": "#f9f9ff",
-                "surface-variant": "#d8e3fb",
-                "surface": "#f9f9ff",
-                "inverse-surface": "#263143",
-                "on-tertiary-container": "#ffa85d",
-                "primary-container": "#1e40af",
-                "on-primary": "#ffffff",
-                "surface-container-low": "#f0f3ff",
-                "surface-container-lowest": "#ffffff",
-                "tertiary-container": "#743d00",
-                "inverse-on-surface": "#ecf1ff",
-                "on-primary-fixed-variant": "#173bab",
-                "tertiary-fixed-dim": "#ffb77d",
-                "outline": "#757684",
-                "error-container": "#ffdad6",
-                "primary-fixed": "#dde1ff",
-                "on-tertiary-fixed": "#2f1500",
-                "surface-bright": "#f9f9ff",
-                "outline-variant": "#c4c5d5",
-                "on-primary-container": "#a8b8ff",
-                "on-error-container": "#93000a",
-                "tertiary": "#532a00",
-                "on-surface-variant": "#444653",
-                "on-surface": "#111c2d",
-                "primary": "#00288e",
-                "surface-container-highest": "#d8e3fb",
-                "tertiary-fixed": "#ffdcc3",
-                "on-secondary-fixed": "#002114",
-                "on-background": "#111c2d",
-                "surface-container-high": "#dee8ff",
-                "primary-fixed-dim": "#b8c4ff",
-                "surface-dim": "#cfdaf2",
-                "on-tertiary-fixed-variant": "#6e3900",
-                "secondary-fixed": "#85f8c4",
-                "on-error": "#ffffff",
-                "secondary-container": "#82f5c1",
-                "on-primary-fixed": "#001453",
-                "on-secondary-fixed-variant": "#005137"
-        },
-        "borderRadius": {
-                "DEFAULT": "0.25rem",
-                "lg": "0.5rem",
-                "xl": "0.75rem",
-                "full": "9999px"
-        },
-        "spacing": {
-                "stack_md": "16px",
-                "container_max_width": "1440px",
-                "margin_mobile": "16px",
-                "stack_lg": "24px",
-                "sidebar_width": "260px",
-                "stack_sm": "8px",
-                "margin_desktop": "32px",
-                "gutter": "24px"
-        },
-        "fontFamily": {
-                "headline-md": [
-                        "Inter"
-                ],
-                "body-lg": [
-                        "Inter"
-                ],
-                "headline-lg": [
-                        "Inter"
-                ],
-                "headline-lg-mobile": [
-                        "Inter"
-                ],
-                "label-md": [
-                        "Inter"
-                ],
-                "body-md": [
-                        "Inter"
-                ],
-                "display-lg": [
-                        "Inter"
-                ]
-        },
-        "fontSize": {
-                "headline-md": [
-                        "20px",
-                        {
-                                "lineHeight": "28px",
-                                "fontWeight": "600"
-                        }
-                ],
-                "body-lg": [
-                        "16px",
-                        {
-                                "lineHeight": "24px",
-                                "fontWeight": "400"
-                        }
-                ],
-                "headline-lg": [
-                        "28px",
-                        {
-                                "lineHeight": "36px",
-                                "letterSpacing": "-0.01em",
-                                "fontWeight": "600"
-                        }
-                ],
-                "headline-lg-mobile": [
-                        "24px",
-                        {
-                                "lineHeight": "32px",
-                                "fontWeight": "600"
-                        }
-                ],
-                "label-md": [
-                        "12px",
-                        {
-                                "lineHeight": "16px",
-                                "letterSpacing": "0.05em",
-                                "fontWeight": "600"
-                        }
-                ],
-                "body-md": [
-                        "14px",
-                        {
-                                "lineHeight": "20px",
-                                "fontWeight": "400"
-                        }
-                ],
-                "display-lg": [
-                        "36px",
-                        {
-                                "lineHeight": "44px",
-                                "letterSpacing": "-0.02em",
-                                "fontWeight": "700"
-                        }
-                ]
+        extend: {
+            colors: {
+                brand: {
+                    50: '#f0f6fe',
+                    500: '#2563eb',
+                    700: '#1d4ed8',
+                    800: '#1e40af',
+                    900: '#0f172a',
+                    950: '#090d16'
+                },
+                canvas: '#f8fafc',
+                surface: '#ffffff',
+                borderline: '#e2e8f0',
+                risk: {
+                    critical: '#dc2626',
+                    high: '#ea580c',
+                    med: '#d97706',
+                    low: '#059669'
+                }
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace']
+            }
         }
-},
-    },
-  }
+    }
+}
 </script>
+
 <style>
-  /* Custom scrollbar for a cleaner SaaS look */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #c4c5d5;
-    border-radius: 9999px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #757684;
-  }
+body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+.font-tabular { font-variant-numeric: tabular-nums; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Sticky Table Columns */
+.sticky-col-1 {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+}
+.sticky-col-2 {
+    position: sticky;
+    left: 110px;
+    z-index: 20;
+}
+th.sticky-col-1, th.sticky-col-2 {
+    z-index: 30;
+}
 </style>
 </head>
-<body class="bg-background text-on-background flex min-h-screen font-body-md text-body-md">
-<!-- SideNavBar -->
-<nav class="w-[260px] h-screen flex flex-col fixed left-0 top-0 border-r border-outline-variant bg-inverse-surface dark:bg-inverse-surface text-primary-fixed dark:text-primary-fixed-dim font-body-md text-body-md z-50">
-<div class="px-6 py-8 flex flex-col gap-2">
-<div class="flex items-center gap-3 mb-2">
-<span class="material-symbols-outlined text-[32px] text-white" style="font-variation-settings: 'FILL' 1;">account_balance</span>
-<div class="flex flex-col">
-<span class="font-headline-md text-headline-md font-bold text-white tracking-tight">MPLAD INSIGHT</span>
-<span class="font-label-md text-label-md text-surface-variant opacity-80 uppercase tracking-widest">GovTech Oversight</span>
-</div>
-</div>
-</div>
-<div class="flex-1 flex flex-col gap-1 mt-4">
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Overview_Dashboard.html">
-<span class="material-symbols-outlined">dashboard</span>
-<span>Overview</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container border-l-4 border-primary-fixed hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Flagged_Cases.html">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">report_problem</span>
-<span class="font-bold">Flagged Cases</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Geographic_Map.html">
-<span class="material-symbols-outlined">map</span>
-<span>Map</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Analytics.html">
-<span class="material-symbols-outlined">insights</span>
-<span>Analytics</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Data_Explorer.html">
-<span class="material-symbols-outlined">database</span>
-<span>Data Explorer</span>
-</a>
-</div>
-<div class="mt-auto mb-6 flex flex-col gap-1 border-t border-outline-variant/30 pt-4">
-<div class="px-4 py-2 font-label-md text-label-md text-outline uppercase tracking-wider">System Status</div>
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined text-[18px]">sensors</span>
-<span>Live Status</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined text-[18px]">update</span>
-<span>Update Info</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 font-label-md text-label-md" href="#">
-<span class="material-symbols-outlined text-[18px] text-secondary-fixed">check_circle</span>
-<span>System Status</span>
-</a>
-</div>
-</nav>
-<!-- Main Content Wrapper -->
-<div class="flex-1 ml-[260px] flex flex-col w-[calc(100%-260px)] min-h-screen">
-<!-- TopNavBar -->
-<header class="flex justify-between items-center px-margin_desktop bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed font-label-md text-label-md h-16 w-full sticky top-0 border-b border-outline-variant shadow-sm z-40">
-<div class="flex items-center gap-4 w-1/3">
-<div class="relative w-full max-w-md">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-on-surface font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search project ID or work name..." type="text">
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full active:scale-95 duration-150">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full active:scale-95 duration-150">
-<span class="material-symbols-outlined">settings</span>
-</button>
-<div class="h-8 w-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-body-lg text-body-lg overflow-hidden ring-2 ring-outline-variant ml-2">
-<img alt="Administrator Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV0THudX4gOCmpQAiMykKbuBURem1jWMlUSU7FX-A1MC3HTBDEtjCJC1R15jb-sY7GIaIxIaxyERzHu1iQ7Ms68CqSw9XnrvRBjiYUhVznA_WrZkJ5fHZTvH2jJMICtnrafr8_caZ97H4TX6JHSBFjrOJGuru00pmfyP6izgh4q_sIMFLJX_XubyBYJhqJuDCj7uYn8hJ_-c_uYzhdZObp3jwRJAWCi6wiwpvJOKhckgeqZmHFIk7oIg">
-</div>
-</div>
-</header>
-<!-- Page Content Canvas -->
-<main class="flex-1 p-margin_desktop bg-background flex flex-col gap-stack_lg">
-<!-- Page Header -->
-<div class="flex flex-col gap-2">
-<h1 class="font-headline-lg text-headline-lg text-on-background">Flagged Cases</h1>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">Projects identified as statistically or rule-based anomalies requiring human review. Use the filters below to triage investigations by geography, risk severity, or anomaly type.</p>
-</div>
-<!-- Filters & Controls (Bento-style layout for controls) -->
-<div class="bg-surface rounded-xl border border-outline-variant p-stack_md shadow-sm flex flex-col gap-stack_md">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-<!-- State Dropdown -->
-<div class="flex flex-col gap-1">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase">State</label>
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-3 py-2 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
-<option value="">All States</option>
-<option value="telangana">Telangana</option>
-<option value="rajasthan">Rajasthan</option>
-<option value="west_bengal">West Bengal</option>
-</select>
-</div>
-<!-- District Dropdown -->
-<div class="flex flex-col gap-1">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase">District</label>
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-3 py-2 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
-<option value="">All Districts</option>
-<option value="hyderabad">Hyderabad</option>
-<option value="jaipur">Jaipur</option>
-<option value="kolkata">Kolkata</option>
-</select>
-</div>
-<!-- Risk Level Dropdown -->
-<div class="flex flex-col gap-1">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase">Risk Level</label>
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-3 py-2 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
-<option value="">All Levels</option>
-<option value="critical">Critical (90+)</option>
-<option value="high">High (70-89)</option>
-<option value="medium">Medium (50-69)</option>
-</select>
-</div>
-<!-- Anomaly Type -->
-<div class="flex flex-col gap-1">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase">Anomaly Type</label>
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-3 py-2 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
-<option value="">All Types</option>
-<option value="cost_overrun">Cost Overrun</option>
-<option value="timeline_delay">Timeline Delay</option>
-<option value="vendor_concentration">Vendor Concentration</option>
-<option value="fund_diversion">Fund Diversion</option>
-</select>
-</div>
-<!-- Date Range -->
-<div class="flex flex-col gap-1">
-<label class="font-label-md text-label-md text-on-surface-variant uppercase">Date Range</label>
-<div class="relative">
-<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-3 py-2 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" type="date">
-</div>
-</div>
-</div>
-<div class="flex justify-between items-center border-t border-outline-variant/50 pt-stack_sm mt-stack_sm">
-<div class="flex gap-4 items-center">
-<span class="font-label-md text-label-md text-on-surface-variant">SORT BY:</span>
-<button class="flex items-center gap-1 font-body-md text-body-md text-primary font-bold hover:bg-primary/5 px-2 py-1 rounded transition-colors">
-              Risk Score <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
-</button>
-<button class="flex items-center gap-1 font-body-md text-body-md text-on-surface-variant hover:bg-surface-variant/20 px-2 py-1 rounded transition-colors">
-              Date Flagged
+<body class="bg-canvas text-slate-800 flex h-full antialiased text-xs">
+
+<!-- UNIFIED SHELL: Side Navigation -->
+<aside class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none">
+    <div class="px-5 py-6 border-b border-slate-800/80 flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
+            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-extrabold text-white text-sm tracking-wider uppercase">MPLAD INSIGHT</span>
+            <span class="text-[10px] text-blue-400 uppercase tracking-widest font-semibold">GovTech Audit AI</span>
+        </div>
+    </div>
+
+    <nav class="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Overview_Dashboard.html">
+            <span class="material-symbols-outlined text-lg">dashboard</span>
+            <span>Overview</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Flagged_Cases.html">
+            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">report_problem</span>
+            <span>Flagged Cases</span>
+            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">684</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Geographic_Map.html">
+            <span class="material-symbols-outlined text-lg">map</span>
+            <span>Geographic Map</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Analytics.html">
+            <span class="material-symbols-outlined text-lg">insights</span>
+            <span>Analytics</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Data_Explorer.html">
+            <span class="material-symbols-outlined text-lg">database</span>
+            <span>Data Explorer</span>
+        </a>
+    </nav>
+
+    <div class="p-3.5 border-t border-slate-800 bg-brand-950/40 text-[11px] space-y-2">
+        <div class="flex items-center justify-between">
+            <span class="text-slate-400 flex items-center gap-2">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Live Audit Stream
+            </span>
+            <span class="font-mono text-slate-400 font-bold">ACTIVE</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+            <span>Data Ingestion:</span>
+            <span class="font-mono text-slate-400">06:00 IST</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+            <span>System Pipeline:</span>
+            <span class="text-emerald-400 font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">check_circle</span> Normal
+            </span>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div class="flex-1 ml-[260px] flex flex-col min-h-screen bg-canvas">
+    
+    <!-- UNIFIED SHELL: Header -->
+    <header class="h-14 w-full sticky top-0 bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-6">
+        <div class="flex items-center gap-4 w-96">
+            <div class="relative w-full">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
+                <input id="global-search" class="w-full pl-9 pr-12 py-1.5 rounded-md border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-slate-400 font-sans" placeholder="Search works, districts, MP names, project IDs... (Press ⌘K)" type="search">
+                <kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-slate-300 bg-white text-[10px] font-mono text-slate-400">⌘K</kbd>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button class="relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition-colors" title="Live Vigilance Notifications">
+                <span class="material-symbols-outlined text-xl">notifications</span>
+                <span class="absolute top-1 right-1 w-2 h-2 bg-red-600 rounded-full ring-2 ring-white"></span>
             </button>
-</div>
-<div class="flex gap-2">
-<button class="px-4 py-2 border border-primary text-primary font-label-md text-label-md uppercase rounded-md hover:bg-primary/5 transition-colors">Reset Filters</button>
-<button class="px-4 py-2 bg-primary text-on-primary font-label-md text-label-md uppercase rounded-md shadow-sm hover:bg-primary-container transition-colors flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">filter_list</span> Apply Filters
+
+            <!-- State View Toggles (Live / Skeleton / Error / Empty) -->
+            <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-md border border-slate-200 text-[10px] font-semibold">
+                <button onclick="setTableView('live')" id="btn-view-live" class="px-2 py-1 rounded bg-white shadow-2xs text-slate-900 font-bold">Live Data</button>
+                <button onclick="setTableView('skeleton')" id="btn-view-skeleton" class="px-2 py-1 rounded text-slate-500 hover:text-slate-900">Skeleton</button>
+                <button onclick="setTableView('empty')" id="btn-view-empty" class="px-2 py-1 rounded text-slate-500 hover:text-slate-900">Empty State</button>
+                <button onclick="setTableView('error')" id="btn-view-error" class="px-2 py-1 rounded text-slate-500 hover:text-slate-900">Error State</button>
+            </div>
+
+            <button onclick="exportTableToCSV('mplad_flagged_cases.csv')" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white rounded-md text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs">
+                <span class="material-symbols-outlined text-[16px]">download</span>
+                <span>Export Triage</span>
             </button>
+
+            <div class="h-6 w-px bg-slate-200 mx-1"></div>
+
+            <div class="flex items-center gap-2.5 pl-1">
+                <div class="w-7 h-7 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-xs shadow-xs">AO</div>
+                <div class="flex flex-col text-left">
+                    <span class="text-xs font-bold text-slate-900 leading-tight">Audit Officer #104</span>
+                    <span class="text-[10px] text-slate-500 font-medium">MoSPI • Oversight Div</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 space-y-4 max-w-[1600px] w-full mx-auto">
+        
+        <!-- Header Title & Counts -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-borderline pb-3">
+            <div>
+                <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Flagged Cases Audit Workbench</h1>
+                <p class="text-xs text-slate-500 mt-0.5">High-density triage matrix for 684 works displaying statistical and compliance anomalies.</p>
+            </div>
+            <div class="flex items-center gap-2 font-mono">
+                <span class="px-2.5 py-1 rounded-md bg-red-100 text-red-900 border border-red-200 text-xs font-bold">127 CRITICAL</span>
+                <span class="px-2.5 py-1 rounded-md bg-orange-100 text-orange-900 border border-orange-200 text-xs font-bold">185 HIGH</span>
+                <span class="px-2.5 py-1 rounded-md bg-amber-100 text-amber-900 border border-amber-200 text-xs font-bold">205 MEDIUM</span>
+                <span class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-200 text-xs font-bold">167 LOW</span>
+            </div>
+        </div>
+
+        <!-- Filter Bar Matrix -->
+        <div class="bg-white border border-borderline rounded-lg p-3.5 shadow-xs flex flex-wrap items-center gap-3">
+            <!-- Search Inside Table -->
+            <div class="relative w-72">
+                <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-base">filter_alt</span>
+                <input id="table-filter" oninput="filterCases()" class="w-full pl-8 pr-3 py-1.5 rounded border border-slate-300 bg-slate-50 text-xs focus:bg-white focus:border-blue-600 outline-none" placeholder="Filter by Work ID, title, MP name, agency..." type="text">
+            </div>
+
+            <!-- State Filter -->
+            <select id="filter-state" onchange="filterCases()" class="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
+                <option value="all">All States / UTs</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+            </select>
+
+            <!-- Anomaly Filter -->
+            <select id="filter-anomaly" onchange="filterCases()" class="bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
+                <option value="all">All Anomaly Types</option>
+                <option value="Delay">Completion Delay (>200%)</option>
+                <option value="Cost">Amount / Cost Deviation</option>
+                <option value="Agency">Agency Concentration</option>
+                <option value="Spatial">Spatial / Cluster Outlier</option>
+                <option value="UC">UC Date Mismatch</option>
+            </select>
+
+            <!-- Severity Pills -->
+            <div class="flex items-center gap-1 ml-auto">
+                <span class="text-[11px] font-bold text-slate-400 uppercase mr-1">Severity:</span>
+                <button onclick="toggleSeverityPill('all')" id="pill-all" class="px-2.5 py-1 rounded text-xs font-bold bg-slate-900 text-white">All</button>
+                <button onclick="toggleSeverityPill('critical')" id="pill-critical" class="px-2.5 py-1 rounded text-xs font-bold bg-red-50 text-red-800 border border-red-200 hover:bg-red-100">Critical</button>
+                <button onclick="toggleSeverityPill('high')" id="pill-high" class="px-2.5 py-1 rounded text-xs font-bold bg-orange-50 text-orange-800 border border-orange-200 hover:bg-orange-100">High</button>
+                <button onclick="toggleSeverityPill('med')" id="pill-med" class="px-2.5 py-1 rounded text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100">Medium</button>
+                <button onclick="toggleSeverityPill('low')" id="pill-low" class="px-2.5 py-1 rounded text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100">Low</button>
+            </div>
+        </div>
+
+        <!-- Table Container with Sticky Columns -->
+        <div class="bg-white border border-borderline rounded-lg shadow-xs overflow-hidden relative min-h-[480px]">
+            
+            <!-- 1. LIVE DATA TABLE -->
+            <div id="view-live" class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline select-none">
+                            <th class="py-2.5 px-3 font-mono sticky-col-1 bg-slate-100 shadow-[1px_0_0_0_#e2e8f0] w-[110px]">Risk Score</th>
+                            <th class="py-2.5 px-3 font-mono sticky-col-2 bg-slate-100 shadow-[1px_0_0_0_#e2e8f0] w-[140px]">Work ID</th>
+                            <th class="py-2.5 px-3 min-w-[220px]">Project Title</th>
+                            <th class="py-2.5 px-3 min-w-[150px]">Constituency / State</th>
+                            <th class="py-2.5 px-3 min-w-[150px]">MP / Nodal Entity</th>
+                            <th class="py-2.5 px-3 text-right min-w-[110px]">Sanctioned</th>
+                            <th class="py-2.5 px-3 text-right min-w-[110px]">Utilized</th>
+                            <th class="py-2.5 px-3 min-w-[180px]">Primary Anomaly</th>
+                            <th class="py-2.5 px-3 min-w-[140px]">Implementing Agency</th>
+                            <th class="py-2.5 px-3 min-w-[110px] text-center">Status</th>
+                            <th class="py-2.5 px-3 text-center sticky right-0 bg-slate-100 shadow-[-1px_0_0_0_#e2e8f0]">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="case-tbody" class="divide-y divide-borderline font-tabular">
+                        <!-- Dynamically populated via JS for full sorting/filtering capability -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 2. LOADING SKELETON STATE -->
+            <div id="view-skeleton" class="hidden p-6 space-y-4">
+                <div class="flex justify-between items-center animate-pulse">
+                    <div class="h-4 bg-slate-200 rounded w-48"></div>
+                    <div class="h-4 bg-slate-200 rounded w-24"></div>
+                </div>
+                <div class="space-y-3">
+                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                </div>
+            </div>
+
+            <!-- 3. EMPTY STATE -->
+            <div id="view-empty" class="hidden p-12 flex flex-col items-center justify-center text-center space-y-3">
+                <div class="w-14 h-14 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-400">
+                    <span class="material-symbols-outlined text-3xl">search_off</span>
+                </div>
+                <h3 class="text-base font-bold text-slate-800">No Flagged Cases Match Filter Criteria</h3>
+                <p class="text-xs text-slate-500 max-w-sm">No anomalous works match the active combination of state, severity, or keyword search query.</p>
+                <button onclick="resetFilters()" class="px-3.5 py-1.5 bg-blue-700 hover:bg-blue-800 text-white rounded text-xs font-bold transition-colors shadow-xs">
+                    Reset All Filters
+                </button>
+            </div>
+
+            <!-- 4. ERROR STATE -->
+            <div id="view-error" class="hidden p-12 flex flex-col items-center justify-center text-center space-y-3">
+                <div class="w-14 h-14 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-red-600">
+                    <span class="material-symbols-outlined text-3xl">cloud_off</span>
+                </div>
+                <h3 class="text-base font-bold text-red-900">Failed to Sync Audit Pipeline</h3>
+                <p class="text-xs text-slate-500 max-w-sm">Could not establish secure TLS connection to the central MoSPI state node data store.</p>
+                <button onclick="setTableView('live'); showToast('Successfully reconnected to audit node.', 'success');" class="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-bold transition-colors shadow-xs">
+                    Retry Connection
+                </button>
+            </div>
+
+            <!-- Table Pagination & Count Footer -->
+            <div class="p-3 border-t border-borderline bg-slate-50/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500">
+                <span class="text-xs font-medium">Showing <strong id="visible-count" class="text-slate-900 font-mono">1 – 8</strong> of <strong class="text-slate-900 font-mono">684</strong> flagged records</span>
+                <div class="flex items-center gap-1 font-mono">
+                    <button class="px-2.5 py-1 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 disabled:opacity-40" disabled>&lt; Prev</button>
+                    <button class="px-2.5 py-1 rounded bg-blue-700 text-white font-bold">1</button>
+                    <button class="px-2.5 py-1 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100">2</button>
+                    <button class="px-2.5 py-1 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100">3</button>
+                    <span class="px-1 text-slate-400">...</span>
+                    <button class="px-2.5 py-1 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100">86</button>
+                    <button class="px-2.5 py-1 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100">Next &gt;</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
 </div>
-</div>
-</div>
-<!-- Data Table Card -->
-<div class="bg-surface border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col flex-1">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low border-b border-outline-variant font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
-<th class="px-4 py-3 whitespace-nowrap">Risk</th>
-<th class="px-4 py-3 whitespace-nowrap">Score</th>
-<th class="px-4 py-3 whitespace-nowrap">Project ID</th>
-<th class="px-4 py-3 min-w-[250px]">Work Name</th>
-<th class="px-4 py-3 whitespace-nowrap">State / District</th>
-<th class="px-4 py-3 whitespace-nowrap text-right">Sanctioned (₹L)</th>
-<th class="px-4 py-3 whitespace-nowrap">Status</th>
-<th class="px-4 py-3 whitespace-nowrap">Primary Anomaly</th>
-<th class="px-4 py-3 whitespace-nowrap">Date Flagged</th>
-<th class="px-4 py-3 whitespace-nowrap text-center">Action</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant/50">
-<!-- Row 1: High Risk -->
-<tr class="hover:bg-surface-container-lowest transition-colors relative">
-<td class="absolute left-0 top-0 bottom-0 w-1 bg-error"></td>
-<td class="px-4 py-4 pl-5">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-error-container text-on-error-container">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
-</span>
-</td>
-<td class="px-4 py-4 font-headline-md text-headline-md text-error">94</td>
-<td class="px-4 py-4 font-mono text-xs text-on-surface-variant">TS-HYD-23-091</td>
-<td class="px-4 py-4 font-bold text-on-surface line-clamp-2" title="Construction of Community Hall in Musheerabad">Construction of Community Hall in Musheerabad</td>
-<td class="px-4 py-4">
-<div class="flex flex-col">
-<span>Telangana</span>
-<span class="text-xs text-on-surface-variant">Hyderabad</span>
-</div>
-</td>
-<td class="px-4 py-4 text-right font-mono">₹ 150.00</td>
-<td class="px-4 py-4">
-<span class="px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-bold uppercase">In Progress</span>
-</td>
-<td class="px-4 py-4">
-<div class="flex items-center gap-1 text-error">
-<span class="material-symbols-outlined text-[16px]">price_change</span>
-<span>Cost Overrun (210%)</span>
-</div>
-</td>
-<td class="px-4 py-4 text-on-surface-variant">24 Oct 2023</td>
-<td class="px-4 py-4 text-center">
-<button class="text-primary hover:text-primary-container font-label-md text-label-md uppercase tracking-wider flex items-center justify-center gap-1 mx-auto border border-primary/20 px-3 py-1 rounded hover:bg-primary/5 transition-all">
-                    View
-                  </button>
-</td>
-</tr>
-<!-- Row 2: High Risk -->
-<tr class="hover:bg-surface-container-lowest transition-colors relative">
-<td class="absolute left-0 top-0 bottom-0 w-1 bg-error"></td>
-<td class="px-4 py-4 pl-5">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-error-container text-on-error-container">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
-</span>
-</td>
-<td class="px-4 py-4 font-headline-md text-headline-md text-error">88</td>
-<td class="px-4 py-4 font-mono text-xs text-on-surface-variant">WB-KOL-22-114</td>
-<td class="px-4 py-4 font-bold text-on-surface line-clamp-2">Installation of High-Mast Lights (50 Units)</td>
-<td class="px-4 py-4">
-<div class="flex flex-col">
-<span>West Bengal</span>
-<span class="text-xs text-on-surface-variant">Kolkata</span>
-</div>
-</td>
-<td class="px-4 py-4 text-right font-mono">₹ 75.50</td>
-<td class="px-4 py-4">
-<span class="px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold uppercase">Completed</span>
-</td>
-<td class="px-4 py-4">
-<div class="flex items-center gap-1 text-tertiary-container">
-<span class="material-symbols-outlined text-[16px]">group_work</span>
-<span>Vendor Concentration</span>
-</div>
-</td>
-<td class="px-4 py-4 text-on-surface-variant">12 Sep 2023</td>
-<td class="px-4 py-4 text-center">
-<button class="text-primary hover:text-primary-container font-label-md text-label-md uppercase tracking-wider flex items-center justify-center gap-1 mx-auto border border-primary/20 px-3 py-1 rounded hover:bg-primary/5 transition-all">
-                    View
-                  </button>
-</td>
-</tr>
-<!-- Row 3: Medium Risk -->
-<tr class="hover:bg-surface-container-lowest transition-colors relative">
-<td class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-container"></td>
-<td class="px-4 py-4 pl-5">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-tertiary-fixed text-on-tertiary-fixed">
-<span class="material-symbols-outlined text-[20px]">info</span>
-</span>
-</td>
-<td class="px-4 py-4 font-headline-md text-headline-md text-tertiary-container">65</td>
-<td class="px-4 py-4 font-mono text-xs text-on-surface-variant">RJ-JPR-23-005</td>
-<td class="px-4 py-4 font-bold text-on-surface line-clamp-2">Drinking Water RO Plant Setup</td>
-<td class="px-4 py-4">
-<div class="flex flex-col">
-<span>Rajasthan</span>
-<span class="text-xs text-on-surface-variant">Jaipur</span>
-</div>
-</td>
-<td class="px-4 py-4 text-right font-mono">₹ 25.00</td>
-<td class="px-4 py-4">
-<span class="px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-bold uppercase">Pending Approval</span>
-</td>
-<td class="px-4 py-4">
-<div class="flex items-center gap-1 text-tertiary-container">
-<span class="material-symbols-outlined text-[16px]">schedule</span>
-<span>Timeline Delay (14 mo)</span>
-</div>
-</td>
-<td class="px-4 py-4 text-on-surface-variant">05 Nov 2023</td>
-<td class="px-4 py-4 text-center">
-<button class="text-primary hover:text-primary-container font-label-md text-label-md uppercase tracking-wider flex items-center justify-center gap-1 mx-auto border border-primary/20 px-3 py-1 rounded hover:bg-primary/5 transition-all">
-                    View
-                  </button>
-</td>
-</tr>
-<!-- Row 4: Medium Risk -->
-<tr class="hover:bg-surface-container-lowest transition-colors relative">
-<td class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-container"></td>
-<td class="px-4 py-4 pl-5">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-tertiary-fixed text-on-tertiary-fixed">
-<span class="material-symbols-outlined text-[20px]">info</span>
-</span>
-</td>
-<td class="px-4 py-4 font-headline-md text-headline-md text-tertiary-container">58</td>
-<td class="px-4 py-4 font-mono text-xs text-on-surface-variant">TS-NZB-21-302</td>
-<td class="px-4 py-4 font-bold text-on-surface line-clamp-2">Road Resurfacing - Armoor Mandal</td>
-<td class="px-4 py-4">
-<div class="flex flex-col">
-<span>Telangana</span>
-<span class="text-xs text-on-surface-variant">Nizamabad</span>
-</div>
-</td>
-<td class="px-4 py-4 text-right font-mono">₹ 120.00</td>
-<td class="px-4 py-4">
-<span class="px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold uppercase">Completed</span>
-</td>
-<td class="px-4 py-4">
-<div class="flex items-center gap-1 text-tertiary-container">
-<span class="material-symbols-outlined text-[16px]">rule</span>
-<span>Multiple Split Tenders</span>
-</div>
-</td>
-<td class="px-4 py-4 text-on-surface-variant">29 Aug 2023</td>
-<td class="px-4 py-4 text-center">
-<button class="text-primary hover:text-primary-container font-label-md text-label-md uppercase tracking-wider flex items-center justify-center gap-1 mx-auto border border-primary/20 px-3 py-1 rounded hover:bg-primary/5 transition-all">
-                    View
-                  </button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination -->
-<div class="flex items-center justify-between border-t border-outline-variant px-6 py-4 bg-surface-container-lowest">
-<div class="font-body-md text-body-md text-on-surface-variant">
-            Showing <span class="font-bold text-on-surface">1</span> to <span class="font-bold text-on-surface">4</span> of <span class="font-bold text-on-surface">128</span> flagged cases
-          </div>
-<div class="flex gap-1">
-<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-on-surface-variant disabled:opacity-50" disabled="">
-<span class="material-symbols-outlined text-[18px]">chevron_left</span>
-</button>
-<button class="px-3 py-1 border border-primary bg-primary-container text-on-primary-container rounded font-bold">1</button>
-<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-on-surface">2</button>
-<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-on-surface">3</button>
-<span class="px-2 py-1 text-on-surface-variant">...</span>
-<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-on-surface">32</button>
-<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-on-surface">
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-</div>
-</div>
-</div>
-</main>
-</div>
+
 <script src="app.js"></script>
-</body></html>
+
+<!-- Triage Matrix Data & Logic -->
+<script>
+const caseData = [
+    {
+        id: "MPLAD-91044",
+        score: 95,
+        severity: "critical",
+        title: "District Hospital Oxygen Plant & ICU Wing",
+        location: "Varanasi, Uttar Pradesh",
+        mp: "Shri Narendra Modi (LS)",
+        sanctioned: "₹2.10 Cr",
+        utilized: "₹1.95 Cr",
+        anomaly: "Agency Concentration Risk",
+        anomalyType: "Agency",
+        agency: "UP Jal Nigam Ltd",
+        status: "Audit Ordered"
+    },
+    {
+        id: "MPLAD-84920",
+        score: 91,
+        severity: "critical",
+        title: "Rural Road Construction Phase II",
+        location: "Nagpur, Maharashtra",
+        mp: "Shri Nitin Gadkari (LS)",
+        sanctioned: "₹42.8 L",
+        utilized: "₹41.2 L",
+        anomaly: "Completion Delay (>280%)",
+        anomalyType: "Delay",
+        agency: "PWD Nagpur Division",
+        status: "Action Req"
+    },
+    {
+        id: "MPLAD-55102",
+        score: 89,
+        severity: "high",
+        title: "Inter-Village Bridge Construction",
+        location: "Patna, Bihar",
+        mp: "Shri Ravi Shankar Prasad (LS)",
+        sanctioned: "₹1.80 Cr",
+        utilized: "₹1.65 Cr",
+        anomaly: "Cost Escalation (+48%)",
+        anomalyType: "Cost",
+        agency: "Bihar Rajya Pul Nirman",
+        status: "Under Review"
+    },
+    {
+        id: "MPLAD-73019",
+        score: 88,
+        severity: "high",
+        title: "Solar Mini-Grid Electrification",
+        location: "Jaipur, Rajasthan",
+        mp: "Smt. Diya Kumari (LS)",
+        sanctioned: "₹1.45 Cr",
+        utilized: "₹1.10 Cr",
+        anomaly: "Spatial / Cluster Outlier",
+        anomalyType: "Spatial",
+        agency: "Rajasthan Renewable Dev",
+        status: "Under Review"
+    },
+    {
+        id: "MPLAD-63910",
+        score: 84,
+        severity: "high",
+        title: "Community RO Water Filtration Plant",
+        location: "Kolkata, West Bengal",
+        mp: "Shri Sudip Bandyopadhyay (LS)",
+        sanctioned: "₹38.5 L",
+        utilized: "₹38.5 L",
+        anomaly: "UC Date Mismatch",
+        anomalyType: "UC",
+        agency: "Kolkata Municipal Corp",
+        status: "Action Req"
+    },
+    {
+        id: "MPLAD-48201",
+        score: 68,
+        severity: "med",
+        title: "Skill Development Youth Center",
+        location: "Bengaluru, Karnataka",
+        mp: "Shri Tejasvi Surya (LS)",
+        sanctioned: "₹75.0 L",
+        utilized: "₹45.0 L",
+        anomaly: "Pending Milestone Audit",
+        anomalyType: "Delay",
+        agency: "BBMP Infrastructure",
+        status: "Monitoring"
+    },
+    {
+        id: "MPLAD-38290",
+        score: 62,
+        severity: "med",
+        title: "Coastal Fishermen Cold Storage",
+        location: "Chennai, Tamil Nadu",
+        mp: "Shri Dayanidhi Maran (LS)",
+        sanctioned: "₹92.0 L",
+        utilized: "₹50.0 L",
+        anomaly: "Vendor Concentration",
+        anomalyType: "Agency",
+        agency: "TN Fisheries Dev Corp",
+        status: "Monitoring"
+    },
+    {
+        id: "MPLAD-19402",
+        score: 32,
+        severity: "low",
+        title: "Public Park & Community Hall",
+        location: "Ahmedabad, Gujarat",
+        mp: "Shri Kirit Solanki (LS)",
+        sanctioned: "₹65.0 L",
+        utilized: "₹58.0 L",
+        anomaly: "Minor Schedule Variance",
+        anomalyType: "Delay",
+        agency: "Ahmedabad Urban Dev",
+        status: "Compliant"
+    }
+];
+
+let selectedSeverity = "all";
+
+function getSeverityBadge(item) {
+    if (item.severity === "critical") {
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> ${item.score} / 100</span>`;
+    } else if (item.severity === "high") {
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-orange-100 text-orange-800 border border-orange-300 font-mono font-bold text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span> ${item.score} / 100</span>`;
+    } else if (item.severity === "med") {
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300 font-mono font-bold text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> ${item.score} / 100</span>`;
+    } else {
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 font-mono font-bold text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> ${item.score} / 100</span>`;
+    }
+}
+
+function renderTable(items) {
+    const tbody = document.getElementById("case-tbody");
+    if (!items.length) {
+        setTableView("empty");
+        return;
+    }
+    setTableView("live");
+
+    tbody.innerHTML = items.map(row => `
+        <tr class="hover:bg-slate-50/80 transition-colors">
+            <td class="py-2.5 px-3 sticky-col-1 bg-white shadow-[1px_0_0_0_#e2e8f0]">${getSeverityBadge(row)}</td>
+            <td class="py-2.5 px-3 font-mono font-bold text-slate-900 sticky-col-2 bg-white shadow-[1px_0_0_0_#e2e8f0]">${row.id}</td>
+            <td class="py-2.5 px-3 font-semibold text-slate-800">${row.title}</td>
+            <td class="py-2.5 px-3 text-slate-600">${row.location}</td>
+            <td class="py-2.5 px-3 text-slate-500 font-medium">${row.mp}</td>
+            <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-900">${row.sanctioned}</td>
+            <td class="py-2.5 px-3 text-right font-mono text-slate-600">${row.utilized}</td>
+            <td class="py-2.5 px-3">
+                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200 text-[10px] font-semibold">${row.anomaly}</span>
+            </td>
+            <td class="py-2.5 px-3 text-slate-600 truncate max-w-[140px]" title="${row.agency}">${row.agency}</td>
+            <td class="py-2.5 px-3 text-center">
+                <span class="px-2 py-0.5 rounded ${row.status.includes('Ordered') || row.status.includes('Req') ? 'bg-red-100 text-red-900 font-bold' : 'bg-slate-100 text-slate-700'} text-[10px]">${row.status}</span>
+            </td>
+            <td class="py-2.5 px-3 text-center sticky right-0 bg-white shadow-[-1px_0_0_0_#e2e8f0]">
+                <a href="Case_Details.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[11px] hover:bg-blue-800 transition-colors shadow-2xs">
+                    <span>Dossier</span>
+                    <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                </a>
+            </td>
+        </tr>
+    `).join("");
+
+    document.getElementById("visible-count").innerText = `1 – ${items.length}`;
+}
+
+function filterCases() {
+    const q = document.getElementById("table-filter").value.toLowerCase().trim();
+    const state = document.getElementById("filter-state").value;
+    const anomaly = document.getElementById("filter-anomaly").value;
+
+    const filtered = caseData.filter(item => {
+        if (selectedSeverity !== "all" && item.severity !== selectedSeverity) return false;
+        if (state !== "all" && !item.location.includes(state)) return false;
+        if (anomaly !== "all" && item.anomalyType !== anomaly) return false;
+        if (q) {
+            const match = item.id.toLowerCase().includes(q) ||
+                          item.title.toLowerCase().includes(q) ||
+                          item.location.toLowerCase().includes(q) ||
+                          item.mp.toLowerCase().includes(q) ||
+                          item.agency.toLowerCase().includes(q);
+            if (!match) return false;
+        }
+        return true;
+    });
+
+    renderTable(filtered);
+}
+
+function toggleSeverityPill(sev) {
+    selectedSeverity = sev;
+    ["all", "critical", "high", "med", "low"].forEach(s => {
+        const pill = document.getElementById(`pill-${s}`);
+        if (s === sev) {
+            pill.className = "px-2.5 py-1 rounded text-xs font-bold bg-slate-900 text-white";
+        } else {
+            pill.className = `px-2.5 py-1 rounded text-xs font-bold ${s === 'critical' ? 'bg-red-50 text-red-800 border border-red-200' : s === 'high' ? 'bg-orange-50 text-orange-800 border border-orange-200' : s === 'med' ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-emerald-50 text-emerald-800 border border-emerald-200'} hover:opacity-80`;
+        }
+    });
+    filterCases();
+}
+
+function setTableView(mode) {
+    document.getElementById("view-live").classList.toggle("hidden", mode !== "live");
+    document.getElementById("view-skeleton").classList.toggle("hidden", mode !== "skeleton");
+    document.getElementById("view-empty").classList.toggle("hidden", mode !== "empty");
+    document.getElementById("view-error").classList.toggle("hidden", mode !== "error");
+
+    ["live", "skeleton", "empty", "error"].forEach(m => {
+        const b = document.getElementById(`btn-view-${m}`);
+        if (m === mode) {
+            b.className = "px-2 py-1 rounded bg-white shadow-2xs text-slate-900 font-bold";
+        } else {
+            b.className = "px-2 py-1 rounded text-slate-500 hover:text-slate-900";
+        }
+    });
+}
+
+function resetFilters() {
+    document.getElementById("table-filter").value = "";
+    document.getElementById("filter-state").value = "all";
+    document.getElementById("filter-anomaly").value = "all";
+    toggleSeverityPill("all");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderTable(caseData);
+});
+</script>
+</body>
+</html>

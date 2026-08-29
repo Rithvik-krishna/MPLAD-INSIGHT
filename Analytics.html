@@ -1,343 +1,582 @@
-<!DOCTYPE html><html class="h-full" lang="en"><head>
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MPLAD Analytics</title>
+<title>MPLAD Insight — Forensic Analytics & Trend Intelligence</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Chart.js CDN for High-Performance Forensic Charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "error": "#ba1a1a",
-                        "surface-tint": "#3755c3",
-                        "on-secondary-container": "#00714e",
-                        "on-secondary": "#ffffff",
-                        "secondary-fixed-dim": "#68dba9",
-                        "inverse-primary": "#b8c4ff",
-                        "on-tertiary": "#ffffff",
-                        "surface-container": "#e7eeff",
-                        "secondary": "#006c4a",
-                        "background": "#f9f9ff",
-                        "surface-variant": "#d8e3fb",
-                        "surface": "#f9f9ff",
-                        "inverse-surface": "#263143",
-                        "on-tertiary-container": "#ffa85d",
-                        "primary-container": "#1e40af",
-                        "on-primary": "#ffffff",
-                        "surface-container-low": "#f0f3ff",
-                        "surface-container-lowest": "#ffffff",
-                        "tertiary-container": "#743d00",
-                        "inverse-on-surface": "#ecf1ff",
-                        "on-primary-fixed-variant": "#173bab",
-                        "tertiary-fixed-dim": "#ffb77d",
-                        "outline": "#757684",
-                        "error-container": "#ffdad6",
-                        "primary-fixed": "#dde1ff",
-                        "on-tertiary-fixed": "#2f1500",
-                        "surface-bright": "#f9f9ff",
-                        "outline-variant": "#c4c5d5",
-                        "on-primary-container": "#a8b8ff",
-                        "on-error-container": "#93000a",
-                        "tertiary": "#532a00",
-                        "on-surface-variant": "#444653",
-                        "on-surface": "#111c2d",
-                        "primary": "#00288e",
-                        "surface-container-highest": "#d8e3fb",
-                        "tertiary-fixed": "#ffdcc3",
-                        "on-secondary-fixed": "#002114",
-                        "on-background": "#111c2d",
-                        "surface-container-high": "#dee8ff",
-                        "primary-fixed-dim": "#b8c4ff",
-                        "surface-dim": "#cfdaf2",
-                        "on-tertiary-fixed-variant": "#6e3900",
-                        "secondary-fixed": "#85f8c4",
-                        "on-error": "#ffffff",
-                        "secondary-container": "#82f5c1",
-                        "on-primary-fixed": "#001453",
-                        "on-secondary-fixed-variant": "#005137"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "stack_md": "16px",
-                        "container_max_width": "1440px",
-                        "margin_mobile": "16px",
-                        "stack_lg": "24px",
-                        "sidebar_width": "260px",
-                        "stack_sm": "8px",
-                        "margin_desktop": "32px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "headline-md": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "headline-lg": ["Inter"],
-                        "headline-lg-mobile": ["Inter"],
-                        "label-md": ["Inter"],
-                        "body-md": ["Inter"],
-                        "display-lg": ["Inter"]
-                    },
-                    "fontSize": {
-                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
-                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
-                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
-                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
-                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                brand: {
+                    50: '#f0f6fe',
+                    500: '#2563eb',
+                    700: '#1d4ed8',
+                    800: '#1e40af',
+                    900: '#0f172a',
+                    950: '#090d16'
+                },
+                canvas: '#f8fafc',
+                surface: '#ffffff',
+                borderline: '#e2e8f0',
+                risk: {
+                    critical: '#dc2626',
+                    high: '#ea580c',
+                    med: '#d97706',
+                    low: '#059669'
+                }
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace']
+            }
+        }
+    }
+}
+</script>
+
+<style>
+body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+.font-tabular { font-variant-numeric: tabular-nums; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+</style>
+</head>
+<body class="bg-canvas text-slate-800 flex h-full antialiased text-xs">
+
+<!-- UNIFIED SHELL: Side Navigation -->
+<aside class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none">
+    <div class="px-5 py-6 border-b border-slate-800/80 flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
+            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-extrabold text-white text-sm tracking-wider uppercase">MPLAD INSIGHT</span>
+            <span class="text-[10px] text-blue-400 uppercase tracking-widest font-semibold">GovTech Audit AI</span>
+        </div>
+    </div>
+
+    <nav class="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Overview_Dashboard.html">
+            <span class="material-symbols-outlined text-lg">dashboard</span>
+            <span>Overview</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Flagged_Cases.html">
+            <span class="material-symbols-outlined text-lg">report_problem</span>
+            <span>Flagged Cases</span>
+            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">684</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Geographic_Map.html">
+            <span class="material-symbols-outlined text-lg">map</span>
+            <span>Geographic Map</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Analytics.html">
+            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">insights</span>
+            <span>Analytics</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Data_Explorer.html">
+            <span class="material-symbols-outlined text-lg">database</span>
+            <span>Data Explorer</span>
+        </a>
+    </nav>
+
+    <div class="p-3.5 border-t border-slate-800 bg-brand-950/40 text-[11px] space-y-2">
+        <div class="flex items-center justify-between">
+            <span class="text-slate-400 flex items-center gap-2">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Live Audit Stream
+            </span>
+            <span class="font-mono text-slate-400 font-bold">ACTIVE</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+            <span>Data Ingestion:</span>
+            <span class="font-mono text-slate-400">06:00 IST</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+            <span>System Pipeline:</span>
+            <span class="text-emerald-400 font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">check_circle</span> Normal
+            </span>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div class="flex-1 ml-[260px] flex flex-col min-h-screen bg-canvas">
+    
+    <!-- UNIFIED SHELL: Header -->
+    <header class="h-14 w-full sticky top-0 bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-6">
+        <div class="flex items-center gap-4 w-96">
+            <div class="relative w-full">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
+                <input class="w-full pl-9 pr-12 py-1.5 rounded-md border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-slate-400 font-sans" placeholder="Search analytics metrics, agencies, sectors... (Press ⌘K)" type="search">
+                <kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-slate-300 bg-white text-[10px] font-mono text-slate-400">⌘K</kbd>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button class="relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition-colors" title="Live Vigilance Notifications">
+                <span class="material-symbols-outlined text-xl">notifications</span>
+                <span class="absolute top-1 right-1 w-2 h-2 bg-red-600 rounded-full ring-2 ring-white"></span>
+            </button>
+
+            <!-- Timespan Selector -->
+            <select id="timespan-select" onchange="updateAnalyticsTimespan(this.value)" class="bg-slate-100 border border-slate-300 rounded px-2.5 py-1 text-xs font-semibold text-slate-800 outline-none focus:border-blue-600">
+                <option value="2y">FY 2024-26 (Current Cycle)</option>
+                <option value="5y">17th Lok Sabha (2019-24)</option>
+                <option value="all">All-Time Historical (10Y)</option>
+            </select>
+
+            <button onclick="exportTableToCSV('mplad-agency-analytics.csv')" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white rounded-md text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs">
+                <span class="material-symbols-outlined text-[16px]">file_download</span>
+                <span>Export Dataset</span>
+            </button>
+
+            <div class="h-6 w-px bg-slate-200 mx-1"></div>
+
+            <div class="flex items-center gap-2.5 pl-1">
+                <div class="w-7 h-7 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-xs shadow-xs">AO</div>
+                <div class="flex flex-col text-left">
+                    <span class="text-xs font-bold text-slate-900 leading-tight">Audit Officer #104</span>
+                    <span class="text-[10px] text-slate-500 font-medium">MoSPI • Oversight Div</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Analytics Content -->
+    <main class="flex-1 p-6 space-y-6 max-w-[1600px] w-full mx-auto">
+        
+        <!-- Page Title & Key Stats -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-borderline pb-4">
+            <div>
+                <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Forensic Expenditure & Risk Analytics</h1>
+                <p class="text-xs text-slate-500 mt-1">Multi-dimensional econometric trend analysis, spending velocity curves, and agency risk scoring.</p>
+            </div>
+            <div class="flex items-center gap-2 font-mono">
+                <span class="px-2.5 py-1 rounded bg-slate-100 border border-slate-300 text-slate-800 text-xs font-bold">TOTAL CORPUS: ₹17,500 Cr</span>
+                <span class="px-2.5 py-1 rounded bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold">UTILIZATION: 78.4%</span>
+            </div>
+        </div>
+
+        <!-- Row 1: Fund Utilization Trend Line Chart & Monthly Risk Trend Area Chart -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Fund Utilization Trend (8 Cols) -->
+            <div class="lg:col-span-8 bg-white border border-borderline rounded-lg shadow-xs p-5 flex flex-col justify-between">
+                <div class="flex items-center justify-between border-b border-borderline pb-3 mb-4">
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-900 tracking-tight">Fund Allocation vs Release vs Actual Expenditure</h2>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Quarterly capital deployment trajectory (₹ Crores)</p>
+                    </div>
+                    <div class="flex items-center gap-2 font-mono text-[11px]">
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded-full bg-blue-900"></span> Allocated</span>
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span> Released</span>
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Utilized</span>
+                    </div>
+                </div>
+
+                <!-- Canvas Chart -->
+                <div class="h-72 w-full relative">
+                    <canvas id="chartUtilization"></canvas>
+                </div>
+            </div>
+
+            <!-- Risk Trend Spike Chart (4 Cols) -->
+            <div class="lg:col-span-4 bg-white border border-borderline rounded-lg shadow-xs p-5 flex flex-col justify-between">
+                <div class="flex items-center justify-between border-b border-borderline pb-3 mb-4">
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-900 tracking-tight">Monthly Flagged Cases Trend</h2>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Vigilance anomaly incidence volume</p>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-red-50 text-red-800 border border-red-200 text-[10px] font-mono font-bold">Q4 SURGES</span>
+                </div>
+
+                <!-- Canvas Chart -->
+                <div class="h-72 w-full relative">
+                    <canvas id="chartRiskTrend"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: State Comparison Bar Chart & Anomaly Vector Donut -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- State Comparison Stacked Bar Chart (8 Cols) -->
+            <div class="lg:col-span-8 bg-white border border-borderline rounded-lg shadow-xs p-5">
+                <div class="flex items-center justify-between border-b border-borderline pb-3 mb-4">
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-900 tracking-tight">Inter-State Anomaly Exposure Comparison</h2>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Top states compared by Flagged Works Rate (%) and High-Risk Share (%)</p>
+                    </div>
+                    <div class="flex items-center gap-3 font-mono text-[11px]">
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded bg-orange-500"></span> Flagged Rate %</span>
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded bg-red-600"></span> Critical / High %</span>
+                    </div>
+                </div>
+
+                <div class="h-64 w-full relative">
+                    <canvas id="chartStateComparison"></canvas>
+                </div>
+            </div>
+
+            <!-- Anomaly Vector Distribution (4 Cols) -->
+            <div class="lg:col-span-4 bg-white border border-borderline rounded-lg shadow-xs p-5">
+                <div class="border-b border-borderline pb-3 mb-4">
+                    <h2 class="text-sm font-bold text-slate-900 tracking-tight">Anomaly Vector Composition</h2>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Algorithmic risk type breakdown</p>
+                </div>
+
+                <div class="h-64 w-full relative flex items-center justify-center">
+                    <canvas id="chartAnomalyDonut"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 3: Executing Agency Performance & Risk Rating Matrix -->
+        <div class="bg-white border border-borderline rounded-lg shadow-xs overflow-hidden">
+            <div class="p-4 border-b border-borderline bg-slate-50/70 flex items-center justify-between">
+                <div>
+                    <h3 class="text-sm font-bold text-slate-900">Implementing Agency Scrutiny Matrix</h3>
+                    <p class="text-[11px] text-slate-500">Cross-agency performance benchmarks, allocation volume, and anomaly failure rates.</p>
+                </div>
+                <button onclick="exportTableToCSV('agency-scrutiny-matrix.csv')" class="text-xs font-bold text-blue-700 hover:text-blue-900 flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">file_download</span>
+                    <span>Download CSV</span>
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline font-mono">
+                            <th class="py-2.5 px-4">Implementing Agency</th>
+                            <th class="py-2.5 px-4 text-right">Total Works</th>
+                            <th class="py-2.5 px-4 text-right">Sanctioned Value</th>
+                            <th class="py-2.5 px-4 text-right">Avg Work Size</th>
+                            <th class="py-2.5 px-4 text-right">Flagged Count</th>
+                            <th class="py-2.5 px-4 text-right">Anomaly Rate</th>
+                            <th class="py-2.5 px-4 text-center">Compliance Rating</th>
+                            <th class="py-2.5 px-4 text-center">Vigilance Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-borderline font-tabular">
+                        <tr class="hover:bg-slate-50/80 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-900">Public Works Department (PWD Central)</td>
+                            <td class="py-3 px-4 text-right font-mono">1,845</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold">₹840.5 Cr</td>
+                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹45.5 L</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-red-700">142</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-red-700">7.7%</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-200 text-[10px] font-bold">HIGH RISK VENDOR</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <button onclick="showToast('Physical audit requested for PWD Central node.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-slate-50/80 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-900">Rural Development Department (Panchayati Raj)</td>
+                            <td class="py-3 px-4 text-right font-mono">2,410</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold">₹530.2 Cr</td>
+                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹22.0 L</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-orange-700">118</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-orange-700">4.9%</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-900 border border-orange-200 text-[10px] font-bold">MODERATE RISK</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <button onclick="showToast('Reviewing Panchayati Raj utilization certificates.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-slate-50/80 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-900">Municipal Corporations & Urban Local Bodies</td>
+                            <td class="py-3 px-4 text-right font-mono">1,120</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold">₹610.8 Cr</td>
+                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹54.5 L</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-red-700">96</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-red-700">8.5%</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-200 text-[10px] font-bold">CRITICAL BREACH</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <button onclick="showToast('Municipal audit brief exported for DM action.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-slate-50/80 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-900">State Irrigation & Water Resources Department</td>
+                            <td class="py-3 px-4 text-right font-mono">890</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold">₹340.0 Cr</td>
+                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹38.2 L</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-amber-700">42</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-amber-700">4.7%</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-200 text-[10px] font-bold">WATCHLIST</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <button onclick="showToast('Water department milestone check initiated.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-slate-50/80 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-900">Education & School Infrastructure Board</td>
+                            <td class="py-3 px-4 text-right font-mono">1,650</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold">₹280.4 Cr</td>
+                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹17.0 L</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-emerald-700">28</td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-emerald-700">1.7%</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-200 text-[10px] font-bold">COMPLIANT</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <button onclick="showToast('School board verified compliant.', 'success')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+
+<!-- Chart.js Real Forensic Visualizations Initializer -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.font.size = 11;
+    Chart.defaults.color = '#64748b';
+
+    // 1. Line Chart: Fund Utilization Trend
+    const ctxUtil = document.getElementById('chartUtilization').getContext('2d');
+    new Chart(ctxUtil, {
+        type: 'line',
+        data: {
+            labels: ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025 (Proj)'],
+            datasets: [
+                {
+                    label: 'Allocated Corpus (₹ Cr)',
+                    data: [3200, 3200, 3500, 3500, 3800, 3800, 4250, 4250],
+                    borderColor: '#0f172a',
+                    backgroundColor: 'rgba(15, 23, 42, 0.05)',
+                    borderWidth: 2,
+                    borderDash: [4, 4],
+                    tension: 0.3,
+                    pointRadius: 3
+                },
+                {
+                    label: 'Funds Released (₹ Cr)',
+                    data: [2800, 2950, 3100, 3350, 3450, 3600, 3900, 4050],
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.08)',
+                    fill: true,
+                    borderWidth: 2.5,
+                    tension: 0.3,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#2563eb'
+                },
+                {
+                    label: 'Actual Expenditure (₹ Cr)',
+                    data: [1950, 2180, 2450, 2780, 2920, 3150, 3330, 3580],
+                    borderColor: '#059669',
+                    backgroundColor: 'rgba(5, 150, 105, 0.08)',
+                    fill: true,
+                    borderWidth: 2.5,
+                    tension: 0.3,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#059669'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#0f172a',
+                    padding: 10,
+                    titleFont: { weight: 'bold' },
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.dataset.label}: ₹${context.parsed.y} Cr`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: { grid: { color: '#f1f5f9' } },
+                y: {
+                    grid: { color: '#f1f5f9' },
+                    ticks: {
+                        callback: function(val) { return '₹' + val + ' Cr'; }
                     }
                 }
             }
         }
-    </script>
-<style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
-</head>
-<body class="bg-background text-on-background h-full flex antialiased">
-<!-- SideNavBar -->
-<nav class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-inverse-surface dark:bg-inverse-surface border-r border-outline-variant z-20">
-<div class="px-margin_desktop py-stack_lg border-b border-outline-variant flex items-center gap-3">
-<span class="material-symbols-outlined text-white text-3xl" data-weight="fill">shield</span>
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-white tracking-tight">MPLAD INSIGHT</h1>
-<p class="font-label-md text-label-md text-surface-variant">GovTech Oversight</p>
-</div>
-</div>
-<div class="flex-1 py-stack_md overflow-y-auto">
-<ul class="flex flex-col gap-1">
-<li>
-<a class="flex items-center gap-3 px-margin_desktop py-3 text-surface-variant hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Overview_Dashboard.html">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-body-md text-body-md">Overview</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-margin_desktop py-3 text-surface-variant hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Flagged_Cases.html">
-<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
-<span class="font-body-md text-body-md">Flagged Cases</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-margin_desktop py-3 text-surface-variant hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Geographic_Map.html">
-<span class="material-symbols-outlined" data-icon="map">map</span>
-<span class="font-body-md text-body-md">Map</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-margin_desktop py-3 bg-primary-container text-on-primary-container border-l-4 border-primary-fixed cursor-pointer active:opacity-80 transition-colors" href="Analytics.html">
-<span class="material-symbols-outlined" data-icon="insights">insights</span>
-<span class="font-body-md text-body-md font-bold">Analytics</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-margin_desktop py-3 text-surface-variant hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Data_Explorer.html">
-<span class="material-symbols-outlined" data-icon="database">database</span>
-<span class="font-body-md text-body-md">Data Explorer</span>
-</a>
-</li>
-</ul>
-</div>
-<div class="p-4 border-t border-outline-variant">
-<ul class="flex flex-col gap-1">
-<li>
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 text-sm" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="sensors">sensors</span>
-<span class="font-label-md text-label-md">Live Status</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 text-sm" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="update">update</span>
-<span class="font-label-md text-label-md">Update Info</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 text-sm" href="#">
-<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
-<span class="font-label-md text-label-md">System Status</span>
-</a>
-</li>
-</ul>
-</div>
-</nav>
-<!-- Main Content Area -->
-<div class="flex-1 flex flex-col ml-[260px] min-h-screen">
-<!-- TopNavBar -->
-<header class="h-16 w-full sticky top-0 bg-surface dark:bg-surface-dim border-b border-outline-variant shadow-sm z-10 flex justify-between items-center px-margin_desktop">
-<div class="flex items-center gap-4 w-1/3">
-<div class="relative w-full max-w-md">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full pl-10 pr-4 py-2 rounded-DEFAULT border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none font-body-md text-body-md text-on-surface transition-all" placeholder="Search analytics..." type="text">
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-</button>
-<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-</button>
-<div class="h-8 w-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-label-md cursor-pointer ml-2 border border-outline-variant" title="Administrator Profile">
-                    A
-                </div>
-</div>
-</header>
-<!-- Main Canvas -->
-<main class="flex-1 p-margin_desktop max-w-container_max_width mx-auto w-full">
-<!-- Page Header -->
-<div class="mb-stack_lg">
-<h2 class="font-headline-lg text-headline-lg text-on-background">MPLAD Analytics</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Identify patterns across works, agencies, constituencies and geography.</p>
-</div>
-<!-- Bento Grid Layout -->
-<div class="grid grid-cols-12 gap-gutter">
-<!-- Fund Utilization Trend (Line Chart Area) -->
-<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-lg p-stack_md shadow-[0px_1px_3px_rgba(0,0,0,0.1)]">
-<div class="flex justify-between items-center mb-stack_md border-b border-outline-variant pb-2">
-<h3 class="font-headline-md text-headline-md text-on-surface">Fund Utilization Trend</h3>
-<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
-                            Export <span class="material-symbols-outlined text-[16px]">download</span>
-</button>
-</div>
-<div class="h-64 w-full bg-surface-container-low rounded flex items-center justify-center border border-outline-variant border-dashed">
-<span class="text-on-surface-variant font-body-md text-body-md flex items-center gap-2">
-<span class="material-symbols-outlined">show_chart</span>
-                            [Line Chart Visualization: Fund Utilization over time]
-                        </span>
-</div>
-</div>
-<!-- Risk Trend -->
-<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-lg p-stack_md shadow-[0px_1px_3px_rgba(0,0,0,0.1)]">
-<div class="flex justify-between items-center mb-stack_md border-b border-outline-variant pb-2">
-<h3 class="font-headline-md text-headline-md text-on-surface">Risk Trend</h3>
-</div>
-<div class="h-64 w-full bg-surface-container-low rounded flex items-center justify-center border border-outline-variant border-dashed relative overflow-hidden group">
-<span class="text-error font-body-md text-body-md flex items-center gap-2 z-10 bg-surface-container-lowest px-3 py-1 rounded shadow-sm">
-<span class="material-symbols-outlined">trending_up</span>
-                            [Monthly flagged works chart]
-                        </span>
-<!-- Abstract red gradient representing risk -->
-<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-error-container/50 to-transparent"></div>
-</div>
-</div>
-<!-- State Comparison -->
-<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-lg p-stack_md shadow-[0px_1px_3px_rgba(0,0,0,0.1)]">
-<div class="flex justify-between items-center mb-stack_md border-b border-outline-variant pb-2">
-<h3 class="font-headline-md text-headline-md text-on-surface">State Comparison</h3>
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">Flagged % and High-Risk</span>
-</div>
-<div class="h-48 w-full bg-surface-container-low rounded flex items-center justify-center border border-outline-variant border-dashed">
-<span class="text-on-surface-variant font-body-md text-body-md flex items-center gap-2">
-<span class="material-symbols-outlined">bar_chart</span>
-                            [Bar chart for Flagged % and High-Risk cases]
-                        </span>
-</div>
-</div>
-<!-- Executing Agency Analysis Table -->
-<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-[0px_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
-<div class="p-stack_md border-b border-outline-variant bg-surface">
-<h3 class="font-headline-md text-headline-md text-on-surface">Executing Agency Analysis</h3>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container font-label-md text-label-md text-on-surface-variant uppercase border-b border-outline-variant">
-<th class="p-3 font-semibold">Agency</th>
-<th class="p-3 font-semibold text-right">Works</th>
-<th class="p-3 font-semibold text-right">Avg Amount</th>
-<th class="p-3 font-semibold text-right">Flagged</th>
-<th class="p-3 font-semibold text-right">Rate</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
-<td class="p-3 font-medium text-on-surface">PWD Central</td>
-<td class="p-3 text-right">1,245</td>
-<td class="p-3 text-right">₹45L</td>
-<td class="p-3 text-right text-error font-medium">89</td>
-<td class="p-3 text-right">
-<span class="px-2 py-1 bg-error-container text-on-error-container rounded font-label-md">7.1%</span>
-</td>
-</tr>
-<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
-<td class="p-3 font-medium text-on-surface">Rural Dev Dept</td>
-<td class="p-3 text-right">890</td>
-<td class="p-3 text-right">₹22L</td>
-<td class="p-3 text-right">34</td>
-<td class="p-3 text-right">3.8%</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-3 font-medium text-on-surface">Municipal Corp</td>
-<td class="p-3 text-right">456</td>
-<td class="p-3 text-right">₹85L</td>
-<td class="p-3 text-right text-error font-medium border-l-2 border-error">45</td>
-<td class="p-3 text-right">
-<span class="px-2 py-1 bg-error-container text-on-error-container rounded font-label-md">9.8%</span>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<!-- Constituency Analysis Table -->
-<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-[0px_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
-<div class="p-stack_md border-b border-outline-variant bg-surface">
-<h3 class="font-headline-md text-headline-md text-on-surface">Constituency Analysis</h3>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container font-label-md text-label-md text-on-surface-variant uppercase border-b border-outline-variant">
-<th class="p-3 font-semibold">Constituency</th>
-<th class="p-3 font-semibold text-right">Works</th>
-<th class="p-3 font-semibold text-right">Sanctioned</th>
-<th class="p-3 font-semibold text-right">Completion</th>
-<th class="p-3 font-semibold text-center">Risk Score</th>
-</tr>
-</thead>
-<tbody class="font-body-md text-body-md">
-<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors">
-<td class="p-3 font-medium text-on-surface">Varanasi</td>
-<td class="p-3 text-right">112</td>
-<td class="p-3 text-right">₹5.2Cr</td>
-<td class="p-3 text-right text-secondary">85%</td>
-<td class="p-3 text-center">
-<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded font-label-md">Low</span>
-</td>
-</tr>
-<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors border-l-2 border-error">
-<td class="p-3 font-medium text-on-surface">Amethi</td>
-<td class="p-3 text-right">85</td>
-<td class="p-3 text-right">₹3.8Cr</td>
-<td class="p-3 text-right text-error">42%</td>
-<td class="p-3 text-center">
-<span class="px-2 py-1 bg-error text-on-error rounded font-label-md">High</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors">
-<td class="p-3 font-medium text-on-surface">Lucknow</td>
-<td class="p-3 text-right">145</td>
-<td class="p-3 text-right">₹7.1Cr</td>
-<td class="p-3 text-right text-tertiary">68%</td>
-<td class="p-3 text-center">
-<span class="px-2 py-1 bg-tertiary-container text-on-tertiary-container rounded font-label-md">Med</span>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</main>
-</div>
-<script src="app.js"></script>
-</body></html>
+    });
+
+    // 2. Area Chart: Monthly Risk / Flagged Cases Trend
+    const ctxRisk = document.getElementById('chartRiskTrend').getContext('2d');
+    new Chart(ctxRisk, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [
+                {
+                    label: 'Critical Flagged Works',
+                    data: [12, 15, 38, 14, 18, 22, 16, 29, 31, 24, 45, 52],
+                    borderColor: '#dc2626',
+                    backgroundColor: 'rgba(220, 38, 38, 0.15)',
+                    fill: true,
+                    borderWidth: 2,
+                    tension: 0.35,
+                    pointRadius: 3.5,
+                    pointBackgroundColor: '#dc2626'
+                },
+                {
+                    label: 'Moderate Anomaly Works',
+                    data: [25, 32, 64, 28, 35, 41, 38, 46, 52, 48, 71, 88],
+                    borderColor: '#ea580c',
+                    backgroundColor: 'rgba(234, 88, 12, 0.08)',
+                    fill: true,
+                    borderWidth: 1.5,
+                    tension: 0.35,
+                    pointRadius: 2.5
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#0f172a',
+                    padding: 8
+                }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: {
+                    grid: { color: '#f1f5f9' },
+                    ticks: { precision: 0 }
+                }
+            }
+        }
+    });
+
+    // 3. Bar Chart: State Comparison (Flagged % vs High-Risk %)
+    const ctxState = document.getElementById('chartStateComparison').getContext('2d');
+    new Chart(ctxState, {
+        type: 'bar',
+        data: {
+            labels: ['Uttar Pradesh', 'Maharashtra', 'Rajasthan', 'West Bengal', 'Bihar', 'Karnataka', 'Tamil Nadu', 'Gujarat'],
+            datasets: [
+                {
+                    label: 'Flagged Works %',
+                    data: [9.2, 8.4, 7.8, 7.5, 6.9, 5.1, 4.2, 3.4],
+                    backgroundColor: '#ea580c',
+                    borderRadius: 4
+                },
+                {
+                    label: 'Critical High-Risk %',
+                    data: [3.8, 3.1, 2.9, 2.7, 2.4, 1.6, 1.1, 0.8],
+                    backgroundColor: '#dc2626',
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#0f172a',
+                    padding: 8,
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.dataset.label}: ${context.parsed.y}%`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: {
+                    grid: { color: '#f1f5f9' },
+                    ticks: {
+                        callback: function(val) { return val + '%'; }
+                    }
+                }
+            }
+        }
+    });
+
+    // 4. Donut Chart: Anomaly Vector Composition
+    const ctxDonut = document.getElementById('chartAnomalyDonut').getContext('2d');
+    new Chart(ctxDonut, {
+        type: 'doughnut',
+        data: {
+            labels: ['Completion Delay (>200%)', 'Amount Deviation', 'Spatial Outlier', 'Agency Risk', 'UC Mismatch'],
+            datasets: [
+                {
+                    data: [245, 182, 114, 89, 54],
+                    backgroundColor: [
+                        '#dc2626',
+                        '#ea580c',
+                        '#d97706',
+                        '#2563eb',
+                        '#475569'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { boxWidth: 10, padding: 12, font: { size: 10 } }
+                },
+                tooltip: {
+                    backgroundColor: '#0f172a',
+                    padding: 8
+                }
+            }
+        }
+    });
+});
+
+function updateAnalyticsTimespan(val) {
+    showToast(`Adjusted audit analytical horizon to: ${val.toUpperCase()}`, 'info');
+}
+</script>
+</body>
+</html>

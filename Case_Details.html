@@ -1,458 +1,296 @@
-<!DOCTYPE html><html class="h-full" lang="en"><head>
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MPLAD INSIGHT - Case Details</title>
+<title>MPLAD Insight — Forensic Case Dossier #MPLAD-84920</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
 <script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "error": "#ba1a1a",
-                      "surface-tint": "#3755c3",
-                      "on-secondary-container": "#00714e",
-                      "on-secondary": "#ffffff",
-                      "secondary-fixed-dim": "#68dba9",
-                      "inverse-primary": "#b8c4ff",
-                      "on-tertiary": "#ffffff",
-                      "surface-container": "#e7eeff",
-                      "secondary": "#006c4a",
-                      "background": "#f9f9ff",
-                      "surface-variant": "#d8e3fb",
-                      "surface": "#f9f9ff",
-                      "inverse-surface": "#263143",
-                      "on-tertiary-container": "#ffa85d",
-                      "primary-container": "#1e40af",
-                      "on-primary": "#ffffff",
-                      "surface-container-low": "#f0f3ff",
-                      "surface-container-lowest": "#ffffff",
-                      "tertiary-container": "#743d00",
-                      "inverse-on-surface": "#ecf1ff",
-                      "on-primary-fixed-variant": "#173bab",
-                      "tertiary-fixed-dim": "#ffb77d",
-                      "outline": "#757684",
-                      "error-container": "#ffdad6",
-                      "primary-fixed": "#dde1ff",
-                      "on-tertiary-fixed": "#2f1500",
-                      "surface-bright": "#f9f9ff",
-                      "outline-variant": "#c4c5d5",
-                      "on-primary-container": "#a8b8ff",
-                      "on-error-container": "#93000a",
-                      "tertiary": "#532a00",
-                      "on-surface-variant": "#444653",
-                      "on-surface": "#111c2d",
-                      "primary": "#00288e",
-                      "surface-container-highest": "#d8e3fb",
-                      "tertiary-fixed": "#ffdcc3",
-                      "on-secondary-fixed": "#002114",
-                      "on-background": "#111c2d",
-                      "surface-container-high": "#dee8ff",
-                      "primary-fixed-dim": "#b8c4ff",
-                      "surface-dim": "#cfdaf2",
-                      "on-tertiary-fixed-variant": "#6e3900",
-                      "secondary-fixed": "#85f8c4",
-                      "on-error": "#ffffff",
-                      "secondary-container": "#82f5c1",
-                      "on-primary-fixed": "#001453",
-                      "on-secondary-fixed-variant": "#005137"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "stack_md": "16px",
-                      "container_max_width": "1440px",
-                      "margin_mobile": "16px",
-                      "stack_lg": "24px",
-                      "sidebar_width": "260px",
-                      "stack_sm": "8px",
-                      "margin_desktop": "32px",
-                      "gutter": "24px"
-              },
-              "fontFamily": {
-                      "headline-md": [
-                              "Inter"
-                      ],
-                      "body-lg": [
-                              "Inter"
-                      ],
-                      "headline-lg": [
-                              "Inter"
-                      ],
-                      "headline-lg-mobile": [
-                              "Inter"
-                      ],
-                      "label-md": [
-                              "Inter"
-                      ],
-                      "body-md": [
-                              "Inter"
-                      ],
-                      "display-lg": [
-                              "Inter"
-                      ]
-              },
-              "fontSize": {
-                      "headline-md": [
-                              "20px",
-                              {
-                                      "lineHeight": "28px",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "body-lg": [
-                              "16px",
-                              {
-                                      "lineHeight": "24px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "headline-lg": [
-                              "28px",
-                              {
-                                      "lineHeight": "36px",
-                                      "letterSpacing": "-0.01em",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "headline-lg-mobile": [
-                              "24px",
-                              {
-                                      "lineHeight": "32px",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "label-md": [
-                              "12px",
-                              {
-                                      "lineHeight": "16px",
-                                      "letterSpacing": "0.05em",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "body-md": [
-                              "14px",
-                              {
-                                      "lineHeight": "20px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "display-lg": [
-                              "36px",
-                              {
-                                      "lineHeight": "44px",
-                                      "letterSpacing": "-0.02em",
-                                      "fontWeight": "700"
-                              }
-                      ]
-              }
-      },
-          },
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                brand: {
+                    50: '#f0f6fe',
+                    500: '#2563eb',
+                    700: '#1d4ed8',
+                    800: '#1e40af',
+                    900: '#0f172a',
+                    950: '#090d16'
+                },
+                canvas: '#f8fafc',
+                surface: '#ffffff',
+                borderline: '#e2e8f0',
+                risk: {
+                    critical: '#dc2626',
+                    high: '#ea580c',
+                    med: '#d97706',
+                    low: '#059669'
+                }
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace']
+            }
         }
-      </script>
+    }
+}
+</script>
+
+<style>
+body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+.font-tabular { font-variant-numeric: tabular-nums; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+</style>
 </head>
-<body class="bg-[#F1F5F9] text-on-surface font-body-md min-h-screen flex text-body-md">
-<!-- Side Navigation -->
-<nav class="bg-inverse-surface dark:bg-inverse-surface w-[260px] h-screen flex flex-col fixed left-0 top-0 border-r border-outline-variant flat no shadows hidden md:flex z-50">
-<div class="px-6 py-8 border-b border-outline-variant/20 flex flex-col items-start gap-1">
-<span class="font-headline-md text-headline-md font-bold text-white tracking-tight">MPLAD INSIGHT</span>
-<span class="font-label-md text-label-md text-surface-variant uppercase tracking-widest opacity-80">GovTech Oversight</span>
+<body class="bg-canvas text-slate-800 flex h-full antialiased text-xs">
+
+<!-- UNIFIED SHELL: Side Navigation -->
+<aside class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none">
+    <div class="px-5 py-6 border-b border-slate-800/80 flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
+            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-extrabold text-white text-sm tracking-wider uppercase">MPLAD INSIGHT</span>
+            <span class="text-[10px] text-blue-400 uppercase tracking-widest font-semibold">GovTech Audit AI</span>
+        </div>
+    </div>
+
+    <nav class="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Overview_Dashboard.html">
+            <span class="material-symbols-outlined text-lg">dashboard</span>
+            <span>Overview</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Flagged_Cases.html">
+            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">report_problem</span>
+            <span>Flagged Cases</span>
+            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">684</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Geographic_Map.html">
+            <span class="material-symbols-outlined text-lg">map</span>
+            <span>Geographic Map</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Analytics.html">
+            <span class="material-symbols-outlined text-lg">insights</span>
+            <span>Analytics</span>
+        </a>
+        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Data_Explorer.html">
+            <span class="material-symbols-outlined text-lg">database</span>
+            <span>Data Explorer</span>
+        </a>
+    </nav>
+
+    <div class="p-3.5 border-t border-slate-800 bg-brand-950/40 text-[11px] space-y-2">
+        <div class="flex items-center justify-between">
+            <span class="text-slate-400 flex items-center gap-2">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                Live Audit Stream
+            </span>
+            <span class="font-mono text-slate-400 font-bold">ACTIVE</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+            <span>Data Ingestion:</span>
+            <span class="font-mono text-slate-400">06:00 IST</span>
+        </div>
+        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+            <span>System Pipeline:</span>
+            <span class="text-emerald-400 font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">check_circle</span> Normal
+            </span>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div class="flex-1 ml-[260px] flex flex-col min-h-screen bg-canvas">
+    
+    <!-- UNIFIED SHELL: Header -->
+    <header class="h-14 w-full sticky top-0 bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-6">
+        <div class="flex items-center gap-3">
+            <a href="Flagged_Cases.html" class="flex items-center gap-1 text-slate-500 hover:text-slate-900 text-xs font-semibold">
+                <span class="material-symbols-outlined text-base">arrow_back</span>
+                <span>Back to Flagged Cases</span>
+            </a>
+            <span class="text-slate-300">/</span>
+            <span class="font-mono font-bold text-slate-900">Dossier #MPLAD-84920</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="showToast('Exporting complete forensic dossier PDF with digital audit signatures...', 'info')" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white rounded-md text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs">
+                <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+                <span>Export Dossier (PDF)</span>
+            </button>
+
+            <div class="h-6 w-px bg-slate-200 mx-1"></div>
+
+            <div class="flex items-center gap-2.5 pl-1">
+                <div class="w-7 h-7 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-xs shadow-xs">AO</div>
+                <div class="flex flex-col text-left">
+                    <span class="text-xs font-bold text-slate-900 leading-tight">Audit Officer #104</span>
+                    <span class="text-[10px] text-slate-500 font-medium">MoSPI • Oversight Div</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dossier Content -->
+    <main class="flex-1 p-6 space-y-6 max-w-[1500px] w-full mx-auto">
+        
+        <!-- Case Header & Risk Score Banner -->
+        <div class="bg-white border border-red-200 rounded-lg p-5 shadow-xs relative overflow-hidden">
+            <div class="absolute top-0 left-0 bottom-0 w-2 bg-red-600"></div>
+            
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pl-2">
+                <div>
+                    <div class="flex items-center gap-2 mb-1.5">
+                        <span class="px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-300 font-mono font-extrabold text-[10px]">CRITICAL SEVERITY</span>
+                        <span class="font-mono font-bold text-slate-500">ID: MPLAD-84920</span>
+                        <span class="text-slate-300">•</span>
+                        <span class="text-slate-600 font-medium">Nagpur Parliamentary Constituency, Maharashtra</span>
+                    </div>
+                    <h1 class="text-xl font-extrabold text-slate-900">Rural Road Construction & Drainage Upgradation (Phase II)</h1>
+                    <p class="text-xs text-slate-500 mt-1">Recommending MP: <strong class="text-slate-800">Shri Nitin Gadkari (LS)</strong> • Sanction Date: <span class="font-mono text-slate-700 font-semibold">12-Oct-2023</span></p>
+                </div>
+
+                <!-- Risk Score Visual -->
+                <div class="flex items-center gap-4 bg-red-50/80 p-3 rounded-lg border border-red-200">
+                    <div class="w-12 h-12 rounded-full bg-red-700 text-white flex items-center justify-center font-mono font-black text-lg shadow-md">
+                        91
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] font-mono font-bold text-red-900 uppercase">AI Vigilance Score</span>
+                        <span class="text-xs font-extrabold text-red-700">Severe Irregularity Risk</span>
+                        <span class="text-[10px] text-slate-500">Model Confidence: 98.2%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial & Execution Metrics -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white border border-borderline rounded-lg p-4 shadow-xs">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Sanctioned Amount</span>
+                <span class="text-xl font-black font-mono text-slate-900">₹42,80,000</span>
+                <p class="text-[10px] text-slate-400 mt-1">Under Annual MPLAD Quota</p>
+            </div>
+
+            <div class="bg-white border border-borderline rounded-lg p-4 shadow-xs">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Disbursed / Expended</span>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-xl font-black font-mono text-slate-900">₹41,20,000</span>
+                    <span class="font-mono text-xs font-bold text-red-700">96.2%</span>
+                </div>
+                <p class="text-[10px] text-red-700 mt-1">High expenditure vs low ground progress</p>
+            </div>
+
+            <div class="bg-white border border-borderline rounded-lg p-4 shadow-xs">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Timeline Elapsed</span>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-xl font-black font-mono text-red-700">23 Months</span>
+                    <span class="font-mono text-[10px] text-slate-500">(Target: 6 Mos)</span>
+                </div>
+                <p class="text-[10px] text-red-700 mt-1">283% delay over sanctioned schedule</p>
+            </div>
+
+            <div class="bg-white border border-borderline rounded-lg p-4 shadow-xs">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Physical Verification</span>
+                <span class="inline-flex items-center gap-1 text-base font-black text-amber-700">
+                    <span class="material-symbols-outlined text-base text-amber-600">pending</span> 35% Completed
+                </span>
+                <p class="text-[10px] text-slate-400 mt-1">Geo-tagged photo evidence incomplete</p>
+            </div>
+        </div>
+
+        <!-- Section 2: AI Anomaly Findings & Contractor Intelligence -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Left: Anomaly Details & Evidence (7 Cols) -->
+            <div class="lg:col-span-7 bg-white border border-borderline rounded-lg shadow-xs p-5 space-y-4">
+                <div class="border-b border-borderline pb-3">
+                    <h2 class="text-sm font-bold text-slate-900">Algorithmic Anomaly Flag Breakdown</h2>
+                    <p class="text-[11px] text-slate-500">Automated multi-factor audit checks triggered by central intelligence engine</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="p-3 bg-red-50/70 border border-red-200 rounded-lg flex items-start gap-3">
+                        <span class="material-symbols-outlined text-red-700 text-xl mt-0.5">timer_off</span>
+                        <div>
+                            <h3 class="font-bold text-red-950 text-xs">Flag #1: Severe Timeline Inflation without Extension Sanction</h3>
+                            <p class="text-[11px] text-red-800 mt-0.5">Project was sanctioned for 6 months (deadline: April 2024). 23 months elapsed with zero formal revised sanction letters recorded in central database.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-orange-50/70 border border-orange-200 rounded-lg flex items-start gap-3">
+                        <span class="material-symbols-outlined text-orange-700 text-xl mt-0.5">account_balance_wallet</span>
+                        <div>
+                            <h3 class="font-bold text-orange-950 text-xs">Flag #2: Front-loaded Expenditure Disparity</h3>
+                            <p class="text-[11px] text-orange-950 mt-0.5">96.2% (₹41.2L) of funds released to contractor despite nodal engineering inspection reporting only 35% physical road laying on ground.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-amber-50/70 border border-amber-200 rounded-lg flex items-start gap-3">
+                        <span class="material-symbols-outlined text-amber-700 text-xl mt-0.5">domain_verification</span>
+                        <div>
+                            <h3 class="font-bold text-amber-950 text-xs">Flag #3: Agency Concentration Threshold Exceeded</h3>
+                            <p class="text-[11px] text-amber-950 mt-0.5">Implementing agency (PWD Nagpur Division - Substation 4) has been awarded 18 consecutive works in the same block without open competitive e-tendering.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Action Dispatch & Vigilance Workflow (5 Cols) -->
+            <div class="lg:col-span-5 bg-white border border-borderline rounded-lg shadow-xs p-5 flex flex-col justify-between">
+                <div>
+                    <div class="border-b border-borderline pb-3 mb-4">
+                        <h2 class="text-sm font-bold text-slate-900">Vigilance Action Workflow</h2>
+                        <p class="text-[11px] text-slate-500">Authorized administrative decisions for this audit record</p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <button onclick="showToast('Physical verification audit team dispatched to site.', 'info')" class="w-full py-2.5 px-3 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs">
+                            <span class="material-symbols-outlined text-[16px]">person_pin_circle</span>
+                            <span>Issue Order: Physical Ground Audit</span>
+                        </button>
+
+                        <button onclick="showToast('Formal show-cause notice generated and routed to District Magistrate.', 'warning')" class="w-full py-2.5 px-3 bg-red-700 hover:bg-red-800 text-white rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs">
+                            <span class="material-symbols-outlined text-[16px]">gavel</span>
+                            <span>Escalate to District Magistrate & CVC</span>
+                        </button>
+
+                        <button onclick="showToast('Freeze requisition placed on agency vendor account.', 'warning')" class="w-full py-2.5 px-3 bg-amber-600 hover:bg-amber-700 text-white rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs">
+                            <span class="material-symbols-outlined text-[16px]">lock</span>
+                            <span>Temporary Hold on Further Disbursements</span>
+                        </button>
+
+                        <button onclick="showToast('Case marked as verified with justification recorded.', 'success')" class="w-full py-2.5 px-3 border border-slate-300 hover:bg-slate-50 text-slate-700 rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                            <span>Clear Anomaly (With Officer Justification)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-3 bg-slate-50 rounded border border-slate-200 text-[11px] text-slate-500">
+                    <p class="font-bold text-slate-700 mb-0.5">Audit Trail Note:</p>
+                    <p>All action dispatch timestamps and officer cryptographic credentials are permanently registered in the central MoSPI compliance ledger.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
 </div>
-<div class="flex-1 py-4 flex flex-col gap-1 overflow-y-auto">
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Overview_Dashboard.html">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-label-md text-label-md">Overview</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container border-l-4 border-primary-fixed hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Flagged_Cases.html">
-<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
-<span class="font-label-md text-label-md">Flagged Cases</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Geographic_Map.html">
-<span class="material-symbols-outlined" data-icon="map">map</span>
-<span class="font-label-md text-label-md">Map</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Analytics.html">
-<span class="material-symbols-outlined" data-icon="insights">insights</span>
-<span class="font-label-md text-label-md">Analytics</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="Data_Explorer.html">
-<span class="material-symbols-outlined" data-icon="database">database</span>
-<span class="font-label-md text-label-md">Data Explorer</span>
-</a>
-</div>
-<div class="mt-auto border-t border-outline-variant/20 py-4 flex flex-col gap-1 bg-inverse-surface">
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 transition-colors cursor-pointer" href="#">
-<span class="material-symbols-outlined text-sm" data-icon="sensors">sensors</span>
-<span class="font-label-md text-label-md">Live Status</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 transition-colors cursor-pointer" href="#">
-<span class="material-symbols-outlined text-sm" data-icon="update">update</span>
-<span class="font-label-md text-label-md">Update Info</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 transition-colors cursor-pointer" href="#">
-<span class="material-symbols-outlined text-sm text-secondary-fixed" data-icon="check_circle">check_circle</span>
-<span class="font-label-md text-label-md">System Status</span>
-</a>
-</div>
-</nav>
-<!-- Main Content Wrapper -->
-<div class="flex-1 md:ml-[260px] flex flex-col min-h-screen">
-<!-- Top App Bar -->
-<header class="bg-surface dark:bg-surface-dim h-16 w-full sticky top-0 shadow-sm z-40 border-b border-outline-variant flex justify-between items-center px-margin_desktop">
-<div class="flex items-center gap-4">
-<!-- Hamburger for mobile -->
-<button class="md:hidden p-2 text-primary dark:text-primary-fixed">
-<span class="material-symbols-outlined">menu</span>
-</button>
-<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant/50 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all w-80">
-<span class="material-symbols-outlined text-on-surface-variant mr-2 text-sm">search</span>
-<input class="bg-transparent border-none outline-none w-full text-sm placeholder:text-on-surface-variant/60 font-body-md text-body-md" placeholder="Search ID, MP, or District..." type="text">
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-full active:scale-95 duration-150">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-</button>
-<div class="h-8 w-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md font-bold overflow-hidden border border-outline-variant">
-<img alt="Administrator Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtZHUF4si8sHtuVTeZ7BCPP9fnT8e9jQm9ZYs3jIIWHLpdwEUafSpmJCLMk5E0pEuYdxxqEvk8r03Bb7IJXddmbyGYp0p2J0bjr4nN15dpSjA3OPtr89TylsWbaaxo74gy9MhZQDDvcDQ_o0Vb2Wn67kN6wPZ2pdus0AdtX49G6XBmnY_fpc4T4lXQgzKw0eBM4hVirtAmAitE7M8P4OCGfuFzB3Wdgo8M83XzDvGFgdZFTggpBtcj-w">
-</div>
-</div>
-</header>
-<!-- Main Canvas -->
-<main class="flex-1 p-margin_mobile md:p-margin_desktop max-w-container_max_width mx-auto w-full flex flex-col gap-stack_lg">
-<!-- Page Header & Actions -->
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-outline-variant/30 pb-4">
-<div>
-<div class="flex items-center gap-3 mb-1">
-<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center">
-<span class="material-symbols-outlined text-sm">arrow_back</span>
-<span class="font-label-md text-label-md ml-1">Back to List</span>
-</button>
-</div>
-<div class="flex items-center gap-4">
-<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Case #MPLAD-2026-00481</h1>
-<span class="px-3 py-1 bg-error/10 text-error font-label-md text-label-md rounded border border-error/20 flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">warning</span>
-                            HIGH RISK
-                        </span>
-</div>
-</div>
-<div class="flex items-center gap-3 w-full md:w-auto">
-<button class="flex-1 md:flex-none px-4 py-2 bg-surface text-primary border border-outline-variant hover:bg-surface-container-low transition-colors rounded-DEFAULT font-label-md text-label-md flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[16px]">close</span>
-                        Dismiss Flag
-                    </button>
-<button class="flex-1 md:flex-none px-4 py-2 bg-primary-container text-on-primary-container border border-primary-container hover:bg-primary-container/90 transition-colors rounded-DEFAULT font-label-md text-label-md flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[16px]">assignment_ind</span>
-                        Assign for Audit
-                    </button>
-<button class="flex-1 md:flex-none px-4 py-2 bg-primary text-white border border-primary hover:bg-primary/90 transition-colors rounded-DEFAULT font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm">
-<span class="material-symbols-outlined text-[16px]">visibility</span>
-                        Mark for Review
-                    </button>
-</div>
-</div>
-<!-- Bento Grid Layout -->
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<!-- Left Column: Project Info & Comparison -->
-<div class="md:col-span-8 flex flex-col gap-stack_lg">
-<!-- Project Details Card -->
-<div class="bg-white border border-outline-variant/30 rounded-lg shadow-sm p-6">
-<h2 class="font-headline-md text-headline-md mb-6 flex items-center gap-2 border-b border-outline-variant/20 pb-3">
-<span class="material-symbols-outlined text-primary">feed</span>
-                            Project Information
-                        </h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<div class="flex flex-col gap-1">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">Project ID</span>
-<span class="font-body-lg text-body-lg font-semibold">PRJ-982-UP</span>
-</div>
-<div class="flex flex-col gap-1 lg:col-span-2">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">Work Name</span>
-<span class="font-body-lg text-body-lg font-semibold">Construction of Community Hall and Solar Panels Installation</span>
-</div>
-<div class="flex flex-col gap-1">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">State</span>
-<span class="font-body-lg text-body-lg">Uttar Pradesh</span>
-</div>
-<div class="flex flex-col gap-1">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">District</span>
-<span class="font-body-lg text-body-lg">Lucknow</span>
-</div>
-<div class="flex flex-col gap-1">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">Constituency</span>
-<span class="font-body-lg text-body-lg">Lucknow Central</span>
-</div>
-<div class="flex flex-col gap-1">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">Recommending MP</span>
-<span class="font-body-lg text-body-lg">Shri Ramesh Kumar</span>
-</div>
-<div class="flex flex-col gap-1">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">Implementing Agency</span>
-<span class="font-body-lg text-body-lg text-error flex items-center gap-1">
-                                    Apex Infra Projects 
-                                    <span class="material-symbols-outlined text-[14px]" title="Flagged Agency">warning</span>
-</span>
-</div>
-<div class="flex flex-col gap-1">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">Sanctioned Amount</span>
-<span class="font-body-lg text-body-lg font-semibold text-primary">₹48.5L</span>
-</div>
-</div>
-</div>
-<!-- Timeline Card -->
-<div class="bg-white border border-outline-variant/30 rounded-lg shadow-sm p-6">
-<h2 class="font-headline-md text-headline-md mb-6 flex items-center gap-2 border-b border-outline-variant/20 pb-3">
-<span class="material-symbols-outlined text-primary">timeline</span>
-                            Project Timeline &amp; Delays
-                        </h2>
-<div class="relative pt-8 pb-4">
-<!-- Line -->
-<div class="absolute top-[52px] left-[10%] right-[10%] h-1 bg-outline-variant/30 z-0 rounded-full"></div>
-<!-- Delayed Section Highlight -->
-<div class="absolute top-[52px] left-[50%] right-[10%] h-1 bg-error/40 z-0 rounded-full"></div>
-<div class="relative z-10 flex justify-between items-start">
-<!-- Step 1 -->
-<div class="flex flex-col items-center w-1/4 text-center">
-<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mb-3 ring-4 ring-white">
-<span class="material-symbols-outlined text-sm">check</span>
-</div>
-<span class="font-label-md text-label-md font-bold">Admin Approval</span>
-<span class="font-label-md text-label-md text-on-surface-variant mt-1">12 Jan 2024</span>
-</div>
-<!-- Step 2 -->
-<div class="flex flex-col items-center w-1/4 text-center">
-<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mb-3 ring-4 ring-white">
-<span class="material-symbols-outlined text-sm">check</span>
-</div>
-<span class="font-label-md text-label-md font-bold">Funds Released</span>
-<span class="font-label-md text-label-md text-on-surface-variant mt-1">05 Mar 2024</span>
-</div>
-<!-- Step 3 -->
-<div class="flex flex-col items-center w-1/4 text-center">
-<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface border border-outline-variant flex items-center justify-center mb-3 ring-4 ring-white">
-<span class="material-symbols-outlined text-sm">construction</span>
-</div>
-<span class="font-label-md text-label-md font-bold">Work Started</span>
-<span class="font-label-md text-label-md text-on-surface-variant mt-1">15 Apr 2024</span>
-</div>
-<!-- Step 4 (Delayed) -->
-<div class="flex flex-col items-center w-1/4 text-center relative">
-<div class="absolute -top-10 bg-error/10 text-error px-2 py-1 rounded text-xs font-bold border border-error/20 whitespace-nowrap">
-                                        +18 Months Late
-                                    </div>
-<div class="w-8 h-8 rounded-full bg-error text-white flex items-center justify-center mb-3 ring-4 ring-white animate-pulse">
-<span class="material-symbols-outlined text-sm">priority_high</span>
-</div>
-<span class="font-label-md text-label-md font-bold text-error">Current Status</span>
-<span class="font-label-md text-label-md text-error mt-1">Expected: Oct 2024</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Column: Explanation & Anomaly Breakdown -->
-<div class="md:col-span-4 flex flex-col gap-stack_lg">
-<!-- Anomaly Score Breakdown (Glassmorphic vibe) -->
-<div class="bg-gradient-to-br from-inverse-surface to-[#1a2333] text-white border border-outline-variant/20 rounded-lg shadow-md p-6 relative overflow-hidden">
-<!-- Decorative background element -->
-<div class="absolute top-0 right-0 w-32 h-32 bg-error/20 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
-<div class="flex justify-between items-start mb-6 relative z-10">
-<h2 class="font-headline-md text-headline-md flex items-center gap-2">
-<span class="material-symbols-outlined">radar</span>
-                                Anomaly Score
-                            </h2>
-<div class="text-right">
-<span class="font-display-lg text-display-lg font-bold text-error-container">87</span>
-<span class="font-body-md text-body-md text-surface-variant block -mt-1">/ 100</span>
-</div>
-</div>
-<div class="space-y-4 relative z-10">
-<!-- Bar 1 -->
-<div>
-<div class="flex justify-between font-label-md text-label-md mb-1">
-<span class="text-surface-variant">Completion Delay</span>
-<span class="font-bold">32%</span>
-</div>
-<div class="w-full bg-surface-variant/20 rounded-full h-2">
-<div class="bg-error h-2 rounded-full" style="width: 32%"></div>
-</div>
-</div>
-<!-- Bar 2 -->
-<div>
-<div class="flex justify-between font-label-md text-label-md mb-1">
-<span class="text-surface-variant">Amount Deviation</span>
-<span class="font-bold">27%</span>
-</div>
-<div class="w-full bg-surface-variant/20 rounded-full h-2">
-<div class="bg-on-tertiary-container h-2 rounded-full" style="width: 27%"></div>
-</div>
-</div>
-<!-- Bar 3 -->
-<div>
-<div class="flex justify-between font-label-md text-label-md mb-1">
-<span class="text-surface-variant">Agency Concentration</span>
-<span class="font-bold">21%</span>
-</div>
-<div class="w-full bg-surface-variant/20 rounded-full h-2">
-<div class="bg-on-tertiary-container h-2 rounded-full" style="width: 21%"></div>
-</div>
-</div>
-<!-- Bar 4 -->
-<div>
-<div class="flex justify-between font-label-md text-label-md mb-1">
-<span class="text-surface-variant">Geographic Pattern</span>
-<span class="font-bold">20%</span>
-</div>
-<div class="w-full bg-surface-variant/20 rounded-full h-2">
-<div class="bg-secondary-fixed h-2 rounded-full" style="width: 20%"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Explanation Card -->
-<div class="bg-error/5 border-l-4 border-error rounded-r-lg shadow-sm p-6 relative">
-<span class="material-symbols-outlined absolute top-4 right-4 text-error/20 text-4xl pointer-events-none">psychology_alt</span>
-<h3 class="font-headline-md text-headline-md mb-4 text-error">Why was this flagged?</h3>
-<ul class="space-y-3 font-body-md text-body-md mb-6">
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-[18px] text-error mt-0.5">timer</span>
-<span><strong>Completion Delay:</strong> Project is 18 months beyond scheduled completion date with no recent progress reports.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-[18px] text-error mt-0.5">currency_rupee</span>
-<span><strong>Amount Deviation:</strong> Sanctioned amount (₹48.5L) is 2.3x higher than the district baseline for similar community halls.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-[18px] text-error mt-0.5">business</span>
-<span><strong>Agency Concentration:</strong> Apex Infra Projects is associated with 14 other flagged works in this constituency.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-[18px] text-error mt-0.5">my_location</span>
-<span><strong>Geographic Pattern:</strong> High density of similar high-cost projects approved in a 5km radius within the same quarter.</span>
-</li>
-</ul>
-<div class="bg-white px-4 py-3 rounded border border-outline-variant/30 flex items-center justify-between">
-<span class="font-label-md text-label-md text-on-surface-variant uppercase">System Recommendation</span>
-<span class="font-label-md text-label-md font-bold text-error flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]">person_search</span>
-                                Human Review Required
-                            </span>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
+
 <script src="app.js"></script>
-</body></html>
+</body>
+</html>
