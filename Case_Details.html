@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en" class="h-full w-full overflow-x-hidden">
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -49,9 +49,59 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+
+/* Dedicated Bounded Table Scroll Container & Sticky Columns */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+.table-scroll-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.sticky-col-1 {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+}
+.sticky-col-2 {
+    position: sticky;
+    left: 110px;
+    z-index: 10;
+    box-shadow: 2px 0 4px -2px rgba(0,0,0,0.12);
+}
+th.sticky-col-1 {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: #f1f5f9 !important;
+}
+th.sticky-col-2 {
+    position: sticky;
+    left: 110px;
+    z-index: 20;
+    background-color: #f1f5f9 !important;
+    box-shadow: 2px 0 4px -2px rgba(0,0,0,0.12);
+}
+.sticky-col-right {
+    position: sticky;
+    right: 0;
+    z-index: 10;
+    box-shadow: -2px 0 4px -2px rgba(0,0,0,0.12);
+}
+th.sticky-col-right {
+    position: sticky;
+    right: 0;
+    z-index: 20;
+    background-color: #f1f5f9 !important;
+    box-shadow: -2px 0 4px -2px rgba(0,0,0,0.12);
+}
 </style>
 </head>
-<body class="bg-canvas text-slate-800 flex h-full antialiased text-xs">
+<body class="bg-canvas text-slate-800 antialiased text-xs min-h-full w-full overflow-x-hidden relative">
 
 <!-- UNIFIED SHELL: Side Navigation -->
 <aside class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none">
@@ -114,7 +164,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 </aside>
 
 <!-- Main Wrapper -->
-<div class="flex-1 ml-[260px] flex flex-col min-h-screen bg-canvas">
+<div class="ml-[260px] w-[calc(100vw-260px)] max-w-[calc(100vw-260px)] min-w-0 min-h-screen flex flex-col bg-canvas overflow-x-hidden">
     
     <!-- UNIFIED SHELL: Header -->
     <header class="h-14 w-full sticky top-0 bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-6">
@@ -146,7 +196,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
     </header>
 
     <!-- Main Dossier Content -->
-    <main class="flex-1 p-6 space-y-6 max-w-[1500px] w-full mx-auto">
+    <main class="flex-1 p-6 space-y-6 max-w-full w-full mx-auto">
         
         <!-- Case Header & Risk Score Banner -->
         <div class="bg-white border border-red-200 rounded-lg p-5 shadow-xs relative overflow-hidden">
