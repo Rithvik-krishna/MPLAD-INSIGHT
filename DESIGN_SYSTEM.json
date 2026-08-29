@@ -1,0 +1,129 @@
+{
+  "displayName": "MPLAD Insight",
+  "styleGuidelines": "## Brand & Style\n\nThe design system is engineered for high-stakes governance and public fund oversight. The visual style is **Corporate / Modern**, prioritizing information density, clarity, and institutional trust. It utilizes a refined SaaS aesthetic that balances a data-heavy environment with high readability.\n\nThe emotional response should be one of stability and precision. By using a light interface with generous white space and high-contrast typography, the design system ensures that complex financial and project data are easily digestible for government officials and auditors. Visual clutter is minimized to keep the focus on actionable insights and compliance monitoring.\n\n## Layout & Spacing\n\nThe layout follows a **Fixed-Fluid Hybrid** model. \n- **Sidebar:** A persistent 260px left navigation bar anchors the application.\n- **Main Canvas:** A fluid area that expands to a maximum of 1440px. On ultra-wide monitors, the content centers with margins.\n- **Grid:** A 12-column grid is used within the main canvas for dashboard widgets.\n- **Breakpoints:**\n  - **Desktop (1280px+):** 12 columns, 32px margins.\n  - **Tablet (768px - 1279px):** 6 columns, 24px margins. Sidebar collapses to an icon-only rail or hides behind a hamburger menu.\n  - **Mobile (< 767px):** 4 columns, 16px margins. Cards stack vertically.\n\nThe spacing rhythm is based on an **8px linear scale**, ensuring consistent vertical rhythm between form fields, text blocks, and components.\n\n## Elevation & Depth\n\nTo maintain a clean, professional \"flat\" look while ensuring hierarchy, this design system uses **Tonal Layers** supplemented by very soft, functional shadows.\n\n- **Level 0 (Background):** #F1F5F9. Used for the base canvas.\n- **Level 1 (Cards/Surfaces):** Pure white (#FFFFFF). These elements feature a 1px border in #E2E8F0 and a very subtle drop shadow: `0px 1px 3px rgba(0, 0, 0, 0.1)`.\n- **Level 2 (Popovers/Modals):** High-elevation surfaces use a more pronounced shadow: `0px 10px 15px -3px rgba(0, 0, 0, 0.1)` to pull the user's attention forward.\n- **Interactive States:** Buttons and interactive cards do not lift on hover; instead, they use a subtle background color shift (e.g., Primary Blue moves to a slightly darker shade) to indicate state.\n\n## Components\n\n### Buttons & Inputs\n- **Primary Action:** Solid #1E40AF background with white text. 8px radius.\n- **Secondary Action:** Ghost style with #1E40AF border and text.\n- **Inputs:** 1px #CBD5E1 border, white background. On focus, the border changes to #1E40AF with a subtle 2px outer glow.\n\n### KPI Cards\n- Large \"Display\" font size for the primary metric.\n- A small trend indicator (e.g., \"\u2191 12%\") positioned in the bottom right, color-coded by the semantic palette (Red/Green).\n- A subtle sparkline (line chart) may be embedded at the bottom of the card.\n\n### Data Tables\n- **Header:** Light gray background (#F8FAFC) with uppercase `label-md` typography.\n- **Rows:** White background with 1px bottom border (#F1F5F9). High-risk rows can have a very faint 2px left-border highlight in Red (#DC2626).\n- **Severity Badges:** High-contrast text on low-opacity backgrounds (e.g., Red text on 10% opacity red background) for maximum readability without visual noise.\n\n### Navigation\n- **Sidebar:** Dark theme variant for the sidebar is permitted (using #1E293B) to provide strong visual separation from the content area, or a clean white sidebar with a 1px right border.\n- **Active State:** A solid left-edge accent bar (4px width) in Primary Blue to indicate the current section.\n\n### Charts\n- Use a palette derived from the Primary and Status colors. Avoid high-saturation \"rainbow\" charts; prefer monochromatic blue scales for multi-category bar charts, reserving Red/Amber/Green strictly for risk-related data.",
+  "theme": {
+    "colorMode": "LIGHT",
+    "font": "INTER",
+    "roundness": "ROUND_EIGHT",
+    "customColor": "#1e40af",
+    "headlineFont": "INTER",
+    "bodyFont": "INTER",
+    "labelFont": "INTER",
+    "namedColors": {
+      "on_tertiary_container": "#ffa85d",
+      "on_surface": "#111c2d",
+      "on_tertiary_fixed": "#2f1500",
+      "inverse_surface": "#263143",
+      "surface_variant": "#d8e3fb",
+      "outline_variant": "#c4c5d5",
+      "secondary": "#006c4a",
+      "tertiary_fixed": "#ffdcc3",
+      "tertiary": "#532a00",
+      "on_tertiary": "#ffffff",
+      "inverse_on_surface": "#ecf1ff",
+      "on_primary_fixed": "#001453",
+      "secondary_fixed": "#85f8c4",
+      "on_error": "#ffffff",
+      "primary": "#00288e",
+      "secondary_container": "#82f5c1",
+      "on_surface_variant": "#444653",
+      "background": "#f9f9ff",
+      "inverse_primary": "#b8c4ff",
+      "on_secondary": "#ffffff",
+      "on_primary_container": "#a8b8ff",
+      "on_error_container": "#93000a",
+      "surface_container_highest": "#d8e3fb",
+      "error_container": "#ffdad6",
+      "surface_container": "#e7eeff",
+      "surface_container_lowest": "#ffffff",
+      "outline": "#757684",
+      "surface": "#f9f9ff",
+      "on_tertiary_fixed_variant": "#6e3900",
+      "on_primary_fixed_variant": "#173bab",
+      "surface_dim": "#cfdaf2",
+      "tertiary_container": "#743d00",
+      "surface_container_low": "#f0f3ff",
+      "primary_container": "#1e40af",
+      "on_primary": "#ffffff",
+      "surface_bright": "#f9f9ff",
+      "secondary_fixed_dim": "#68dba9",
+      "primary_fixed_dim": "#b8c4ff",
+      "on_background": "#111c2d",
+      "primary_fixed": "#dde1ff",
+      "tertiary_fixed_dim": "#ffb77d",
+      "surface_tint": "#3755c3",
+      "error": "#ba1a1a",
+      "on_secondary_fixed": "#002114",
+      "on_secondary_container": "#00714e",
+      "on_secondary_fixed_variant": "#005137",
+      "surface_container_high": "#dee8ff"
+    },
+    "designMd": "---\nname: MPLAD Insight\ncolors:\n  surface: '#f9f9ff'\n  surface-dim: '#cfdaf2'\n  surface-bright: '#f9f9ff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f0f3ff'\n  surface-container: '#e7eeff'\n  surface-container-high: '#dee8ff'\n  surface-container-highest: '#d8e3fb'\n  on-surface: '#111c2d'\n  on-surface-variant: '#444653'\n  inverse-surface: '#263143'\n  inverse-on-surface: '#ecf1ff'\n  outline: '#757684'\n  outline-variant: '#c4c5d5'\n  surface-tint: '#3755c3'\n  primary: '#00288e'\n  on-primary: '#ffffff'\n  primary-container: '#1e40af'\n  on-primary-container: '#a8b8ff'\n  inverse-primary: '#b8c4ff'\n  secondary: '#006c4a'\n  on-secondary: '#ffffff'\n  secondary-container: '#82f5c1'\n  on-secondary-container: '#00714e'\n  tertiary: '#532a00'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#743d00'\n  on-tertiary-container: '#ffa85d'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#dde1ff'\n  primary-fixed-dim: '#b8c4ff'\n  on-primary-fixed: '#001453'\n  on-primary-fixed-variant: '#173bab'\n  secondary-fixed: '#85f8c4'\n  secondary-fixed-dim: '#68dba9'\n  on-secondary-fixed: '#002114'\n  on-secondary-fixed-variant: '#005137'\n  tertiary-fixed: '#ffdcc3'\n  tertiary-fixed-dim: '#ffb77d'\n  on-tertiary-fixed: '#2f1500'\n  on-tertiary-fixed-variant: '#6e3900'\n  background: '#f9f9ff'\n  on-background: '#111c2d'\n  surface-variant: '#d8e3fb'\ntypography:\n  display-lg:\n    fontFamily: Inter\n    fontSize: 36px\n    fontWeight: '700'\n    lineHeight: 44px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Inter\n    fontSize: 28px\n    fontWeight: '600'\n    lineHeight: 36px\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Inter\n    fontSize: 20px\n    fontWeight: '600'\n    lineHeight: 28px\n  body-lg:\n    fontFamily: Inter\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 24px\n  body-md:\n    fontFamily: Inter\n    fontSize: 14px\n    fontWeight: '400'\n    lineHeight: 20px\n  label-md:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '600'\n    lineHeight: 16px\n    letterSpacing: 0.05em\n  headline-lg-mobile:\n    fontFamily: Inter\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: 32px\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  sidebar_width: 260px\n  container_max_width: 1440px\n  gutter: 24px\n  margin_mobile: 16px\n  margin_desktop: 32px\n  stack_sm: 8px\n  stack_md: 16px\n  stack_lg: 24px\n---\n\n## Brand & Style\n\nThe design system is engineered for high-stakes governance and public fund oversight. The visual style is **Corporate / Modern**, prioritizing information density, clarity, and institutional trust. It utilizes a refined SaaS aesthetic that balances a data-heavy environment with high readability.\n\nThe emotional response should be one of stability and precision. By using a light interface with generous white space and high-contrast typography, the design system ensures that complex financial and project data are easily digestible for government officials and auditors. Visual clutter is minimized to keep the focus on actionable insights and compliance monitoring.\n\n## Colors\n\nThe color palette is functional and semantic, designed to communicate status at a glance without overwhelming the user.\n\n- **Primary (#1E40AF):** A deep indigo used for primary actions, active navigation states, and branding elements. It conveys authority and reliability.\n- **Success/Low Risk (#059669):** Used for positive trends, completed projects, and \"Healthy\" fund status.\n- **Warning/Medium Risk (#D97706):** Used for pending approvals, minor delays, or moderate fund utilization gaps.\n- **Critical/High Risk (#DC2626):** Reserved for immediate attention items, such as fund lapses, stalled projects, or compliance violations.\n- **Neutral/Background:** The app uses a layered grayscale approach. The main canvas is **#F1F5F9**, while primary surfaces (cards, tables) are pure **#FFFFFF** to create a clear \"object-on-ground\" relationship. Text utilizes Deep Slate (**#1E293B**) for maximum legibility against light backgrounds.\n\n## Typography\n\nThis design system utilizes **Inter** exclusively to maintain a systematic and utilitarian feel. The type hierarchy is strictly defined to handle multi-level data displays.\n\n- **Headlines:** Use tighter letter spacing and heavier weights to anchor sections and page headers.\n- **Body Text:** Standardized at 14px for data tables and 16px for prose to maximize information density while remaining accessible.\n- **Labels:** Small, all-caps labels are used for table headers and secondary metadata to differentiate them from interactive data points.\n- **Numerical Data:** For financial figures, ensure the use of tabular num alignment (tnum) to allow for easy vertical scanning of columns in data tables.\n\n## Layout & Spacing\n\nThe layout follows a **Fixed-Fluid Hybrid** model. \n- **Sidebar:** A persistent 260px left navigation bar anchors the application.\n- **Main Canvas:** A fluid area that expands to a maximum of 1440px. On ultra-wide monitors, the content centers with margins.\n- **Grid:** A 12-column grid is used within the main canvas for dashboard widgets.\n- **Breakpoints:**\n  - **Desktop (1280px+):** 12 columns, 32px margins.\n  - **Tablet (768px - 1279px):** 6 columns, 24px margins. Sidebar collapses to an icon-only rail or hides behind a hamburger menu.\n  - **Mobile (< 767px):** 4 columns, 16px margins. Cards stack vertically.\n\nThe spacing rhythm is based on an **8px linear scale**, ensuring consistent vertical rhythm between form fields, text blocks, and components.\n\n## Elevation & Depth\n\nTo maintain a clean, professional \"flat\" look while ensuring hierarchy, this design system uses **Tonal Layers** supplemented by very soft, functional shadows.\n\n- **Level 0 (Background):** #F1F5F9. Used for the base canvas.\n- **Level 1 (Cards/Surfaces):** Pure white (#FFFFFF). These elements feature a 1px border in #E2E8F0 and a very subtle drop shadow: `0px 1px 3px rgba(0, 0, 0, 0.1)`.\n- **Level 2 (Popovers/Modals):** High-elevation surfaces use a more pronounced shadow: `0px 10px 15px -3px rgba(0, 0, 0, 0.1)` to pull the user's attention forward.\n- **Interactive States:** Buttons and interactive cards do not lift on hover; instead, they use a subtle background color shift (e.g., Primary Blue moves to a slightly darker shade) to indicate state.\n\n## Shapes\n\nThe shape language is structured and \"Soft-Industrial.\" \n\n- **Cards & Primary Containers:** Use a 8px (`rounded-lg`) corner radius to soften the enterprise environment without appearing too casual.\n- **Buttons & Input Fields:** Use a matching 8px radius to maintain consistency.\n- **Status Badges/Chips:** Utilize a fully rounded (pill-shaped) radius to distinguish them from interactive buttons.\n- **Data Visualizations:** Bar charts should use slight rounding (2-4px) on the top corners of bars to align with the overall UI aesthetic.\n\n## Components\n\n### Buttons & Inputs\n- **Primary Action:** Solid #1E40AF background with white text. 8px radius.\n- **Secondary Action:** Ghost style with #1E40AF border and text.\n- **Inputs:** 1px #CBD5E1 border, white background. On focus, the border changes to #1E40AF with a subtle 2px outer glow.\n\n### KPI Cards\n- Large \"Display\" font size for the primary metric.\n- A small trend indicator (e.g., \"\u2191 12%\") positioned in the bottom right, color-coded by the semantic palette (Red/Green).\n- A subtle sparkline (line chart) may be embedded at the bottom of the card.\n\n### Data Tables\n- **Header:** Light gray background (#F8FAFC) with uppercase `label-md` typography.\n- **Rows:** White background with 1px bottom border (#F1F5F9). High-risk rows can have a very faint 2px left-border highlight in Red (#DC2626).\n- **Severity Badges:** High-contrast text on low-opacity backgrounds (e.g., Red text on 10% opacity red background) for maximum readability without visual noise.\n\n### Navigation\n- **Sidebar:** Dark theme variant for the sidebar is permitted (using #1E293B) to provide strong visual separation from the content area, or a clean white sidebar with a 1px right border.\n- **Active State:** A solid left-edge accent bar (4px width) in Primary Blue to indicate the current section.\n\n### Charts\n- Use a palette derived from the Primary and Status colors. Avoid high-saturation \"rainbow\" charts; prefer monochromatic blue scales for multi-category bar charts, reserving Red/Amber/Green strictly for risk-related data.",
+    "colorVariant": "FIDELITY",
+    "overridePrimaryColor": "#1e40af",
+    "overrideSecondaryColor": "#059669",
+    "overrideTertiaryColor": "#d97706",
+    "overrideNeutralColor": "#1e293b",
+    "spacingScale": 2,
+    "typography": {
+      "body-lg": {
+        "fontFamily": "Inter",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px"
+      },
+      "display-lg": {
+        "fontFamily": "Inter",
+        "fontSize": "36px",
+        "fontWeight": "700",
+        "lineHeight": "44px",
+        "letterSpacing": "-0.02em"
+      },
+      "body-md": {
+        "fontFamily": "Inter",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "20px"
+      },
+      "headline-lg": {
+        "fontFamily": "Inter",
+        "fontSize": "28px",
+        "fontWeight": "600",
+        "lineHeight": "36px",
+        "letterSpacing": "-0.01em"
+      },
+      "headline-md": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "28px"
+      },
+      "label-md": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": "600",
+        "lineHeight": "16px",
+        "letterSpacing": "0.05em"
+      },
+      "headline-lg-mobile": {
+        "fontFamily": "Inter",
+        "fontSize": "24px",
+        "fontWeight": "600",
+        "lineHeight": "32px"
+      }
+    },
+    "spacing": {
+      "margin_desktop": "32px",
+      "gutter": "24px",
+      "stack_md": "16px",
+      "margin_mobile": "16px",
+      "stack_sm": "8px",
+      "stack_lg": "24px",
+      "sidebar_width": "260px",
+      "container_max_width": "1440px"
+    },
+    "headlineFontFamily": "Inter",
+    "bodyFontFamily": "Inter",
+    "labelFontFamily": "Inter"
+  }
+}

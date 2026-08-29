@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Data Explorer - MPLAD INSIGHT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "surface-tint": "#3755c3",
+                        "on-secondary-container": "#00714e",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#68dba9",
+                        "inverse-primary": "#b8c4ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e7eeff",
+                        "secondary": "#006c4a",
+                        "background": "#f9f9ff",
+                        "surface-variant": "#d8e3fb",
+                        "surface": "#f9f9ff",
+                        "inverse-surface": "#263143",
+                        "on-tertiary-container": "#ffa85d",
+                        "primary-container": "#1e40af",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#743d00",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-primary-fixed-variant": "#173bab",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "outline": "#757684",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#dde1ff",
+                        "on-tertiary-fixed": "#2f1500",
+                        "surface-bright": "#f9f9ff",
+                        "outline-variant": "#c4c5d5",
+                        "on-primary-container": "#a8b8ff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#532a00",
+                        "on-surface-variant": "#444653",
+                        "on-surface": "#111c2d",
+                        "primary": "#00288e",
+                        "surface-container-highest": "#d8e3fb",
+                        "tertiary-fixed": "#ffdcc3",
+                        "on-secondary-fixed": "#002114",
+                        "on-background": "#111c2d",
+                        "surface-container-high": "#dee8ff",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "surface-dim": "#cfdaf2",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "secondary-fixed": "#85f8c4",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#82f5c1",
+                        "on-primary-fixed": "#001453",
+                        "on-secondary-fixed-variant": "#005137"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack_md": "16px",
+                        "container_max_width": "1440px",
+                        "margin_mobile": "16px",
+                        "stack_lg": "24px",
+                        "sidebar_width": "260px",
+                        "stack_sm": "8px",
+                        "margin_desktop": "32px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<aside class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-inverse-surface border-r border-outline-variant z-50">
+<div class="px-6 py-8">
+<h1 class="font-headline-md text-headline-md font-bold text-white mb-1">MPLAD INSIGHT</h1>
+<p class="text-surface-variant font-body-md text-body-md opacity-80">GovTech Oversight</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1 px-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span class="font-body-md text-body-md">Flagged Cases</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-body-md text-body-md">Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 hover:bg-primary/10 transition-colors rounded cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container border-l-4 border-primary-fixed hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="database">database</span>
+<span class="font-body-md text-body-md font-bold">Data Explorer</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-outline-variant/30">
+<div class="flex flex-col gap-3 text-surface-variant opacity-80">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">sensors</span>
+<span class="font-label-md text-label-md">Live Status</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">update</span>
+<span class="font-label-md text-label-md">Update Info</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-label-md text-label-md">System Status</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="ml-[260px] flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="h-16 w-full sticky top-0 bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center px-margin_desktop z-40">
+<div class="flex-1 flex items-center">
+<!-- Search bar on left -->
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface" placeholder="Search data explorer..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95 duration-150 p-2 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95 duration-150 p-2 rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden ml-2">
+<img class="w-full h-full object-cover" data-alt="A small, professional headshot of an administrator for a data dashboard, clear lighting, neutral background, corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ki3lZyWiON9vIoUWRsF84j1j1fyvRnasZ3tT_1WoWNq-wd91pwgS5d5Swa9ouI0WGyGVloed3pnRdWUZHJ58hiGlSVBcbELMRdh6MLOqEggRnd2iAn0ymiHRUfagy1WX2-wBGr0mBSwRb61w2gVcCTGCDHXa4WgOFEHUriqhu652pq1d4-CJZuIE1aQ8_jRcf_0ZfQiYPzTiEC4xaPkTrwN2YQEpSKR_geduxzvgUgDrY1Cb2xjePA">
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 overflow-auto bg-[#F1F5F9] p-margin_desktop">
+<div class="max-w-container_max_width mx-auto flex flex-col gap-stack_lg">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Data Explorer</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1">Comprehensive oversight data across all reporting districts.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface border border-primary text-primary rounded font-label-md text-label-md hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filters
+                        </button>
+<button class="px-4 py-2 bg-primary-container text-white rounded font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span> Export CSV
+                        </button>
+</div>
+</div>
+<!-- Stats Row -->
+<div class="grid grid-cols-4 gap-gutter">
+<div class="bg-surface p-4 rounded border border-outline-variant shadow-sm flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Total Records</span>
+<span class="font-display-lg text-display-lg text-on-surface">24,591</span>
+</div>
+<div class="bg-surface p-4 rounded border border-outline-variant shadow-sm flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Data Source</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">MPLAD Portal API</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-xs">Primary &amp; Secondary</span>
+</div>
+<div class="bg-surface p-4 rounded border border-outline-variant shadow-sm flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Last Updated</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">2 Hrs Ago</span>
+<span class="font-body-md text-body-md text-secondary text-xs flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> Sync Successful</span>
+</div>
+<div class="bg-surface p-4 rounded border border-outline-variant shadow-sm flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Coverage Period</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">FY 23-24</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-xs">Q1 to Current</span>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface border border-outline-variant rounded shadow-sm overflow-hidden flex flex-col">
+<!-- Table Toolbar -->
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-[#F8FAFC]">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-label-md text-label-md">Showing 1-10 of 24,591 results</span>
+</div>
+<div class="flex gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="pl-8 pr-3 py-1.5 bg-white border border-outline-variant rounded text-sm focus:outline-none focus:border-primary" placeholder="Search table..." type="text">
+</div>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F8FAFC] border-b border-outline-variant">
+<th class="p-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Work ID</th>
+<th class="p-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Work Name</th>
+<th class="p-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">State / District</th>
+<th class="p-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Agency</th>
+<th class="p-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Amount (₹)</th>
+<th class="p-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="p-3 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Risk Score</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-white">
+<td class="p-3 font-body-md text-body-md text-primary font-semibold">WRK-8821</td>
+<td class="p-3 font-body-md text-body-md text-on-surface truncate max-w-[200px]" title="Construction of CC Road in Ward 4">Construction of CC Road...</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">UP / Varanasi</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">PWD</td>
+<td class="p-3 font-body-md text-body-md text-on-surface text-right">15,00,000</td>
+<td class="p-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-secondary-container text-on-secondary-fixed">Completed</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 font-body-md text-body-md text-secondary">
+                                            12 <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+</span>
+</td>
+</tr>
+<!-- Row 2 (High Risk) -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-white border-l-2 border-error">
+<td class="p-3 font-body-md text-body-md text-primary font-semibold">WRK-9104</td>
+<td class="p-3 font-body-md text-body-md text-on-surface truncate max-w-[200px]" title="Primary School Infrastructure Upgrade">Primary School Infra...</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">MH / Pune</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">Zilla Parishad</td>
+<td class="p-3 font-body-md text-body-md text-on-surface text-right">45,50,000</td>
+<td class="p-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-error-container text-on-error-container">Delayed</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 font-body-md text-body-md text-error font-bold">
+                                            88 <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-white">
+<td class="p-3 font-body-md text-body-md text-primary font-semibold">WRK-7732</td>
+<td class="p-3 font-body-md text-body-md text-on-surface truncate max-w-[200px]" title="Installation of RO Water Plant">Installation of RO Water...</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">RJ / Jaipur</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">PHED</td>
+<td class="p-3 font-body-md text-body-md text-on-surface text-right">8,20,000</td>
+<td class="p-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-primary-fixed text-on-primary-fixed">Ongoing</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 font-body-md text-body-md text-on-surface-variant">
+                                            45 <span class="material-symbols-outlined text-[14px] text-transparent">horizontal_rule</span>
+</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-white">
+<td class="p-3 font-body-md text-body-md text-primary font-semibold">WRK-8991</td>
+<td class="p-3 font-body-md text-body-md text-on-surface truncate max-w-[200px]" title="Community Hall Construction">Community Hall Cons...</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">KA / Bengaluru</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">BBMP</td>
+<td class="p-3 font-body-md text-body-md text-on-surface text-right">25,00,000</td>
+<td class="p-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-[#fef3c7] text-[#92400e]">Pending Approval</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 font-body-md text-body-md text-on-surface-variant">
+                                            60 <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-white">
+<td class="p-3 font-body-md text-body-md text-primary font-semibold">WRK-9012</td>
+<td class="p-3 font-body-md text-body-md text-on-surface truncate max-w-[200px]" title="Solar Street Lights Installation">Solar Street Lights...</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">GJ / Surat</td>
+<td class="p-3 font-body-md text-body-md text-on-surface-variant">GEDA</td>
+<td class="p-3 font-body-md text-body-md text-on-surface text-right">12,00,000</td>
+<td class="p-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-primary-fixed text-on-primary-fixed">Ongoing</span>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 font-body-md text-body-md text-secondary">
+                                            22 <span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-outline-variant bg-surface flex justify-between items-center">
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container-low text-sm flex items-center gap-1" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span> Previous
+                        </button>
+<div class="flex gap-1">
+<button class="w-8 h-8 rounded bg-primary-container text-white flex items-center justify-center text-sm font-semibold">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface flex items-center justify-center text-sm">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface flex items-center justify-center text-sm">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-on-surface-variant">...</span>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface flex items-center justify-center text-sm">245</button>
+</div>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container-low text-sm flex items-center gap-1">
+                            Next <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

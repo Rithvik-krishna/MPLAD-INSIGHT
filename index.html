@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MPLAD INSIGHT - Overview Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "surface-tint": "#3755c3",
+                        "on-secondary-container": "#00714e",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#68dba9",
+                        "inverse-primary": "#b8c4ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e7eeff",
+                        "secondary": "#006c4a",
+                        "background": "#f9f9ff",
+                        "surface-variant": "#d8e3fb",
+                        "surface": "#f9f9ff",
+                        "inverse-surface": "#263143",
+                        "on-tertiary-container": "#ffa85d",
+                        "primary-container": "#1e40af",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#743d00",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-primary-fixed-variant": "#173bab",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "outline": "#757684",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#dde1ff",
+                        "on-tertiary-fixed": "#2f1500",
+                        "surface-bright": "#f9f9ff",
+                        "outline-variant": "#c4c5d5",
+                        "on-primary-container": "#a8b8ff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#532a00",
+                        "on-surface-variant": "#444653",
+                        "on-surface": "#111c2d",
+                        "primary": "#00288e",
+                        "surface-container-highest": "#d8e3fb",
+                        "tertiary-fixed": "#ffdcc3",
+                        "on-secondary-fixed": "#002114",
+                        "on-background": "#111c2d",
+                        "surface-container-high": "#dee8ff",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "surface-dim": "#cfdaf2",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "secondary-fixed": "#85f8c4",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#82f5c1",
+                        "on-primary-fixed": "#001453",
+                        "on-secondary-fixed-variant": "#005137"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack_md": "16px",
+                        "container_max_width": "1440px",
+                        "margin_mobile": "16px",
+                        "stack_lg": "24px",
+                        "sidebar_width": "260px",
+                        "stack_sm": "8px",
+                        "margin_desktop": "32px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="text-on-surface flex min-h-screen">
+<!-- SideNavBar -->
+<nav class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-inverse-surface border-r border-outline-variant z-50">
+<div class="px-6 py-8 border-b border-white/10 flex flex-col items-center justify-center gap-2">
+<div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-white" style="font-size: 28px;">gavel</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-white tracking-wide text-center">MPLAD INSIGHT</h1>
+<p class="font-label-md text-label-md text-primary-fixed uppercase tracking-wider text-center">GovTech Oversight</p>
+</div>
+<div class="flex-1 py-6 overflow-y-auto">
+<ul class="flex flex-col gap-1 px-3">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container border-l-4 border-primary-fixed rounded-r-lg font-body-md text-body-md shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" data-weight="fill">dashboard</span>
+                        Overview
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 font-body-md text-body-md border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+                        Flagged Cases
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 font-body-md text-body-md border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                        Map
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 font-body-md text-body-md border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+                        Analytics
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-surface-variant hover:bg-on-surface-variant/10 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer active:opacity-80 font-body-md text-body-md border-l-4 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+                        Data Explorer
+                    </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto border-t border-white/10 p-4">
+<ul class="flex flex-col gap-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 rounded-lg text-sm transition-colors opacity-70 hover:opacity-100" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="sensors">sensors</span>
+<span class="font-label-md text-label-md">Live Status</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 rounded-lg text-sm transition-colors opacity-70 hover:opacity-100" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="update">update</span>
+<span class="font-label-md text-label-md">Update Info</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 text-surface-variant hover:bg-on-surface-variant/10 rounded-lg text-sm transition-colors opacity-70 hover:opacity-100" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span class="font-label-md text-label-md">System Status</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<div class="ml-[260px] flex-1 flex flex-col min-w-0 bg-[#F1F5F9]">
+<!-- TopNavBar -->
+<header class="h-16 w-full sticky top-0 bg-surface border-b border-outline-variant shadow-sm z-40 flex justify-between items-center px-margin_desktop">
+<div class="flex items-center">
+<span class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight hidden md:block">Dashboard</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full font-body-md text-body-md w-64 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-on-surface" placeholder="Search projects, districts, or IDs..." type="text">
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all active:scale-95 duration-150 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant overflow-hidden cursor-pointer ml-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+</div>
+</header>
+<!-- Canvas Content -->
+<main class="flex-1 p-margin_desktop max-w-container_max_width mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-stack_lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">MPLAD Monitoring Dashboard</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">AI-powered anomaly and irregularity detection for MPLAD implementation.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack_lg">
+<!-- KPI Row (Spans full width, 5 items) -->
+<div class="col-span-1 md:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- KPI 1 -->
+<div class="bg-white p-5 rounded-lg border border-[#E2E8F0] shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex flex-col justify-between">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Total Works</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-on-surface">12,486</span>
+<span class="font-body-md text-body-md text-on-secondary-container bg-secondary-container/20 px-2 py-0.5 rounded flex items-center mb-1">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span> 4%
+                            </span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-white p-5 rounded-lg border border-[#E2E8F0] shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex flex-col justify-between">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Works Analyzed</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-on-surface">11,932</span>
+<span class="font-body-md text-body-md text-on-surface-variant mb-1">95.5% coverage</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-white p-5 rounded-lg border border-[#E2E8F0] shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex flex-col justify-between border-l-4 border-l-error">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Flagged Works</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-on-surface">684</span>
+<span class="font-body-md text-body-md text-error bg-error/10 px-2 py-0.5 rounded flex items-center mb-1">
+<span class="material-symbols-outlined text-[14px] mr-1">warning</span> Action Req
+                            </span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-white p-5 rounded-lg border border-[#E2E8F0] shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex flex-col justify-between bg-error/5">
+<p class="font-label-md text-label-md text-error uppercase tracking-wider mb-2 font-bold">High-Risk Cases</p>
+<div class="flex items-end justify-between">
+<span class="font-display-lg text-display-lg text-error">127</span>
+<span class="material-symbols-outlined text-error mb-1">priority_high</span>
+</div>
+</div>
+<!-- KPI 5 -->
+<div class="bg-white p-5 rounded-lg border border-[#E2E8F0] shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex flex-col justify-between">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Funds Under Review</p>
+<div class="flex items-end justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">₹184.6 Cr</span>
+<span class="font-body-md text-body-md text-on-surface-variant mb-1">Total Impact</span>
+</div>
+</div>
+</div>
+<!-- Middle Row: Charts -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-gutter">
+<!-- Risk Overview Card -->
+<div class="bg-white p-6 rounded-lg border border-[#E2E8F0] shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex-1 flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Risk Overview</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Distribution of flagged works by severity.</p>
+<div class="flex-1 flex flex-col items-center justify-center relative min-h-[200px]">
+<!-- Simulated Donut Chart using Tailwind -->
+<div class="w-48 h-48 rounded-full border-[16px] border-surface-variant relative flex items-center justify-center" style="border-color: #f1f5f9; background: conic-gradient(#ba1a1a 0% 18%, #f59e0b 18% 45%, #eab308 45% 75%, #3b82f6 75% 100%); border: none; padding: 16px;">
+<div class="w-full h-full bg-white rounded-full flex flex-col items-center justify-center shadow-inner">
+<span class="font-headline-lg text-headline-lg text-on-surface">684</span>
+<span class="font-label-md text-label-md text-on-surface-variant text-center max-w-[80px]">Works Require Review</span>
+</div>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-3">
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#ba1a1a]"></div><span class="font-body-md text-body-md">Critical (18%)</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#f59e0b]"></div><span class="font-body-md text-body-md">High (27%)</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#eab308]"></div><span class="font-body-md text-body-md">Medium (30%)</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#3b82f6]"></div><span class="font-body-md text-body-md">Low (25%)</span></div>
+</div>
+</div>
+</div>
+<div class="col-span-1 md:col-span-8 flex flex-col gap-gutter">
+<!-- Anomaly Types Card -->
+<div class="bg-white p-6 rounded-lg border border-[#E2E8F0] shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Anomaly Types Detection</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Primary AI-detected irregularity categories.</p>
+</div>
+<button class="text-primary hover:bg-primary/5 p-2 rounded transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-5">
+<!-- Bar 1 -->
+<div>
+<div class="flex justify-between font-body-md text-body-md mb-1">
+<span class="text-on-surface font-medium">Completion Delay (&gt;200%)</span>
+<span class="text-on-surface-variant">245 cases</span>
+</div>
+<div class="w-full bg-[#f1f5f9] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#1e40af] h-full rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- Bar 2 -->
+<div>
+<div class="flex justify-between font-body-md text-body-md mb-1">
+<span class="text-on-surface font-medium">Amount Deviation from Estimate</span>
+<span class="text-on-surface-variant">182 cases</span>
+</div>
+<div class="w-full bg-[#f1f5f9] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2563eb] h-full rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<!-- Bar 3 -->
+<div>
+<div class="flex justify-between font-body-md text-body-md mb-1">
+<span class="text-on-surface font-medium">Geographic Outlier (Remote Location)</span>
+<span class="text-on-surface-variant">114 cases</span>
+</div>
+<div class="w-full bg-[#f1f5f9] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#3b82f6] h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Bar 4 -->
+<div>
+<div class="flex justify-between font-body-md text-body-md mb-1">
+<span class="text-on-surface font-medium">Agency Concentration Risk</span>
+<span class="text-on-surface-variant">89 cases</span>
+</div>
+<div class="w-full bg-[#f1f5f9] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#60a5fa] h-full rounded-full" style="width: 32%"></div>
+</div>
+</div>
+<!-- Bar 5 -->
+<div>
+<div class="flex justify-between font-body-md text-body-md mb-1">
+<span class="text-on-surface font-medium">Utilization Cert. Mismatch</span>
+<span class="text-on-surface-variant">54 cases</span>
+</div>
+<div class="w-full bg-[#f1f5f9] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#93c5fd] h-full rounded-full" style="width: 20%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Data Table -->
+<div class="col-span-1 md:col-span-12">
+<div class="bg-white rounded-lg border border-[#E2E8F0] shadow-[0px_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
+<div class="p-6 border-b border-[#E2E8F0] flex justify-between items-center bg-white">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent High-Risk Cases</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Requires immediate review based on anomaly scoring.</p>
+</div>
+<button class="px-4 py-2 bg-primary-container text-white font-label-md text-label-md rounded border border-primary-container hover:bg-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span> Export Report
+                            </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F8FAFC] border-b border-[#E2E8F0]">
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">Risk</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">Project ID &amp; Title</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">Location</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">Amount (₹L)</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">Primary Issue</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap text-right">Anomaly Score</th>
+<th class="py-3 px-4 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap text-right">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<!-- Row 1 -->
+<tr class="border-b border-[#F1F5F9] hover:bg-surface-container-low transition-colors relative">
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-error/10 text-error whitespace-nowrap">
+                                                Critical
+                                            </span>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+</td>
+<td class="py-4 px-4">
+<div class="font-medium text-primary">MPL-24-9102</div>
+<div class="text-on-surface-variant text-sm truncate max-w-[200px]" title="Road improvement in Karnataka (State Highway 42 connecting rural blocks)">Road improvement in Karnataka...</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-medium">Tumkur, Karnataka</div>
+<div class="text-on-surface-variant text-sm">MP: Shri G.S. Basavaraj</div>
+</td>
+<td class="py-4 px-4 font-medium">₹ 145.50</td>
+<td class="py-4 px-4 text-on-surface-variant">Cost Overrun &gt; 300%</td>
+<td class="py-4 px-4 text-right font-semibold text-error">98/100</td>
+<td class="py-4 px-4 text-right">
+<button class="px-3 py-1.5 border border-primary-container text-primary-container font-label-md text-label-md rounded hover:bg-primary-container/5 transition-colors whitespace-nowrap">View Case</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-[#F1F5F9] hover:bg-surface-container-low transition-colors relative">
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-error/10 text-error whitespace-nowrap">
+                                                Critical
+                                            </span>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+</td>
+<td class="py-4 px-4">
+<div class="font-medium text-primary">MPL-24-8831</div>
+<div class="text-on-surface-variant text-sm truncate max-w-[200px]" title="School infrastructure in Maharashtra (Zilla Parishad High School, Wardha)">School infrastructure in Maharas...</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-medium">Wardha, Maharashtra</div>
+<div class="text-on-surface-variant text-sm">MP: Ramdas Tadas</div>
+</td>
+<td class="py-4 px-4 font-medium">₹ 75.00</td>
+<td class="py-4 px-4 text-on-surface-variant">Phantom Vendor Detected</td>
+<td class="py-4 px-4 text-right font-semibold text-error">95/100</td>
+<td class="py-4 px-4 text-right">
+<button class="px-3 py-1.5 border border-primary-container text-primary-container font-label-md text-label-md rounded hover:bg-primary-container/5 transition-colors whitespace-nowrap">View Case</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-[#F1F5F9] hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-amber-500/10 text-amber-700 whitespace-nowrap">
+                                                High
+                                            </span>
+</td>
+<td class="py-4 px-4">
+<div class="font-medium text-primary">MPL-24-7190</div>
+<div class="text-on-surface-variant text-sm truncate max-w-[200px]" title="Community Hall Construction">Community Hall Construction</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-medium">Varanasi, UP</div>
+<div class="text-on-surface-variant text-sm">MP: Narendra Modi</div>
+</td>
+<td class="py-4 px-4 font-medium">₹ 50.00</td>
+<td class="py-4 px-4 text-on-surface-variant">Delayed by 36 months</td>
+<td class="py-4 px-4 text-right font-semibold text-amber-600">82/100</td>
+<td class="py-4 px-4 text-right">
+<button class="px-3 py-1.5 border border-primary-container text-primary-container font-label-md text-label-md rounded hover:bg-primary-container/5 transition-colors whitespace-nowrap">View Case</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-4">
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-semibold bg-amber-500/10 text-amber-700 whitespace-nowrap">
+                                                High
+                                            </span>
+</td>
+<td class="py-4 px-4">
+<div class="font-medium text-primary">MPL-24-6522</div>
+<div class="text-on-surface-variant text-sm truncate max-w-[200px]" title="Solar Street Lights Installation (150 units)">Solar Street Lights Installat...</div>
+</td>
+<td class="py-4 px-4">
+<div class="font-medium">Jaipur, Rajasthan</div>
+<div class="text-on-surface-variant text-sm">MP: Ramcharan Bohra</div>
+</td>
+<td class="py-4 px-4 font-medium">₹ 22.50</td>
+<td class="py-4 px-4 text-on-surface-variant">Geo-location Mismatch</td>
+<td class="py-4 px-4 text-right font-semibold text-amber-600">79/100</td>
+<td class="py-4 px-4 text-right">
+<button class="px-3 py-1.5 border border-primary-container text-primary-container font-label-md text-label-md rounded hover:bg-primary-container/5 transition-colors whitespace-nowrap">View Case</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-[#E2E8F0] bg-[#F8FAFC] flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Showing 1 to 4 of 127 High-Risk entries</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-variant transition-colors disabled:opacity-50" disabled="">Prev</button>
+<button class="px-3 py-1 bg-primary text-white rounded font-medium">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface hover:bg-surface-variant transition-colors">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface hover:bg-surface-variant transition-colors">3</button>
+<button class="px-3 py-1 border border-outline-variant rounded text-on-surface hover:bg-surface-variant transition-colors">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
