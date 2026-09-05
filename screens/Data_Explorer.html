@@ -387,9 +387,40 @@ function changePageSize(size) {
 async function initLedger() {
     try {
         setExplorerView('skeleton');
-        const res = await fetch('assets/data/ledger_works.json?v=' + Date.now(), { cache: 'no-store' });
-        if (!res.ok) throw new Error('Network error loading ledger');
-        ledgerData = await res.json();
+        let data = null;
+        // 1. Try new backend API endpoint first: /api/works/?limit=1000
+        try {
+            const apiRes = await fetch('/api/works/?limit=1000', { cache: 'no-store' });
+            if (apiRes.ok) {
+                const apiData = await apiRes.json();
+                if (apiData && apiData.length) {
+                    data = apiData;
+                }
+            }
+        } catch (e) {
+            console.log('Backend works API notice, trying static asset cache:', e);
+        }
+
+        // 2. Fall back to static dataset if backend not reachable
+        if (!data) {
+            const res = await fetch('assets/data/ledger_works.json?v=' + Date.now(), { cache: 'no-store' });
+            if (!res.ok) throw new Error('Network error loading ledger');
+            data = await res.json();
+        }
+
+        ledgerData = data.map(item => ({
+            id: item.work_id || item.id,
+            title: item.title || item.work_category || 'Untitled Work',
+            sector: item.sector || item.work_category || 'Public Infrastructure',
+            location: item.location || `${item.constituency || ''}, ${item.state || ''}`.replace(/^, /, '') || 'India',
+            mp: item.mp || item.mp_name || 'N/A',
+            sanctioned: item.sanctioned || (item.sanction_amount ? ('₹' + (item.sanction_amount >= 1e7 ? (item.sanction_amount/1e7).toFixed(2) + ' Cr' : (item.sanction_amount/1e5).toFixed(1) + ' L')) : '₹0'),
+            expended: item.expended || '₹0',
+            expRate: item.expRate || '0%',
+            agency: item.agency || item.ida || 'District Authority',
+            progress: item.progress || 'In Progress',
+            isFlagged: item.isFlagged !== undefined ? item.isFlagged : (item.n_flags > 0 || item.flag_delay || item.flag_amount || item.flag_mp_drift || item.flag_isolation_forest)
+        }));
         
         // Populate dynamic sector & state dropdowns
         populateFilterOptions(ledgerData);

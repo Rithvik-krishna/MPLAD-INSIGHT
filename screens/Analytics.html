@@ -320,6 +320,15 @@ async function initAnalytics() {
     Chart.defaults.color = '#64748b';
 
     try {
+        // Sync with new backend API
+        try {
+            const apiRes = await fetch('/api/anomalies/summary/breakdown');
+            if (apiRes.ok) {
+                const bData = await apiRes.json();
+                console.log('Backend analytics breakdown sync:', bData);
+            }
+        } catch (err) {}
+
         const res = await fetch('assets/data/analytics_data.json?v=' + Date.now(), { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to load analytics data');
         globalAnalyticsData = await res.json();

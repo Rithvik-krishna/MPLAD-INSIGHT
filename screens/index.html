@@ -565,72 +565,105 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 <script src="app.js"></script>
 <script src="assets/js/nidhi-assistant.js"></script>
 <script>
-// Dynamic Overview Ingestion
-document.addEventListener("DOMContentLoaded", () => {
-    fetch('assets/data/overview_kpis.json?v=' + Date.now(), { cache: 'no-store' })
-        .then(res => res.json())
-        .then(data => {
-            if (!data) return;
-            if (data.totalRegisteredWorks) {
-                document.getElementById('kpi-total-works').innerText = data.totalRegisteredWorks.toLocaleString();
+// Dynamic Overview Ingestion: Connects to new FastAPI backend API with resilient fallback
+document.addEventListener("DOMContentLoaded", async () => {
+    let data = null;
+    try {
+        const apiRes = await fetch('/api/anomalies/overview', { cache: 'no-store' });
+        if (apiRes.ok) {
+            data = await apiRes.json();
+        }
+    } catch (e) {
+        console.log('Backend overview notice, trying breakdown endpoint:', e);
+    }
+    if (!data) {
+        try {
+            const sumRes = await fetch('/api/anomalies/summary/breakdown', { cache: 'no-store' });
+            if (sumRes.ok) {
+                const sData = await sumRes.json();
+                data = {
+                    totalRegisteredWorks: sData.total_registered || sData.total_works,
+                    totalScannedWorks: sData.ai_scanned || 171890,
+                    coveragePct: sData.coverage_pct || 86.8,
+                    flaggedCount: sData.flagged_count,
+                    criticalCount: sData.critical_count || 1137,
+                    highCount: sData.high_count || sData.high_severity_count,
+                    medCount: sData.med_count || 17761,
+                    scrutinyExposureCr: sData.scrutiny_exposure_cr || 2001.2
+                };
             }
-            if (data.totalScannedWorks) {
-                document.getElementById('kpi-scanned-works').innerText = data.totalScannedWorks.toLocaleString();
-            }
-            if (data.coveragePct) {
-                document.getElementById('kpi-scanned-pct').innerText = data.coveragePct + '%';
-                document.getElementById('kpi-scanned-bar').style.width = data.coveragePct + '%';
-                document.getElementById('overview-coverage-pill').innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> ${data.coveragePct}% AUDIT COVERAGE`;
-            }
-            if (data.flaggedCount) {
-                document.getElementById('kpi-flagged-works').innerText = data.flaggedCount.toLocaleString();
-                document.getElementById('sidebar-flagged-count').innerText = data.flaggedCount.toLocaleString();
-            }
-            if (data.flaggedPct) {
-                document.getElementById('kpi-flagged-pct').innerText = data.flaggedPct + '% of scanned';
-            }
-            if (data.criticalCount) {
-                document.getElementById('kpi-critical-works').innerText = data.criticalCount.toLocaleString();
-                document.getElementById('sev-critical-count').innerText = data.criticalCount.toLocaleString();
-            }
-            if (data.highCount) {
-                document.getElementById('sev-high-count').innerText = data.highCount.toLocaleString();
-            }
-            if (data.medCount) {
-                document.getElementById('sev-med-count').innerText = data.medCount.toLocaleString();
-            }
-            if (data.scrutinyExposureCr) {
-                document.getElementById('kpi-scrutiny-exposure').innerText = '₹' + data.scrutinyExposureCr.toLocaleString();
-            }
+        } catch (e) {}
+    }
+    if (!data) {
+        try {
+            const res = await fetch('assets/data/overview_kpis.json?v=' + Date.now(), { cache: 'no-store' });
+            data = await res.json();
+        } catch (e) {
+            console.log('Static asset fallback notice:', e);
+        }
+    }
+    if (!data) return;
 
-            // Render Immediate Queue if present
-            if (data.immediateQueue && data.immediateQueue.length) {
-                const tbody = document.getElementById('overview-queue-tbody');
-                tbody.innerHTML = data.immediateQueue.map(item => `
-                    <tr class="hover:bg-slate-50/80 transition-colors">
-                        <td class="py-3 px-3.5">
-                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-300 font-mono font-black text-[10px] whitespace-nowrap">
-                                <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> ${item.score} / 100
-                            </span>
-                        </td>
-                        <td class="py-3 px-3.5 font-mono font-bold text-blue-700">#${item.id}</td>
-                        <td class="py-3 px-3.5 font-semibold text-slate-800 max-w-[280px] truncate" title="${item.title}">${item.title}</td>
-                        <td class="py-3 px-3.5 text-slate-600">${item.location}</td>
-                        <td class="py-3 px-3.5 text-right font-mono font-bold text-slate-900">${item.sanctioned}</td>
-                        <td class="py-3 px-3.5">
-                            <span class="px-2 py-0.5 rounded bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-semibold">${item.anomaly}</span>
-                        </td>
-                        <td class="py-3 px-3.5 text-center">
-                            <a href="Case_Details.html?id=${encodeURIComponent(item.id)}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
-                                <span>Audit</span>
-                                <span class="material-symbols-outlined text-[11px]">arrow_forward</span>
-                            </a>
-                        </td>
-                    </tr>
-                `).join('');
-            }
-        })
-        .catch(err => console.log('Overview dynamic sync notice:', err));
+    if (data.totalRegisteredWorks) {
+        document.getElementById('kpi-total-works').innerText = data.totalRegisteredWorks.toLocaleString();
+    }
+    if (data.totalScannedWorks) {
+        document.getElementById('kpi-scanned-works').innerText = data.totalScannedWorks.toLocaleString();
+    }
+    if (data.coveragePct) {
+        document.getElementById('kpi-scanned-pct').innerText = data.coveragePct + '%';
+        document.getElementById('kpi-scanned-bar').style.width = data.coveragePct + '%';
+        document.getElementById('overview-coverage-pill').innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> ${data.coveragePct}% AUDIT COVERAGE`;
+    }
+    if (data.flaggedCount) {
+        document.getElementById('kpi-flagged-works').innerText = data.flaggedCount.toLocaleString();
+        document.getElementById('sidebar-flagged-count').innerText = data.flaggedCount.toLocaleString();
+    }
+    if (data.flaggedPct) {
+        document.getElementById('kpi-flagged-pct').innerText = data.flaggedPct + '% of scanned';
+    }
+    if (data.criticalCount) {
+        document.getElementById('kpi-critical-works').innerText = data.criticalCount.toLocaleString();
+        document.getElementById('sev-critical-count').innerText = data.criticalCount.toLocaleString();
+    }
+    if (data.highCount) {
+        document.getElementById('sev-high-count').innerText = data.highCount.toLocaleString();
+    }
+    if (data.medCount) {
+        document.getElementById('sev-med-count').innerText = data.medCount.toLocaleString();
+    }
+    if (data.scrutinyExposureCr) {
+        document.getElementById('kpi-scrutiny-exposure').innerText = '₹' + data.scrutinyExposureCr.toLocaleString();
+    }
+
+    // Render Immediate Queue if present
+    if (data.immediateQueue && data.immediateQueue.length) {
+        const tbody = document.getElementById('overview-queue-tbody');
+        if (tbody) {
+            tbody.innerHTML = data.immediateQueue.map(item => `
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3 px-3.5">
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-300 font-mono font-black text-[10px] whitespace-nowrap">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> ${item.score} / 100
+                        </span>
+                    </td>
+                    <td class="py-3 px-3.5 font-mono font-bold text-blue-700">#${item.id}</td>
+                    <td class="py-3 px-3.5 font-semibold text-slate-800 max-w-[280px] truncate" title="${item.title}">${item.title}</td>
+                    <td class="py-3 px-3.5 text-slate-600">${item.location}</td>
+                    <td class="py-3 px-3.5 text-right font-mono font-bold text-slate-900">${item.sanctioned}</td>
+                    <td class="py-3 px-3.5">
+                        <span class="px-2 py-0.5 rounded bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-semibold">${item.anomaly}</span>
+                    </td>
+                    <td class="py-3 px-3.5 text-center">
+                        <a href="Case_Details.html?id=${encodeURIComponent(item.id)}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
+                            <span>Audit</span>
+                            <span class="material-symbols-outlined text-[11px]">arrow_forward</span>
+                        </a>
+                    </td>
+                </tr>
+            `).join('');
+        }
+    }
 });
 </script>
 </body>

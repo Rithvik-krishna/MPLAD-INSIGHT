@@ -476,30 +476,63 @@ function resetFilters() {
     toggleSeverityPill("all");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     setTableView("skeleton");
-    fetch('assets/data/flagged_cases.json?v=' + Date.now(), { cache: 'no-store' })
-        .then(res => res.json())
-        .then(data => {
-            if (data && data.length) {
-                allCases = data;
-                filteredCases = [...allCases];
-
-                // Dynamically populate state filter
-                const states = Array.from(new Set(allCases.map(c => c.state).filter(Boolean))).sort();
-                const stateSelect = document.getElementById("filter-state");
-                stateSelect.innerHTML = `<option value="all">All States / UTs (${states.length})</option>` +
-                    states.map(s => `<option value="${s}">${s}</option>`).join('');
-
-                renderTable();
-            } else {
-                setTableView("empty");
+    let data = null;
+    // 1. Try new backend API endpoint first: /api/anomalies/?limit=1000
+    try {
+        const apiRes = await fetch('/api/anomalies/?limit=1000', { cache: 'no-store' });
+        if (apiRes.ok) {
+            const apiData = await apiRes.json();
+            if (apiData && apiData.length) {
+                data = apiData;
             }
-        })
-        .catch(err => {
+        }
+    } catch (e) {
+        console.log('Backend API notice, trying static asset cache:', e);
+    }
+    // 2. Fall back to static dataset if backend not reachable
+    if (!data) {
+        try {
+            const res = await fetch('assets/data/flagged_cases.json?v=' + Date.now(), { cache: 'no-store' });
+            data = await res.json();
+        } catch (err) {
             console.error('Failed to load flagged cases:', err);
-            setTableView("error");
-        });
+        }
+    }
+
+    if (data && data.length) {
+        allCases = data.map(c => ({
+            id: c.work_id || c.id,
+            work_id: c.work_id || c.id,
+            title: c.title || c.work_category || 'MPLAD Scheme Work',
+            score: c.score || (c.n_flags ? Math.min(98, 45 + c.n_flags * 18) : 75),
+            severity: c.severity || (c.is_high_severity ? 'critical' : 'high'),
+            location: c.location || `${c.constituency || ''}, ${c.state || ''}`.replace(/^, /, '') || 'India',
+            sector: c.sector || c.work_category || 'Public Infrastructure',
+            mp: c.mp || c.mp_name || 'N/A',
+            sanctioned: c.sanctioned || (c.sanction_amount ? ('₹' + (c.sanction_amount >= 1e7 ? (c.sanction_amount/1e7).toFixed(2) + ' Cr' : (c.sanction_amount/1e5).toFixed(1) + ' L')) : '₹0'),
+            utilized: c.expended || c.utilized || '₹0',
+            anomaly: c.anomaly || c.explanation || 'Flagged Irregularity',
+            anomalyType: c.anomalyType || (c.flag_delay ? 'Delay' : c.flag_amount ? 'Cost Outlier' : c.flag_mp_drift ? 'MP Drift' : 'Risk Outlier'),
+            agency: c.agency || c.ida || 'District Authority',
+            status: c.progress || c.status || 'Under Review',
+            state: c.state || 'India'
+        }));
+        filteredCases = [...allCases];
+
+        // Dynamically populate state filter
+        const states = Array.from(new Set(allCases.map(c => c.state).filter(Boolean))).sort();
+        const stateSelect = document.getElementById("filter-state");
+        if (stateSelect) {
+            stateSelect.innerHTML = `<option value="all">All States / UTs (${states.length})</option>` +
+                states.map(s => `<option value="${s}">${s}</option>`).join('');
+        }
+
+        renderTable();
+    } else {
+        setTableView("empty");
+    }
 });
 </script>
 </body>

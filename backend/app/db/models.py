@@ -25,3 +25,16 @@ class Work(Base):
 
     explanation = Column(Text, nullable=True)
     flag_isolation_forest = Column(Boolean, default=False)
+
+    # Rich metadata fields to support all frontend views
+    title = Column(Text, nullable=True)
+    sector = Column(String, nullable=True)
+    location = Column(String, nullable=True)
+    mp = Column(String, nullable=True)
+    sanctioned = Column(String, nullable=True)
+    expended = Column(String, nullable=True)
+    agency = Column(String, nullable=True)
+    progress = Column(String, nullable=True)
+    score = Column(Integer, nullable=True)
+    severity = Column(String, nullable=True)
+    anomaly = Column(String, nullable=True)

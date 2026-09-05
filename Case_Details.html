@@ -633,13 +633,50 @@ async function loadCaseDossier() {
     const params = new URLSearchParams(window.location.search);
     const caseId = (params.get('id') || 'MPLAD-03983').trim();
 
+    // 0. Primary: Query new backend API endpoint
     try {
-        const res = await fetch('assets/data/cases_index.json?v=' + Date.now(), { cache: 'no-store' });
-        if (!res.ok) throw new Error('Failed to load cases index');
-        const cases = await res.json();
+        const apiRes = await fetch(`/api/anomalies/${encodeURIComponent(caseId)}`);
+        if (apiRes.ok) {
+            const apiDossier = await apiRes.json();
+            if (apiDossier && apiDossier.work_id) {
+                currentCase = {
+                    id: apiDossier.work_id,
+                    title: apiDossier.title || apiDossier.work_category,
+                    sector: apiDossier.sector || apiDossier.work_category,
+                    location: apiDossier.location || `${apiDossier.constituency || ''}, ${apiDossier.state || ''}`.replace(/^, /, ''),
+                    state: apiDossier.state,
+                    constituency: apiDossier.constituency,
+                    mp: apiDossier.mp || apiDossier.mp_name,
+                    agency: apiDossier.agency || apiDossier.ida,
+                    sanctioned: apiDossier.sanctioned || ('₹' + (apiDossier.sanction_amount >= 1e7 ? (apiDossier.sanction_amount/1e7).toFixed(2) + ' Cr' : (apiDossier.sanction_amount/1e5).toFixed(1) + ' L')),
+                    utilized: apiDossier.expended || '₹0',
+                    score: apiDossier.score || (apiDossier.n_flags ? Math.min(98, 45 + apiDossier.n_flags * 18) : 80),
+                    severity: apiDossier.severity || (apiDossier.is_high_severity ? 'critical' : 'high'),
+                    anomaly: apiDossier.anomaly || apiDossier.explanation,
+                    explanation: apiDossier.explanation,
+                    flags: {
+                        flag_delay: apiDossier.flag_delay,
+                        flag_amount: apiDossier.flag_amount,
+                        flag_mp_drift: apiDossier.flag_mp_drift,
+                        iso_flag: apiDossier.flag_isolation_forest,
+                        amount_zscore: apiDossier.amount_deviation_pct ? (apiDossier.amount_deviation_pct / 25.0) : 0.0,
+                        mp_drift_zscore: apiDossier.mp_drift_zscore || 0.0
+                    }
+                };
+            }
+        }
+    } catch (e) {
+        console.log('Backend API dossier notice, trying dataset cache:', e);
+    }
 
-        // 1. Direct exact key match
-        currentCase = cases[caseId] || cases[caseId.toUpperCase()];
+    try {
+        if (!currentCase) {
+            const res = await fetch('assets/data/cases_index.json?v=' + Date.now(), { cache: 'no-store' });
+            if (!res.ok) throw new Error('Failed to load cases index');
+            const cases = await res.json();
+
+            // 1. Direct exact key match
+            currentCase = cases[caseId] || cases[caseId.toUpperCase()];
 
         // 2. Normalized numerical match (e.g. MPLAD-03983 vs MPLAD-3983 vs 3983)
         if (!currentCase) {

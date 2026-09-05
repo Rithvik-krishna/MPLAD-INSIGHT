@@ -1,6 +1,10 @@
 {
   "functions": {
-    "api/assistant/*.py": {
+    "api/**/*.py": {
+      "includeFiles": "backend/**,assets/data/**",
+      "maxDuration": 15
+    },
+    "api/*.py": {
       "includeFiles": "backend/**,assets/data/**",
       "maxDuration": 15
     }
