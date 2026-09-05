@@ -16,16 +16,16 @@
 
     // Storage Keys
     const STORAGE_KEY_MSGS = 'nidhi_assistant_messages_v1';
-    const STORAGE_KEY_OPEN = 'nidhi_assistant_open_v1';
 
     // Load persisted session
     try {
         const savedMsgs = sessionStorage.getItem(STORAGE_KEY_MSGS);
         if (savedMsgs) conversationHistory = JSON.parse(savedMsgs);
-        isOpen = sessionStorage.getItem(STORAGE_KEY_OPEN) === 'true';
+        sessionStorage.removeItem('nidhi_assistant_open_v1');
     } catch (e) {
         conversationHistory = [];
     }
+    isOpen = false;
 
     // =========================================================================
     // 1. CONTEXT BUILDER (Route & DOM Introspection)
@@ -391,7 +391,6 @@
         const drawer = document.getElementById('nidhi-assistant-drawer');
         if (!drawer) return;
         isOpen = true;
-        sessionStorage.setItem(STORAGE_KEY_OPEN, 'true');
 
         drawer.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
         drawer.classList.add('opacity-100', 'scale-100');
@@ -404,7 +403,6 @@
         const drawer = document.getElementById('nidhi-assistant-drawer');
         if (!drawer) return;
         isOpen = false;
-        sessionStorage.setItem(STORAGE_KEY_OPEN, 'false');
 
         drawer.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
         drawer.classList.remove('opacity-100', 'scale-100');
@@ -895,9 +893,5 @@ NIDHI TRACE continuously monitors **198,116 registered MPLAD works** totaling **
         createAssistantDOM();
     }
 
-    // If opened previously in session, restore state
-    if (isOpen) {
-        setTimeout(openDrawer, 300);
-    }
-
+    // Assistant remains closed by default until user clicks the floating trigger button
 })();
