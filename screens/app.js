@@ -139,209 +139,255 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 6. Universal Vigilance Notification Center Engine
-    function initNotificationCenter() {
-        const bellButtons = document.querySelectorAll('button[title*="Notification"], button[title*="notification"], .notification-bell-btn, header button:has(span:contains("notifications"))');
-        
-        // Also look for buttons with notifications icon
-        const allBells = Array.from(document.querySelectorAll('button')).filter(b => {
-            const icon = b.querySelector('.material-symbols-outlined');
-            return icon && icon.textContent.trim() === 'notifications';
-        });
+    // Auto-init notification listeners
+    initNotificationListeners();
+});
 
-        const activeBells = Array.from(new Set([...Array.from(bellButtons), ...allBells]));
-        if (!activeBells.length) return;
+// =========================================================================
+// 6. Universal Vigilance Notification Center Engine (Globally Exposed)
+// =========================================================================
 
-        // Create or locate the popover container
-        let popover = document.getElementById('vigilance-notifications-popover');
-        if (!popover) {
-            popover = document.createElement('div');
-            popover.id = 'vigilance-notifications-popover';
-            popover.className = 'fixed right-5 top-14 w-[390px] max-w-[calc(100vw-32px)] bg-white rounded-xl shadow-2xl border border-slate-200 z-[99999] overflow-hidden hidden transition-all duration-200 ease-out select-none';
-            popover.innerHTML = `
-                <!-- Popover Header -->
-                <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
-                    <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-amber-400 text-lg">notifications_active</span>
-                        <div>
-                            <h3 class="text-xs font-bold leading-tight flex items-center gap-1.5">
-                                <span>Vigilance Surveillance Alerts</span>
-                                <span id="notif-count-pill" class="px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[9px] font-mono font-bold">4 NEW</span>
-                            </h3>
-                            <p class="text-[9.5px] text-slate-400">MoSPI Econometric &amp; ML Anomaly Engine</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                        <button id="btn-mark-all-read" class="text-[10px] text-blue-300 hover:text-white font-medium hover:underline px-1.5 py-0.5 rounded transition-colors" title="Mark all alerts as viewed">
-                            Mark Read
-                        </button>
-                        <button id="btn-close-notif" class="text-slate-400 hover:text-white p-1 rounded transition-colors" title="Close notifications">
-                            <span class="material-symbols-outlined text-base">close</span>
-                        </button>
+function ensureNotificationPopover() {
+    let popover = document.getElementById('vigilance-notifications-popover');
+    if (!popover) {
+        popover = document.createElement('div');
+        popover.id = 'vigilance-notifications-popover';
+        popover.className = 'fixed w-[390px] max-w-[calc(100vw-24px)] bg-white rounded-xl shadow-2xl border border-slate-200 z-[99999] overflow-hidden select-none transition-all duration-150 ease-out';
+        popover.style.display = 'none';
+        popover.innerHTML = `
+            <!-- Popover Header -->
+            <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-amber-400 text-lg">notifications_active</span>
+                    <div>
+                        <h3 class="text-xs font-bold leading-tight flex items-center gap-1.5">
+                            <span>Vigilance Surveillance Alerts</span>
+                            <span id="notif-count-pill" class="px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[9px] font-mono font-bold">4 NEW</span>
+                        </h3>
+                        <p class="text-[9.5px] text-slate-400">MoSPI Econometric &amp; ML Anomaly Engine</p>
                     </div>
                 </div>
-
-                <!-- Live Alerts List -->
-                <div id="notif-items-list" class="max-h-[380px] overflow-y-auto divide-y divide-slate-100 p-1 text-xs">
-                    <!-- Alert Item 1 -->
-                    <a href="Case_Details.html?id=MPLAD-03983" class="flex items-start gap-2.5 p-2.5 hover:bg-blue-50/70 rounded-lg transition-colors group">
-                        <div class="w-2 h-2 rounded-full bg-red-600 mt-1.5 shrink-0"></div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-1">
-                                <span class="font-mono font-bold text-blue-700 text-[11px] group-hover:underline">#MPLAD-03983</span>
-                                <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-800 font-mono font-bold text-[9px]">CRITICAL (98)</span>
-                            </div>
-                            <div class="font-semibold text-slate-800 text-[11px] truncate mt-0.5">Providing CCTV Cameras in Public Areas...</div>
-                            <div class="text-[10px] text-slate-500 mt-0.5">Vadodara, Gujarat • Delay: 624 Days • Baseline Drift z=9.6</div>
-                            <div class="flex items-center justify-between mt-1 text-[9.5px]">
-                                <span class="text-slate-400 font-mono">12m ago</span>
-                                <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">Open Dossier →</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Alert Item 2 -->
-                    <a href="Case_Details.html?id=MPLAD-07162" class="flex items-start gap-2.5 p-2.5 hover:bg-blue-50/70 rounded-lg transition-colors group">
-                        <div class="w-2 h-2 rounded-full bg-orange-600 mt-1.5 shrink-0"></div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-1">
-                                <span class="font-mono font-bold text-blue-700 text-[11px] group-hover:underline">#MPLAD-07162</span>
-                                <span class="px-1.5 py-0.2 rounded bg-orange-100 text-orange-800 font-mono font-bold text-[9px]">MP DRIFT (97)</span>
-                            </div>
-                            <div class="font-semibold text-slate-800 text-[11px] truncate mt-0.5">Construction of stadium at Vivek Maydan...</div>
-                            <div class="text-[10px] text-slate-500 mt-0.5">Mathurapur(Sc), West Bengal • MP Baseline Drift z=7.93</div>
-                            <div class="flex items-center justify-between mt-1 text-[9.5px]">
-                                <span class="text-slate-400 font-mono">35m ago</span>
-                                <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">Open Dossier →</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Alert Item 3 -->
-                    <a href="Case_Details.html?id=MPLAD-25001" class="flex items-start gap-2.5 p-2.5 hover:bg-blue-50/70 rounded-lg transition-colors group">
-                        <div class="w-2 h-2 rounded-full bg-red-600 mt-1.5 shrink-0"></div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-1">
-                                <span class="font-mono font-bold text-blue-700 text-[11px] group-hover:underline">#MPLAD-25001</span>
-                                <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-800 font-mono font-bold text-[9px]">CRITICAL (98)</span>
-                            </div>
-                            <div class="font-semibold text-slate-800 text-[11px] truncate mt-0.5">Construction of BC Bhavan (Backward Classes)...</div>
-                            <div class="text-[10px] text-slate-500 mt-0.5">Kadapa, Andhra Pradesh • Cost Outlier z=4.06 • MP Drift z=9.82</div>
-                            <div class="flex items-center justify-between mt-1 text-[9.5px]">
-                                <span class="text-slate-400 font-mono">1h ago</span>
-                                <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">Open Dossier →</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Alert Item 4 -->
-                    <a href="Case_Details.html?id=MPLAD-30635" class="flex items-start gap-2.5 p-2.5 hover:bg-blue-50/70 rounded-lg transition-colors group">
-                        <div class="w-2 h-2 rounded-full bg-amber-600 mt-1.5 shrink-0"></div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between gap-1">
-                                <span class="font-mono font-bold text-blue-700 text-[11px] group-hover:underline">#MPLAD-30635</span>
-                                <span class="px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 font-mono font-bold text-[9px]">HIGH SEVERITY</span>
-                            </div>
-                            <div class="font-semibold text-slate-800 text-[11px] truncate mt-0.5">Construction of Community Hall at Walltax...</div>
-                            <div class="text-[10px] text-slate-500 mt-0.5">Chennai Central, Tamil Nadu • Timeline Delay: 730 Days</div>
-                            <div class="flex items-center justify-between mt-1 text-[9.5px]">
-                                <span class="text-slate-400 font-mono">3h ago</span>
-                                <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">Open Dossier →</span>
-                            </div>
-                        </div>
-                    </a>
+                <div class="flex items-center gap-1.5">
+                    <button id="btn-mark-all-read" onclick="markAllNotificationsRead(event)" class="text-[10px] text-blue-300 hover:text-white font-medium hover:underline px-1.5 py-0.5 rounded transition-colors" title="Mark all alerts as viewed">
+                        Mark Read
+                    </button>
+                    <button id="btn-close-notif" onclick="closeVigilanceNotifications(event)" class="text-slate-400 hover:text-white p-1 rounded transition-colors" title="Close notifications">
+                        <span class="material-symbols-outlined text-base">close</span>
+                    </button>
                 </div>
+            </div>
 
-                <!-- Popover Footer -->
-                <div class="p-2 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
-                    <span class="text-[10px] text-slate-500 font-mono">Total Flagged: 25,483</span>
-                    <a href="Flagged_Cases.html" class="inline-flex items-center gap-1 text-[11px] font-bold text-blue-700 hover:text-blue-800">
-                        <span>View All Flagged Cases</span>
-                        <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                    </a>
-                </div>
-            `;
-            document.body.appendChild(popover);
+            <!-- Live Alerts List -->
+            <div id="notif-items-list" class="max-h-[380px] overflow-y-auto divide-y divide-slate-100 p-1 text-xs">
+                <!-- Alert Item 1 -->
+                <a href="Case_Details.html?id=MPLAD-03983" class="flex items-start gap-2.5 p-2.5 hover:bg-blue-50/70 rounded-lg transition-colors group">
+                    <div class="w-2 h-2 rounded-full bg-red-600 mt-1.5 shrink-0"></div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-1">
+                            <span class="font-mono font-bold text-blue-700 text-[11px] group-hover:underline">#MPLAD-03983</span>
+                            <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-800 font-mono font-bold text-[9px]">CRITICAL (98)</span>
+                        </div>
+                        <div class="font-semibold text-slate-800 text-[11px] truncate mt-0.5">Providing CCTV Cameras in Public Areas...</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">Vadodara, Gujarat • Delay: 624 Days • Baseline Drift z=9.60</div>
+                        <div class="flex items-center justify-between mt-1 text-[9.5px]">
+                            <span class="text-slate-400 font-mono">12m ago</span>
+                            <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">Open Dossier →</span>
+                        </div>
+                    </div>
+                </a>
 
-            // Popover event listeners
-            document.getElementById('btn-close-notif')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                popover.classList.add('hidden');
-            });
+                <!-- Alert Item 2 -->
+                <a href="Case_Details.html?id=MPLAD-07162" class="flex items-start gap-2.5 p-2.5 hover:bg-blue-50/70 rounded-lg transition-colors group">
+                    <div class="w-2 h-2 rounded-full bg-orange-600 mt-1.5 shrink-0"></div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-1">
+                            <span class="font-mono font-bold text-blue-700 text-[11px] group-hover:underline">#MPLAD-07162</span>
+                            <span class="px-1.5 py-0.2 rounded bg-orange-100 text-orange-800 font-mono font-bold text-[9px]">MP DRIFT (97)</span>
+                        </div>
+                        <div class="font-semibold text-slate-800 text-[11px] truncate mt-0.5">Construction of stadium at Vivek Maydan...</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">Mathurapur(Sc), West Bengal • MP Baseline Drift z=7.93</div>
+                        <div class="flex items-center justify-between mt-1 text-[9.5px]">
+                            <span class="text-slate-400 font-mono">35m ago</span>
+                            <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">Open Dossier →</span>
+                        </div>
+                    </div>
+                </a>
 
-            document.getElementById('btn-mark-all-read')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                localStorage.setItem('mplad_notif_read', 'true');
-                updateBadgeState(true);
-                showToast('All vigilance notifications marked as viewed.', 'info');
-            });
+                <!-- Alert Item 3 -->
+                <a href="Case_Details.html?id=MPLAD-25001" class="flex items-start gap-2.5 p-2.5 hover:bg-blue-50/70 rounded-lg transition-colors group">
+                    <div class="w-2 h-2 rounded-full bg-red-600 mt-1.5 shrink-0"></div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-1">
+                            <span class="font-mono font-bold text-blue-700 text-[11px] group-hover:underline">#MPLAD-25001</span>
+                            <span class="px-1.5 py-0.2 rounded bg-red-100 text-red-800 font-mono font-bold text-[9px]">CRITICAL (98)</span>
+                        </div>
+                        <div class="font-semibold text-slate-800 text-[11px] truncate mt-0.5">Construction of BC Bhavan (Backward Classes)...</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">Kadapa, Andhra Pradesh • Cost Outlier z=4.06 • MP Drift z=9.82</div>
+                        <div class="flex items-center justify-between mt-1 text-[9.5px]">
+                            <span class="text-slate-400 font-mono">1h ago</span>
+                            <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">Open Dossier →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Alert Item 4 -->
+                <a href="Case_Details.html?id=MPLAD-30635" class="flex items-start gap-2.5 p-2.5 hover:bg-blue-50/70 rounded-lg transition-colors group">
+                    <div class="w-2 h-2 rounded-full bg-amber-600 mt-1.5 shrink-0"></div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-1">
+                            <span class="font-mono font-bold text-blue-700 text-[11px] group-hover:underline">#MPLAD-30635</span>
+                            <span class="px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 font-mono font-bold text-[9px]">HIGH SEVERITY</span>
+                        </div>
+                        <div class="font-semibold text-slate-800 text-[11px] truncate mt-0.5">Construction of Community Hall at Walltax...</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5">Chennai Central, Tamil Nadu • Timeline Delay: 730 Days</div>
+                        <div class="flex items-center justify-between mt-1 text-[9.5px]">
+                            <span class="text-slate-400 font-mono">3h ago</span>
+                            <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">Open Dossier →</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Popover Footer -->
+            <div class="p-2 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+                <span class="text-[10px] text-slate-500 font-mono">Total Flagged: 25,483</span>
+                <a href="Flagged_Cases.html" class="inline-flex items-center gap-1 text-[11px] font-bold text-blue-700 hover:text-blue-800">
+                    <span>View All Flagged Cases</span>
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </a>
+            </div>
+        `;
+        document.body.appendChild(popover);
+    }
+    return popover;
+}
+
+function updateNotificationBadgeState(isRead) {
+    const countPill = document.getElementById('notif-count-pill');
+    if (countPill) {
+        if (isRead) {
+            countPill.className = 'px-1.5 py-0.2 rounded-full bg-slate-700 text-slate-300 text-[9px] font-mono font-bold';
+            countPill.innerText = '0 UNREAD';
+        } else {
+            countPill.className = 'px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[9px] font-mono font-bold';
+            countPill.innerText = '4 NEW';
         }
-
-        function updateBadgeState(isRead) {
-            const countPill = document.getElementById('notif-count-pill');
-            if (countPill) {
-                if (isRead) {
-                    countPill.className = 'px-1.5 py-0.2 rounded-full bg-slate-700 text-slate-300 text-[9px] font-mono font-bold';
-                    countPill.innerText = '0 UNREAD';
-                } else {
-                    countPill.className = 'px-1.5 py-0.2 rounded-full bg-red-600 text-white text-[9px] font-mono font-bold';
-                    countPill.innerText = '4 NEW';
-                }
-            }
-
-            activeBells.forEach(bell => {
-                const redDot = bell.querySelector('.bg-red-600') || bell.querySelector('.notification-badge');
-                if (redDot) {
-                    if (isRead) {
-                        redDot.classList.add('hidden');
-                    } else {
-                        redDot.classList.remove('hidden');
-                    }
-                }
-            });
-        }
-
-        // Check stored read state
-        const isRead = localStorage.getItem('mplad_notif_read') === 'true';
-        updateBadgeState(isRead);
-
-        // Bind click on all bell buttons
-        activeBells.forEach(bell => {
-            bell.classList.add('notification-bell-btn');
-            bell.setAttribute('data-notification-trigger', 'true');
-            
-            bell.addEventListener('click', (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                const isHidden = popover.classList.contains('hidden');
-                
-                if (isHidden) {
-                    // Position relative to the bell button if possible
-                    const rect = bell.getBoundingClientRect();
-                    popover.style.top = `${rect.bottom + 8}px`;
-                    popover.style.right = `${Math.max(16, window.innerWidth - rect.right - 8)}px`;
-                    popover.classList.remove('hidden');
-                } else {
-                    popover.classList.add('hidden');
-                }
-            });
-        });
-
-        // Close on clicking outside or escape
-        document.addEventListener('click', (e) => {
-            if (popover && !popover.classList.contains('hidden')) {
-                if (!popover.contains(e.target) && !e.target.closest('.notification-bell-btn')) {
-                    popover.classList.add('hidden');
-                }
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && popover && !popover.classList.contains('hidden')) {
-                popover.classList.add('hidden');
-            }
-        });
     }
 
-    initNotificationCenter();
-});
+    document.querySelectorAll('.notification-bell-btn, button[title*="Notification"], button[title*="notification"]').forEach(bell => {
+        const dot = bell.querySelector('.bg-red-600') || bell.querySelector('.notification-dot');
+        if (dot) {
+            if (isRead) {
+                dot.style.display = 'none';
+            } else {
+                dot.style.display = 'block';
+            }
+        }
+    });
+}
+
+function toggleVigilanceNotifications(e) {
+    if (e) {
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+    }
+
+    const popover = ensureNotificationPopover();
+    const isCurrentlyOpen = popover.style.display !== 'none' && !popover.classList.contains('hidden');
+
+    if (isCurrentlyOpen) {
+        popover.style.display = 'none';
+        popover.classList.add('hidden');
+    } else {
+        // Calculate position
+        let targetEl = e ? e.currentTarget : null;
+        if (!targetEl || !targetEl.getBoundingClientRect) {
+            targetEl = document.querySelector('.notification-bell-btn') || document.querySelector('button[title*="Notification"]');
+        }
+
+        if (targetEl && targetEl.getBoundingClientRect) {
+            const rect = targetEl.getBoundingClientRect();
+            popover.style.top = `${Math.round(rect.bottom + 8)}px`;
+            popover.style.right = `${Math.max(12, Math.round(window.innerWidth - rect.right))}px`;
+            popover.style.left = 'auto';
+        } else {
+            popover.style.top = '56px';
+            popover.style.right = '20px';
+            popover.style.left = 'auto';
+        }
+
+        popover.classList.remove('hidden');
+        popover.style.display = 'block';
+
+        const isRead = localStorage.getItem('mplad_notif_read') === 'true';
+        updateNotificationBadgeState(isRead);
+    }
+}
+
+function closeVigilanceNotifications(e) {
+    if (e) {
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+    }
+    const popover = document.getElementById('vigilance-notifications-popover');
+    if (popover) {
+        popover.style.display = 'none';
+        popover.classList.add('hidden');
+    }
+}
+
+function markAllNotificationsRead(e) {
+    if (e) {
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+    }
+    localStorage.setItem('mplad_notif_read', 'true');
+    updateNotificationBadgeState(true);
+    if (window.showToast) {
+        window.showToast('All vigilance alerts marked as read.', 'info');
+    }
+}
+
+function initNotificationListeners() {
+    // Check initial badge state
+    const isRead = localStorage.getItem('mplad_notif_read') === 'true';
+    updateNotificationBadgeState(isRead);
+
+    // Bind click to bell buttons safely
+    const bells = Array.from(document.querySelectorAll('button')).filter(b => {
+        const title = (b.getAttribute('title') || '').toLowerCase();
+        const icon = b.querySelector('.material-symbols-outlined');
+        const iconText = icon ? icon.textContent.trim() : '';
+        return title.includes('notification') || b.classList.contains('notification-bell-btn') || iconText === 'notifications';
+    });
+
+    bells.forEach(b => {
+        b.classList.add('notification-bell-btn');
+        b.setAttribute('data-notification-trigger', 'true');
+        b.onclick = toggleVigilanceNotifications;
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        const popover = document.getElementById('vigilance-notifications-popover');
+        if (popover && popover.style.display !== 'none' && !popover.classList.contains('hidden')) {
+            if (!popover.contains(e.target) && !e.target.closest('.notification-bell-btn')) {
+                popover.style.display = 'none';
+                popover.classList.add('hidden');
+            }
+        }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeVigilanceNotifications();
+        }
+    });
+}
+
+// Global exposure
+window.toggleVigilanceNotifications = toggleVigilanceNotifications;
+window.closeVigilanceNotifications = closeVigilanceNotifications;
+window.markAllNotificationsRead = markAllNotificationsRead;
+
