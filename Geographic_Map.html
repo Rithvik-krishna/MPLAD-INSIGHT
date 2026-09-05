@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MPLAD Insight — Geospatial Risk Map & Anomaly Clusters</title>
+<title>NIDHI TRACE — Geospatial Risk Map & Anomaly Clusters</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -21,8 +21,8 @@ tailwind.config = {
                     500: '#2563eb',
                     700: '#1d4ed8',
                     800: '#1e40af',
-                    900: '#0f172a',
-                    950: '#090d16'
+                    900: '#0a1128',
+                    950: '#060a17'
                 },
                 canvas: '#f8fafc',
                 surface: '#ffffff',
@@ -37,6 +37,10 @@ tailwind.config = {
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace']
+            },
+            boxShadow: {
+                '2xs': '0 1px 2px 0 rgba(0, 0, 0, 0.04)',
+                'xs': '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.03)'
             }
         }
     }
@@ -44,11 +48,16 @@ tailwind.config = {
 </script>
 
 <style>
+html, body {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
 body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 .font-tabular { font-variant-numeric: tabular-nums; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
 #map { width: 100%; height: 100%; z-index: 1; }
-.leaflet-control-attribution { font-size: 10px; opacity: 0.7; }
+.leaflet-control-attribution { font-size: 9px; opacity: 0.7; }
 .custom-pin {
     display: flex;
     align-items: center;
@@ -72,151 +81,109 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
     70% { transform: scale(2.2); opacity: 0; }
     100% { transform: scale(2.4); opacity: 0; }
 }
-
-
-/* Dedicated Bounded Table Scroll Container & Sticky Columns */
-html, body {
-    max-width: 100vw;
-    overflow-x: hidden;
-}
-.table-scroll-container {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-.sticky-col-1 {
-    position: sticky;
-    left: 0;
-    z-index: 10;
-}
-.sticky-col-2 {
-    position: sticky;
-    left: 110px;
-    z-index: 10;
-    box-shadow: 2px 0 4px -2px rgba(0,0,0,0.12);
-}
-th.sticky-col-1 {
-    position: sticky;
-    left: 0;
-    z-index: 20;
-    background-color: #f1f5f9 !important;
-}
-th.sticky-col-2 {
-    position: sticky;
-    left: 110px;
-    z-index: 20;
-    background-color: #f1f5f9 !important;
-    box-shadow: 2px 0 4px -2px rgba(0,0,0,0.12);
-}
-.sticky-col-right {
-    position: sticky;
-    right: 0;
-    z-index: 10;
-    box-shadow: -2px 0 4px -2px rgba(0,0,0,0.12);
-}
-th.sticky-col-right {
-    position: sticky;
-    right: 0;
-    z-index: 20;
-    background-color: #f1f5f9 !important;
-    box-shadow: -2px 0 4px -2px rgba(0,0,0,0.12);
-}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 </style>
 </head>
-<body class="bg-canvas text-slate-800 antialiased text-xs min-h-full w-full overflow-x-hidden relative">
+<body class="bg-canvas text-slate-800 antialiased text-xs h-screen max-h-screen w-full overflow-hidden relative flex">
 
-<!-- UNIFIED SHELL: Side Navigation -->
-<aside class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none">
-    <div class="px-5 py-6 border-b border-slate-800/80 flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
-            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<!-- UNIFIED SHELL: Side Navigation (230px, Deep Navy Institutional) -->
+<aside class="w-[230px] h-screen shrink-0 flex flex-col bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none overflow-hidden">
+    <!-- Brand Header -->
+    <div class="px-4 py-3.5 border-b border-slate-800/80 flex items-center gap-2.5 shrink-0">
+        <div class="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 shrink-0">
+            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
         </div>
-        <div class="flex flex-col">
-            <span class="font-extrabold text-white text-sm tracking-wider uppercase">MPLAD INSIGHT</span>
-            <span class="text-[10px] text-blue-400 uppercase tracking-widest font-semibold">GovTech Audit AI</span>
+        <div class="flex flex-col min-w-0">
+            <span class="font-black text-white text-xs tracking-wider uppercase leading-tight">NIDHI TRACE</span>
+            <span class="text-[8.5px] text-blue-400 uppercase tracking-widest font-semibold truncate">Fund Intelligence</span>
         </div>
     </div>
 
-    <nav class="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
-        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Overview_Dashboard.html">
-            <span class="material-symbols-outlined text-lg">dashboard</span>
+    <!-- Navigation List -->
+    <nav class="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
+        <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Overview_Dashboard.html">
+            <span class="material-symbols-outlined text-base">dashboard</span>
             <span>Overview</span>
         </a>
-        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Flagged_Cases.html">
-            <span class="material-symbols-outlined text-lg">report_problem</span>
+        <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Flagged_Cases.html">
+            <span class="material-symbols-outlined text-base">report_problem</span>
             <span>Flagged Cases</span>
-            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">23,912</span>
+            <span id="sidebar-flagged-count" class="ml-auto px-1.5 py-0.2 rounded bg-red-950/80 text-red-400 border border-red-800/80 text-[10px] font-mono font-bold">25,483</span>
         </a>
-        <a class="flex items-center gap-3 px-3.5 py-2.5 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Geographic_Map.html">
-            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">map</span>
+        <a class="flex items-center gap-2.5 px-3 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-2xs transition-all" href="Geographic_Map.html">
+            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">map</span>
             <span>Geographic Map</span>
         </a>
-        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Analytics.html">
-            <span class="material-symbols-outlined text-lg">insights</span>
+        <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Analytics.html">
+            <span class="material-symbols-outlined text-base">insights</span>
             <span>Analytics</span>
         </a>
-        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Data_Explorer.html">
-            <span class="material-symbols-outlined text-lg">database</span>
+        <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Data_Explorer.html">
+            <span class="material-symbols-outlined text-base">database</span>
             <span>Data Explorer</span>
         </a>
     </nav>
 
-    <div class="p-3.5 border-t border-slate-800 bg-brand-950/40 text-[11px] space-y-2">
+    <!-- Sidebar Footer Status -->
+    <div class="p-3 border-t border-slate-800 bg-brand-950/60 text-[10.5px] space-y-1.5 shrink-0">
         <div class="flex items-center justify-between">
-            <span class="text-slate-400 flex items-center gap-2">
+            <span class="text-slate-400 flex items-center gap-1.5">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
                 Live Audit Stream
             </span>
-            <span class="font-mono text-slate-400 font-bold">ACTIVE</span>
+            <span class="font-mono text-slate-400 font-bold text-[9.5px]">ACTIVE</span>
         </div>
-        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+        <div class="flex items-center justify-between text-slate-500 text-[9.5px]">
             <span>Data Ingestion:</span>
             <span class="font-mono text-slate-400">06:00 IST</span>
         </div>
-        <div class="flex items-center justify-between text-slate-500 text-[10px]">
-            <span>System Pipeline:</span>
+        <div class="flex items-center justify-between text-slate-500 text-[9.5px]">
+            <span>Surveillance Model:</span>
             <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                <span class="material-symbols-outlined text-[13px]">check_circle</span> Normal
+                <span class="material-symbols-outlined text-[12px]">check_circle</span> v2.6 Ready
             </span>
         </div>
     </div>
 </aside>
 
 <!-- Main Wrapper -->
-<div class="ml-[260px] w-[calc(100vw-260px)] max-w-[calc(100vw-260px)] min-w-0 h-screen flex flex-col relative bg-canvas overflow-hidden">
+<div class="flex-1 min-w-0 h-screen max-h-screen flex flex-col relative bg-canvas overflow-hidden">
     
-    <!-- UNIFIED SHELL: Header -->
-    <header class="h-14 w-full sticky top-0 bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-6">
-        <div class="flex items-center gap-4 w-96">
+    <!-- UNIFIED SHELL: Compact Top Bar (48px) -->
+    <header class="h-12 min-h-[48px] max-h-[48px] shrink-0 w-full bg-white border-b border-borderline shadow-2xs z-40 flex justify-between items-center px-4">
+        <div class="flex items-center gap-3 w-80">
             <div class="relative w-full">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
-                <input id="map-search" class="w-full pl-9 pr-12 py-1.5 rounded-md border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-slate-400 font-sans" placeholder="Search state, district, or project ID..." type="search">
-                <kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-slate-300 bg-white text-[10px] font-mono text-slate-400">⌘K</kbd>
+                <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                <input id="map-search" class="w-full pl-8 pr-10 py-1 rounded border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 outline-none placeholder:text-slate-400 font-sans" placeholder="Search state, district, or project ID..." type="search">
+                <kbd class="absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.2 rounded border border-slate-300 bg-white text-[9px] font-mono text-slate-400">⌘K</kbd>
             </div>
         </div>
-        <div class="flex items-center gap-3">
+
+        <div class="flex items-center gap-2.5">
             <!-- Alert Bell -->
-            <button onclick="toggleVigilanceNotifications(event)" class="notification-bell-btn relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition-colors cursor-pointer" title="Live Vigilance Notifications">
-                <span class="material-symbols-outlined text-xl">notifications</span>
-                <span class="absolute top-1 right-1 w-2 h-2 bg-red-600 rounded-full ring-2 ring-white"></span>
+            <button onclick="toggleVigilanceNotifications(event)" class="notification-bell-btn relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-colors cursor-pointer" title="Live Vigilance Notifications">
+                <span class="material-symbols-outlined text-base">notifications</span>
+                <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-red-600 rounded-full ring-2 ring-white"></span>
             </button>
 
-            <button onclick="showToast('Exporting geospatial audit vector dataset...', 'info');" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white rounded-md text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs">
-                <span class="material-symbols-outlined text-[16px]">file_download</span>
+            <button onclick="showToast('Exporting geospatial audit vector dataset...', 'info');" class="flex items-center gap-1.5 px-3 py-1 bg-slate-900 text-white rounded text-xs font-semibold hover:bg-slate-800 transition-colors shadow-2xs cursor-pointer">
+                <span class="material-symbols-outlined text-sm">file_download</span>
                 <span>Export GeoData</span>
             </button>
 
-            <div class="h-6 w-px bg-slate-200 mx-1"></div>
+            <div class="h-4 w-px bg-slate-200 mx-0.5"></div>
 
-            <div class="flex items-center gap-2.5 pl-1">
-                <div class="w-7 h-7 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-xs shadow-xs">AO</div>
+            <div class="flex items-center gap-2 pl-0.5">
+                <div class="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-[10px] shadow-2xs">AO</div>
                 <div class="flex flex-col text-left">
-                    <span class="text-xs font-bold text-slate-900 leading-tight">Audit Officer #104</span>
-                    <span class="text-[10px] text-slate-500 font-medium">MoSPI • Oversight Div</span>
+                    <span class="text-xs font-bold text-slate-900 leading-none">AO #104</span>
+                    <span class="text-[9px] text-slate-500 font-medium">MoSPI Oversight</span>
                 </div>
             </div>
         </div>
@@ -224,52 +191,52 @@ th.sticky-col-right {
 
     <!-- Map Body -->
     <main class="flex-1 min-h-0 relative w-full h-full flex bg-slate-100 overflow-hidden">
-        <!-- Open Leaflet Basemap (CartoDB Positron / OSM Keyless) -->
+        <!-- Open Leaflet Basemap -->
         <div id="map" class="absolute inset-0 z-0"></div>
 
         <!-- Left Filter & Geospatial Summary Drawer -->
-        <div class="relative z-20 w-[340px] m-5 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-slate-200 flex flex-col overflow-hidden max-h-[calc(100vh-100px)]">
-            <div class="p-4 border-b border-slate-200/80 bg-slate-50/80 flex items-center justify-between">
+        <div class="relative z-20 w-[310px] m-3 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-slate-200 flex flex-col overflow-hidden max-h-[calc(100vh-80px)]">
+            <div class="p-3 border-b border-slate-200/80 bg-slate-50/80 flex items-center justify-between shrink-0">
                 <div>
-                    <h2 class="text-sm font-bold text-slate-900">Geospatial Risk Clusters</h2>
-                    <p class="text-[10px] text-slate-500">Spatial anomaly density across constituencies</p>
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Geospatial Risk Clusters</h2>
+                    <p class="text-[9.5px] text-slate-500">Spatial anomaly density across constituencies</p>
                 </div>
-                <span class="px-2 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200 font-mono text-[9px] font-bold">543 SEATS</span>
+                <span class="px-1.5 py-0.2 rounded bg-blue-50 text-blue-800 border border-blue-200 font-mono text-[9px] font-bold">543 SEATS</span>
             </div>
             
-            <div class="p-4 flex-1 overflow-y-auto space-y-4">
+            <div class="p-3 flex-1 overflow-y-auto space-y-3">
                 <!-- State Selector -->
                 <div>
-                    <label class="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1">Select Jurisdiction</label>
-                    <select id="state-select" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs font-medium text-slate-800 outline-none focus:border-blue-600">
+                    <label class="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-1">Jurisdiction Filter</label>
+                    <select id="state-select" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs font-medium text-slate-800 outline-none focus:border-blue-600">
                         <option value="all">National Overview (All India)</option>
-                        <option value="Maharashtra">Maharashtra (Nagpur, Mumbai)</option>
-                        <option value="Uttar Pradesh">Uttar Pradesh (Varanasi, Lucknow)</option>
-                        <option value="Rajasthan">Rajasthan (Jaipur, Jodhpur)</option>
-                        <option value="West Bengal">West Bengal (Kolkata)</option>
-                        <option value="Karnataka">Karnataka (Bengaluru)</option>
-                        <option value="Bihar">Bihar (Patna)</option>
-                        <option value="Tamil Nadu">Tamil Nadu (Chennai)</option>
-                        <option value="Gujarat">Gujarat (Ahmedabad)</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Gujarat">Gujarat</option>
                         <option value="Delhi">Delhi NCR</option>
                     </select>
                 </div>
 
                 <!-- Risk Severity Toggles -->
                 <div>
-                    <label class="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1.5">Filter Severity</label>
-                    <div class="flex gap-1.5">
-                        <button id="btn-filter-critical" onclick="toggleRiskFilter('critical')" class="flex-1 py-1 px-2 border border-red-300 text-red-800 rounded text-[11px] font-bold bg-red-50 hover:bg-red-100 transition-all shadow-2xs">Critical</button>
-                        <button id="btn-filter-high" onclick="toggleRiskFilter('high')" class="flex-1 py-1 px-2 border border-orange-300 text-orange-800 rounded text-[11px] font-bold bg-orange-50 hover:bg-orange-100 transition-all shadow-2xs">High</button>
-                        <button id="btn-filter-med" onclick="toggleRiskFilter('med')" class="flex-1 py-1 px-2 border border-amber-300 text-amber-800 rounded text-[11px] font-bold bg-amber-50 hover:bg-amber-100 transition-all shadow-2xs">Medium</button>
-                        <button id="btn-filter-low" onclick="toggleRiskFilter('low')" class="flex-1 py-1 px-2 border border-emerald-300 text-emerald-800 rounded text-[11px] font-bold bg-emerald-50 hover:bg-emerald-100 transition-all shadow-2xs">Low</button>
+                    <label class="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-1">Risk Severity Filter</label>
+                    <div class="flex gap-1">
+                        <button id="btn-filter-critical" onclick="toggleRiskFilter('critical')" class="flex-1 py-1 px-1.5 border border-red-300 text-red-800 rounded text-[10px] font-bold bg-red-50 hover:bg-red-100 transition-all shadow-2xs cursor-pointer">Critical</button>
+                        <button id="btn-filter-high" onclick="toggleRiskFilter('high')" class="flex-1 py-1 px-1.5 border border-orange-300 text-orange-800 rounded text-[10px] font-bold bg-orange-50 hover:bg-orange-100 transition-all shadow-2xs cursor-pointer">High</button>
+                        <button id="btn-filter-med" onclick="toggleRiskFilter('med')" class="flex-1 py-1 px-1.5 border border-amber-300 text-amber-800 rounded text-[10px] font-bold bg-amber-50 hover:bg-amber-100 transition-all shadow-2xs cursor-pointer">Medium</button>
+                        <button id="btn-filter-low" onclick="toggleRiskFilter('low')" class="flex-1 py-1 px-1.5 border border-emerald-300 text-emerald-800 rounded text-[10px] font-bold bg-emerald-50 hover:bg-emerald-100 transition-all shadow-2xs cursor-pointer">Low</button>
                     </div>
                 </div>
 
                 <!-- Anomaly Filter -->
                 <div>
-                    <label class="text-[11px] font-bold text-slate-600 uppercase tracking-wider block mb-1">Anomaly Type</label>
-                    <select id="anomaly-select" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1.5 text-xs font-medium text-slate-800 outline-none focus:border-blue-600">
+                    <label class="text-[10px] font-bold text-slate-600 uppercase tracking-wider block mb-1">Anomaly Category</label>
+                    <select id="anomaly-select" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs font-medium text-slate-800 outline-none focus:border-blue-600">
                         <option value="all">All Anomaly Types</option>
                         <option value="delay">Completion Delay (>200%)</option>
                         <option value="cost">Cost / Amount Deviation</option>
@@ -280,28 +247,28 @@ th.sticky-col-right {
                 </div>
 
                 <!-- National Metrics Summary -->
-                <div class="pt-3 border-t border-slate-200/80 space-y-2.5">
-                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Audited Summary</span>
+                <div class="pt-2 border-t border-slate-200/80 space-y-2">
+                    <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Audited Summary</span>
                     
-                    <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                    <div class="p-2 bg-slate-50 rounded border border-slate-200">
                         <div class="flex justify-between items-center text-xs">
-                            <span class="text-slate-600">Works Geocoded:</span>
+                            <span class="text-slate-600 text-[11px]">Works Geocoded:</span>
                             <span class="font-mono font-bold text-slate-900">171,890</span>
                         </div>
                     </div>
 
-                    <div class="p-3 bg-red-50/70 rounded border border-red-200">
+                    <div class="p-2 bg-red-50/70 rounded border border-red-200">
                         <div class="flex justify-between items-center text-xs">
-                            <span class="text-red-800 font-semibold flex items-center gap-1">
-                                <span class="material-symbols-outlined text-sm">warning</span> Flagged Clusters
+                            <span class="text-red-800 font-semibold flex items-center gap-1 text-[11px]">
+                                <span class="material-symbols-outlined text-xs">warning</span> Flagged Clusters
                             </span>
                             <span class="font-mono font-bold text-red-900">23,912</span>
                         </div>
                     </div>
 
-                    <div class="p-3 bg-slate-50 rounded border border-slate-200">
+                    <div class="p-2 bg-slate-50 rounded border border-slate-200">
                         <div class="flex justify-between items-center text-xs">
-                            <span class="text-slate-600">Total Sanctioned:</span>
+                            <span class="text-slate-600 text-[11px]">Total Sanctioned:</span>
                             <span class="font-mono font-bold text-slate-900">₹8,501.1 Cr</span>
                         </div>
                     </div>
@@ -310,64 +277,64 @@ th.sticky-col-right {
         </div>
 
         <!-- Top Right Risk Legend -->
-        <div class="absolute top-5 right-5 z-20 bg-white/95 backdrop-blur-md px-3.5 py-2.5 rounded-lg shadow-lg border border-slate-200 select-none">
-            <h4 class="text-[11px] font-bold text-slate-800 uppercase tracking-wider mb-1.5">Risk Severity Index</h4>
-            <div class="flex items-center gap-3 font-mono text-[11px]">
-                <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+        <div class="absolute top-3 right-3 z-20 bg-white/95 backdrop-blur-md px-3 py-2 rounded-lg shadow-md border border-slate-200 select-none">
+            <h4 class="text-[10px] font-bold text-slate-800 uppercase tracking-wider mb-1">Risk Severity Index</h4>
+            <div class="flex items-center gap-2.5 font-mono text-[10.5px]">
+                <div class="flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-red-600"></span>
                     <span class="text-slate-700 font-semibold">Critical (&gt;90)</span>
                 </div>
-                <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-orange-600"></span>
+                <div class="flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-orange-600"></span>
                     <span class="text-slate-700 font-semibold">High (70-89)</span>
                 </div>
-                <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                <div class="flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
                     <span class="text-slate-700 font-semibold">Med (40-69)</span>
                 </div>
-                <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                <div class="flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
                     <span class="text-slate-700 font-semibold">Low (&lt;40)</span>
                 </div>
             </div>
         </div>
 
         <!-- Bottom Right Floating Project Card -->
-        <div id="project-card" class="hidden absolute bottom-5 right-5 z-20 w-[380px] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300">
-            <div id="card-risk-bar" class="h-1.5 w-full bg-red-600"></div>
-            <div class="p-4">
-                <div class="flex justify-between items-start mb-2">
-                    <div>
-                        <span id="card-badge" class="inline-block px-2 py-0.5 rounded text-[10px] font-bold font-mono uppercase mb-1 bg-red-100 text-red-900 border border-red-300">CRITICAL RISK</span>
-                        <h4 id="card-title" class="text-sm font-bold text-slate-900 leading-tight">Loading Project...</h4>
-                        <p id="card-id" class="text-[11px] text-slate-500 font-mono mt-0.5">MoSPI Scrutiny Engine</p>
+        <div id="project-card" class="hidden absolute bottom-3 right-3 z-20 w-[340px] bg-white rounded-lg shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300">
+            <div id="card-risk-bar" class="h-1 w-full bg-red-600"></div>
+            <div class="p-3">
+                <div class="flex justify-between items-start mb-1.5">
+                    <div class="min-w-0 pr-2">
+                        <span id="card-badge" class="inline-block px-1.5 py-0.2 rounded text-[9.5px] font-bold font-mono uppercase mb-1 bg-red-100 text-red-900 border border-red-300">CRITICAL RISK</span>
+                        <h4 id="card-title" class="text-xs font-bold text-slate-900 leading-tight truncate">Loading Project...</h4>
+                        <p id="card-id" class="text-[10px] text-slate-500 font-mono mt-0.5 truncate">MoSPI Scrutiny Engine</p>
                     </div>
-                    <div class="flex flex-col items-end">
-                        <div id="card-score" class="flex items-center justify-center w-9 h-9 rounded-full bg-red-700 text-white font-mono font-black text-xs shadow-sm">
+                    <div class="flex flex-col items-end shrink-0">
+                        <div id="card-score" class="flex items-center justify-center w-8 h-8 rounded bg-red-600 text-white font-mono font-black text-xs shadow-2xs">
                             91
                         </div>
-                        <span class="text-[9px] text-slate-400 uppercase font-mono font-bold mt-0.5">Score</span>
+                        <span class="text-[8.5px] text-slate-400 uppercase font-mono font-bold mt-0.5">Score</span>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 my-2 py-2 border-y border-slate-100 text-xs">
+                <div class="grid grid-cols-2 gap-2 my-1.5 py-1.5 border-y border-slate-100 text-xs">
                     <div>
-                        <p class="text-[10px] text-slate-500">Sanctioned Amount</p>
-                        <p id="card-sanctioned" class="font-mono font-bold text-slate-900">₹42.8 Lakhs</p>
+                        <p class="text-[9.5px] text-slate-500">Sanctioned Amount</p>
+                        <p id="card-sanctioned" class="font-mono font-bold text-slate-900 text-xs">₹42.8 Lakhs</p>
                     </div>
                     <div>
-                        <p class="text-[10px] text-slate-500">Primary Anomaly</p>
-                        <p id="card-anomaly" class="font-semibold text-red-700 truncate">Completion Delay (>280%)</p>
+                        <p class="text-[9.5px] text-slate-500">Primary Anomaly</p>
+                        <p id="card-anomaly" class="font-semibold text-red-700 truncate text-xs">Completion Delay (>280%)</p>
                     </div>
                 </div>
 
-                <div class="flex gap-2 mt-2">
-                    <a id="card-view-btn" href="Case_Details.html" class="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-2xs">
-                        <span class="material-symbols-outlined text-[15px]">visibility</span>
-                        View Audit Dossier
+                <div class="flex gap-1.5 mt-2">
+                    <a id="card-view-btn" href="Case_Details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-1.5 rounded text-xs font-bold transition-all flex items-center justify-center gap-1 shadow-2xs cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">visibility</span>
+                        <span>View Audit Dossier</span>
                     </a>
-                    <button onclick="hideProjectCard()" class="w-8 h-8 border border-slate-200 rounded flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">close</span>
+                    <button onclick="hideProjectCard()" class="w-7 h-7 border border-slate-200 rounded flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-sm">close</span>
                     </button>
                 </div>
             </div>
@@ -458,7 +425,7 @@ function initMap() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
 
-    const esriLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    const esriLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{x}/{y}', {
         maxZoom: 16,
         attribution: '&copy; <a href="https://www.esri.com/">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors'
     });
@@ -504,13 +471,13 @@ function renderMapMarkers() {
 
         const style = colorMap[p.risk] || colorMap.critical;
         const isUrgent = p.risk === 'critical' || p.risk === 'high';
-        const size = isUrgent ? 28 : 22;
+        const size = isUrgent ? 26 : 20;
 
         const iconHtml = `
             <div class="relative flex items-center justify-center custom-pin" style="width:${size}px; height:${size}px;">
                 ${isUrgent ? `<div class="pulse-ring" style="background:${style.pulse};"></div>` : ''}
-                <div style="background:${style.bg}; width:${size}px; height:${size}px; border:2.5px solid ${style.border}; border-radius:50%; box-shadow:0 3px 8px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">
-                    <span style="color:#ffffff; font-family:'JetBrains Mono', monospace; font-size:10px; font-weight:800;">${p.riskScore}</span>
+                <div style="background:${style.bg}; width:${size}px; height:${size}px; border:2px solid ${style.border}; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">
+                    <span style="color:#ffffff; font-family:'JetBrains Mono', monospace; font-size:9.5px; font-weight:800;">${p.riskScore}</span>
                 </div>
             </div>
         `;
@@ -543,22 +510,22 @@ function selectMapProject(p) {
     if (!card) return;
 
     const riskConfigs = {
-        critical: { bar: 'bg-red-600', badge: 'bg-red-100 text-red-900 border-red-300', badgeText: 'CRITICAL SEVERITY', scoreBg: 'bg-red-700', text: 'text-red-700' },
+        critical: { bar: 'bg-red-600', badge: 'bg-red-100 text-red-900 border-red-300', badgeText: 'CRITICAL SEVERITY', scoreBg: 'bg-red-600', text: 'text-red-700' },
         high: { bar: 'bg-orange-600', badge: 'bg-orange-100 text-orange-900 border-orange-300', badgeText: 'HIGH SEVERITY', scoreBg: 'bg-orange-600', text: 'text-orange-700' },
         med: { bar: 'bg-amber-500', badge: 'bg-amber-100 text-amber-900 border-amber-300', badgeText: 'MEDIUM SEVERITY', scoreBg: 'bg-amber-600', text: 'text-amber-700' },
-        low: { bar: 'bg-emerald-600', badge: 'bg-emerald-100 text-emerald-900 border-emerald-300', badgeText: 'LOW RISK / COMPLIANT', scoreBg: 'bg-emerald-700', text: 'text-emerald-700' }
+        low: { bar: 'bg-emerald-600', badge: 'bg-emerald-100 text-emerald-900 border-emerald-300', badgeText: 'LOW RISK / COMPLIANT', scoreBg: 'bg-emerald-600', text: 'text-emerald-700' }
     };
 
     const c = riskConfigs[p.risk] || riskConfigs.critical;
-    document.getElementById('card-risk-bar').className = `h-1.5 w-full ${c.bar}`;
-    document.getElementById('card-badge').className = `inline-block px-2 py-0.5 rounded text-[10px] font-bold font-mono uppercase mb-1 border ${c.badge}`;
+    document.getElementById('card-risk-bar').className = `h-1 w-full ${c.bar}`;
+    document.getElementById('card-badge').className = `inline-block px-1.5 py-0.2 rounded text-[9.5px] font-bold font-mono uppercase mb-1 border ${c.badge}`;
     document.getElementById('card-badge').innerText = c.badgeText;
     document.getElementById('card-title').innerText = p.title || 'Untitled Work';
     document.getElementById('card-id').innerText = `Project #${p.id} • ${p.city || ''}, ${p.state || ''}`;
-    document.getElementById('card-score').className = `flex items-center justify-center w-9 h-9 rounded-full text-white font-mono font-black text-xs shadow-sm ${c.scoreBg}`;
+    document.getElementById('card-score').className = `flex items-center justify-center w-8 h-8 rounded text-white font-mono font-black text-xs shadow-2xs ${c.scoreBg}`;
     document.getElementById('card-score').innerText = p.riskScore;
     document.getElementById('card-sanctioned').innerText = p.sanctioned || '₹0';
-    document.getElementById('card-anomaly').className = `font-semibold truncate ${c.text}`;
+    document.getElementById('card-anomaly').className = `font-semibold truncate text-xs ${c.text}`;
     document.getElementById('card-anomaly').innerText = p.anomaly || 'Algorithmic Anomaly';
 
     // Hook up View Audit Dossier button to real ID

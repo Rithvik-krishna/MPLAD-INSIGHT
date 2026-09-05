@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MPLAD Insight — Comprehensive Data Explorer & Central Ledger</title>
+<title>NIDHI TRACE — Comprehensive Data Explorer & Central Ledger</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <script id="tailwind-config">
 tailwind.config = {
@@ -19,8 +19,8 @@ tailwind.config = {
                     500: '#2563eb',
                     700: '#1d4ed8',
                     800: '#1e40af',
-                    900: '#0f172a',
-                    950: '#090d16'
+                    900: '#0a1128',
+                    950: '#060a17'
                 },
                 canvas: '#f8fafc',
                 surface: '#ffffff',
@@ -35,6 +35,10 @@ tailwind.config = {
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace']
+            },
+            boxShadow: {
+                '2xs': '0 1px 2px 0 rgba(0, 0, 0, 0.04)',
+                'xs': '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.03)'
             }
         }
     }
@@ -50,7 +54,7 @@ html, body {
 body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 .font-tabular { font-variant-numeric: tabular-nums; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
-::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
@@ -58,18 +62,20 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 </head>
 <body class="bg-canvas text-slate-800 antialiased text-xs h-screen max-h-screen w-full overflow-hidden relative flex">
 
-<!-- UNIFIED SHELL: Side Navigation -->
-<aside class="w-[240px] h-screen shrink-0 flex flex-col bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none overflow-hidden">
-    <div class="px-4 py-4 border-b border-slate-800/80 flex items-center gap-2.5 shrink-0">
-        <div class="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
+<!-- UNIFIED SHELL: Side Navigation (230px, Deep Navy Institutional) -->
+<aside class="w-[230px] h-screen shrink-0 flex flex-col bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none overflow-hidden">
+    <!-- Brand Header -->
+    <div class="px-4 py-3.5 border-b border-slate-800/80 flex items-center gap-2.5 shrink-0">
+        <div class="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 shrink-0">
             <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
         </div>
-        <div class="flex flex-col">
-            <span class="font-extrabold text-white text-xs tracking-wider uppercase">MPLAD INSIGHT</span>
-            <span class="text-[9px] text-blue-400 uppercase tracking-widest font-semibold">GovTech Audit AI</span>
+        <div class="flex flex-col min-w-0">
+            <span class="font-black text-white text-xs tracking-wider uppercase leading-tight">NIDHI TRACE</span>
+            <span class="text-[8.5px] text-blue-400 uppercase tracking-widest font-semibold truncate">Fund Intelligence</span>
         </div>
     </div>
 
+    <!-- Navigation List -->
     <nav class="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
         <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Overview_Dashboard.html">
             <span class="material-symbols-outlined text-base">dashboard</span>
@@ -78,7 +84,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Flagged_Cases.html">
             <span class="material-symbols-outlined text-base">report_problem</span>
             <span>Flagged Cases</span>
-            <span id="sidebar-flagged-count" class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">23,912</span>
+            <span id="sidebar-flagged-count" class="ml-auto px-1.5 py-0.2 rounded bg-red-950/80 text-red-400 border border-red-800/80 text-[10px] font-mono font-bold">25,483</span>
         </a>
         <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Geographic_Map.html">
             <span class="material-symbols-outlined text-base">map</span>
@@ -88,14 +94,14 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
             <span class="material-symbols-outlined text-base">insights</span>
             <span>Analytics</span>
         </a>
-        <a class="flex items-center gap-2.5 px-3 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Data_Explorer.html">
+        <a class="flex items-center gap-2.5 px-3 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-2xs transition-all" href="Data_Explorer.html">
             <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">database</span>
             <span>Data Explorer</span>
         </a>
     </nav>
 
     <!-- Sidebar Footer Status -->
-    <div class="p-3 border-t border-slate-800 bg-brand-950/40 text-[11px] space-y-1.5 shrink-0">
+    <div class="p-3 border-t border-slate-800 bg-brand-950/60 text-[10.5px] space-y-1.5 shrink-0">
         <div class="flex items-center justify-between">
             <span class="text-slate-400 flex items-center gap-1.5">
                 <span class="relative flex h-2 w-2">
@@ -104,16 +110,16 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
                 </span>
                 Live Audit Stream
             </span>
-            <span class="font-mono text-slate-400 font-bold text-[10px]">ACTIVE</span>
+            <span class="font-mono text-slate-400 font-bold text-[9.5px]">ACTIVE</span>
         </div>
-        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+        <div class="flex items-center justify-between text-slate-500 text-[9.5px]">
             <span>Data Ingestion:</span>
             <span class="font-mono text-slate-400">06:00 IST</span>
         </div>
-        <div class="flex items-center justify-between text-slate-500 text-[10px]">
-            <span>System Pipeline:</span>
+        <div class="flex items-center justify-between text-slate-500 text-[9.5px]">
+            <span>Surveillance Model:</span>
             <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px]">check_circle</span> Normal
+                <span class="material-symbols-outlined text-[12px]">check_circle</span> v2.6 Ready
             </span>
         </div>
     </div>
@@ -122,69 +128,69 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 <!-- Main Wrapper (Single Screen, Viewport-Locked) -->
 <div class="flex-1 min-w-0 h-screen max-h-screen flex flex-col bg-canvas overflow-hidden">
     
-    <!-- UNIFIED SHELL: Compact Header -->
-    <header class="h-12 min-h-[48px] max-h-[48px] shrink-0 w-full bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-4">
+    <!-- UNIFIED SHELL: Compact Header (48px) -->
+    <header class="h-12 min-h-[48px] max-h-[48px] shrink-0 w-full bg-white border-b border-borderline shadow-2xs z-40 flex justify-between items-center px-4">
         <div class="flex items-center gap-3 w-80">
             <div class="relative w-full">
                 <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
-                <input id="global-search" class="w-full pl-8 pr-10 py-1 rounded border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 outline-none placeholder:text-slate-400 font-sans" placeholder="Search works, districts, MP names, project IDs... (Press ⌘K)" type="search">
+                <input id="global-search" class="w-full pl-8 pr-10 py-1 rounded border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 outline-none placeholder:text-slate-400 font-sans" placeholder="Search works, districts, MP names, IDs... (Press ⌘K)" type="search">
                 <kbd class="absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.2 rounded border border-slate-300 bg-white text-[9px] font-mono text-slate-400">⌘K</kbd>
             </div>
         </div>
 
         <div class="flex items-center gap-2.5">
             <!-- Live Status -->
-            <div class="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-emerald-800 text-[11px] font-semibold">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <div class="flex items-center gap-1.5 px-2 py-0.5 bg-emerald-50 border border-emerald-200 rounded text-emerald-800 text-[10.5px] font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>MoSPI Live Ledger • 198,116 Works</span>
             </div>
 
             <!-- Alert Bell -->
-            <button onclick="toggleVigilanceNotifications(event)" class="notification-bell-btn relative p-1 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-colors cursor-pointer" title="Live Vigilance Notifications">
-                <span class="material-symbols-outlined text-lg">notifications</span>
-                <span class="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-red-600 rounded-full ring-2 ring-white"></span>
+            <button onclick="toggleVigilanceNotifications(event)" class="notification-bell-btn relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-colors cursor-pointer" title="Live Vigilance Notifications">
+                <span class="material-symbols-outlined text-base">notifications</span>
+                <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-red-600 rounded-full ring-2 ring-white"></span>
             </button>
 
-            <button onclick="exportTableToCSV('mplad-complete-ledger.csv')" class="flex items-center gap-1 px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-semibold hover:bg-slate-800 transition-colors shadow-2xs">
-                <span class="material-symbols-outlined text-[15px]">file_download</span>
+            <button onclick="exportTableToCSV('nidhi-trace-complete-ledger.csv')" class="flex items-center gap-1 px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-semibold hover:bg-slate-800 transition-colors shadow-2xs cursor-pointer">
+                <span class="material-symbols-outlined text-sm">file_download</span>
                 <span>Export CSV</span>
             </button>
 
-            <div class="h-5 w-px bg-slate-200 mx-0.5"></div>
+            <div class="h-4 w-px bg-slate-200 mx-0.5"></div>
 
             <div class="flex items-center gap-2 pl-0.5">
                 <div class="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-[10px] shadow-2xs">AO</div>
                 <div class="flex flex-col text-left">
                     <span class="text-xs font-bold text-slate-900 leading-none">AO #104</span>
-                    <span class="text-[9px] text-slate-500 font-medium">MoSPI</span>
+                    <span class="text-[9px] text-slate-500 font-medium">MoSPI Oversight</span>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content Canvas (Single Screen Layout) -->
-    <main class="flex-1 min-h-0 p-3 flex flex-col gap-2 overflow-hidden">
+    <main class="flex-1 min-h-0 p-2.5 flex flex-col gap-2 overflow-hidden">
         
         <!-- Header Title & Records Count (Single compact row) -->
         <div class="flex items-center justify-between gap-3 shrink-0">
             <div class="flex items-center gap-2">
-                <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-none">Central Project Ledger &amp; Data Explorer</h1>
-                <span class="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-800 text-[10px] font-bold font-mono">198,116 TOTAL WORKS</span>
-                <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-700 text-[10px] font-bold font-mono">₹8,501 Cr ALLOCATED</span>
+                <h1 class="text-sm font-extrabold text-slate-900 tracking-tight uppercase leading-none">Central Project Ledger &amp; Data Explorer</h1>
+                <span class="px-1.5 py-0.2 rounded bg-blue-50 border border-blue-200 text-blue-800 text-[9.5px] font-bold font-mono">198,116 WORKS</span>
+                <span class="px-1.5 py-0.2 rounded bg-slate-100 border border-slate-200 text-slate-700 text-[9.5px] font-bold font-mono">₹8,501 Cr ALLOCATED</span>
             </div>
-            <p class="text-[11px] text-slate-500 truncate hidden lg:inline">Master searchable record of sanctioned works, financial utilization, and implementing contractors.</p>
+            <p class="text-[10px] text-slate-500 truncate hidden lg:inline">Master searchable ledger of sanctioned works, financial utilization, and implementing agencies.</p>
         </div>
 
         <!-- Filter Bar Matrix (Single Compact Row) -->
-        <div class="bg-white border border-borderline rounded-lg px-3 py-1.5 shadow-2xs flex items-center gap-2 shrink-0">
+        <div class="bg-white border border-borderline rounded-lg px-2.5 py-1.5 shadow-2xs flex items-center gap-2 shrink-0">
             <!-- Keyword Filter -->
-            <div class="relative flex-1 min-w-[160px] max-w-xs">
-                <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
-                <input id="table-search" oninput="filterLedger()" class="w-full pl-7 pr-2.5 py-1 rounded border border-slate-300 bg-slate-50 text-xs focus:bg-white focus:border-blue-600 outline-none" placeholder="Filter ID, MP, district, agency..." type="text">
+            <div class="relative flex-1 min-w-[140px] max-w-xs">
+                <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-xs">search</span>
+                <input id="table-search" oninput="filterLedger()" class="w-full pl-6 pr-2 py-0.5 rounded border border-slate-300 bg-slate-50 text-xs focus:bg-white focus:border-blue-600 outline-none" placeholder="Filter ID, MP, district, agency..." type="text">
             </div>
 
             <!-- Sector Filter -->
-            <select id="filter-sector" onchange="filterLedger()" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
+            <select id="filter-sector" onchange="filterLedger()" class="bg-white border border-slate-300 rounded px-2 py-0.5 text-xs font-medium text-slate-700 outline-none focus:border-blue-600 cursor-pointer">
                 <option value="all">All Sectors</option>
                 <option value="Roads">Roads &amp; Bridges</option>
                 <option value="Health">Health &amp; Sanitation</option>
@@ -195,7 +201,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
             </select>
 
             <!-- State Filter -->
-            <select id="filter-state" onchange="filterLedger()" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
+            <select id="filter-state" onchange="filterLedger()" class="bg-white border border-slate-300 rounded px-2 py-0.5 text-xs font-medium text-slate-700 outline-none focus:border-blue-600 cursor-pointer">
                 <option value="all">All States</option>
                 <option value="Maharashtra">Maharashtra</option>
                 <option value="Uttar Pradesh">Uttar Pradesh</option>
@@ -209,7 +215,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
             </select>
 
             <!-- Progress Status Filter -->
-            <select id="filter-status" onchange="filterLedger()" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
+            <select id="filter-status" onchange="filterLedger()" class="bg-white border border-slate-300 rounded px-2 py-0.5 text-xs font-medium text-slate-700 outline-none focus:border-blue-600 cursor-pointer">
                 <option value="all">All Progress Statuses</option>
                 <option value="Completed">Completed (100%)</option>
                 <option value="In Progress">In Progress (40-90%)</option>
@@ -218,91 +224,92 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
             </select>
 
             <!-- Page Size Selector -->
-            <div class="flex items-center gap-1.5 border-l border-slate-200 pl-2 text-xs text-slate-500">
-                <span class="text-[11px] font-medium hidden md:inline">Rows:</span>
-                <select id="page-size-select" onchange="changePageSize(this.value)" class="bg-slate-50 border border-slate-300 rounded px-1.5 py-1 text-xs font-semibold text-slate-800 outline-none focus:border-blue-600">
-                    <option value="8">8 (Fit Screen)</option>
-                    <option value="9" selected>9 (Standard)</option>
-                    <option value="12">12</option>
-                    <option value="20">20</option>
+            <div class="flex items-center gap-1 border-l border-slate-200 pl-2 text-xs text-slate-500">
+                <span class="text-[10px] font-medium hidden md:inline">Rows:</span>
+                <select id="page-size-select" onchange="changePageSize(this.value)" class="bg-slate-50 border border-slate-300 rounded px-1 py-0.5 text-xs font-semibold text-slate-800 outline-none focus:border-blue-600 cursor-pointer">
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10" selected>10</option>
+                    <option value="15">15</option>
+                    <option value="25">25</option>
                     <option value="50">50</option>
                 </select>
             </div>
 
-            <button onclick="resetLedgerFilters()" class="text-slate-500 hover:text-slate-900 text-xs font-semibold underline px-1">
+            <button onclick="resetLedgerFilters()" class="text-slate-500 hover:text-slate-900 text-xs font-semibold underline px-1 cursor-pointer">
                 Reset
             </button>
         </div>
 
         <!-- Ledger Table Container: Flexes to fit exactly -->
-        <div class="flex-1 min-h-0 bg-white border border-borderline rounded-lg shadow-xs flex flex-col overflow-hidden">
+        <div class="flex-1 min-h-0 bg-white border border-borderline rounded-lg shadow-2xs flex flex-col overflow-hidden">
             
             <!-- 1. LIVE DATA TABLE -->
             <div id="view-live" class="flex-1 min-h-0 overflow-auto">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead class="sticky top-0 z-10">
-                        <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline select-none text-[11px]">
-                            <th class="py-2 px-3 font-mono bg-slate-100 w-[100px] shrink-0">Work ID</th>
-                            <th class="py-2 px-3 bg-slate-100 min-w-[180px] max-w-[260px]">Project Description</th>
-                            <th class="py-2 px-3 bg-slate-100 w-[130px] shrink-0">Sector</th>
-                            <th class="py-2 px-3 bg-slate-100 min-w-[130px] max-w-[150px] shrink-0">Constituency / State</th>
-                            <th class="py-2 px-3 bg-slate-100 min-w-[130px] max-w-[150px] shrink-0">Recommending MP</th>
-                            <th class="py-2 px-3 bg-slate-100 text-right w-[90px] shrink-0">Sanctioned</th>
-                            <th class="py-2 px-3 bg-slate-100 text-right w-[90px] shrink-0">Expended</th>
-                            <th class="py-2 px-3 bg-slate-100 text-center w-[75px] shrink-0">Exp %</th>
-                            <th class="py-2 px-3 bg-slate-100 min-w-[140px] max-w-[170px] shrink-0">Implementing Agency</th>
-                            <th class="py-2 px-3 bg-slate-100 w-[110px] text-center shrink-0">Progress</th>
-                            <th class="py-2 px-3 bg-slate-100 text-center w-[75px] shrink-0">Audit</th>
+                        <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline select-none text-[10px] font-mono">
+                            <th class="py-1.5 px-3 bg-slate-100 w-[100px] shrink-0">Work ID</th>
+                            <th class="py-1.5 px-3 bg-slate-100 min-w-[180px] max-w-[260px]">Project Description</th>
+                            <th class="py-1.5 px-3 bg-slate-100 w-[120px] shrink-0">Sector</th>
+                            <th class="py-1.5 px-3 bg-slate-100 min-w-[120px] max-w-[150px] shrink-0">Constituency / State</th>
+                            <th class="py-1.5 px-3 bg-slate-100 min-w-[120px] max-w-[140px] shrink-0">Recommending MP</th>
+                            <th class="py-1.5 px-3 bg-slate-100 text-right w-[85px] shrink-0">Sanctioned</th>
+                            <th class="py-1.5 px-3 bg-slate-100 text-right w-[85px] shrink-0">Expended</th>
+                            <th class="py-1.5 px-3 bg-slate-100 text-center w-[70px] shrink-0">Exp %</th>
+                            <th class="py-1.5 px-3 bg-slate-100 min-w-[130px] max-w-[160px] shrink-0">Implementing Agency</th>
+                            <th class="py-1.5 px-3 bg-slate-100 w-[100px] text-center shrink-0">Progress</th>
+                            <th class="py-1.5 px-3 bg-slate-100 text-center w-[70px] shrink-0">Action</th>
                         </tr>
                     </thead>
-                    <tbody id="ledger-tbody" class="divide-y divide-borderline font-tabular">
+                    <tbody id="ledger-tbody" class="divide-y divide-borderline font-tabular text-[10.5px]">
                         <!-- Populated via JS -->
                     </tbody>
                 </table>
             </div>
 
             <!-- 2. LOADING SKELETON STATE -->
-            <div id="view-skeleton" class="hidden p-6 space-y-4">
+            <div id="view-skeleton" class="hidden p-4 space-y-3">
                 <div class="h-4 bg-slate-200 rounded w-48 animate-pulse"></div>
-                <div class="space-y-3">
-                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-10 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                <div class="space-y-2">
+                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
                 </div>
             </div>
 
             <!-- 3. EMPTY STATE -->
-            <div id="view-empty" class="hidden p-8 flex flex-col items-center justify-center text-center space-y-2">
-                <div class="w-12 h-12 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-400">
-                    <span class="material-symbols-outlined text-2xl">search_off</span>
+            <div id="view-empty" class="hidden p-6 flex flex-col items-center justify-center text-center space-y-2">
+                <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-400">
+                    <span class="material-symbols-outlined text-xl">search_off</span>
                 </div>
-                <h3 class="text-sm font-bold text-slate-800">No Ledger Records Match Query</h3>
-                <p class="text-xs text-slate-500 max-w-sm">No records in the central MPLAD data ledger correspond to the current filters.</p>
-                <button onclick="resetLedgerFilters()" class="px-3 py-1 bg-blue-700 hover:bg-blue-800 text-white rounded text-xs font-bold transition-colors shadow-xs">
+                <h3 class="text-xs font-bold text-slate-800">No Ledger Records Match Query</h3>
+                <p class="text-[11px] text-slate-500 max-w-sm">No records in the central data ledger correspond to the current filters.</p>
+                <button onclick="resetLedgerFilters()" class="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-bold transition-colors shadow-2xs cursor-pointer">
                     Reset Filters
                 </button>
             </div>
 
             <!-- 4. ERROR STATE -->
-            <div id="view-error" class="hidden p-8 flex flex-col items-center justify-center text-center space-y-2">
-                <div class="w-12 h-12 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-red-600">
-                    <span class="material-symbols-outlined text-2xl">error</span>
+            <div id="view-error" class="hidden p-6 flex flex-col items-center justify-center text-center space-y-2">
+                <div class="w-10 h-10 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-red-600">
+                    <span class="material-symbols-outlined text-xl">error</span>
                 </div>
-                <h3 class="text-sm font-bold text-red-900">Data Pipeline Timeout</h3>
-                <p class="text-xs text-slate-500 max-w-sm">The query to the central MoSPI replica took longer than expected.</p>
-                <button onclick="setExplorerView('live'); showToast('Ledger query re-executed successfully.', 'success');" class="px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-bold transition-colors shadow-xs">
+                <h3 class="text-xs font-bold text-red-900">Data Pipeline Timeout</h3>
+                <p class="text-[11px] text-slate-500 max-w-sm">The query to the central MoSPI replica took longer than expected.</p>
+                <button onclick="setExplorerView('live'); showToast('Ledger query re-executed successfully.', 'success');" class="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-bold transition-colors shadow-2xs cursor-pointer">
                     Retry Fetch
                 </button>
             </div>
 
             <!-- Compact Pagination Bar -->
-            <div class="h-10 shrink-0 px-3 border-t border-borderline bg-slate-50/80 flex items-center justify-between text-slate-500">
-                <span class="text-xs font-medium">Showing <strong id="ledger-visible-count" class="text-slate-900 font-mono">1 – 9</strong> of <strong id="ledger-total-count" class="text-slate-900 font-mono">4,000</strong> scanned ledger works (198,116 works total)</span>
+            <div class="h-9 shrink-0 px-3 border-t border-borderline bg-slate-50/80 flex items-center justify-between text-slate-500">
+                <span class="text-[11px] font-medium">Showing <strong id="ledger-visible-count" class="text-slate-900 font-mono">1 – 10</strong> of <strong id="ledger-total-count" class="text-slate-900 font-mono">4,000</strong> scanned ledger works (198,116 works total)</span>
                 <div id="ledger-pagination-controls" class="flex items-center gap-1 font-mono text-xs">
-                    <button id="btn-ledger-prev" onclick="prevLedgerPage()" class="px-2 py-0.5 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 disabled:opacity-40">&lt; Prev</button>
-                    <span id="ledger-page-indicator" class="px-2 py-0.5 font-bold text-slate-800 text-[11px]">Page 1 of 445</span>
-                    <button id="btn-ledger-next" onclick="nextLedgerPage()" class="px-2 py-0.5 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100">Next &gt;</button>
+                    <button id="btn-ledger-prev" onclick="prevLedgerPage()" class="px-2 py-0.5 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 disabled:opacity-40 cursor-pointer">&lt; Prev</button>
+                    <span id="ledger-page-indicator" class="px-2 py-0.5 font-bold text-slate-800 text-[10.5px]">Page 1 of 400</span>
+                    <button id="btn-ledger-next" onclick="nextLedgerPage()" class="px-2 py-0.5 rounded border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 cursor-pointer">Next &gt;</button>
                 </div>
             </div>
         </div>
@@ -317,7 +324,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 let ledgerData = [];
 let currentFiltered = [];
 let currentPage = 1;
-let pageSize = 9;
+let pageSize = 10;
 
 function changePageSize(size) {
     pageSize = parseInt(size, 10);
@@ -419,25 +426,25 @@ function renderLedger() {
     setExplorerView('live');
     tbody.innerHTML = pageItems.map(row => `
         <tr class="hover:bg-slate-50/80 transition-colors border-b border-slate-100">
-            <td class="py-1.5 px-3 font-mono font-bold text-slate-900 w-[100px] shrink-0">
+            <td class="py-1 px-3 font-mono font-bold text-slate-900 w-[100px] shrink-0">
                 ${row.id}
             </td>
-            <td class="py-1.5 px-3 font-semibold text-slate-800 min-w-[180px] max-w-[260px] truncate" title="${row.title || ''}">
+            <td class="py-1 px-3 font-semibold text-slate-800 min-w-[180px] max-w-[260px] truncate" title="${row.title || ''}">
                 ${row.title || 'Untitled Work'}
             </td>
-            <td class="py-1.5 px-3 w-[130px] shrink-0">
-                <span class="px-1.5 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-semibold truncate block max-w-[125px]">${row.sector || 'Public Infrastructure'}</span>
+            <td class="py-1 px-3 w-[120px] shrink-0">
+                <span class="px-1.5 py-0.2 rounded bg-blue-50 text-blue-800 border border-blue-200 text-[9.5px] font-semibold truncate block max-w-[115px]">${row.sector || 'Public Infrastructure'}</span>
             </td>
-            <td class="py-1.5 px-3 text-slate-600 truncate min-w-[130px] max-w-[150px] shrink-0" title="${row.location || ''}">${row.location || 'N/A'}</td>
-            <td class="py-1.5 px-3 text-slate-600 font-medium truncate min-w-[130px] max-w-[150px] shrink-0" title="${row.mp || ''}">${row.mp || 'N/A'}</td>
-            <td class="py-1.5 px-3 text-right font-mono font-bold text-slate-900 w-[90px] shrink-0">${row.sanctioned || '₹0'}</td>
-            <td class="py-1.5 px-3 text-right font-mono text-slate-700 font-medium w-[90px] shrink-0">${row.expended || '₹0'}</td>
-            <td class="py-1.5 px-3 text-center font-mono font-bold text-slate-800 w-[75px] shrink-0">
-                <span class="inline-block px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 text-[10px] font-mono font-bold">${row.expRate || '0%'}</span>
+            <td class="py-1 px-3 text-slate-600 truncate min-w-[120px] max-w-[150px] shrink-0" title="${row.location || ''}">${row.location || 'N/A'}</td>
+            <td class="py-1 px-3 text-slate-600 font-medium truncate min-w-[120px] max-w-[140px] shrink-0" title="${row.mp || ''}">${row.mp || 'N/A'}</td>
+            <td class="py-1 px-3 text-right font-mono font-bold text-slate-900 w-[85px] shrink-0">${row.sanctioned || '₹0'}</td>
+            <td class="py-1 px-3 text-right font-mono text-slate-700 font-medium w-[85px] shrink-0">${row.expended || '₹0'}</td>
+            <td class="py-1 px-3 text-center font-mono font-bold text-slate-800 w-[70px] shrink-0">
+                <span class="inline-block px-1 py-0.2 rounded bg-slate-100 border border-slate-200 text-[9.5px] font-mono font-bold">${row.expRate || '0%'}</span>
             </td>
-            <td class="py-1.5 px-3 text-slate-600 truncate min-w-[140px] max-w-[170px] shrink-0" title="${row.agency || ''}">${row.agency || 'N/A'}</td>
-            <td class="py-1.5 px-3 text-center w-[110px] shrink-0">
-                <span class="px-2 py-0.5 rounded text-[10px] whitespace-nowrap ${
+            <td class="py-1 px-3 text-slate-600 truncate min-w-[130px] max-w-[160px] shrink-0" title="${row.agency || ''}">${row.agency || 'N/A'}</td>
+            <td class="py-1 px-3 text-center w-[100px] shrink-0">
+                <span class="px-1.5 py-0.2 rounded text-[9.5px] whitespace-nowrap ${
                     row.progress === 'Completed' ? 'bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold' :
                     row.progress === 'Physical Inspection' ? 'bg-sky-100 text-sky-900 border border-sky-300 font-bold' :
                     row.progress === 'Stalled / Flagged' ? 'bg-red-100 text-red-900 border border-red-300 font-bold' :
@@ -446,13 +453,13 @@ function renderLedger() {
                     'bg-amber-100 text-amber-900 border border-amber-300 font-bold'
                 }">${row.progress || 'In Progress'}</span>
             </td>
-            <td class="py-1.5 px-3 text-center w-[75px] shrink-0">
+            <td class="py-1 px-3 text-center w-[70px] shrink-0">
                 ${row.isFlagged ? `
-                    <a href="Case_Details.html?id=${encodeURIComponent(row.id)}" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-600 text-white font-bold text-[10px] hover:bg-red-700 transition-colors shadow-2xs">
+                    <a href="Case_Details.html?id=${encodeURIComponent(row.id)}" class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-red-600 text-white font-bold text-[9.5px] hover:bg-red-700 transition-colors shadow-2xs">
                         <span>Audit</span>
                     </a>
                 ` : `
-                    <span class="text-slate-400 font-mono text-[10px]">Verified</span>
+                    <span class="text-slate-400 font-mono text-[9.5px]">Verified</span>
                 `}
             </td>
         </tr>
@@ -556,7 +563,7 @@ function exportTableToCSV(filename) {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", filename || "mplad-master-ledger.csv");
+    link.setAttribute("download", filename || "nidhi-trace-master-ledger.csv");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

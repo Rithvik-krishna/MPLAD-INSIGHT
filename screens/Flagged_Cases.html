@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MPLAD Insight — Flagged Cases Triage Workbench</title>
+<title>NIDHI TRACE — Flagged Cases Triage Workbench</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <script id="tailwind-config">
 tailwind.config = {
@@ -19,8 +19,8 @@ tailwind.config = {
                     500: '#2563eb',
                     700: '#1d4ed8',
                     800: '#1e40af',
-                    900: '#0f172a',
-                    950: '#090d16'
+                    900: '#0a1128',
+                    950: '#060a17'
                 },
                 canvas: '#f8fafc',
                 surface: '#ffffff',
@@ -35,6 +35,10 @@ tailwind.config = {
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace']
+            },
+            boxShadow: {
+                '2xs': '0 1px 2px 0 rgba(0, 0, 0, 0.04)',
+                'xs': '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.03)'
             }
         }
     }
@@ -58,27 +62,29 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 </head>
 <body class="bg-canvas text-slate-800 antialiased text-xs h-screen max-h-screen w-full overflow-hidden relative flex">
 
-<!-- UNIFIED SHELL: Side Navigation -->
-<aside class="w-[240px] h-screen shrink-0 flex flex-col bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none overflow-hidden">
-    <div class="px-4 py-4 border-b border-slate-800/80 flex items-center gap-2.5 shrink-0">
-        <div class="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
+<!-- UNIFIED SHELL: Side Navigation (230px, Deep Navy Institutional) -->
+<aside class="w-[230px] h-screen shrink-0 flex flex-col bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none overflow-hidden">
+    <!-- Brand Header -->
+    <div class="px-4 py-3.5 border-b border-slate-800/80 flex items-center gap-2.5 shrink-0">
+        <div class="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 shrink-0">
             <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
         </div>
-        <div class="flex flex-col">
-            <span class="font-extrabold text-white text-xs tracking-wider uppercase">MPLAD INSIGHT</span>
-            <span class="text-[9px] text-blue-400 uppercase tracking-widest font-semibold">GovTech Audit AI</span>
+        <div class="flex flex-col min-w-0">
+            <span class="font-black text-white text-xs tracking-wider uppercase leading-tight">NIDHI TRACE</span>
+            <span class="text-[8.5px] text-blue-400 uppercase tracking-widest font-semibold truncate">Fund Intelligence</span>
         </div>
     </div>
 
+    <!-- Navigation List -->
     <nav class="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
         <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Overview_Dashboard.html">
             <span class="material-symbols-outlined text-base">dashboard</span>
             <span>Overview</span>
         </a>
-        <a class="flex items-center gap-2.5 px-3 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Flagged_Cases.html">
+        <a class="flex items-center gap-2.5 px-3 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-2xs transition-all" href="Flagged_Cases.html">
             <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">report_problem</span>
             <span>Flagged Cases</span>
-            <span id="sidebar-flagged-count" class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">23,912</span>
+            <span id="sidebar-flagged-count" class="ml-auto px-1.5 py-0.2 rounded bg-red-950/80 text-red-400 border border-red-800/80 text-[10px] font-mono font-bold">25,483</span>
         </a>
         <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Geographic_Map.html">
             <span class="material-symbols-outlined text-base">map</span>
@@ -94,7 +100,8 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         </a>
     </nav>
 
-    <div class="p-3 border-t border-slate-800 bg-brand-950/40 text-[11px] space-y-1.5 shrink-0">
+    <!-- Sidebar Footer Status -->
+    <div class="p-3 border-t border-slate-800 bg-brand-950/60 text-[10.5px] space-y-1.5 shrink-0">
         <div class="flex items-center justify-between">
             <span class="text-slate-400 flex items-center gap-1.5">
                 <span class="relative flex h-2 w-2">
@@ -103,16 +110,16 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
                 </span>
                 Live Audit Stream
             </span>
-            <span class="font-mono text-slate-400 font-bold text-[10px]">ACTIVE</span>
+            <span class="font-mono text-slate-400 font-bold text-[9.5px]">ACTIVE</span>
         </div>
-        <div class="flex items-center justify-between text-slate-500 text-[10px]">
+        <div class="flex items-center justify-between text-slate-500 text-[9.5px]">
             <span>Data Ingestion:</span>
             <span class="font-mono text-slate-400">06:00 IST</span>
         </div>
-        <div class="flex items-center justify-between text-slate-500 text-[10px]">
-            <span>System Pipeline:</span>
+        <div class="flex items-center justify-between text-slate-500 text-[9.5px]">
+            <span>Surveillance Model:</span>
             <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px]">check_circle</span> Normal
+                <span class="material-symbols-outlined text-[12px]">check_circle</span> v2.6 Ready
             </span>
         </div>
     </div>
@@ -121,12 +128,12 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 <!-- Main Wrapper (Single Screen, Viewport-Locked) -->
 <div class="flex-1 min-w-0 h-screen max-h-screen flex flex-col bg-canvas overflow-hidden">
     
-    <!-- UNIFIED SHELL: Compact Header -->
-    <header class="h-12 min-h-[48px] max-h-[48px] shrink-0 w-full bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-4">
+    <!-- UNIFIED SHELL: Compact Top Bar (48px) -->
+    <header class="h-12 min-h-[48px] max-h-[48px] shrink-0 w-full bg-white border-b border-borderline shadow-2xs z-40 flex justify-between items-center px-4">
         <div class="flex items-center gap-3 w-80">
             <div class="relative w-full">
                 <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
-                <input id="global-search" class="w-full pl-8 pr-10 py-1 rounded border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 outline-none placeholder:text-slate-400 font-sans" placeholder="Search works, districts, MP names, project IDs... (Press ⌘K)" type="search">
+                <input id="global-search" class="w-full pl-8 pr-10 py-1 rounded border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 outline-none placeholder:text-slate-400 font-sans" placeholder="Search works, districts, MP names, IDs... (Press ⌘K)" type="search">
                 <kbd class="absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.2 rounded border border-slate-300 bg-white text-[9px] font-mono text-slate-400">⌘K</kbd>
             </div>
         </div>
@@ -138,13 +145,13 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
                 <span class="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-red-600 rounded-full ring-2 ring-white"></span>
             </button>
 
-            <!-- Live Scrutiny Engine Status -->
-            <div class="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-emerald-800 text-[11px] font-semibold">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <!-- Platform Tagline Pill -->
+            <div class="hidden xl:flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-emerald-800 text-[10px] font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>MoSPI Scrutiny Engine Active</span>
             </div>
 
-            <button onclick="exportTableToCSV('mplad_flagged_cases.csv')" class="flex items-center gap-1 px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs">
+            <button onclick="exportTableToCSV('nidhi_trace_flagged_cases.csv')" class="flex items-center gap-1 px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-semibold hover:bg-slate-800 transition-colors shadow-2xs">
                 <span class="material-symbols-outlined text-[14px]">download</span>
                 <span>Export CSV</span>
             </button>
@@ -152,9 +159,9 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
             <div class="h-5 w-px bg-slate-200 mx-0.5"></div>
 
             <div class="flex items-center gap-2 pl-0.5">
-                <div class="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-[10px] shadow-xs">AO</div>
+                <div class="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-[10px] shadow-2xs">AO</div>
                 <div class="flex flex-col text-left">
-                    <span class="text-[11px] font-bold text-slate-900 leading-tight">Officer #104</span>
+                    <span class="text-[11px] font-bold text-slate-900 leading-tight">AO #104</span>
                     <span class="text-[9px] text-slate-500 font-medium">MoSPI Oversight</span>
                 </div>
             </div>
@@ -162,74 +169,75 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
     </header>
 
     <!-- Main Content Area: Zero Outer Window Scroll -->
-    <main class="flex-1 min-h-0 p-3 flex flex-col gap-2 overflow-hidden w-full">
+    <main class="flex-1 min-h-0 p-3.5 flex flex-col gap-2.5 overflow-hidden w-full">
         
         <!-- Header Title & Counts (Compact Single Row) -->
-        <div class="flex items-center justify-between shrink-0 border-b border-borderline pb-1.5">
-            <div class="flex items-baseline gap-3">
-                <h1 class="text-base font-extrabold text-slate-900 tracking-tight">Flagged Cases Audit Workbench</h1>
-                <span id="flagged-subtitle" class="text-[11px] text-slate-500">23,912 works displaying statistical and compliance anomalies</span>
+        <div class="flex items-center justify-between shrink-0 border-b border-borderline pb-2">
+            <div class="flex items-baseline gap-2.5 flex-wrap">
+                <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-none">Flagged Cases Audit Workbench</h1>
+                <span class="text-slate-300">|</span>
+                <span id="flagged-subtitle" class="text-[11px] text-slate-500">25,483 works displaying statistical and compliance anomalies (Requires Human Review)</span>
             </div>
             <div class="flex items-center gap-1.5 font-mono text-[10px]">
                 <span id="stat-critical-pill" class="px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-200 font-bold">1,137 CRITICAL</span>
-                <span id="stat-high-pill" class="px-2 py-0.5 rounded bg-orange-100 text-orange-900 border border-orange-200 font-bold">5,965 HIGH</span>
-                <span id="stat-med-pill" class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-200 font-bold">15,965 MEDIUM</span>
+                <span id="stat-high-pill" class="px-2 py-0.5 rounded bg-orange-100 text-orange-900 border border-orange-200 font-bold">5,507 HIGH</span>
+                <span id="stat-med-pill" class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-200 font-bold">17,761 MEDIUM</span>
             </div>
         </div>
 
         <!-- Filter Bar Matrix (Compact Single Line) -->
-        <div class="shrink-0 bg-white border border-borderline rounded-lg px-2.5 py-1.5 shadow-2xs flex flex-wrap items-center gap-2 text-xs">
+        <div class="shrink-0 bg-white border border-borderline rounded-lg px-3 py-2 shadow-2xs flex flex-wrap items-center gap-2 text-xs">
             <!-- Search Inside Table -->
-            <div class="relative w-60">
+            <div class="relative w-64">
                 <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-sm">filter_alt</span>
                 <input id="table-filter" oninput="filterCases()" class="w-full pl-7 pr-2.5 py-1 rounded border border-slate-300 bg-slate-50 text-xs focus:bg-white focus:border-blue-600 outline-none" placeholder="Filter by ID, MP, title..." type="text">
             </div>
 
             <!-- State Filter -->
-            <select id="filter-state" onchange="filterCases()" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
+            <select id="filter-state" onchange="filterCases()" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
                 <option value="all">All States / UTs</option>
             </select>
 
             <!-- Anomaly Filter -->
-            <select id="filter-anomaly" onchange="filterCases()" class="bg-white border border-slate-300 rounded px-2 py-1 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
+            <select id="filter-anomaly" onchange="filterCases()" class="bg-white border border-slate-300 rounded px-2.5 py-1 text-xs font-medium text-slate-700 outline-none focus:border-blue-600">
                 <option value="all">All Anomaly Types</option>
-                <option value="Delay">Completion Delay</option>
-                <option value="Cost">Amount Deviation</option>
-                <option value="Agency">Agency Concentration</option>
-                <option value="Spatial">Spatial ML Cluster</option>
-                <option value="UC">UC Mismatch</option>
+                <option value="Delay">Completion Delay (>200%)</option>
+                <option value="Cost">Amount Deviation Outlier</option>
+                <option value="Agency">Agency Concentration Risk</option>
+                <option value="Spatial">Spatial ML Cluster Outlier</option>
+                <option value="MP Drift">MP Spending Habit Drift</option>
             </select>
 
             <!-- Severity Pills -->
             <div class="flex items-center gap-1 ml-auto">
-                <span class="text-[10px] font-bold text-slate-400 uppercase mr-0.5">Severity:</span>
-                <button onclick="toggleSeverityPill('all')" id="pill-all" class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-900 text-white">All</button>
-                <button onclick="toggleSeverityPill('critical')" id="pill-critical" class="px-2 py-0.5 rounded text-[11px] font-bold bg-red-50 text-red-800 border border-red-200 hover:bg-red-100">Critical</button>
-                <button onclick="toggleSeverityPill('high')" id="pill-high" class="px-2 py-0.5 rounded text-[11px] font-bold bg-orange-50 text-orange-800 border border-orange-200 hover:bg-orange-100">High</button>
-                <button onclick="toggleSeverityPill('med')" id="pill-med" class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100">Medium</button>
-                <button onclick="toggleSeverityPill('low')" id="pill-low" class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100">Low</button>
+                <span class="text-[10px] font-bold text-slate-400 uppercase mr-1">Severity:</span>
+                <button onclick="toggleSeverityPill('all')" id="pill-all" class="px-2.5 py-1 rounded text-xs font-bold bg-slate-900 text-white">All</button>
+                <button onclick="toggleSeverityPill('critical')" id="pill-critical" class="px-2.5 py-1 rounded text-xs font-bold bg-red-50 text-red-800 border border-red-200 hover:bg-red-100">Critical</button>
+                <button onclick="toggleSeverityPill('high')" id="pill-high" class="px-2.5 py-1 rounded text-xs font-bold bg-orange-50 text-orange-800 border border-orange-200 hover:bg-orange-100">High</button>
+                <button onclick="toggleSeverityPill('med')" id="pill-med" class="px-2.5 py-1 rounded text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100">Medium</button>
+                <button onclick="toggleSeverityPill('low')" id="pill-low" class="px-2.5 py-1 rounded text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100">Low</button>
             </div>
         </div>
 
         <!-- Table Container (Flexibly Sized to Fill Screen with Zero Window Scroll) -->
-        <div class="flex-1 min-h-0 bg-white border border-borderline rounded-lg shadow-xs flex flex-col overflow-hidden">
+        <div class="flex-1 min-h-0 bg-white border border-borderline rounded-lg shadow-2xs flex flex-col overflow-hidden">
             
             <!-- 1. LIVE DATA TABLE -->
             <div id="view-live" class="flex-1 min-h-0 overflow-auto">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead>
-                        <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline select-none text-[11px]">
-                            <th class="py-2 px-2.5 text-center w-[85px]">Risk Score</th>
-                            <th class="py-2 px-2.5 font-mono w-[110px]">Work ID</th>
-                            <th class="py-2 px-2.5 min-w-[200px]">Project Title</th>
-                            <th class="py-2 px-2.5 w-[140px]">Constituency / State</th>
-                            <th class="py-2 px-2.5 w-[140px]">MP / Nodal Entity</th>
-                            <th class="py-2 px-2.5 text-right w-[85px]">Sanctioned</th>
-                            <th class="py-2 px-2.5 text-right w-[80px]">Utilized</th>
-                            <th class="py-2 px-2.5 w-[180px]">Primary Anomaly</th>
-                            <th class="py-2 px-2.5 w-[140px]">Implementing Agency</th>
-                            <th class="py-2 px-2.5 text-center w-[85px]">Status</th>
-                            <th class="py-2 px-2.5 text-center w-[85px]">Action</th>
+                        <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline select-none text-[10px]">
+                            <th class="py-2 px-3 text-center w-[95px]">Risk Score</th>
+                            <th class="py-2 px-3 font-mono w-[115px]">Work ID</th>
+                            <th class="py-2 px-3 min-w-[220px]">Project Title</th>
+                            <th class="py-2 px-3 w-[150px]">Constituency / State</th>
+                            <th class="py-2 px-3 w-[150px]">MP / Nodal Entity</th>
+                            <th class="py-2 px-3 text-right w-[95px]">Sanctioned</th>
+                            <th class="py-2 px-3 text-right w-[90px]">Utilized</th>
+                            <th class="py-2 px-3 w-[180px]">Primary Anomaly</th>
+                            <th class="py-2 px-3 w-[150px]">Implementing Agency</th>
+                            <th class="py-2 px-3 text-center w-[90px]">Status</th>
+                            <th class="py-2 px-3 text-center w-[90px]">Action</th>
                         </tr>
                     </thead>
                     <tbody id="case-tbody" class="divide-y divide-borderline font-tabular text-xs">
@@ -245,13 +253,13 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
                     <div class="h-3.5 bg-slate-200 rounded w-24"></div>
                 </div>
                 <div class="space-y-2">
-                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
-                    <div class="h-8 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-9 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-9 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-9 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-9 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-9 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-9 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
+                    <div class="h-9 bg-slate-100 rounded border border-slate-200 animate-pulse"></div>
                 </div>
             </div>
 
@@ -262,7 +270,7 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
                 </div>
                 <h3 class="text-sm font-bold text-slate-800">No Flagged Cases Match Filter Criteria</h3>
                 <p class="text-[11px] text-slate-500 max-w-sm">No anomalous works match the active combination of state, severity, or keyword search query.</p>
-                <button onclick="resetFilters()" class="px-3 py-1 bg-blue-700 hover:bg-blue-800 text-white rounded text-xs font-bold transition-colors shadow-xs">
+                <button onclick="resetFilters()" class="px-3 py-1 bg-blue-700 hover:bg-blue-800 text-white rounded text-xs font-bold transition-colors shadow-2xs">
                     Reset All Filters
                 </button>
             </div>
@@ -274,15 +282,15 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
                 </div>
                 <h3 class="text-sm font-bold text-red-900">Failed to Sync Audit Pipeline</h3>
                 <p class="text-[11px] text-slate-500 max-w-sm">Could not establish connection to the data store.</p>
-                <button onclick="setTableView('live'); showToast('Successfully reconnected to audit node.', 'success');" class="px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-bold transition-colors shadow-xs">
+                <button onclick="setTableView('live'); showToast('Successfully reconnected to audit node.', 'success');" class="px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-bold transition-colors shadow-2xs">
                     Retry Connection
                 </button>
             </div>
 
             <!-- Table Pagination & Count Footer (Fixed at Bottom of Card) -->
-            <div class="shrink-0 px-3 py-2 border-t border-borderline bg-slate-50/90 flex items-center justify-between text-slate-600 text-xs">
+            <div class="shrink-0 px-3.5 py-2 border-t border-borderline bg-slate-50/90 flex items-center justify-between text-slate-600 text-xs">
                 <div class="flex items-center gap-3">
-                    <span class="text-xs">Showing <strong id="visible-count" class="text-slate-900 font-mono">1 – 9</strong> of <strong id="total-flagged-count" class="text-slate-900 font-mono">2,763</strong> records</span>
+                    <span class="text-xs">Showing <strong id="visible-count" class="text-slate-900 font-mono font-bold">1 – 9</strong> of <strong id="total-flagged-count" class="text-slate-900 font-mono font-bold">2,763</strong> records</span>
                     <div class="flex items-center gap-1 text-[11px] text-slate-500">
                         <span>Rows per view:</span>
                         <select id="select-page-size" onchange="changePageSize(this.value)" class="bg-white border border-slate-300 rounded px-1.5 py-0.5 text-[11px] font-bold text-slate-800 outline-none">
@@ -323,13 +331,13 @@ function changePageSize(val) {
 
 function getSeverityBadge(item) {
     if (item.severity === "critical") {
-        return `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[10px] whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0"></span> ${item.score} / 100</span>`;
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-300 font-mono font-black text-[10px] whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0"></span> ${item.score} / 100</span>`;
     } else if (item.severity === "high") {
-        return `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-orange-100 text-orange-800 border border-orange-300 font-mono font-bold text-[10px] whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-orange-600 shrink-0"></span> ${item.score} / 100</span>`;
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-orange-100 text-orange-900 border border-orange-300 font-mono font-black text-[10px] whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-orange-600 shrink-0"></span> ${item.score} / 100</span>`;
     } else if (item.severity === "med") {
-        return `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300 font-mono font-bold text-[10px] whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-amber-600 shrink-0"></span> ${item.score} / 100</span>`;
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 font-mono font-black text-[10px] whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-amber-600 shrink-0"></span> ${item.score} / 100</span>`;
     } else {
-        return `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 font-mono font-bold text-[10px] whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0"></span> ${item.score} / 100</span>`;
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300 font-mono font-black text-[10px] whitespace-nowrap"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0"></span> ${item.score} / 100</span>`;
     }
 }
 
@@ -338,13 +346,13 @@ function getRowStatusBadge(row) {
         const saved = localStorage.getItem('mplad_action_' + row.id);
         if (saved) {
             const a = JSON.parse(saved);
-            if (a.type === 'clear') return `<span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold text-[10px]">CLEARED</span>`;
-            if (a.type === 'ground') return `<span class="px-1.5 py-0.5 rounded bg-blue-100 text-blue-900 border border-blue-300 font-bold text-[10px]">AUDIT ORD</span>`;
-            if (a.type === 'dm') return `<span class="px-1.5 py-0.5 rounded bg-red-100 text-red-900 border border-red-300 font-bold text-[10px]">CVC ESC</span>`;
-            if (a.type === 'freeze') return `<span class="px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 font-bold text-[10px]">FROZEN</span>`;
+            if (a.type === 'clear') return `<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold text-[10px]">CLEARED</span>`;
+            if (a.type === 'ground') return `<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-900 border border-blue-300 font-bold text-[10px]">AUDIT ORD</span>`;
+            if (a.type === 'dm') return `<span class="px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-300 font-bold text-[10px]">CVC ESC</span>`;
+            if (a.type === 'freeze') return `<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 font-bold text-[10px]">FROZEN</span>`;
         }
     } catch (e) {}
-    return `<span class="px-1.5 py-0.5 rounded ${row.severity === 'critical' ? 'bg-red-100 text-red-900 font-bold' : row.severity === 'high' ? 'bg-orange-100 text-orange-900 font-bold' : 'bg-slate-100 text-slate-700 font-semibold'} text-[10px]">${row.status}</span>`;
+    return `<span class="px-2 py-0.5 rounded ${row.severity === 'critical' ? 'bg-red-100 text-red-900 font-bold border border-red-200' : row.severity === 'high' ? 'bg-orange-100 text-orange-900 font-bold border border-orange-200' : 'bg-slate-100 text-slate-700 font-semibold border border-slate-200'} text-[10px]">${row.status}</span>`;
 }
 
 function renderTable() {
@@ -367,22 +375,22 @@ function renderTable() {
 
     tbody.innerHTML = pageItems.map(row => `
         <tr class="hover:bg-slate-50/80 transition-colors border-b border-borderline/60">
-            <td class="py-1.5 px-2 text-center w-[85px]">${getSeverityBadge(row)}</td>
-            <td class="py-1.5 px-2 font-mono font-bold text-slate-900 w-[110px]">${row.id}</td>
-            <td class="py-1.5 px-2 font-semibold text-slate-800 min-w-[200px] max-w-[280px] truncate" title="${row.title}">${row.title}</td>
-            <td class="py-1.5 px-2 text-slate-600 w-[140px] truncate" title="${row.location}">${row.location}</td>
-            <td class="py-1.5 px-2 text-slate-500 font-medium w-[140px] truncate" title="${row.mp}">${row.mp}</td>
-            <td class="py-1.5 px-2 text-right font-mono font-bold text-slate-900 w-[85px] whitespace-nowrap">${row.sanctioned}</td>
-            <td class="py-1.5 px-2 text-right font-mono text-slate-600 w-[80px] whitespace-nowrap">${row.utilized}</td>
-            <td class="py-1.5 px-2 w-[180px] truncate" title="${row.anomaly}">
-                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200 text-[10px] font-semibold truncate block">${row.anomaly}</span>
+            <td class="py-2.5 px-3 text-center w-[95px]">${getSeverityBadge(row)}</td>
+            <td class="py-2.5 px-3 font-mono font-bold text-blue-700 w-[115px]">#${row.id}</td>
+            <td class="py-2.5 px-3 font-semibold text-slate-800 min-w-[220px] max-w-[280px] truncate" title="${row.title}">${row.title}</td>
+            <td class="py-2.5 px-3 text-slate-600 w-[150px] truncate" title="${row.location}">${row.location}</td>
+            <td class="py-2.5 px-3 text-slate-500 font-medium w-[150px] truncate" title="${row.mp}">${row.mp}</td>
+            <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-900 w-[95px] whitespace-nowrap">${row.sanctioned}</td>
+            <td class="py-2.5 px-3 text-right font-mono text-slate-600 w-[90px] whitespace-nowrap">${row.utilized}</td>
+            <td class="py-2.5 px-3 w-[180px] truncate" title="${row.anomaly}">
+                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200 text-[10px] font-semibold truncate block">${row.anomaly}</span>
             </td>
-            <td class="py-1.5 px-2 text-slate-600 w-[140px] truncate" title="${row.agency}">${row.agency}</td>
-            <td class="py-1.5 px-2 text-center w-[85px]">
+            <td class="py-2.5 px-3 text-slate-600 w-[150px] truncate" title="${row.agency}">${row.agency}</td>
+            <td class="py-2.5 px-3 text-center w-[90px]">
                 ${getRowStatusBadge(row)}
             </td>
-            <td class="py-1.5 px-2 text-center w-[85px]">
-                <a href="Case_Details.html?id=${encodeURIComponent(row.id)}" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
+            <td class="py-2.5 px-3 text-center w-[90px]">
+                <a href="Case_Details.html?id=${encodeURIComponent(row.id)}" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
                     <span>Dossier</span>
                     <span class="material-symbols-outlined text-[12px]">arrow_forward</span>
                 </a>
