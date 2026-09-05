@@ -92,8 +92,8 @@
         root.className = 'nidhi-assistant-wrapper font-sans text-slate-800 antialiased';
 
         root.innerHTML = `
-            <!-- Floating Assistant Trigger Button (Draggable) -->
-            <div id="nidhi-floating-container" class="fixed z-[9990] flex items-center gap-2 group touch-none" style="bottom: 24px; right: 24px; cursor: grab;">
+            <!-- Floating Assistant Trigger Button (Draggable, positioned above pagination) -->
+            <div id="nidhi-floating-container" class="fixed z-[9990] flex items-center gap-2 group touch-none" style="bottom: 76px; right: 24px; cursor: grab;">
                 <!-- Tooltip Label -->
                 <span class="px-2.5 py-1 bg-slate-900/90 text-white text-xs font-semibold rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                     Ask NIDHI Assistant
@@ -154,11 +154,11 @@
                 </div>
 
                 <!-- Chat Input Strip -->
-                <form id="nidhi-input-form" class="p-2.5 bg-white border-t border-borderline flex items-center gap-2 shrink-0">
+                <form id="nidhi-input-form" onsubmit="event.preventDefault(); return false;" class="p-2.5 bg-white border-t border-borderline flex items-center gap-2 shrink-0">
                     <div class="relative flex-1">
                         <textarea id="nidhi-user-input" rows="1" class="w-full pl-3 pr-8 py-2 text-xs rounded-lg border border-slate-300 bg-slate-50 text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none resize-none font-sans leading-tight max-h-24" placeholder="Ask about MPLAD data, risks, or this case..."></textarea>
                     </div>
-                    <button id="nidhi-send-btn" type="submit" class="w-8 h-8 rounded-lg bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shrink-0 shadow-2xs transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer" title="Send Question">
+                    <button id="nidhi-send-btn" type="button" class="w-8 h-8 rounded-lg bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shrink-0 shadow-2xs transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer" title="Send Question">
                         <span class="material-symbols-outlined text-base">send</span>
                     </button>
                 </form>
@@ -247,15 +247,16 @@
         let hasMoved = false;
 
         function onPointerDown(e) {
-            // Ignore if clicking action buttons inside the header
-            if (e.target.closest('button') || e.target.closest('input')) return;
+            // For drawer header, ignore clicks on action buttons (close, minimize, new-chat)
+            if (isDrawer && (e.target.closest('button') || e.target.closest('input'))) {
+                return;
+            }
 
-            e.preventDefault();
             isDragging = true;
             hasMoved = false;
 
-            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            const clientX = e.clientX ?? (e.touches && e.touches[0].clientX) ?? 0;
+            const clientY = e.clientY ?? (e.touches && e.touches[0].clientY) ?? 0;
 
             startX = clientX;
             startY = clientY;
@@ -265,6 +266,8 @@
             origTop = rect.top;
 
             handle.style.cursor = 'grabbing';
+            const toggleBtn = document.getElementById('nidhi-assistant-toggle');
+            if (toggleBtn) toggleBtn.style.cursor = 'grabbing';
             document.body.style.userSelect = 'none';
 
             window.addEventListener('pointermove', onPointerMove, { passive: false });
@@ -275,17 +278,19 @@
 
         function onPointerMove(e) {
             if (!isDragging) return;
-            e.preventDefault();
 
-            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            const clientX = e.clientX ?? (e.touches && e.touches[0].clientX) ?? 0;
+            const clientY = e.clientY ?? (e.touches && e.touches[0].clientY) ?? 0;
 
             const dx = clientX - startX;
             const dy = clientY - startY;
 
-            if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+            if (Math.hypot(dx, dy) > 5) {
                 hasMoved = true;
-                if (target.dataset) target.dataset.dragged = "true";
+                if (e.cancelable) e.preventDefault();
+                target.setAttribute('data-dragged', 'true');
+                const btnContainer = document.getElementById('nidhi-floating-container');
+                if (btnContainer) btnContainer.setAttribute('data-dragged', 'true');
             }
 
             if (hasMoved) {
@@ -299,6 +304,8 @@
             if (!isDragging) return;
             isDragging = false;
             handle.style.cursor = 'grab';
+            const toggleBtn = document.getElementById('nidhi-assistant-toggle');
+            if (toggleBtn) toggleBtn.style.cursor = 'grab';
             document.body.style.userSelect = '';
 
             window.removeEventListener('pointermove', onPointerMove);
@@ -309,21 +316,29 @@
             if (hasMoved) {
                 const rect = target.getBoundingClientRect();
                 if (onSave) onSave(rect.left, rect.top);
-                // Keep flag temporarily to prevent click toggle
+                // Keep dragged flag for 200ms to swallow any subsequent click event
                 setTimeout(() => {
-                    if (target.dataset) delete target.dataset.dragged;
-                }, 100);
+                    target.removeAttribute('data-dragged');
+                    const btnContainer = document.getElementById('nidhi-floating-container');
+                    if (btnContainer) btnContainer.removeAttribute('data-dragged');
+                }, 200);
             }
         }
 
         handle.addEventListener('pointerdown', onPointerDown);
-        handle.addEventListener('touchstart', onPointerDown, { passive: false });
+        handle.addEventListener('touchstart', onPointerDown, { passive: true });
     }
 
     function bindEvents() {
         const toggleBtn = document.getElementById('nidhi-assistant-toggle');
         const closeBtn = document.getElementById('nidhi-btn-close');
         const minBtn = document.getElementById('nidhi-btn-minimize');
+        const newChatBtn = document.getElementById('nidhi-btn-new-chat');
+        const form = document.getElementById('nidhi-input-form');
+        const input = document.getElementById('nidhi-user-input');
+        const sendBtn = document.getElementById('nidhi-send-btn');
+        const toggleCtxBtn = document.getElementById('nidhi-toggle-context');
+
         toggleBtn?.addEventListener('click', toggleDrawer);
         closeBtn?.addEventListener('click', closeDrawer);
         minBtn?.addEventListener('click', closeDrawer);
@@ -336,14 +351,24 @@
             updateContextLabel();
         });
 
+        // Robust Send Handler: handles click, enter key, and form submit without reload
+        sendBtn?.addEventListener('click', (e) => {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            handleFormSubmit(e);
+        });
+
         input?.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
-                form.dispatchEvent(new Event('submit'));
+                e.stopPropagation();
+                handleFormSubmit(e);
             }
         });
 
-        form?.addEventListener('submit', handleFormSubmit);
+        form?.addEventListener('submit', (e) => {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            handleFormSubmit(e);
+        });
 
         // Auto-update context label on page focus or route changes
         window.addEventListener('focus', updateContextLabel);
@@ -522,12 +547,13 @@
 
             // Bind pill click events
             container.querySelectorAll('.nidhi-suggestion-pill').forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', (e) => {
+                    if (e) { e.preventDefault(); e.stopPropagation(); }
                     const text = btn.innerText.trim();
                     const input = document.getElementById('nidhi-user-input');
                     if (input) {
                         input.value = text;
-                        document.getElementById('nidhi-input-form')?.dispatchEvent(new Event('submit'));
+                        handleFormSubmit();
                     }
                 });
             });
@@ -598,6 +624,25 @@
             return {
                 text: "I'm NIDHI Assistant, and I can only help with NIDHI TRACE, MPLAD data, anomaly detection, risk analysis, and audit workflows.",
                 source: "Security Filter"
+            };
+        }
+
+        // 2.5 Help, greetings, and capabilities guide
+        if (q === 'help' || q === 'hi' || q === 'hello' || q.includes('what can you do') || q.includes('guide') || q.includes('capabilities') || q.includes('menu')) {
+            return {
+                text: `### NIDHI Assistant — AI Audit Copilot Guide
+
+I am your **AI Audit Copilot** for NIDHI TRACE, monitoring 198,116 MPLAD projects totaling ₹8,501.1 Cr across India.
+
+#### How I Can Assist You:
+1. **Case Anomaly Forensics:** Ask *"Why was project #MPLAD-01515 flagged?"* or *"Analyze case MPLAD-03983"*.
+2. **Detection Models:** Ask *"How does MP Baseline Drift work?"* or *"Explain Isolation Forest spatial clustering"*.
+3. **Risk Scoring:** Ask *"What does a 95 risk score mean?"* or *"How is Scrutiny Exposure calculated?"*.
+4. **Audit Action Items:** Ask *"What evidence or physical vouchers should an auditor inspect for high-risk projects?"*.
+5. **Ledger & National Scope:** Ask *"How many critical works are under review?"* or *"Explain completion delay anomalies"*.
+
+*Tip: You can drag this assistant window anywhere on screen, or click any suggested inquiry pill to get started.*`,
+                source: "NIDHI Knowledge Engine (Audit Guide)"
             };
         }
 
@@ -693,7 +738,10 @@ NIDHI TRACE continuously monitors **198,116 registered MPLAD works** totaling **
     // =========================================================================
 
     async function handleFormSubmit(e) {
-        e.preventDefault();
+        if (e) {
+            try { e.preventDefault(); } catch (_) {}
+            try { e.stopPropagation(); } catch (_) {}
+        }
         if (isGenerating) return;
 
         const input = document.getElementById('nidhi-user-input');

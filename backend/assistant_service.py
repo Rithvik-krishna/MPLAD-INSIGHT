@@ -184,6 +184,8 @@ class LocalDomainGuard:
     ]
 
     DASHBOARD_PATTERNS = [
+        r'^\s*(?:help|hello|hi|hey|guide|menu|what can you do|who are you|options)\b',
+        r'\b(?:help me|capabilities|audit guide|how does this work)\b',
         r'\bhow (?:do i|to) (?:use|export|filter|navigate|search)\b',
         r'\bwhat does (?:this|the) (?:dashboard|metric|kpi|chart) (?:mean|show)\b',
         r'\bshow (?:me )?(?:the )?highest.risk\b',
@@ -484,6 +486,20 @@ def generate_offline_demo_response(message: str, page_context: dict, authentic_c
 
 > **Institutional Notice:** *This case flag indicates statistical irregularity and requires human administrative review. It is not proof of fraud.*"""
 
+    if any(k in clean for k in ("help", "guide", "what can you do", "capabilities", "menu", "who are you", "hello", "hi ")):
+        return """### NIDHI Assistant — Capabilities & Audit Guide
+
+I am your **AI Audit Copilot** for NIDHI TRACE, monitoring 198,116 MPLAD public works across India.
+
+#### How I Can Assist You:
+1. **Case Anomaly Forensics:** Ask *"Why was project #MPLAD-01515 flagged?"* or *"Analyze case MPLAD-03983"*.
+2. **Detection Models:** Ask *"How does MP Baseline Drift work?"* or *"Explain Isolation Forest spatial clustering"*.
+3. **Risk Scoring:** Ask *"What does a 95 risk score mean?"* or *"How is Scrutiny Exposure calculated?"*.
+4. **Audit Action Items:** Ask *"What evidence or physical vouchers should an auditor inspect for high-risk projects?"*.
+5. **Ledger & National Scope:** Ask *"How many critical works are under review?"* or *"Explain completion delay anomalies"*.
+
+*Tip: You can drag this assistant window anywhere on screen, or click any suggested question pill to get started.*"""
+
     if "drift" in clean:
         return """### MP Spending Habit Drift Explained
 
@@ -601,6 +617,19 @@ def handle_chat_request(body: dict, client_ip: str = "127.0.0.1") -> dict:
     if raw_case_id:
         authentic_case = DataRetriever.get_case(raw_case_id)
 
+    # Fast-Path: Instant institutional guide for help, greetings, and capabilities (0ms latency)
+    clean_msg = LocalDomainGuard.normalize_text(message)
+    if clean_msg in ("help", "hi", "hello", "guide", "menu", "options") or any(k in clean_msg for k in ("what can you do", "capabilities", "who are you", "help me")):
+        guide_resp = generate_offline_demo_response(message, page_context, authentic_case)
+        return {
+            "status": "success",
+            "message": guide_resp,
+            "mode": "guide",
+            "source": "NIDHI Knowledge Engine (Audit Guide)",
+            "model": "NIDHI Institutional Guard",
+            "caseId": authentic_case.get("id") if authentic_case else None
+        }
+
     has_nvidia_key = bool(NVIDIA_API_KEY and len(NVIDIA_API_KEY) > 10)
     
     if not has_nvidia_key:
@@ -647,8 +676,8 @@ def handle_chat_request(body: dict, client_ip: str = "127.0.0.1") -> dict:
                 method="POST"
             )
 
-            # Snappy 8-second timeout per model to prevent browser fetch timeouts
-            model_timeout = min(NVIDIA_TIMEOUT_SECONDS, 8)
+            # Snappy 6-second timeout per model to prevent browser fetch timeouts
+            model_timeout = min(NVIDIA_TIMEOUT_SECONDS, 6)
             with urllib.request.urlopen(req, timeout=model_timeout) as resp:
                 resp_body = resp.read().decode('utf-8')
                 resp_json = json.loads(resp_body)
@@ -661,6 +690,9 @@ def handle_chat_request(body: dict, client_ip: str = "127.0.0.1") -> dict:
             err_msg = e.read().decode('utf-8', errors='ignore')
             print(f"[NIDHI Assistant] Model {target_model} returned HTTP {e.code}: {err_msg[:120]}")
             continue
+        except (TimeoutError, urllib.error.URLError) as e:
+            print(f"[NIDHI Assistant] Network/Timeout reaching NVIDIA API ({type(e).__name__}): engaging grounded factual engine.")
+            break
         except Exception as e:
             print(f"[NIDHI Assistant] Model {target_model} failed: {type(e).__name__} ({e})")
             continue
