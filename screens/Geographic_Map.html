@@ -146,7 +146,7 @@ th.sticky-col-right {
         <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Flagged_Cases.html">
             <span class="material-symbols-outlined text-lg">report_problem</span>
             <span>Flagged Cases</span>
-            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">684</span>
+            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">23,912</span>
         </a>
         <a class="flex items-center gap-3 px-3.5 py-2.5 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Geographic_Map.html">
             <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">map</span>
@@ -286,7 +286,7 @@ th.sticky-col-right {
                     <div class="p-3 bg-slate-50 rounded border border-slate-200">
                         <div class="flex justify-between items-center text-xs">
                             <span class="text-slate-600">Works Geocoded:</span>
-                            <span class="font-mono font-bold text-slate-900">12,486</span>
+                            <span class="font-mono font-bold text-slate-900">171,890</span>
                         </div>
                     </div>
 
@@ -295,14 +295,14 @@ th.sticky-col-right {
                             <span class="text-red-800 font-semibold flex items-center gap-1">
                                 <span class="material-symbols-outlined text-sm">warning</span> Flagged Clusters
                             </span>
-                            <span class="font-mono font-bold text-red-900">684</span>
+                            <span class="font-mono font-bold text-red-900">23,912</span>
                         </div>
                     </div>
 
                     <div class="p-3 bg-slate-50 rounded border border-slate-200">
                         <div class="flex justify-between items-center text-xs">
                             <span class="text-slate-600">Total Sanctioned:</span>
-                            <span class="font-mono font-bold text-slate-900">₹4,250.0 Cr</span>
+                            <span class="font-mono font-bold text-slate-900">₹8,501.1 Cr</span>
                         </div>
                     </div>
                 </div>
@@ -333,14 +333,14 @@ th.sticky-col-right {
         </div>
 
         <!-- Bottom Right Floating Project Card -->
-        <div id="project-card" class="absolute bottom-5 right-5 z-20 w-[380px] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300">
+        <div id="project-card" class="hidden absolute bottom-5 right-5 z-20 w-[380px] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300">
             <div id="card-risk-bar" class="h-1.5 w-full bg-red-600"></div>
             <div class="p-4">
                 <div class="flex justify-between items-start mb-2">
                     <div>
                         <span id="card-badge" class="inline-block px-2 py-0.5 rounded text-[10px] font-bold font-mono uppercase mb-1 bg-red-100 text-red-900 border border-red-300">CRITICAL RISK</span>
-                        <h4 id="card-title" class="text-sm font-bold text-slate-900 leading-tight">Rural Road Construction Phase II</h4>
-                        <p id="card-id" class="text-[11px] text-slate-500 font-mono mt-0.5">Project #MPLAD-84920 • Nagpur, Maharashtra</p>
+                        <h4 id="card-title" class="text-sm font-bold text-slate-900 leading-tight">Loading Project...</h4>
+                        <p id="card-id" class="text-[11px] text-slate-500 font-mono mt-0.5">MoSPI Scrutiny Engine</p>
                     </div>
                     <div class="flex flex-col items-end">
                         <div id="card-score" class="flex items-center justify-center w-9 h-9 rounded-full bg-red-700 text-white font-mono font-black text-xs shadow-sm">
@@ -379,128 +379,64 @@ th.sticky-col-right {
 
 <!-- Leaflet Map Script with CartoDB Positron / OSM keyless fallback -->
 <script>
-const geoProjects = [
-    {
-        id: "MPLAD-91044",
-        title: "District Hospital Oxygen Plant & ICU Wing",
-        state: "Uttar Pradesh",
-        city: "Varanasi",
-        lat: 25.3176,
-        lng: 82.9739,
-        risk: "critical",
-        riskScore: 95,
-        sanctioned: "₹2.10 Cr",
-        anomaly: "Agency Concentration Risk",
-        type: "agency"
-    },
-    {
-        id: "MPLAD-84920",
-        title: "Rural Road Construction Phase II",
-        state: "Maharashtra",
-        city: "Nagpur",
-        lat: 21.1458,
-        lng: 79.0882,
-        risk: "critical",
-        riskScore: 91,
-        sanctioned: "₹42.8 L",
-        anomaly: "Completion Delay (>280%)",
-        type: "delay"
-    },
-    {
-        id: "MPLAD-55102",
-        title: "Inter-Village Bridge Construction",
-        state: "Bihar",
-        city: "Patna",
-        lat: 25.5941,
-        lng: 85.1376,
-        risk: "high",
-        riskScore: 89,
-        sanctioned: "₹1.80 Cr",
-        anomaly: "Cost Escalation (+48%)",
-        type: "cost"
-    },
-    {
-        id: "MPLAD-73019",
-        title: "Solar Mini-Grid Electrification",
-        state: "Rajasthan",
-        city: "Jaipur",
-        lat: 26.9124,
-        lng: 75.7873,
-        risk: "high",
-        riskScore: 88,
-        sanctioned: "₹1.45 Cr",
-        anomaly: "Spatial / Cluster Outlier",
-        type: "spatial"
-    },
-    {
-        id: "MPLAD-63910",
-        title: "Community RO Water Filtration Plant",
-        state: "West Bengal",
-        city: "Kolkata",
-        lat: 22.5726,
-        lng: 88.3639,
-        risk: "high",
-        riskScore: 84,
-        sanctioned: "₹38.5 L",
-        anomaly: "UC Date Mismatch",
-        type: "cert"
-    },
-    {
-        id: "MPLAD-48201",
-        title: "Skill Development Youth Center",
-        state: "Karnataka",
-        city: "Bengaluru",
-        lat: 12.9716,
-        lng: 77.5946,
-        risk: "med",
-        riskScore: 68,
-        sanctioned: "₹75.0 L",
-        anomaly: "Pending Milestone Audit",
-        type: "delay"
-    },
-    {
-        id: "MPLAD-38290",
-        title: "Coastal Fishermen Cold Storage",
-        state: "Tamil Nadu",
-        city: "Chennai",
-        lat: 13.0827,
-        lng: 80.2707,
-        risk: "med",
-        riskScore: 62,
-        sanctioned: "₹92.0 L",
-        anomaly: "Vendor Concentration",
-        type: "agency"
-    },
-    {
-        id: "MPLAD-19402",
-        title: "Public Park & Community Hall",
-        state: "Gujarat",
-        city: "Ahmedabad",
-        lat: 23.0225,
-        lng: 72.5714,
-        risk: "low",
-        riskScore: 32,
-        sanctioned: "₹65.0 L",
-        anomaly: "Minor Schedule Variance",
-        type: "delay"
-    },
-    {
-        id: "MPLAD-29184",
-        title: "Government School Smart Classes",
-        state: "Delhi",
-        city: "New Delhi",
-        lat: 28.6139,
-        lng: 77.2090,
-        risk: "low",
-        riskScore: 28,
-        sanctioned: "₹50.0 L",
-        anomaly: "None (Compliant)",
-        type: "none"
-    }
-];
-
+let geoProjects = [];
 let activeRiskFilters = { critical: true, high: true, med: true, low: true };
 let map, markerGroup;
+
+const stateCoords = {
+    all: [22.8, 80.5, 5],
+    "Maharashtra": [19.7515, 75.7139, 6],
+    "Uttar Pradesh": [26.8467, 80.9462, 6],
+    "Rajasthan": [27.0238, 74.2179, 6],
+    "West Bengal": [22.9868, 87.8550, 6],
+    "Karnataka": [15.3173, 75.7139, 6],
+    "Bihar": [25.0961, 85.3131, 6],
+    "Tamil Nadu": [11.1271, 78.6569, 6],
+    "Gujarat": [22.2587, 71.1924, 6],
+    "Delhi": [28.7041, 77.1025, 9],
+    "Odisha": [20.9517, 85.0985, 6],
+    "Madhya Pradesh": [22.9734, 78.6569, 6],
+    "Punjab": [31.1471, 75.3412, 7],
+    "Haryana": [29.0588, 76.0856, 7],
+    "Kerala": [10.8505, 76.2711, 7],
+    "Andhra Pradesh": [15.9129, 79.7400, 6],
+    "Telangana": [18.1124, 79.0193, 6],
+    "Assam": [26.2006, 92.9376, 7]
+};
+
+async function initMapData() {
+    initMap();
+    try {
+        const res = await fetch('assets/data/geo_projects.json?v=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to load geo projects');
+        geoProjects = await res.json();
+        populateStateDropdown(geoProjects);
+        renderMapMarkers();
+        if (geoProjects.length > 0) {
+            selectMapProject(geoProjects[0]);
+        }
+    } catch (e) {
+        console.error("Failed to load map data:", e);
+    }
+}
+
+function populateStateDropdown(projects) {
+    const stateCounts = {};
+    projects.forEach(p => {
+        if (p.state) {
+            stateCounts[p.state] = (stateCounts[p.state] || 0) + 1;
+        }
+    });
+
+    const stateSelect = document.getElementById('state-select');
+    if (!stateSelect) return;
+
+    let optionsHtml = `<option value="all">National Overview (All India - ${projects.length} clusters)</option>`;
+    Object.keys(stateCounts).sort().forEach(st => {
+        optionsHtml += `<option value="${st}">${st} (${stateCounts[st]} clusters)</option>`;
+    });
+    stateSelect.innerHTML = optionsHtml;
+}
 
 function initMap() {
     map = L.map('map', {
@@ -513,7 +449,7 @@ function initMap() {
 
     L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
-    // 100% Free & Keyless OpenStreetMap Standard Basemap (Zero API Key, Zero Watermarks)
+    // Keyless OpenStreetMap Standard Basemap
     const osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -524,10 +460,8 @@ function initMap() {
         attribution: '&copy; <a href="https://www.esri.com/">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors'
     });
 
-    // Default to OpenStreetMap for guaranteed keyless rendering on Vercel and all domains
     osmLayer.addTo(map);
 
-    // Style & Layer Controls
     const baseMaps = {
         "OpenStreetMap (Keyless)": osmLayer,
         "Esri Gray Canvas (Keyless)": esriLayer
@@ -535,25 +469,26 @@ function initMap() {
     L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
     markerGroup = L.layerGroup().addTo(map);
-    renderMapMarkers();
 }
 
 function renderMapMarkers() {
+    if (!markerGroup) return;
     markerGroup.clearLayers();
 
-    const stateFilter = document.getElementById('state-select').value;
-    const anomalyFilter = document.getElementById('anomaly-select').value;
-    const searchQuery = document.getElementById('map-search').value.toLowerCase().trim();
+    const stateFilter = document.getElementById('state-select')?.value || 'all';
+    const anomalyFilter = document.getElementById('anomaly-select')?.value || 'all';
+    const searchQuery = (document.getElementById('map-search')?.value || '').toLowerCase().trim();
 
     geoProjects.forEach(p => {
         if (!activeRiskFilters[p.risk]) return;
         if (stateFilter !== 'all' && p.state !== stateFilter) return;
         if (anomalyFilter !== 'all' && p.type !== anomalyFilter) return;
         if (searchQuery) {
-            const match = p.title.toLowerCase().includes(searchQuery) || 
-                          p.city.toLowerCase().includes(searchQuery) || 
-                          p.state.toLowerCase().includes(searchQuery) || 
-                          p.id.toLowerCase().includes(searchQuery);
+            const match = (p.title && p.title.toLowerCase().includes(searchQuery)) || 
+                          (p.city && p.city.toLowerCase().includes(searchQuery)) || 
+                          (p.state && p.state.toLowerCase().includes(searchQuery)) || 
+                          (p.id && p.id.toLowerCase().includes(searchQuery)) ||
+                          (p.anomaly && p.anomaly.toLowerCase().includes(searchQuery));
             if (!match) return;
         }
 
@@ -591,7 +526,7 @@ function renderMapMarkers() {
             map.flyTo([p.lat, p.lng], Math.max(map.getZoom(), 7), { duration: 0.8 });
         });
 
-        marker.bindTooltip(`<b>${p.title}</b><br><span style="color:${style.bg}; font-weight:bold;">${p.anomaly}</span>`, {
+        marker.bindTooltip(`<b>${p.title || 'Work'}</b><br><span style="color:${style.bg}; font-weight:bold;">${p.anomaly || ''}</span>`, {
             direction: 'top',
             offset: [0, -size / 2]
         });
@@ -602,6 +537,8 @@ function renderMapMarkers() {
 
 function selectMapProject(p) {
     const card = document.getElementById('project-card');
+    if (!card) return;
+
     const riskConfigs = {
         critical: { bar: 'bg-red-600', badge: 'bg-red-100 text-red-900 border-red-300', badgeText: 'CRITICAL SEVERITY', scoreBg: 'bg-red-700', text: 'text-red-700' },
         high: { bar: 'bg-orange-600', badge: 'bg-orange-100 text-orange-900 border-orange-300', badgeText: 'HIGH SEVERITY', scoreBg: 'bg-orange-600', text: 'text-orange-700' },
@@ -613,57 +550,52 @@ function selectMapProject(p) {
     document.getElementById('card-risk-bar').className = `h-1.5 w-full ${c.bar}`;
     document.getElementById('card-badge').className = `inline-block px-2 py-0.5 rounded text-[10px] font-bold font-mono uppercase mb-1 border ${c.badge}`;
     document.getElementById('card-badge').innerText = c.badgeText;
-    document.getElementById('card-title').innerText = p.title;
-    document.getElementById('card-id').innerText = `Project #${p.id} • ${p.city}, ${p.state}`;
+    document.getElementById('card-title').innerText = p.title || 'Untitled Work';
+    document.getElementById('card-id').innerText = `Project #${p.id} • ${p.city || ''}, ${p.state || ''}`;
     document.getElementById('card-score').className = `flex items-center justify-center w-9 h-9 rounded-full text-white font-mono font-black text-xs shadow-sm ${c.scoreBg}`;
     document.getElementById('card-score').innerText = p.riskScore;
-    document.getElementById('card-sanctioned').innerText = p.sanctioned;
+    document.getElementById('card-sanctioned').innerText = p.sanctioned || '₹0';
     document.getElementById('card-anomaly').className = `font-semibold truncate ${c.text}`;
-    document.getElementById('card-anomaly').innerText = p.anomaly;
+    document.getElementById('card-anomaly').innerText = p.anomaly || 'Algorithmic Anomaly';
+
+    // Hook up View Audit Dossier button to real ID
+    const dossierBtn = document.getElementById('card-view-btn');
+    if (dossierBtn) {
+        dossierBtn.href = `Case_Details.html?id=${encodeURIComponent(p.id)}`;
+    }
 
     card.classList.remove('hidden');
 }
 
 function hideProjectCard() {
-    document.getElementById('project-card').classList.add('hidden');
+    document.getElementById('project-card')?.classList.add('hidden');
 }
 
 function toggleRiskFilter(level) {
     activeRiskFilters[level] = !activeRiskFilters[level];
     const btn = document.getElementById(`btn-filter-${level}`);
-    if (activeRiskFilters[level]) {
-        btn.classList.remove('opacity-30');
-    } else {
-        btn.classList.add('opacity-30');
+    if (btn) {
+        if (activeRiskFilters[level]) {
+            btn.classList.remove('opacity-30');
+        } else {
+            btn.classList.add('opacity-30');
+        }
     }
     renderMapMarkers();
 }
 
-const stateCoords = {
-    all: [22.8, 80.5, 5],
-    Maharashtra: [19.7515, 75.7139, 6],
-    "Uttar Pradesh": [26.8467, 80.9462, 6],
-    Rajasthan: [27.0238, 74.2179, 6],
-    "West Bengal": [22.9868, 87.8550, 6],
-    Karnataka: [15.3173, 75.7139, 6],
-    Bihar: [25.0961, 85.3131, 6],
-    "Tamil Nadu": [11.1271, 78.6569, 6],
-    Gujarat: [22.2587, 71.1924, 6],
-    Delhi: [28.7041, 77.1025, 9]
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    initMap();
+    initMapData();
 
-    document.getElementById('state-select').addEventListener('change', (e) => {
+    document.getElementById('state-select')?.addEventListener('change', (e) => {
         const val = e.target.value;
         const coords = stateCoords[val] || stateCoords.all;
         map.flyTo([coords[0], coords[1]], coords[2], { duration: 1.2 });
         renderMapMarkers();
     });
 
-    document.getElementById('anomaly-select').addEventListener('change', renderMapMarkers);
-    document.getElementById('map-search').addEventListener('input', renderMapMarkers);
+    document.getElementById('anomaly-select')?.addEventListener('change', renderMapMarkers);
+    document.getElementById('map-search')?.addEventListener('input', renderMapMarkers);
 });
 </script>
 </body>

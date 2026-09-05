@@ -1,0 +1,293 @@
+{
+  "summary": {
+    "totalCorpusCr": 8501.1,
+    "utilizationPct": 71.6
+  },
+  "quarterlyTrajectory": {
+    "labels": [
+      "2023 Q2",
+      "2023 Q3",
+      "2023 Q4",
+      "2024 Q1",
+      "2024 Q2",
+      "2024 Q3",
+      "2024 Q4",
+      "2025 Q1",
+      "2025 Q2",
+      "2025 Q3",
+      "2025 Q4"
+    ],
+    "allocated": [
+      13.1,
+      178.6,
+      604.1,
+      1922.8,
+      175.0,
+      529.7,
+      503.1,
+      693.8,
+      665.9,
+      856.3,
+      678.1
+    ],
+    "released": [
+      12.1,
+      164.3,
+      555.8,
+      1769.0,
+      161.0,
+      487.3,
+      462.9,
+      638.3,
+      612.6,
+      787.8,
+      623.9
+    ],
+    "utilized": [
+      10.5,
+      139.6,
+      462.8,
+      1427.4,
+      133.5,
+      400.7,
+      367.8,
+      504.3,
+      462.6,
+      561.9,
+      412.6
+    ]
+  },
+  "monthlyRiskTrend": {
+    "labels": [
+      "Jan 25",
+      "Feb 25",
+      "Mar 25",
+      "Apr 25",
+      "May 25",
+      "Jun 25",
+      "Jul 25",
+      "Aug 25",
+      "Sep 25",
+      "Oct 25",
+      "Nov 25",
+      "Dec 25"
+    ],
+    "critical": [
+      37,
+      32,
+      62,
+      71,
+      82,
+      46,
+      99,
+      44,
+      42,
+      43,
+      23,
+      29
+    ],
+    "high": [
+      164,
+      243,
+      262,
+      141,
+      272,
+      291,
+      572,
+      317,
+      214,
+      212,
+      222,
+      253
+    ]
+  },
+  "stateComparison": {
+    "labels": [
+      "Uttar Pradesh",
+      "Madhya Pradesh",
+      "Gujarat",
+      "West Bengal",
+      "Bihar",
+      "Odisha",
+      "Tamil Nadu",
+      "Maharashtra"
+    ],
+    "flaggedRates": [
+      19.8,
+      10.7,
+      11.0,
+      13.5,
+      4.8,
+      5.8,
+      12.3,
+      49.9
+    ],
+    "criticalRates": [
+      0.4,
+      1.5,
+      0.8,
+      0.7,
+      0.1,
+      0.3,
+      1.1,
+      1.3
+    ]
+  },
+  "anomalyDonut": {
+    "labels": [
+      "Completion Delay",
+      "Amount Outlier",
+      "Spatial / Cluster ML",
+      "MP Drift",
+      "Round Number"
+    ],
+    "data": [
+      13435,
+      7000,
+      8563,
+      4110,
+      1522
+    ]
+  },
+  "agencyMatrix": [
+    {
+      "agency": "District Magistrate Jaunpur",
+      "totalWorks": 2473,
+      "sanctionedCr": 30.6,
+      "avgSizeLakhs": 1.2,
+      "flaggedCount": 1394,
+      "anomalyRate": 56.4,
+      "rating": "HIGH RISK VENDOR"
+    },
+    {
+      "agency": "District Magistrate Rae Bareli",
+      "totalWorks": 1661,
+      "sanctionedCr": 19.5,
+      "avgSizeLakhs": 1.2,
+      "flaggedCount": 1422,
+      "anomalyRate": 85.6,
+      "rating": "HIGH RISK VENDOR"
+    },
+    {
+      "agency": "District Magistrate South Twenty Four Parganas",
+      "totalWorks": 1509,
+      "sanctionedCr": 57.9,
+      "avgSizeLakhs": 3.8,
+      "flaggedCount": 62,
+      "anomalyRate": 4.1,
+      "rating": "COMPLIANT / LOW RISK"
+    },
+    {
+      "agency": "District Magistrae Allahabad",
+      "totalWorks": 1498,
+      "sanctionedCr": 42.8,
+      "avgSizeLakhs": 2.9,
+      "flaggedCount": 695,
+      "anomalyRate": 46.4,
+      "rating": "HIGH RISK VENDOR"
+    },
+    {
+      "agency": "District Magistrate Barabanki",
+      "totalWorks": 1423,
+      "sanctionedCr": 18.6,
+      "avgSizeLakhs": 1.3,
+      "flaggedCount": 1118,
+      "anomalyRate": 78.6,
+      "rating": "HIGH RISK VENDOR"
+    },
+    {
+      "agency": "District Magistrate Murshidabad",
+      "totalWorks": 1210,
+      "sanctionedCr": 74.1,
+      "avgSizeLakhs": 6.1,
+      "flaggedCount": 114,
+      "anomalyRate": 9.4,
+      "rating": "MODERATE RISK"
+    },
+    {
+      "agency": "District Magistrae Varanasi",
+      "totalWorks": 1201,
+      "sanctionedCr": 29.6,
+      "avgSizeLakhs": 2.5,
+      "flaggedCount": 171,
+      "anomalyRate": 14.2,
+      "rating": "HIGH RISK VENDOR"
+    },
+    {
+      "agency": "District Magistrate Bijnor",
+      "totalWorks": 1071,
+      "sanctionedCr": 27.9,
+      "avgSizeLakhs": 2.6,
+      "flaggedCount": 39,
+      "anomalyRate": 3.6,
+      "rating": "COMPLIANT / LOW RISK"
+    },
+    {
+      "agency": "District Magistrate Shravasti",
+      "totalWorks": 1006,
+      "sanctionedCr": 7.9,
+      "avgSizeLakhs": 0.8,
+      "flaggedCount": 1,
+      "anomalyRate": 0.1,
+      "rating": "COMPLIANT / LOW RISK"
+    },
+    {
+      "agency": "District Collector Chhindwara",
+      "totalWorks": 987,
+      "sanctionedCr": 12.6,
+      "avgSizeLakhs": 1.3,
+      "flaggedCount": 71,
+      "anomalyRate": 7.2,
+      "rating": "COMPLIANT / LOW RISK"
+    }
+  ],
+  "benfordResults": [
+    {
+      "Work category": "Trust and Society",
+      "n_records": "822",
+      "mad": "0.058462553408010286",
+      "conformity": "nonconformity",
+      "benford_flag": "True"
+    },
+    {
+      "Work category": "Repair and Renovation",
+      "n_records": "1703",
+      "mad": "0.02821598116478759",
+      "conformity": "nonconformity",
+      "benford_flag": "True"
+    },
+    {
+      "Work category": "Normal/Others",
+      "n_records": "169306",
+      "mad": "0.02658614040294168",
+      "conformity": "nonconformity",
+      "benford_flag": "True"
+    }
+  ],
+  "roundNumberResults": [
+    {
+      "Work category": "Trust and Society",
+      "n_records": "822",
+      "round_rate": "0.7141119221411192",
+      "overall_round_rate": "0.32122287509453723",
+      "round_zscore": "24.123426714467676",
+      "round_flag": "True"
+    },
+    {
+      "Work category": "Repair and Renovation",
+      "n_records": "1703",
+      "round_rate": "0.5490311215502055",
+      "overall_round_rate": "0.32122287509453723",
+      "round_zscore": "20.13306676024081",
+      "round_flag": "True"
+    },
+    {
+      "Work category": "Normal/Others",
+      "n_records": "169306",
+      "round_rate": "0.31704133344358737",
+      "overall_round_rate": "0.32122287509453723",
+      "round_zscore": "-3.684730847763642",
+      "round_flag": "False"
+    }
+  ]
+}

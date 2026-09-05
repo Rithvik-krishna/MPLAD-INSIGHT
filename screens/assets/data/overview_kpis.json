@@ -1,0 +1,235 @@
+{
+  "totalRegisteredWorks": 198116,
+  "totalScannedWorks": 171890,
+  "coveragePct": 86.8,
+  "flaggedCount": 23912,
+  "flaggedPct": 13.9,
+  "criticalCount": 1137,
+  "highCount": 5965,
+  "medCount": 15965,
+  "lowCount": 148823,
+  "totalSanctionedCr": 8501.1,
+  "scrutinyExposureCr": 1769.2,
+  "anomalyCategories": [
+    {
+      "name": "Completion Delay (>200% over timeline)",
+      "type": "Delay",
+      "count": 13435,
+      "pct": 56.2,
+      "color": "#dc2626"
+    },
+    {
+      "name": "Amount / Cost Outlier (Extreme z-score)",
+      "type": "Cost",
+      "count": 7000,
+      "pct": 29.3,
+      "color": "#ea580c"
+    },
+    {
+      "name": "Spatial / Cluster ML Outlier (Isolation Forest)",
+      "type": "Spatial",
+      "count": 8563,
+      "pct": 35.8,
+      "color": "#d97706"
+    },
+    {
+      "name": "MP Spending Habit Drift",
+      "type": "MP Drift",
+      "count": 4110,
+      "pct": 17.2,
+      "color": "#2563eb"
+    },
+    {
+      "name": "Round Number Heuristic Anomaly",
+      "type": "Round Number",
+      "count": 1522,
+      "pct": 6.4,
+      "color": "#475569"
+    }
+  ],
+  "severityBreakdown": {
+    "critical": {
+      "count": 1137,
+      "pct": 4.8
+    },
+    "high": {
+      "count": 5965,
+      "pct": 24.9
+    },
+    "med": {
+      "count": 15965,
+      "pct": 66.8
+    },
+    "low": {
+      "count": 148823,
+      "pct": 86.6
+    }
+  },
+  "immediateQueue": [
+    {
+      "id": "MPLAD-00228",
+      "score": 95,
+      "severity": "critical",
+      "title": "24hours monitoring of village markets,Haats and roads in Barasat1 and Habra1",
+      "location": "Barasat, West Bengal",
+      "constituency": "Barasat",
+      "state": "West Bengal",
+      "sector": "Roads & Bridges",
+      "mp": "Dr Kakoli Ghosh Dastidar",
+      "sanctioned": "₹97.5 L",
+      "sanctioned_raw": 9750000.0,
+      "utilized": "₹91.9 L",
+      "anomaly": "Amount Outlier (z=4.6) & MP Spending Drift",
+      "anomalyType": "Cost",
+      "agency": "District Magistrate North Twenty Four Parganas",
+      "status": "Action Req",
+      "workStatus": "Work Completed",
+      "gapDays": 134,
+      "sanctionDate": "2023-09-22",
+      "recDate": "2023-05-11",
+      "flags": {
+        "rule_high_severity": true,
+        "flag_delay": false,
+        "flag_amount": true,
+        "flag_mp_drift": true,
+        "iso_flag": true,
+        "flag_round_number": false,
+        "amount_zscore": 4.6,
+        "gap_zscore": 0.64,
+        "mp_drift_zscore": 5.25
+      }
+    },
+    {
+      "id": "MPLAD-00266",
+      "score": 95,
+      "severity": "critical",
+      "title": "Construction of Children Park at Bissamcuttack under Bissamcuttack Block",
+      "location": "Koraput(St), Odisha",
+      "constituency": "Koraput(St)",
+      "state": "Odisha",
+      "sector": "Community & Public Spaces",
+      "mp": "Saptagiri Sankar Ulaka",
+      "sanctioned": "₹10.0 L",
+      "sanctioned_raw": 1000000.0,
+      "utilized": "₹8.3 L",
+      "anomaly": "Sanction Delay (409 days) & MP Spending Drift",
+      "anomalyType": "Agency",
+      "agency": "District Collector Rayagada",
+      "status": "Action Req",
+      "workStatus": "Physical Inspection",
+      "gapDays": 409,
+      "sanctionDate": "2024-07-20",
+      "recDate": "2023-06-07",
+      "flags": {
+        "rule_high_severity": true,
+        "flag_delay": true,
+        "flag_amount": false,
+        "flag_mp_drift": true,
+        "iso_flag": true,
+        "flag_round_number": false,
+        "amount_zscore": 1.59,
+        "gap_zscore": 4.01,
+        "mp_drift_zscore": 5.13
+      }
+    },
+    {
+      "id": "MPLAD-02535",
+      "score": 95,
+      "severity": "critical",
+      "title": "WS/MP368/2023-2024/5877-Construction of roads, link roads, pathways or any other road with or without drainage",
+      "location": "Nagaland, Nagaland",
+      "constituency": "Nagaland",
+      "state": "Nagaland",
+      "sector": "Roads & Bridges",
+      "mp": "Shri  Tokheho (17th Lok Sabha)",
+      "sanctioned": "₹1.35 Cr",
+      "sanctioned_raw": 13500000.0,
+      "utilized": "₹1.14 Cr",
+      "anomaly": "Amount Outlier (z=5.0) & MP Spending Drift",
+      "anomalyType": "Cost",
+      "agency": "Deputy Commissioner Dimapur",
+      "status": "Action Req",
+      "workStatus": "Physical Inspection",
+      "gapDays": 42,
+      "sanctionDate": "2023-09-04",
+      "recDate": "2023-07-24",
+      "flags": {
+        "rule_high_severity": true,
+        "flag_delay": false,
+        "flag_amount": true,
+        "flag_mp_drift": true,
+        "iso_flag": true,
+        "flag_round_number": false,
+        "amount_zscore": 5.03,
+        "gap_zscore": -0.49,
+        "mp_drift_zscore": 4.33
+      }
+    },
+    {
+      "id": "MPLAD-00227",
+      "score": 94,
+      "severity": "critical",
+      "title": "Solar lighting of Jessore road NH 35",
+      "location": "Barasat, West Bengal",
+      "constituency": "Barasat",
+      "state": "West Bengal",
+      "sector": "Roads & Bridges",
+      "mp": "Dr Kakoli Ghosh Dastidar",
+      "sanctioned": "₹65.2 L",
+      "sanctioned_raw": 6521511.0,
+      "utilized": "₹52.5 L",
+      "anomaly": "Amount Outlier (z=4.1) & MP Spending Drift",
+      "anomalyType": "Cost",
+      "agency": "District Magistrate North Twenty Four Parganas",
+      "status": "Action Req",
+      "workStatus": "Physical Inspection",
+      "gapDays": 256,
+      "sanctionDate": "2024-01-22",
+      "recDate": "2023-05-11",
+      "flags": {
+        "rule_high_severity": true,
+        "flag_delay": false,
+        "flag_amount": true,
+        "flag_mp_drift": true,
+        "iso_flag": true,
+        "flag_round_number": false,
+        "amount_zscore": 4.07,
+        "gap_zscore": 2.13,
+        "mp_drift_zscore": 4.54
+      }
+    },
+    {
+      "id": "MPLAD-00239",
+      "score": 94,
+      "severity": "critical",
+      "title": "Construction of Luca roof with false ceiling with lighting for cultural activity",
+      "location": "Barasat, West Bengal",
+      "constituency": "Barasat",
+      "state": "West Bengal",
+      "sector": "Rural Electrification",
+      "mp": "Dr Kakoli Ghosh Dastidar",
+      "sanctioned": "₹50.0 L",
+      "sanctioned_raw": 5000000.0,
+      "utilized": "₹41.4 L",
+      "anomaly": "Amount Outlier (z=3.7) & MP Spending Drift",
+      "anomalyType": "Cost",
+      "agency": "District Magistrate North Twenty Four Parganas",
+      "status": "Action Req",
+      "workStatus": "Physical Inspection",
+      "gapDays": 126,
+      "sanctionDate": "2023-09-14",
+      "recDate": "2023-05-11",
+      "flags": {
+        "rule_high_severity": true,
+        "flag_delay": false,
+        "flag_amount": true,
+        "flag_mp_drift": true,
+        "iso_flag": true,
+        "flag_round_number": false,
+        "amount_zscore": 3.71,
+        "gap_zscore": 0.54,
+        "mp_drift_zscore": 4.07
+      }
+    }
+  ]
+}

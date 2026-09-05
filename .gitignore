@@ -1,0 +1,19 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.class
+*.env
+.venv/
+env/
+
+# Large raw/processed government datasets (>100MB blocked by GitHub)
+processed/*.csv
+!processed/.gitkeep
+
+# Local scratch and temporary test files
+scratch/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

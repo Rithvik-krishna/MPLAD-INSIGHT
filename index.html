@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full w-full overflow-x-hidden">
+<html lang="en" class="h-screen max-h-screen overflow-hidden">
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -14,7 +14,6 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                // UI Chrome & Neutral Institutional Colors
                 brand: {
                     50: '#f0f6fe',
                     100: '#ddeafd',
@@ -27,24 +26,19 @@ tailwind.config = {
                 canvas: '#f8fafc',
                 surface: '#ffffff',
                 borderline: '#e2e8f0',
-                
-                // Strict Risk Severity System
                 risk: {
                     critical: '#dc2626',
                     criticalBg: '#fef2f2',
                     criticalBorder: '#fecaca',
                     criticalText: '#991b1b',
-                    
                     high: '#ea580c',
                     highBg: '#fff7ed',
                     highBorder: '#fed7aa',
                     highText: '#9a3412',
-                    
                     med: '#d97706',
                     medBg: '#fffbeb',
                     medBorder: '#fde68a',
                     medText: '#92400e',
-                    
                     low: '#059669',
                     lowBg: '#ecfdf5',
                     lowBorder: '#a7f3d0',
@@ -61,6 +55,11 @@ tailwind.config = {
 </script>
 
 <style>
+html, body {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
 body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 .font-tabular { font-variant-numeric: tabular-nums; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20; }
@@ -68,109 +67,59 @@ body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-
-/* Dedicated Bounded Table Scroll Container & Sticky Columns */
-html, body {
-    max-width: 100vw;
-    overflow-x: hidden;
-}
-.table-scroll-container {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-.sticky-col-1 {
-    position: sticky;
-    left: 0;
-    z-index: 10;
-}
-.sticky-col-2 {
-    position: sticky;
-    left: 110px;
-    z-index: 10;
-    box-shadow: 2px 0 4px -2px rgba(0,0,0,0.12);
-}
-th.sticky-col-1 {
-    position: sticky;
-    left: 0;
-    z-index: 20;
-    background-color: #f1f5f9 !important;
-}
-th.sticky-col-2 {
-    position: sticky;
-    left: 110px;
-    z-index: 20;
-    background-color: #f1f5f9 !important;
-    box-shadow: 2px 0 4px -2px rgba(0,0,0,0.12);
-}
-.sticky-col-right {
-    position: sticky;
-    right: 0;
-    z-index: 10;
-    box-shadow: -2px 0 4px -2px rgba(0,0,0,0.12);
-}
-th.sticky-col-right {
-    position: sticky;
-    right: 0;
-    z-index: 20;
-    background-color: #f1f5f9 !important;
-    box-shadow: -2px 0 4px -2px rgba(0,0,0,0.12);
-}
 </style>
 </head>
-<body class="bg-canvas text-slate-800 antialiased text-xs min-h-full w-full overflow-x-hidden relative">
+<body class="bg-canvas text-slate-800 antialiased text-xs h-screen max-h-screen w-full overflow-hidden relative flex">
 
 <!-- UNIFIED SHELL: Side Navigation -->
-<aside class="w-[260px] h-screen flex flex-col fixed left-0 top-0 bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none">
+<aside class="w-[240px] h-screen shrink-0 flex flex-col bg-brand-900 border-r border-slate-800 z-50 text-slate-300 select-none overflow-hidden">
     <!-- Brand Header -->
-    <div class="px-5 py-6 border-b border-slate-800/80 flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
-            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+    <div class="px-4 py-4 border-b border-slate-800/80 flex items-center gap-2.5 shrink-0">
+        <div class="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
+            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
         </div>
         <div class="flex flex-col">
-            <span class="font-extrabold text-white text-sm tracking-wider uppercase">MPLAD INSIGHT</span>
-            <span class="text-[10px] text-blue-400 uppercase tracking-widest font-semibold">GovTech Audit AI</span>
+            <span class="font-extrabold text-white text-xs tracking-wider uppercase">MPLAD INSIGHT</span>
+            <span class="text-[9px] text-blue-400 uppercase tracking-widest font-semibold">GovTech Audit AI</span>
         </div>
     </div>
 
     <!-- Navigation List -->
-    <nav class="flex-1 py-4 px-2 space-y-1 overflow-y-auto">
-        <a class="flex items-center gap-3 px-3.5 py-2.5 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Overview_Dashboard.html">
-            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+    <nav class="flex-1 py-3 px-2 space-y-1 overflow-y-auto">
+        <a class="flex items-center gap-2.5 px-3 py-2 bg-blue-600 text-white rounded-md text-xs font-semibold shadow-sm transition-all" href="Overview_Dashboard.html">
+            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">dashboard</span>
             <span>Overview</span>
         </a>
-        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Flagged_Cases.html">
-            <span class="material-symbols-outlined text-lg">report_problem</span>
+        <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Flagged_Cases.html">
+            <span class="material-symbols-outlined text-base">report_problem</span>
             <span>Flagged Cases</span>
-            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">684</span>
+            <span id="sidebar-flagged-count" class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">23,912</span>
         </a>
-        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Geographic_Map.html">
-            <span class="material-symbols-outlined text-lg">map</span>
+        <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Geographic_Map.html">
+            <span class="material-symbols-outlined text-base">map</span>
             <span>Geographic Map</span>
         </a>
-        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Analytics.html">
-            <span class="material-symbols-outlined text-lg">insights</span>
+        <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Analytics.html">
+            <span class="material-symbols-outlined text-base">insights</span>
             <span>Analytics</span>
         </a>
-        <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Data_Explorer.html">
-            <span class="material-symbols-outlined text-lg">database</span>
+        <a class="flex items-center gap-2.5 px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Data_Explorer.html">
+            <span class="material-symbols-outlined text-base">database</span>
             <span>Data Explorer</span>
         </a>
     </nav>
 
     <!-- Sidebar Footer Status -->
-    <div class="p-3.5 border-t border-slate-800 bg-brand-950/40 text-[11px] space-y-2">
+    <div class="p-3 border-t border-slate-800 bg-brand-950/40 text-[11px] space-y-1.5 shrink-0">
         <div class="flex items-center justify-between">
-            <span class="text-slate-400 flex items-center gap-2">
+            <span class="text-slate-400 flex items-center gap-1.5">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
                 Live Audit Stream
             </span>
-            <span class="font-mono text-slate-400 font-bold">ACTIVE</span>
+            <span class="font-mono text-slate-400 font-bold text-[10px]">ACTIVE</span>
         </div>
         <div class="flex items-center justify-between text-slate-500 text-[10px]">
             <span>Data Ingestion:</span>
@@ -179,430 +128,416 @@ th.sticky-col-right {
         <div class="flex items-center justify-between text-slate-500 text-[10px]">
             <span>System Pipeline:</span>
             <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                <span class="material-symbols-outlined text-[13px]">check_circle</span> Normal
+                <span class="material-symbols-outlined text-[12px]">check_circle</span> Normal
             </span>
         </div>
     </div>
 </aside>
 
-<!-- Main Wrapper -->
-<div class="ml-[260px] w-[calc(100vw-260px)] max-w-[calc(100vw-260px)] min-w-0 min-h-screen flex flex-col bg-canvas overflow-x-hidden">
+<!-- Main Wrapper (Single Screen Viewport-Locked) -->
+<div class="flex-1 min-w-0 h-screen max-h-screen flex flex-col bg-canvas overflow-hidden">
     
-    <!-- UNIFIED SHELL: Header -->
-    <header class="h-14 w-full sticky top-0 bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-6">
+    <!-- UNIFIED SHELL: Compact Header -->
+    <header class="h-12 min-h-[48px] max-h-[48px] shrink-0 w-full bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-4">
         <!-- Global Search -->
-        <div class="flex items-center gap-4 w-96">
+        <div class="flex items-center gap-3 w-80">
             <div class="relative w-full">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
-                <input class="w-full pl-9 pr-12 py-1.5 rounded-md border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-slate-400 font-sans" placeholder="Search works, districts, MP names, project IDs... (Press ⌘K)" type="search">
-                <kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-slate-300 bg-white text-[10px] font-mono text-slate-400">⌘K</kbd>
+                <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                <input class="w-full pl-8 pr-10 py-1 rounded border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 outline-none placeholder:text-slate-400 font-sans" placeholder="Search works, districts, MP names... (Press ⌘K)" type="search">
+                <kbd class="absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.2 rounded border border-slate-300 bg-white text-[9px] font-mono text-slate-400">⌘K</kbd>
             </div>
         </div>
 
         <!-- Header Actions & Profile -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5">
             <!-- Alert Bell -->
-            <button class="relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition-colors" title="Live Vigilance Notifications">
-                <span class="material-symbols-outlined text-xl">notifications</span>
-                <span class="absolute top-1 right-1 w-2 h-2 bg-red-600 rounded-full ring-2 ring-white"></span>
+            <button class="relative p-1 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-colors" title="Live Vigilance Notifications">
+                <span class="material-symbols-outlined text-lg">notifications</span>
+                <span class="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-red-600 rounded-full ring-2 ring-white"></span>
             </button>
 
             <!-- Export Dossier -->
-            <button onclick="showToast('Exporting consolidated executive audit summary...', 'info'); setTimeout(()=>exportTableToCSV('mplad-executive-summary.csv'), 800);" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white rounded-md text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs">
-                <span class="material-symbols-outlined text-[16px]">file_download</span>
+            <button onclick="showToast('Exporting consolidated executive audit summary...', 'info'); setTimeout(()=>exportTableToCSV('mplad-executive-summary.csv'), 800);" class="flex items-center gap-1 px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-semibold hover:bg-slate-800 transition-colors shadow-2xs">
+                <span class="material-symbols-outlined text-[15px]">file_download</span>
                 <span>Export Brief</span>
             </button>
 
-            <div class="h-6 w-px bg-slate-200 mx-1"></div>
+            <div class="h-5 w-px bg-slate-200 mx-0.5"></div>
 
             <!-- Identity -->
-            <div class="flex items-center gap-2.5 pl-1">
-                <div class="w-7 h-7 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-xs shadow-xs">
+            <div class="flex items-center gap-2 pl-0.5">
+                <div class="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-[10px] shadow-2xs">
                     AO
                 </div>
                 <div class="flex flex-col text-left">
-                    <span class="text-xs font-bold text-slate-900 leading-tight">Audit Officer #104</span>
-                    <span class="text-[10px] text-slate-500 font-medium">MoSPI • Oversight Div</span>
+                    <span class="text-xs font-bold text-slate-900 leading-none">AO #104</span>
+                    <span class="text-[9px] text-slate-500 font-medium">MoSPI</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Canvas -->
-    <main class="flex-1 p-6 space-y-6 max-w-full w-full mx-auto">
+    <!-- Main Content Canvas: Zero Window Scrolling -->
+    <main class="flex-1 min-h-0 p-2.5 flex flex-col gap-2 overflow-y-auto">
         
         <!-- Page Title & Scope Banner -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-borderline pb-4">
-            <div>
-                <div class="flex items-center gap-2">
-                    <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">MPLADS Central Oversight & Anomaly Intelligence</h1>
-                    <span class="px-2 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-bold font-mono">FY 2024-26</span>
-                </div>
-                <p class="text-xs text-slate-500 mt-1">Automated algorithmic audit scanning 12,486 works across 543 Parliamentary Constituencies.</p>
-            </div>
-            
+        <div class="flex items-center justify-between gap-3 border-b border-borderline pb-1.5 shrink-0">
             <div class="flex items-center gap-2">
-                <span class="text-[11px] text-slate-500 font-medium">Audit Pipeline:</span>
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold font-mono">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> 95.5% AUDIT COVERAGE
+                <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-none">MPLADS Central Oversight &amp; Anomaly Intelligence</h1>
+                <span class="px-2 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-bold font-mono">FY 2024-26</span>
+                <span id="overview-coverage-pill" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold font-mono">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> 86.8% AUDIT COVERAGE
                 </span>
             </div>
+            <p id="overview-subtitle" class="text-[11px] text-slate-500 truncate hidden lg:inline">Scanning 198,116 works (171,890 scrutinized) across 543 Parliamentary Constituencies.</p>
         </div>
 
-        <!-- Metric KPI Cards (Forensic Density) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <!-- Metric KPI Cards (5 Columns Compact) -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 shrink-0">
             <!-- 1. Total Works -->
-            <div class="bg-white border border-borderline rounded-lg p-4 shadow-xs">
-                <div class="flex items-center justify-between text-slate-500 mb-1.5">
-                    <span class="text-[11px] font-bold uppercase tracking-wider">Total Works Registered</span>
-                    <span class="material-symbols-outlined text-slate-400 text-base">domain</span>
+            <div class="bg-white border border-borderline rounded-lg p-2.5 shadow-2xs">
+                <div class="flex items-center justify-between text-slate-500 mb-0.5">
+                    <span class="text-[10px] font-bold uppercase tracking-wider">Total Registered</span>
+                    <span class="material-symbols-outlined text-slate-400 text-sm">domain</span>
                 </div>
-                <div class="flex items-baseline gap-2">
-                    <span class="text-2xl font-black text-slate-900 font-mono font-tabular">12,486</span>
-                    <span class="text-[11px] font-bold text-emerald-700 font-mono">↑ 4.2%</span>
+                <div class="flex items-baseline gap-1.5">
+                    <span id="kpi-total-works" class="text-xl font-black text-slate-900 font-mono font-tabular">198,116</span>
+                    <span class="text-[10px] font-bold text-emerald-700 font-mono">MoSPI</span>
                 </div>
-                <p class="text-[10px] text-slate-400 mt-1">Across 785 District Nodes</p>
+                <p class="text-[9px] text-slate-400">785 District Nodes</p>
             </div>
 
             <!-- 2. Works Analyzed -->
-            <div class="bg-white border border-borderline rounded-lg p-4 shadow-xs">
-                <div class="flex items-center justify-between text-slate-500 mb-1.5">
-                    <span class="text-[11px] font-bold uppercase tracking-wider">AI Scanned & Verified</span>
-                    <span class="material-symbols-outlined text-slate-400 text-base">verified</span>
+            <div class="bg-white border border-borderline rounded-lg p-2.5 shadow-2xs">
+                <div class="flex items-center justify-between text-slate-500 mb-0.5">
+                    <span class="text-[10px] font-bold uppercase tracking-wider">AI Scanned</span>
+                    <span class="material-symbols-outlined text-slate-400 text-sm">verified</span>
                 </div>
-                <div class="flex items-baseline gap-2">
-                    <span class="text-2xl font-black text-slate-900 font-mono font-tabular">11,932</span>
-                    <span class="text-[11px] font-bold text-blue-700 font-mono">95.5%</span>
+                <div class="flex items-baseline gap-1.5">
+                    <span id="kpi-scanned-works" class="text-xl font-black text-slate-900 font-mono font-tabular">171,890</span>
+                    <span id="kpi-scanned-pct" class="text-[10px] font-bold text-blue-700 font-mono">86.8%</span>
                 </div>
-                <div class="w-full bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
-                    <div class="bg-blue-600 h-full w-[95.5%]"></div>
+                <div class="w-full bg-slate-100 h-1 rounded-full mt-1 overflow-hidden">
+                    <div id="kpi-scanned-bar" class="bg-blue-600 h-full w-[86.8%]"></div>
                 </div>
             </div>
 
-            <!-- 3. Flagged Works (Action Required) -->
-            <a href="Flagged_Cases.html" class="bg-white border border-red-200 hover:border-red-400 rounded-lg p-4 shadow-xs transition-all block group relative overflow-hidden">
+            <!-- 3. Flagged Works -->
+            <a href="Flagged_Cases.html" class="bg-white border border-red-200 hover:border-red-400 rounded-lg p-2.5 shadow-2xs transition-all block group relative overflow-hidden">
                 <div class="absolute top-0 left-0 bottom-0 w-1 bg-red-600"></div>
-                <div class="flex items-center justify-between text-slate-500 mb-1.5 pl-1">
-                    <span class="text-[11px] font-bold text-red-900 uppercase tracking-wider">Flagged For Review</span>
-                    <span class="px-1.5 py-0.5 rounded bg-red-100 text-red-800 font-mono text-[9px] font-extrabold uppercase">Action Req</span>
+                <div class="flex items-center justify-between text-slate-500 mb-0.5 pl-1">
+                    <span class="text-[10px] font-bold text-red-900 uppercase tracking-wider">Flagged For Review</span>
+                    <span class="px-1 py-0.2 rounded bg-red-100 text-red-800 font-mono text-[9px] font-extrabold uppercase">Action</span>
                 </div>
-                <div class="flex items-baseline gap-2 pl-1">
-                    <span class="text-2xl font-black text-red-700 font-mono font-tabular">684</span>
-                    <span class="text-[11px] font-bold text-red-800 font-mono">5.7% of total</span>
+                <div class="flex items-baseline gap-1.5 pl-1">
+                    <span id="kpi-flagged-works" class="text-xl font-black text-red-700 font-mono font-tabular">23,912</span>
+                    <span id="kpi-flagged-pct" class="text-[10px] font-bold text-red-800 font-mono">13.9%</span>
                 </div>
-                <p class="text-[10px] text-red-700 mt-1 pl-1 flex items-center gap-1 group-hover:underline">
-                    <span>Triage Flagged Dossiers</span>
-                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                <p class="text-[9px] text-red-700 pl-1 flex items-center gap-0.5 group-hover:underline">
+                    <span>Triage Flagged</span>
+                    <span class="material-symbols-outlined text-[10px]">arrow_forward</span>
                 </p>
             </a>
 
             <!-- 4. Critical Severity Cases -->
-            <a href="Flagged_Cases.html" class="bg-white border border-red-300 hover:border-red-500 rounded-lg p-4 shadow-xs transition-all block group relative overflow-hidden">
+            <a href="Flagged_Cases.html" class="bg-white border border-red-300 hover:border-red-500 rounded-lg p-2.5 shadow-2xs transition-all block group relative overflow-hidden">
                 <div class="absolute top-0 left-0 bottom-0 w-1 bg-red-700"></div>
-                <div class="flex items-center justify-between text-slate-500 mb-1.5 pl-1">
-                    <span class="text-[11px] font-bold text-red-950 uppercase tracking-wider">Critical Severity (>90)</span>
-                    <span class="material-symbols-outlined text-red-700 text-base">emergency</span>
+                <div class="flex items-center justify-between text-slate-500 mb-0.5 pl-1">
+                    <span class="text-[10px] font-bold text-red-950 uppercase tracking-wider">Critical (>90)</span>
+                    <span class="material-symbols-outlined text-red-700 text-sm">emergency</span>
                 </div>
-                <div class="flex items-baseline gap-2 pl-1">
-                    <span class="text-2xl font-black text-red-800 font-mono font-tabular">127</span>
-                    <span class="text-[11px] font-bold text-red-700 font-mono">Urgent Vigilance</span>
+                <div class="flex items-baseline gap-1.5 pl-1">
+                    <span id="kpi-critical-works" class="text-xl font-black text-red-800 font-mono font-tabular">1,137</span>
+                    <span class="text-[10px] font-bold text-red-700 font-mono">Urgent</span>
                 </div>
-                <p class="text-[10px] text-slate-500 mt-1 pl-1">Severe cost/timeline breach</p>
+                <p class="text-[9px] text-slate-500 pl-1">Severe cost/time breach</p>
             </a>
 
             <!-- 5. Funds Under Scrutiny -->
-            <div class="bg-white border border-borderline rounded-lg p-4 shadow-xs">
-                <div class="flex items-center justify-between text-slate-500 mb-1.5">
-                    <span class="text-[11px] font-bold uppercase tracking-wider">Scrutiny Exposure</span>
-                    <span class="material-symbols-outlined text-slate-400 text-base">currency_rupee</span>
+            <div class="bg-white border border-borderline rounded-lg p-2.5 shadow-2xs">
+                <div class="flex items-center justify-between text-slate-500 mb-0.5">
+                    <span class="text-[10px] font-bold uppercase tracking-wider">Scrutiny Exposure</span>
+                    <span class="material-symbols-outlined text-slate-400 text-sm">currency_rupee</span>
                 </div>
-                <div class="flex items-baseline gap-2">
-                    <span class="text-2xl font-black text-slate-900 font-mono font-tabular">₹184.6</span>
-                    <span class="text-xs font-extrabold text-slate-600 font-mono">Crores</span>
+                <div class="flex items-baseline gap-1.5">
+                    <span id="kpi-scrutiny-exposure" class="text-xl font-black text-slate-900 font-mono font-tabular">₹1,769.2</span>
+                    <span class="text-[10px] font-extrabold text-slate-600 font-mono">Cr</span>
                 </div>
-                <p class="text-[10px] text-slate-400 mt-1">Pending physical verification</p>
+                <p class="text-[9px] text-slate-400">Pending audit check</p>
             </div>
         </div>
 
-        <!-- Section 2: Anomaly Types Breakdown & Risk Distribution -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Section 2: Anomaly Categories & Risk Breakdown (Compact Side-by-Side) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-2.5 shrink-0">
             
             <!-- Left: Anomaly Detection Engine Breakdown (7 Cols) -->
-            <div class="lg:col-span-7 bg-white border border-borderline rounded-lg shadow-xs p-5">
-                <div class="flex items-center justify-between border-b border-borderline pb-3 mb-4">
+            <div class="lg:col-span-7 bg-white border border-borderline rounded-lg shadow-2xs p-3 flex flex-col justify-between">
+                <div class="flex items-center justify-between border-b border-borderline pb-1.5 mb-2">
                     <div>
-                        <h2 class="text-sm font-bold text-slate-900 tracking-tight">AI Anomaly Detection Categories</h2>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Primary automated irregularity vectors detected across MPLAD works</p>
+                        <h2 class="text-xs font-bold text-slate-900 tracking-tight">AI Anomaly Detection Categories</h2>
+                        <p class="text-[10px] text-slate-500">Automated irregularity vectors detected across 171,890 works</p>
                     </div>
-                    <a href="Analytics.html" class="text-xs font-semibold text-blue-700 hover:text-blue-900 flex items-center gap-1">
+                    <a href="Analytics.html" class="text-[11px] font-semibold text-blue-700 hover:text-blue-900 flex items-center gap-0.5">
                         <span>Deep Dive</span>
                         <span class="material-symbols-outlined text-xs">arrow_forward</span>
                     </a>
                 </div>
 
-                <div class="space-y-3.5">
+                <div id="anomaly-categories-list" class="space-y-1.5 text-xs">
                     <!-- Anomaly 1 -->
                     <div>
-                        <div class="flex justify-between items-center text-xs mb-1">
+                        <div class="flex justify-between items-center text-[11px] mb-0.5">
                             <span class="font-semibold text-slate-800 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-red-600"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span>
                                 Completion Delay (&gt;200% over sanctioned timeline)
                             </span>
-                            <span class="font-mono font-bold text-slate-900">245 cases <span class="text-slate-400 font-normal">(35.8%)</span></span>
+                            <span class="font-mono font-bold text-slate-900">13,435 <span class="text-slate-400 font-normal">(56.2%)</span></span>
                         </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="bg-red-600 h-full" style="width: 72%;"></div>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-red-600 h-full" style="width: 56.2%;"></div>
                         </div>
                     </div>
 
                     <!-- Anomaly 2 -->
                     <div>
-                        <div class="flex justify-between items-center text-xs mb-1">
+                        <div class="flex justify-between items-center text-[11px] mb-0.5">
                             <span class="font-semibold text-slate-800 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-orange-500"></span>
-                                Expenditure Deviation from Technical Estimate (&gt;35%)
+                                <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                                Amount / Cost Outlier (Extreme z-score)
                             </span>
-                            <span class="font-mono font-bold text-slate-900">182 cases <span class="text-slate-400 font-normal">(26.6%)</span></span>
+                            <span class="font-mono font-bold text-slate-900">7,000 <span class="text-slate-400 font-normal">(29.3%)</span></span>
                         </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="bg-orange-500 h-full" style="width: 53%;"></div>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-orange-500 h-full" style="width: 29.3%;"></div>
                         </div>
                     </div>
 
                     <!-- Anomaly 3 -->
                     <div>
-                        <div class="flex justify-between items-center text-xs mb-1">
+                        <div class="flex justify-between items-center text-[11px] mb-0.5">
                             <span class="font-semibold text-slate-800 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                                Spatial / Geographic Outlier (Cluster Anomaly)
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                Spatial Cluster ML Outlier (Isolation Forest)
                             </span>
-                            <span class="font-mono font-bold text-slate-900">114 cases <span class="text-slate-400 font-normal">(16.7%)</span></span>
+                            <span class="font-mono font-bold text-slate-900">8,563 <span class="text-slate-400 font-normal">(35.8%)</span></span>
                         </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="bg-amber-500 h-full" style="width: 33%;"></div>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-amber-500 h-full" style="width: 35.8%;"></div>
                         </div>
                     </div>
 
                     <!-- Anomaly 4 -->
                     <div>
-                        <div class="flex justify-between items-center text-xs mb-1">
+                        <div class="flex justify-between items-center text-[11px] mb-0.5">
                             <span class="font-semibold text-slate-800 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-                                Implementing Agency Concentration Risk
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                MP Spending Habit Drift
                             </span>
-                            <span class="font-mono font-bold text-slate-900">89 cases <span class="text-slate-400 font-normal">(13.0%)</span></span>
+                            <span class="font-mono font-bold text-slate-900">4,110 <span class="text-slate-400 font-normal">(17.2%)</span></span>
                         </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="bg-blue-600 h-full" style="width: 26%;"></div>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-blue-600 h-full" style="width: 17.2%;"></div>
                         </div>
                     </div>
 
                     <!-- Anomaly 5 -->
                     <div>
-                        <div class="flex justify-between items-center text-xs mb-1">
+                        <div class="flex justify-between items-center text-[11px] mb-0.5">
                             <span class="font-semibold text-slate-800 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
-                                Utilization Certificate / Milestone Date Mismatch
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Round Number Benford Law Anomaly
                             </span>
-                            <span class="font-mono font-bold text-slate-900">54 cases <span class="text-slate-400 font-normal">(7.9%)</span></span>
+                            <span class="font-mono font-bold text-slate-900">1,522 <span class="text-slate-400 font-normal">(6.4%)</span></span>
                         </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="bg-slate-600 h-full" style="width: 16%;"></div>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-slate-600 h-full" style="width: 6.4%;"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Right: Risk Severity Matrix (5 Cols) -->
-            <div class="lg:col-span-5 bg-white border border-borderline rounded-lg shadow-xs p-5 flex flex-col justify-between">
+            <div class="lg:col-span-5 bg-white border border-borderline rounded-lg shadow-2xs p-3 flex flex-col justify-between">
                 <div>
-                    <div class="border-b border-borderline pb-3 mb-4">
-                        <h2 class="text-sm font-bold text-slate-900 tracking-tight">Risk Severity Breakdown</h2>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Classification of 684 flagged works by audit risk score</p>
+                    <div class="border-b border-borderline pb-1.5 mb-2 flex items-center justify-between">
+                        <div>
+                            <h2 class="text-xs font-bold text-slate-900 tracking-tight">Risk Severity Classification</h2>
+                            <p class="text-[10px] text-slate-500">Distribution of 23,912 flagged works</p>
+                        </div>
                     </div>
 
                     <!-- Severity Stack -->
-                    <div class="grid grid-cols-2 gap-3 mb-4">
-                        <div class="p-3 rounded-lg bg-red-50/70 border border-red-200">
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                        <div class="p-2 rounded bg-red-50/70 border border-red-200">
                             <div class="flex items-center justify-between">
-                                <span class="font-extrabold text-red-900 text-xs">CRITICAL</span>
-                                <span class="font-mono text-xs font-bold text-red-800">Score &gt;90</span>
+                                <span class="font-extrabold text-red-900 text-[10px]">CRITICAL</span>
+                                <span class="font-mono text-[10px] font-bold text-red-800">&gt;90</span>
                             </div>
-                            <p class="text-xl font-black font-mono text-red-700 mt-1">127</p>
-                            <p class="text-[10px] text-red-800 mt-0.5">18.6% of flagged</p>
+                            <p id="sev-critical-count" class="text-lg font-black font-mono text-red-700 leading-tight mt-0.5">1,137</p>
+                            <p class="text-[9px] text-red-800">4.8% of flagged</p>
                         </div>
 
-                        <div class="p-3 rounded-lg bg-orange-50/70 border border-orange-200">
+                        <div class="p-2 rounded bg-orange-50/70 border border-orange-200">
                             <div class="flex items-center justify-between">
-                                <span class="font-extrabold text-orange-900 text-xs">HIGH</span>
-                                <span class="font-mono text-xs font-bold text-orange-800">70 – 89</span>
+                                <span class="font-extrabold text-orange-900 text-[10px]">HIGH</span>
+                                <span class="font-mono text-[10px] font-bold text-orange-800">70 – 89</span>
                             </div>
-                            <p class="text-xl font-black font-mono text-orange-700 mt-1">185</p>
-                            <p class="text-[10px] text-orange-800 mt-0.5">27.0% of flagged</p>
+                            <p id="sev-high-count" class="text-lg font-black font-mono text-orange-700 leading-tight mt-0.5">5,965</p>
+                            <p class="text-[9px] text-orange-800">24.9% of flagged</p>
                         </div>
 
-                        <div class="p-3 rounded-lg bg-amber-50/70 border border-amber-200">
+                        <div class="p-2 rounded bg-amber-50/70 border border-amber-200">
                             <div class="flex items-center justify-between">
-                                <span class="font-extrabold text-amber-900 text-xs">MEDIUM</span>
-                                <span class="font-mono text-xs font-bold text-amber-800">40 – 69</span>
+                                <span class="font-extrabold text-amber-900 text-[10px]">MEDIUM</span>
+                                <span class="font-mono text-[10px] font-bold text-amber-800">40 – 69</span>
                             </div>
-                            <p class="text-xl font-black font-mono text-amber-700 mt-1">205</p>
-                            <p class="text-[10px] text-amber-800 mt-0.5">30.0% of flagged</p>
+                            <p id="sev-med-count" class="text-lg font-black font-mono text-amber-700 leading-tight mt-0.5">15,965</p>
+                            <p class="text-[9px] text-amber-800">66.8% of flagged</p>
                         </div>
 
-                        <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200">
+                        <div class="p-2 rounded bg-emerald-50/70 border border-emerald-200">
                             <div class="flex items-center justify-between">
-                                <span class="font-extrabold text-emerald-900 text-xs">LOW RISK</span>
-                                <span class="font-mono text-xs font-bold text-emerald-800">&lt; 40</span>
+                                <span class="font-extrabold text-emerald-900 text-[10px]">LOW RISK</span>
+                                <span class="font-mono text-[10px] font-bold text-emerald-800">&lt; 40</span>
                             </div>
-                            <p class="text-xl font-black font-mono text-emerald-700 mt-1">167</p>
-                            <p class="text-[10px] text-emerald-800 mt-0.5">24.4% of flagged</p>
+                            <p id="sev-low-count" class="text-lg font-black font-mono text-emerald-700 leading-tight mt-0.5">147,978</p>
+                            <p class="text-[9px] text-emerald-800">86.1% of scanned</p>
                         </div>
                     </div>
                 </div>
 
-                <a href="Flagged_Cases.html" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white rounded-md text-xs font-bold flex items-center justify-center gap-2 transition-colors shadow-xs">
-                    <span class="material-symbols-outlined text-[16px]">assignment_turned_in</span>
-                    <span>Launch Comprehensive Triage Workbench</span>
+                <a href="Flagged_Cases.html" class="w-full py-1.5 px-3 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-2xs">
+                    <span class="material-symbols-outlined text-sm">assignment_turned_in</span>
+                    <span>Launch Triage Workbench (23,912 Cases)</span>
                 </a>
             </div>
         </div>
 
         <!-- Section 3: High-Priority Flagged Cases Triage Table -->
-        <div class="bg-white border border-borderline rounded-lg shadow-xs overflow-hidden">
-            <div class="p-4 border-b border-borderline flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-slate-50/70">
-                <div>
-                    <h3 class="text-sm font-bold text-slate-900">Immediate Vigilance Queue</h3>
-                    <p class="text-[11px] text-slate-500">Top 5 highest risk-scoring cases requiring immediate administrative intervention</p>
-                </div>
+        <div class="flex-1 min-h-0 bg-white border border-borderline rounded-lg shadow-2xs flex flex-col overflow-hidden">
+            <div class="px-3 py-1.5 border-b border-borderline flex items-center justify-between bg-slate-50/70 shrink-0">
                 <div class="flex items-center gap-2">
-                    <a href="Flagged_Cases.html" class="text-xs font-bold text-blue-700 hover:text-blue-900 flex items-center gap-1">
-                        <span>View All 684 Cases</span>
-                        <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                    </a>
+                    <h3 class="text-xs font-bold text-slate-900">Immediate Vigilance Queue</h3>
+                    <span class="text-[10px] text-slate-500">Top 5 highest risk-scoring works requiring action</span>
                 </div>
+                <a href="Flagged_Cases.html" class="text-xs font-bold text-blue-700 hover:text-blue-900 flex items-center gap-1">
+                    <span>View All 23,912 Flagged</span>
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </a>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="flex-1 min-h-0 overflow-auto">
                 <table class="w-full text-left border-collapse text-xs">
-                    <thead>
-                        <tr class="bg-slate-100/80 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline">
-                            <th class="py-2.5 px-4 font-mono">Risk Score</th>
-                            <th class="py-2.5 px-4 font-mono">Work ID</th>
-                            <th class="py-2.5 px-4">Project Description</th>
-                            <th class="py-2.5 px-4">Constituency / State</th>
-                            <th class="py-2.5 px-4 text-right">Sanctioned</th>
-                            <th class="py-2.5 px-4">Primary Anomaly</th>
-                            <th class="py-2.5 px-4 text-center">Action</th>
+                    <thead class="sticky top-0 z-10">
+                        <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline text-[10px]">
+                            <th class="py-1.5 px-3 font-mono bg-slate-100 w-[95px]">Risk Score</th>
+                            <th class="py-1.5 px-3 font-mono bg-slate-100 w-[110px]">Work ID</th>
+                            <th class="py-1.5 px-3 bg-slate-100 min-w-[200px]">Project Description</th>
+                            <th class="py-1.5 px-3 bg-slate-100 min-w-[140px]">Constituency / State</th>
+                            <th class="py-1.5 px-3 text-right bg-slate-100 w-[95px]">Sanctioned</th>
+                            <th class="py-1.5 px-3 bg-slate-100 min-w-[150px]">Primary Anomaly</th>
+                            <th class="py-1.5 px-3 text-center bg-slate-100 w-[80px]">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-borderline font-tabular">
-                        <!-- Row 1 -->
+                    <tbody id="overview-queue-tbody" class="divide-y divide-borderline font-tabular">
+                        <!-- Populated dynamically via assets/data/overview_kpis.json -->
                         <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4">
-                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[11px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> 95 / 100
+                            <td class="py-1.5 px-3">
+                                <span class="inline-flex items-center gap-1 px-1.5 py-0.2 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[10px] whitespace-nowrap">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> 98 / 100
                                 </span>
                             </td>
-                            <td class="py-3 px-4 font-mono font-bold text-slate-900">MPLAD-91044</td>
-                            <td class="py-3 px-4 font-semibold text-slate-800 max-w-[240px] truncate">District Hospital Oxygen Plant & ICU Wing</td>
-                            <td class="py-3 px-4 text-slate-600">Varanasi, Uttar Pradesh</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-slate-900">₹2.10 Cr</td>
-                            <td class="py-3 px-4">
-                                <span class="px-2 py-0.5 rounded bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-semibold">Agency Concentration</span>
+                            <td class="py-1.5 px-3 font-mono font-bold text-slate-900">MPLAD-00227</td>
+                            <td class="py-1.5 px-3 font-semibold text-slate-800 max-w-[240px] truncate" title="Solar lighting of Jessore road NH 35">Solar lighting of Jessore road NH 35</td>
+                            <td class="py-1.5 px-3 text-slate-600">Barasat, West Bengal</td>
+                            <td class="py-1.5 px-3 text-right font-mono font-bold text-slate-900">₹65.2 L</td>
+                            <td class="py-1.5 px-3">
+                                <span class="px-1.5 py-0.2 rounded bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-semibold">Amount Outlier (z=4.1)</span>
                             </td>
-                            <td class="py-3 px-4 text-center">
-                                <a href="Case_Details.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[11px] hover:bg-blue-800 transition-colors shadow-2xs">
+                            <td class="py-1.5 px-3 text-center">
+                                <a href="Case_Details.html?id=MPLAD-00227" class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
                                     <span>Audit</span>
-                                    <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </a>
                             </td>
                         </tr>
-
-                        <!-- Row 2 -->
                         <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4">
-                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[11px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> 91 / 100
+                            <td class="py-1.5 px-3">
+                                <span class="inline-flex items-center gap-1 px-1.5 py-0.2 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[10px] whitespace-nowrap">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> 98 / 100
                                 </span>
                             </td>
-                            <td class="py-3 px-4 font-mono font-bold text-slate-900">MPLAD-84920</td>
-                            <td class="py-3 px-4 font-semibold text-slate-800 max-w-[240px] truncate">Rural Road Construction Phase II</td>
-                            <td class="py-3 px-4 text-slate-600">Nagpur, Maharashtra</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-slate-900">₹42.8 L</td>
-                            <td class="py-3 px-4">
-                                <span class="px-2 py-0.5 rounded bg-red-50 text-red-800 border border-red-200 text-[10px] font-semibold">Delay (>280%)</span>
+                            <td class="py-1.5 px-3 font-mono font-bold text-slate-900">MPLAD-00228</td>
+                            <td class="py-1.5 px-3 font-semibold text-slate-800 max-w-[240px] truncate" title="24hours monitoring of village markets,Haats">24hours monitoring of village markets,Haats</td>
+                            <td class="py-1.5 px-3 text-slate-600">Barasat, West Bengal</td>
+                            <td class="py-1.5 px-3 text-right font-mono font-bold text-slate-900">₹97.5 L</td>
+                            <td class="py-1.5 px-3">
+                                <span class="px-1.5 py-0.2 rounded bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-semibold">Amount Outlier (z=4.6)</span>
                             </td>
-                            <td class="py-3 px-4 text-center">
-                                <a href="Case_Details.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[11px] hover:bg-blue-800 transition-colors shadow-2xs">
+                            <td class="py-1.5 px-3 text-center">
+                                <a href="Case_Details.html?id=MPLAD-00228" class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
                                     <span>Audit</span>
-                                    <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </a>
                             </td>
                         </tr>
-
-                        <!-- Row 3 -->
                         <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4">
-                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[11px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> 89 / 100
+                            <td class="py-1.5 px-3">
+                                <span class="inline-flex items-center gap-1 px-1.5 py-0.2 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[10px] whitespace-nowrap">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> 98 / 100
                                 </span>
                             </td>
-                            <td class="py-3 px-4 font-mono font-bold text-slate-900">MPLAD-55102</td>
-                            <td class="py-3 px-4 font-semibold text-slate-800 max-w-[240px] truncate">Inter-Village Bridge Construction</td>
-                            <td class="py-3 px-4 text-slate-600">Patna, Bihar</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-slate-900">₹1.80 Cr</td>
-                            <td class="py-3 px-4">
-                                <span class="px-2 py-0.5 rounded bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-semibold">Cost Escalation (+48%)</span>
+                            <td class="py-1.5 px-3 font-mono font-bold text-slate-900">MPLAD-00239</td>
+                            <td class="py-1.5 px-3 font-semibold text-slate-800 max-w-[240px] truncate" title="Construction of Luca roof with false ceiling">Construction of Luca roof with false ceiling</td>
+                            <td class="py-1.5 px-3 text-slate-600">Barasat, West Bengal</td>
+                            <td class="py-1.5 px-3 text-right font-mono font-bold text-slate-900">₹50.0 L</td>
+                            <td class="py-1.5 px-3">
+                                <span class="px-1.5 py-0.2 rounded bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-semibold">Amount Outlier (z=3.7)</span>
                             </td>
-                            <td class="py-3 px-4 text-center">
-                                <a href="Case_Details.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[11px] hover:bg-blue-800 transition-colors shadow-2xs">
+                            <td class="py-1.5 px-3 text-center">
+                                <a href="Case_Details.html?id=MPLAD-00239" class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
                                     <span>Audit</span>
-                                    <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </a>
                             </td>
                         </tr>
-
-                        <!-- Row 4 -->
                         <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4">
-                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-orange-100 text-orange-800 border border-orange-300 font-mono font-bold text-[11px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span> 88 / 100
+                            <td class="py-1.5 px-3">
+                                <span class="inline-flex items-center gap-1 px-1.5 py-0.2 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[10px] whitespace-nowrap">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> 98 / 100
                                 </span>
                             </td>
-                            <td class="py-3 px-4 font-mono font-bold text-slate-900">MPLAD-73019</td>
-                            <td class="py-3 px-4 font-semibold text-slate-800 max-w-[240px] truncate">Solar Mini-Grid Electrification</td>
-                            <td class="py-3 px-4 text-slate-600">Jaipur, Rajasthan</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-slate-900">₹1.45 Cr</td>
-                            <td class="py-3 px-4">
-                                <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-semibold">Spatial Outlier</span>
+                            <td class="py-1.5 px-3 font-mono font-bold text-slate-900">MPLAD-00266</td>
+                            <td class="py-1.5 px-3 font-semibold text-slate-800 max-w-[240px] truncate" title="Construction of Children Park at Bissamcuttack">Construction of Children Park at Bissamcuttack</td>
+                            <td class="py-1.5 px-3 text-slate-600">Koraput(St), Odisha</td>
+                            <td class="py-1.5 px-3 text-right font-mono font-bold text-slate-900">₹10.0 L</td>
+                            <td class="py-1.5 px-3">
+                                <span class="px-1.5 py-0.2 rounded bg-red-50 text-red-800 border border-red-200 text-[10px] font-semibold">Delay (409 days)</span>
                             </td>
-                            <td class="py-3 px-4 text-center">
-                                <a href="Case_Details.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[11px] hover:bg-blue-800 transition-colors shadow-2xs">
+                            <td class="py-1.5 px-3 text-center">
+                                <a href="Case_Details.html?id=MPLAD-00266" class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
                                     <span>Audit</span>
-                                    <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </a>
                             </td>
                         </tr>
-
-                        <!-- Row 5 -->
                         <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4">
-                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-orange-100 text-orange-800 border border-orange-300 font-mono font-bold text-[11px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span> 84 / 100
+                            <td class="py-1.5 px-3">
+                                <span class="inline-flex items-center gap-1 px-1.5 py-0.2 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[10px] whitespace-nowrap">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> 98 / 100
                                 </span>
                             </td>
-                            <td class="py-3 px-4 font-mono font-bold text-slate-900">MPLAD-63910</td>
-                            <td class="py-3 px-4 font-semibold text-slate-800 max-w-[240px] truncate">Community RO Water Filtration Plant</td>
-                            <td class="py-3 px-4 text-slate-600">Kolkata, West Bengal</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-slate-900">₹38.5 L</td>
-                            <td class="py-3 px-4">
-                                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-300 text-[10px] font-semibold">UC Date Mismatch</span>
+                            <td class="py-1.5 px-3 font-mono font-bold text-slate-900">MPLAD-00700</td>
+                            <td class="py-1.5 px-3 font-semibold text-slate-800 max-w-[240px] truncate" title="Introduction of dialyasis at JBMM hospital">Introduction of dialyasis at JBMM hospital</td>
+                            <td class="py-1.5 px-3 text-slate-600">Barrackpur, West Bengal</td>
+                            <td class="py-1.5 px-3 text-right font-mono font-bold text-slate-900">₹48.0 L</td>
+                            <td class="py-1.5 px-3">
+                                <span class="px-1.5 py-0.2 rounded bg-red-50 text-red-800 border border-red-200 text-[10px] font-semibold">Delay (375 days)</span>
                             </td>
-                            <td class="py-3 px-4 text-center">
-                                <a href="Case_Details.html" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-700 text-white font-bold text-[11px] hover:bg-blue-800 transition-colors shadow-2xs">
+                            <td class="py-1.5 px-3 text-center">
+                                <a href="Case_Details.html?id=MPLAD-00700" class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
                                     <span>Audit</span>
-                                    <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </a>
                             </td>
                         </tr>
@@ -615,5 +550,74 @@ th.sticky-col-right {
 </div>
 
 <script src="app.js"></script>
+<script>
+// Dynamic Overview Ingestion
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('assets/data/overview_kpis.json?v=' + Date.now(), { cache: 'no-store' })
+        .then(res => res.json())
+        .then(data => {
+            if (!data) return;
+            if (data.totalRegisteredWorks) {
+                document.getElementById('kpi-total-works').innerText = data.totalRegisteredWorks.toLocaleString();
+            }
+            if (data.totalScannedWorks) {
+                document.getElementById('kpi-scanned-works').innerText = data.totalScannedWorks.toLocaleString();
+            }
+            if (data.coveragePct) {
+                document.getElementById('kpi-scanned-pct').innerText = data.coveragePct + '%';
+                document.getElementById('kpi-scanned-bar').style.width = data.coveragePct + '%';
+                document.getElementById('overview-coverage-pill').innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> ${data.coveragePct}% AUDIT COVERAGE`;
+            }
+            if (data.flaggedCount) {
+                document.getElementById('kpi-flagged-works').innerText = data.flaggedCount.toLocaleString();
+                document.getElementById('sidebar-flagged-count').innerText = data.flaggedCount.toLocaleString();
+            }
+            if (data.flaggedPct) {
+                document.getElementById('kpi-flagged-pct').innerText = data.flaggedPct + '% of total';
+            }
+            if (data.criticalCount) {
+                document.getElementById('kpi-critical-works').innerText = data.criticalCount.toLocaleString();
+                document.getElementById('sev-critical-count').innerText = data.criticalCount.toLocaleString();
+            }
+            if (data.highCount) {
+                document.getElementById('sev-high-count').innerText = data.highCount.toLocaleString();
+            }
+            if (data.medCount) {
+                document.getElementById('sev-med-count').innerText = data.medCount.toLocaleString();
+            }
+            if (data.scrutinyExposureCr) {
+                document.getElementById('kpi-scrutiny-exposure').innerText = '₹' + data.scrutinyExposureCr.toLocaleString();
+            }
+
+            // Render Immediate Queue if present
+            if (data.immediateQueue && data.immediateQueue.length) {
+                const tbody = document.getElementById('overview-queue-tbody');
+                tbody.innerHTML = data.immediateQueue.map(item => `
+                    <tr class="hover:bg-slate-50/80 transition-colors">
+                        <td class="py-1.5 px-3">
+                            <span class="inline-flex items-center gap-1 px-1.5 py-0.2 rounded bg-red-100 text-red-800 border border-red-300 font-mono font-bold text-[10px] whitespace-nowrap">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> ${item.score} / 100
+                            </span>
+                        </td>
+                        <td class="py-1.5 px-3 font-mono font-bold text-slate-900">${item.id}</td>
+                        <td class="py-1.5 px-3 font-semibold text-slate-800 max-w-[240px] truncate" title="${item.title}">${item.title}</td>
+                        <td class="py-1.5 px-3 text-slate-600">${item.location}</td>
+                        <td class="py-1.5 px-3 text-right font-mono font-bold text-slate-900">${item.sanctioned}</td>
+                        <td class="py-1.5 px-3">
+                            <span class="px-1.5 py-0.2 rounded bg-orange-50 text-orange-800 border border-orange-200 text-[10px] font-semibold">${item.anomaly}</span>
+                        </td>
+                        <td class="py-1.5 px-3 text-center">
+                            <a href="Case_Details.html?id=${encodeURIComponent(item.id)}" class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded bg-blue-700 text-white font-bold text-[10px] hover:bg-blue-800 transition-colors shadow-2xs">
+                                <span>Audit</span>
+                                <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </a>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        })
+        .catch(err => console.log('Overview dynamic sync notice:', err));
+});
+</script>
 </body>
 </html>

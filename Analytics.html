@@ -125,7 +125,7 @@ th.sticky-col-right {
         <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Flagged_Cases.html">
             <span class="material-symbols-outlined text-lg">report_problem</span>
             <span>Flagged Cases</span>
-            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">684</span>
+            <span class="ml-auto px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800 text-[10px] font-mono font-bold">23,912</span>
         </a>
         <a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md text-xs font-medium transition-all" href="Geographic_Map.html">
             <span class="material-symbols-outlined text-lg">map</span>
@@ -165,240 +165,169 @@ th.sticky-col-right {
     </div>
 </aside>
 
-<!-- Main Wrapper -->
-<div class="ml-[260px] w-[calc(100vw-260px)] max-w-[calc(100vw-260px)] min-w-0 min-h-screen flex flex-col bg-canvas overflow-x-hidden">
+<!-- Main Wrapper: Single Screen Zero Scroll -->
+<div class="ml-[260px] w-[calc(100vw-260px)] max-w-[calc(100vw-260px)] min-w-0 h-screen flex flex-col bg-canvas overflow-hidden">
     
     <!-- UNIFIED SHELL: Header -->
-    <header class="h-14 w-full sticky top-0 bg-white border-b border-borderline shadow-xs z-40 flex justify-between items-center px-6">
+    <header class="h-12 w-full shrink-0 bg-white border-b border-borderline shadow-2xs z-40 flex justify-between items-center px-5">
         <div class="flex items-center gap-4 w-96">
             <div class="relative w-full">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-base">search</span>
-                <input class="w-full pl-9 pr-12 py-1.5 rounded-md border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-slate-400 font-sans" placeholder="Search analytics metrics, agencies, sectors... (Press ⌘K)" type="search">
-                <kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-slate-300 bg-white text-[10px] font-mono text-slate-400">⌘K</kbd>
+                <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                <input class="w-full pl-8 pr-10 py-1 rounded border border-slate-300 bg-slate-50 text-xs text-slate-900 focus:bg-white focus:border-blue-600 outline-none transition-all placeholder:text-slate-400 font-sans" placeholder="Search analytics metrics, agencies, sectors... (Press ⌘K)" type="search">
+                <kbd class="absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.2 rounded border border-slate-300 bg-white text-[9px] font-mono text-slate-400">⌘K</kbd>
             </div>
         </div>
 
-        <div class="flex items-center gap-3">
-            <button class="relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition-colors" title="Live Vigilance Notifications">
-                <span class="material-symbols-outlined text-xl">notifications</span>
-                <span class="absolute top-1 right-1 w-2 h-2 bg-red-600 rounded-full ring-2 ring-white"></span>
-            </button>
+        <div class="flex items-center gap-2.5">
+            <!-- MoSPI Live Status Badge -->
+            <div class="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200 rounded text-emerald-800 text-[11px] font-semibold">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>MoSPI Scrutiny Engine Active</span>
+            </div>
 
             <!-- Timespan Selector -->
-            <select id="timespan-select" onchange="updateAnalyticsTimespan(this.value)" class="bg-slate-100 border border-slate-300 rounded px-2.5 py-1 text-xs font-semibold text-slate-800 outline-none focus:border-blue-600">
+            <select id="timespan-select" onchange="updateAnalyticsTimespan(this.value)" class="bg-slate-100 border border-slate-300 rounded px-2 py-1 text-xs font-semibold text-slate-800 outline-none focus:border-blue-600">
                 <option value="2y">FY 2024-26 (Current Cycle)</option>
                 <option value="5y">17th Lok Sabha (2019-24)</option>
                 <option value="all">All-Time Historical (10Y)</option>
             </select>
 
-            <button onclick="exportTableToCSV('mplad-agency-analytics.csv')" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white rounded-md text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs">
-                <span class="material-symbols-outlined text-[16px]">file_download</span>
+            <button onclick="exportTableToCSV('mplad-agency-analytics.csv')" class="flex items-center gap-1 px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-semibold hover:bg-slate-800 transition-colors shadow-2xs">
+                <span class="material-symbols-outlined text-[15px]">file_download</span>
                 <span>Export Dataset</span>
             </button>
 
-            <div class="h-6 w-px bg-slate-200 mx-1"></div>
+            <div class="h-5 w-px bg-slate-200 mx-0.5"></div>
 
-            <div class="flex items-center gap-2.5 pl-1">
-                <div class="w-7 h-7 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-xs shadow-xs">AO</div>
+            <div class="flex items-center gap-2 pl-0.5">
+                <div class="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center font-mono font-bold text-[10px] shadow-2xs">AO</div>
                 <div class="flex flex-col text-left">
-                    <span class="text-xs font-bold text-slate-900 leading-tight">Audit Officer #104</span>
-                    <span class="text-[10px] text-slate-500 font-medium">MoSPI • Oversight Div</span>
+                    <span class="text-xs font-bold text-slate-900 leading-none">AO #104</span>
+                    <span class="text-[9px] text-slate-500 font-medium">MoSPI Oversight</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Analytics Content -->
-    <main class="flex-1 p-6 space-y-6 max-w-full w-full mx-auto">
-        
-        <!-- Page Title & Key Stats -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-borderline pb-4">
-            <div>
-                <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Forensic Expenditure & Risk Analytics</h1>
-                <p class="text-xs text-slate-500 mt-1">Multi-dimensional econometric trend analysis, spending velocity curves, and agency risk scoring.</p>
-            </div>
-            <div class="flex items-center gap-2 font-mono">
-                <span class="px-2.5 py-1 rounded bg-slate-100 border border-slate-300 text-slate-800 text-xs font-bold">TOTAL CORPUS: ₹17,500 Cr</span>
-                <span class="px-2.5 py-1 rounded bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold">UTILIZATION: 78.4%</span>
-            </div>
+    <!-- Sub-Header Navigation & Real Metric Badges Strip -->
+    <div class="h-11 shrink-0 px-4 py-1.5 bg-white border-b border-borderline flex justify-between items-center z-30 shadow-2xs">
+        <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded border border-slate-200 text-xs font-semibold">
+            <button id="tab-charts" onclick="switchAnalyticsTab('charts')" class="px-3 py-1 rounded bg-white shadow-2xs text-slate-900 font-bold flex items-center gap-1.5 transition-all">
+                <span class="material-symbols-outlined text-sm">query_stats</span>
+                <span>Forensic Econometric Models (4 Views)</span>
+            </button>
+            <button id="tab-matrix" onclick="switchAnalyticsTab('matrix')" class="px-3 py-1 rounded text-slate-500 hover:text-slate-900 font-medium flex items-center gap-1.5 transition-all">
+                <span class="material-symbols-outlined text-sm">table_chart</span>
+                <span>Implementing Agency Risk Matrix</span>
+            </button>
         </div>
 
-        <!-- Row 1: Fund Utilization Trend Line Chart & Monthly Risk Trend Area Chart -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="flex items-center gap-2 font-mono text-[11px]">
+            <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-300 text-slate-800 font-bold">TOTAL CORPUS: ₹8,501 Cr</span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-800 font-bold">UTILIZATION: 71.6%</span>
+            <span class="px-2 py-0.5 rounded bg-red-50 border border-red-200 text-red-800 font-bold">SCRUTINY: ₹1,769 Cr</span>
+        </div>
+    </div>
+
+    <!-- Main Analytics Content Area: Fits exactly 100% viewport with zero outer window scroll -->
+    <main class="flex-1 min-h-0 p-3 flex flex-col overflow-hidden">
+        
+        <!-- View 1: 4 Forensic Charts in 2x2 Responsive Grid -->
+        <div id="view-charts" class="flex-1 min-h-0 grid grid-cols-12 grid-rows-2 gap-3 h-full">
             
-            <!-- Fund Utilization Trend (8 Cols) -->
-            <div class="lg:col-span-8 bg-white border border-borderline rounded-lg shadow-xs p-5 flex flex-col justify-between">
-                <div class="flex items-center justify-between border-b border-borderline pb-3 mb-4">
+            <!-- Chart 1: Fund Allocation vs Release vs Actual Expenditure (8 cols, row 1) -->
+            <div class="col-span-8 bg-white border border-borderline rounded-lg shadow-2xs p-3.5 flex flex-col min-h-0">
+                <div class="flex items-center justify-between border-b border-borderline pb-1.5 mb-2 shrink-0">
                     <div>
-                        <h2 class="text-sm font-bold text-slate-900 tracking-tight">Fund Allocation vs Release vs Actual Expenditure</h2>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Quarterly capital deployment trajectory (₹ Crores)</p>
+                        <h2 class="text-xs font-bold text-slate-900 tracking-tight">Fund Allocation vs Release vs Actual Expenditure</h2>
+                        <p class="text-[10px] text-slate-500">Quarterly capital deployment trajectory (₹ Crores)</p>
                     </div>
-                    <div class="flex items-center gap-2 font-mono text-[11px]">
-                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded-full bg-blue-900"></span> Allocated</span>
-                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span> Released</span>
-                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Utilized</span>
+                    <div class="flex items-center gap-2 font-mono text-[10px]">
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2 h-2 rounded-full bg-slate-900"></span> Allocated</span>
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2 h-2 rounded-full bg-blue-600"></span> Released</span>
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2 h-2 rounded-full bg-emerald-600"></span> Utilized</span>
                     </div>
                 </div>
-
-                <!-- Canvas Chart -->
-                <div class="h-72 w-full relative">
+                <div class="flex-1 min-h-0 relative w-full">
                     <canvas id="chartUtilization"></canvas>
                 </div>
             </div>
 
-            <!-- Risk Trend Spike Chart (4 Cols) -->
-            <div class="lg:col-span-4 bg-white border border-borderline rounded-lg shadow-xs p-5 flex flex-col justify-between">
-                <div class="flex items-center justify-between border-b border-borderline pb-3 mb-4">
+            <!-- Chart 2: Monthly Risk Trend Spike Chart (4 cols, row 1) -->
+            <div class="col-span-4 bg-white border border-borderline rounded-lg shadow-2xs p-3.5 flex flex-col min-h-0">
+                <div class="flex items-center justify-between border-b border-borderline pb-1.5 mb-2 shrink-0">
                     <div>
-                        <h2 class="text-sm font-bold text-slate-900 tracking-tight">Monthly Flagged Cases Trend</h2>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Vigilance anomaly incidence volume</p>
+                        <h2 class="text-xs font-bold text-slate-900 tracking-tight">Monthly Flagged Cases Trend</h2>
+                        <p class="text-[10px] text-slate-500">Vigilance anomaly incidence volume</p>
                     </div>
-                    <span class="px-2 py-0.5 rounded bg-red-50 text-red-800 border border-red-200 text-[10px] font-mono font-bold">Q4 SURGES</span>
+                    <span class="px-1.5 py-0.2 rounded bg-red-50 text-red-800 border border-red-200 text-[9px] font-mono font-bold">2025 SURGES</span>
                 </div>
-
-                <!-- Canvas Chart -->
-                <div class="h-72 w-full relative">
+                <div class="flex-1 min-h-0 relative w-full">
                     <canvas id="chartRiskTrend"></canvas>
                 </div>
             </div>
-        </div>
 
-        <!-- Row 2: State Comparison Bar Chart & Anomaly Vector Donut -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-            <!-- State Comparison Stacked Bar Chart (8 Cols) -->
-            <div class="lg:col-span-8 bg-white border border-borderline rounded-lg shadow-xs p-5">
-                <div class="flex items-center justify-between border-b border-borderline pb-3 mb-4">
+            <!-- Chart 3: Inter-State Anomaly Exposure Comparison (8 cols, row 2) -->
+            <div class="col-span-8 bg-white border border-borderline rounded-lg shadow-2xs p-3.5 flex flex-col min-h-0">
+                <div class="flex items-center justify-between border-b border-borderline pb-1.5 mb-2 shrink-0">
                     <div>
-                        <h2 class="text-sm font-bold text-slate-900 tracking-tight">Inter-State Anomaly Exposure Comparison</h2>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Top states compared by Flagged Works Rate (%) and High-Risk Share (%)</p>
+                        <h2 class="text-xs font-bold text-slate-900 tracking-tight">Inter-State Anomaly Exposure Comparison</h2>
+                        <p class="text-[10px] text-slate-500">Top 8 states compared by Flagged Works Rate (%) and Critical / High Share (%)</p>
                     </div>
-                    <div class="flex items-center gap-3 font-mono text-[11px]">
-                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded bg-orange-500"></span> Flagged Rate %</span>
-                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2.5 h-2.5 rounded bg-red-600"></span> Critical / High %</span>
+                    <div class="flex items-center gap-3 font-mono text-[10px]">
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2 h-2 rounded bg-orange-500"></span> Flagged Rate %</span>
+                        <span class="inline-flex items-center gap-1 text-slate-600"><span class="w-2 h-2 rounded bg-red-600"></span> Critical / High %</span>
                     </div>
                 </div>
-
-                <div class="h-64 w-full relative">
+                <div class="flex-1 min-h-0 relative w-full">
                     <canvas id="chartStateComparison"></canvas>
                 </div>
             </div>
 
-            <!-- Anomaly Vector Distribution (4 Cols) -->
-            <div class="lg:col-span-4 bg-white border border-borderline rounded-lg shadow-xs p-5">
-                <div class="border-b border-borderline pb-3 mb-4">
-                    <h2 class="text-sm font-bold text-slate-900 tracking-tight">Anomaly Vector Composition</h2>
-                    <p class="text-[11px] text-slate-500 mt-0.5">Algorithmic risk type breakdown</p>
+            <!-- Chart 4: Anomaly Vector Composition (4 cols, row 2) -->
+            <div class="col-span-4 bg-white border border-borderline rounded-lg shadow-2xs p-3.5 flex flex-col min-h-0">
+                <div class="border-b border-borderline pb-1.5 mb-2 shrink-0">
+                    <h2 class="text-xs font-bold text-slate-900 tracking-tight">Anomaly Vector Composition</h2>
+                    <p class="text-[10px] text-slate-500">Breakdown across all 23,912 flagged records</p>
                 </div>
-
-                <div class="h-64 w-full relative flex items-center justify-center">
+                <div class="flex-1 min-h-0 relative w-full flex items-center justify-center">
                     <canvas id="chartAnomalyDonut"></canvas>
                 </div>
             </div>
         </div>
 
-        <!-- Row 3: Executing Agency Performance & Risk Rating Matrix -->
-        <div class="bg-white border border-borderline rounded-lg shadow-xs overflow-hidden">
-            <div class="p-4 border-b border-borderline bg-slate-50/70 flex items-center justify-between">
+        <!-- View 2: Executing Agency Risk Matrix (Full Height internally scrolling) -->
+        <div id="view-matrix" class="hidden flex-1 min-h-0 flex flex-col bg-white border border-borderline rounded-lg shadow-2xs overflow-hidden">
+            <div class="p-3 border-b border-borderline bg-slate-50/80 flex items-center justify-between shrink-0">
                 <div>
-                    <h3 class="text-sm font-bold text-slate-900">Implementing Agency Scrutiny Matrix</h3>
-                    <p class="text-[11px] text-slate-500">Cross-agency performance benchmarks, allocation volume, and anomaly failure rates.</p>
+                    <h3 class="text-xs font-bold text-slate-900">Implementing Agency Scrutiny Matrix</h3>
+                    <p class="text-[10px] text-slate-500">Cross-agency performance benchmarks, allocation volume, and anomaly failure rates.</p>
                 </div>
-                <button onclick="exportTableToCSV('agency-scrutiny-matrix.csv')" class="text-xs font-bold text-blue-700 hover:text-blue-900 flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[16px]">file_download</span>
-                    <span>Download CSV</span>
-                </button>
+                <div class="flex items-center gap-2">
+                    <input id="agency-filter" oninput="filterAgencyTable(this.value)" class="px-2.5 py-1 rounded border border-slate-300 bg-white text-xs text-slate-900 placeholder:text-slate-400 outline-none focus:border-blue-600" placeholder="Filter agencies...">
+                    <button onclick="exportAgencyTableToCSV('agency-scrutiny-matrix.csv')" class="px-2.5 py-1 bg-slate-900 text-white rounded text-xs font-semibold hover:bg-slate-800 transition-colors shadow-2xs flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">file_download</span>
+                        <span>Download CSV</span>
+                    </button>
+                </div>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="flex-1 min-h-0 overflow-y-auto">
                 <table class="w-full text-left border-collapse text-xs">
-                    <thead>
-                        <tr class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider border-b border-borderline font-mono">
-                            <th class="py-2.5 px-4">Implementing Agency</th>
-                            <th class="py-2.5 px-4 text-right">Total Works</th>
-                            <th class="py-2.5 px-4 text-right">Sanctioned Value</th>
-                            <th class="py-2.5 px-4 text-right">Avg Work Size</th>
-                            <th class="py-2.5 px-4 text-right">Flagged Count</th>
-                            <th class="py-2.5 px-4 text-right">Anomaly Rate</th>
-                            <th class="py-2.5 px-4 text-center">Compliance Rating</th>
-                            <th class="py-2.5 px-4 text-center">Vigilance Action</th>
+                    <thead class="sticky top-0 bg-slate-100 z-10 shadow-2xs">
+                        <tr class="text-slate-700 font-bold uppercase tracking-wider border-b border-borderline font-mono text-[10px]">
+                            <th class="py-2 px-3">Implementing Agency</th>
+                            <th class="py-2 px-3 text-right">Total Works</th>
+                            <th class="py-2 px-3 text-right">Sanctioned Value</th>
+                            <th class="py-2 px-3 text-right">Avg Work Size</th>
+                            <th class="py-2 px-3 text-right">Flagged Count</th>
+                            <th class="py-2 px-3 text-right">Anomaly Rate</th>
+                            <th class="py-2 px-3 text-center">Compliance Rating</th>
+                            <th class="py-2 px-3 text-center">Vigilance Action</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-borderline font-tabular">
-                        <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4 font-bold text-slate-900">State Works & Roads Department (Central Division)</td>
-                            <td class="py-3 px-4 text-right font-mono">1,845</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold">₹840.5 Cr</td>
-                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹45.5 L</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-red-700">142</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-red-700">7.7%</td>
-                            <td class="py-3 px-4 text-center">
-                                <span class="px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-200 text-[10px] font-bold">HIGH RISK VENDOR</span>
-                            </td>
-                            <td class="py-3 px-4 text-center">
-                                <button onclick="showToast('Physical audit requested for State Works & Roads Central node.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4 font-bold text-slate-900">Rural Development & Engineering Directorate</td>
-                            <td class="py-3 px-4 text-right font-mono">2,410</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold">₹530.2 Cr</td>
-                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹22.0 L</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-orange-700">118</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-orange-700">4.9%</td>
-                            <td class="py-3 px-4 text-center">
-                                <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-900 border border-orange-200 text-[10px] font-bold">MODERATE RISK</span>
-                            </td>
-                            <td class="py-3 px-4 text-center">
-                                <button onclick="showToast('Reviewing Rural Development Directorate utilization certificates.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4 font-bold text-slate-900">Metropolitan Infrastructure Development Units</td>
-                            <td class="py-3 px-4 text-right font-mono">1,120</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold">₹610.8 Cr</td>
-                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹54.5 L</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-red-700">96</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-red-700">8.5%</td>
-                            <td class="py-3 px-4 text-center">
-                                <span class="px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-200 text-[10px] font-bold">CRITICAL BREACH</span>
-                            </td>
-                            <td class="py-3 px-4 text-center">
-                                <button onclick="showToast('Metropolitan agency audit brief exported for DM action.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4 font-bold text-slate-900">Regional Water Resources & Canal Authority</td>
-                            <td class="py-3 px-4 text-right font-mono">890</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold">₹340.0 Cr</td>
-                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹38.2 L</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-amber-700">42</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-amber-700">4.7%</td>
-                            <td class="py-3 px-4 text-center">
-                                <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-200 text-[10px] font-bold">WATCHLIST</span>
-                            </td>
-                            <td class="py-3 px-4 text-center">
-                                <button onclick="showToast('Water resources milestone check initiated.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-slate-50/80 transition-colors">
-                            <td class="py-3 px-4 font-bold text-slate-900">District School Infrastructure Development Board</td>
-                            <td class="py-3 px-4 text-right font-mono">1,650</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold">₹280.4 Cr</td>
-                            <td class="py-3 px-4 text-right font-mono text-slate-600">₹17.0 L</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-emerald-700">28</td>
-                            <td class="py-3 px-4 text-right font-mono font-bold text-emerald-700">1.7%</td>
-                            <td class="py-3 px-4 text-center">
-                                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-200 text-[10px] font-bold">COMPLIANT</span>
-                            </td>
-                            <td class="py-3 px-4 text-center">
-                                <button onclick="showToast('School infrastructure verified compliant.', 'success')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
-                            </td>
-                        </tr>
+                    <tbody id="agency-matrix-tbody" class="divide-y divide-borderline font-tabular text-[11px]">
+                        <!-- Populated dynamically via JS -->
                     </tbody>
                 </table>
             </div>
@@ -411,222 +340,366 @@ th.sticky-col-right {
 
 <!-- Chart.js Real Forensic Visualizations Initializer -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+let globalAnalyticsData = null;
+
+async function initAnalytics() {
     Chart.defaults.font.family = "'Inter', sans-serif";
     Chart.defaults.font.size = 11;
     Chart.defaults.color = '#64748b';
 
+    try {
+        const res = await fetch('assets/data/analytics_data.json?v=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to load analytics data');
+        globalAnalyticsData = await res.json();
+        
+        renderCharts(globalAnalyticsData);
+        renderAgencyMatrix(globalAnalyticsData.agencyMatrix || []);
+    } catch (e) {
+        console.error("Error loading analytics:", e);
+    }
+}
+
+function renderCharts(data) {
     // 1. Line Chart: Fund Utilization Trend
-    const ctxUtil = document.getElementById('chartUtilization').getContext('2d');
-    new Chart(ctxUtil, {
-        type: 'line',
-        data: {
-            labels: ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025 (Proj)'],
-            datasets: [
-                {
-                    label: 'Allocated Corpus (₹ Cr)',
-                    data: [3200, 3200, 3500, 3500, 3800, 3800, 4250, 4250],
-                    borderColor: '#0f172a',
-                    backgroundColor: 'rgba(15, 23, 42, 0.05)',
-                    borderWidth: 2,
-                    borderDash: [4, 4],
-                    tension: 0.3,
-                    pointRadius: 3
+    const qData = data.quarterlyTrajectory || { labels: [], allocated: [], released: [], utilized: [] };
+    const ctxUtil = document.getElementById('chartUtilization')?.getContext('2d');
+    if (ctxUtil) {
+        new Chart(ctxUtil, {
+            type: 'line',
+            data: {
+                labels: qData.labels,
+                datasets: [
+                    {
+                        label: 'Allocated (₹ Cr)',
+                        data: qData.allocated,
+                        borderColor: '#0f172a',
+                        backgroundColor: 'rgba(15, 23, 42, 0.05)',
+                        borderWidth: 2,
+                        borderDash: [4, 4],
+                        tension: 0.3,
+                        pointRadius: 2.5
+                    },
+                    {
+                        label: 'Released (₹ Cr)',
+                        data: qData.released,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.08)',
+                        fill: true,
+                        borderWidth: 2,
+                        tension: 0.3,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#2563eb'
+                    },
+                    {
+                        label: 'Utilized (₹ Cr)',
+                        data: qData.utilized,
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.08)',
+                        fill: true,
+                        borderWidth: 2,
+                        tension: 0.3,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#059669'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#0f172a',
+                        padding: 8,
+                        titleFont: { weight: 'bold' },
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ₹${context.parsed.y} Cr`;
+                            }
+                        }
+                    }
                 },
-                {
-                    label: 'Funds Released (₹ Cr)',
-                    data: [2800, 2950, 3100, 3350, 3450, 3600, 3900, 4050],
-                    borderColor: '#2563eb',
-                    backgroundColor: 'rgba(37, 99, 235, 0.08)',
-                    fill: true,
-                    borderWidth: 2.5,
-                    tension: 0.3,
-                    pointRadius: 4,
-                    pointBackgroundColor: '#2563eb'
-                },
-                {
-                    label: 'Actual Expenditure (₹ Cr)',
-                    data: [1950, 2180, 2450, 2780, 2920, 3150, 3330, 3580],
-                    borderColor: '#059669',
-                    backgroundColor: 'rgba(5, 150, 105, 0.08)',
-                    fill: true,
-                    borderWidth: 2.5,
-                    tension: 0.3,
-                    pointRadius: 4,
-                    pointBackgroundColor: '#059669'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            interaction: { mode: 'index', intersect: false },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: '#0f172a',
-                    padding: 10,
-                    titleFont: { weight: 'bold' },
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.dataset.label}: ₹${context.parsed.y} Cr`;
+                scales: {
+                    x: { 
+                        grid: { color: '#f8fafc' },
+                        ticks: { font: { size: 9.5 } }
+                    },
+                    y: {
+                        grid: { color: '#f1f5f9' },
+                        ticks: {
+                            font: { size: 9.5 },
+                            callback: function(val) { return '₹' + val + ' Cr'; }
                         }
                     }
                 }
-            },
-            scales: {
-                x: { grid: { color: '#f1f5f9' } },
-                y: {
-                    grid: { color: '#f1f5f9' },
-                    ticks: {
-                        callback: function(val) { return '₹' + val + ' Cr'; }
-                    }
-                }
             }
-        }
-    });
+        });
+    }
 
     // 2. Area Chart: Monthly Risk / Flagged Cases Trend
-    const ctxRisk = document.getElementById('chartRiskTrend').getContext('2d');
-    new Chart(ctxRisk, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [
-                {
-                    label: 'Critical Flagged Works',
-                    data: [12, 15, 38, 14, 18, 22, 16, 29, 31, 24, 45, 52],
-                    borderColor: '#dc2626',
-                    backgroundColor: 'rgba(220, 38, 38, 0.15)',
-                    fill: true,
-                    borderWidth: 2,
-                    tension: 0.35,
-                    pointRadius: 3.5,
-                    pointBackgroundColor: '#dc2626'
-                },
-                {
-                    label: 'Moderate Anomaly Works',
-                    data: [25, 32, 64, 28, 35, 41, 38, 46, 52, 48, 71, 88],
-                    borderColor: '#ea580c',
-                    backgroundColor: 'rgba(234, 88, 12, 0.08)',
-                    fill: true,
-                    borderWidth: 1.5,
-                    tension: 0.35,
-                    pointRadius: 2.5
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            interaction: { mode: 'index', intersect: false },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: '#0f172a',
-                    padding: 8
-                }
+    const mData = data.monthlyRiskTrend || { labels: [], critical: [], high: [] };
+    const ctxRisk = document.getElementById('chartRiskTrend')?.getContext('2d');
+    if (ctxRisk) {
+        new Chart(ctxRisk, {
+            type: 'line',
+            data: {
+                labels: mData.labels,
+                datasets: [
+                    {
+                        label: 'Critical Flagged Works',
+                        data: mData.critical,
+                        borderColor: '#dc2626',
+                        backgroundColor: 'rgba(220, 38, 38, 0.15)',
+                        fill: true,
+                        borderWidth: 2,
+                        tension: 0.35,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#dc2626'
+                    },
+                    {
+                        label: 'High-Risk Works',
+                        data: mData.high,
+                        borderColor: '#ea580c',
+                        backgroundColor: 'rgba(234, 88, 12, 0.08)',
+                        fill: true,
+                        borderWidth: 1.5,
+                        tension: 0.35,
+                        pointRadius: 2
+                    }
+                ]
             },
-            scales: {
-                x: { grid: { display: false } },
-                y: {
-                    grid: { color: '#f1f5f9' },
-                    ticks: { precision: 0 }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#0f172a',
+                        padding: 8
+                    }
+                },
+                scales: {
+                    x: { 
+                        grid: { display: false },
+                        ticks: { font: { size: 9.5 } }
+                    },
+                    y: {
+                        grid: { color: '#f1f5f9' },
+                        ticks: { precision: 0, font: { size: 9.5 } }
+                    }
                 }
             }
-        }
-    });
+        });
+    }
 
     // 3. Bar Chart: State Comparison (Flagged % vs High-Risk %)
-    const ctxState = document.getElementById('chartStateComparison').getContext('2d');
-    new Chart(ctxState, {
-        type: 'bar',
-        data: {
-            labels: ['Uttar Pradesh', 'Maharashtra', 'Rajasthan', 'West Bengal', 'Bihar', 'Karnataka', 'Tamil Nadu', 'Gujarat'],
-            datasets: [
-                {
-                    label: 'Flagged Works %',
-                    data: [9.2, 8.4, 7.8, 7.5, 6.9, 5.1, 4.2, 3.4],
-                    backgroundColor: '#ea580c',
-                    borderRadius: 4
+    const sData = data.stateComparison || { labels: [], flaggedRates: [], criticalRates: [] };
+    const ctxState = document.getElementById('chartStateComparison')?.getContext('2d');
+    if (ctxState) {
+        new Chart(ctxState, {
+            type: 'bar',
+            data: {
+                labels: sData.labels,
+                datasets: [
+                    {
+                        label: 'Flagged Works %',
+                        data: sData.flaggedRates,
+                        backgroundColor: '#ea580c',
+                        borderRadius: 3,
+                        barPercentage: 0.7,
+                        categoryPercentage: 0.75
+                    },
+                    {
+                        label: 'Critical / High %',
+                        data: sData.criticalRates,
+                        backgroundColor: '#dc2626',
+                        borderRadius: 3,
+                        barPercentage: 0.7,
+                        categoryPercentage: 0.75
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#0f172a',
+                        padding: 8,
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.parsed.y}%`;
+                            }
+                        }
+                    }
                 },
-                {
-                    label: 'Critical High-Risk %',
-                    data: [3.8, 3.1, 2.9, 2.7, 2.4, 1.6, 1.1, 0.8],
-                    backgroundColor: '#dc2626',
-                    borderRadius: 4
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: '#0f172a',
-                    padding: 8,
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.dataset.label}: ${context.parsed.y}%`;
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 0,
+                            font: { size: 10, weight: 'bold' },
+                            color: '#334155'
+                        }
+                    },
+                    y: {
+                        grid: { color: '#f1f5f9' },
+                        beginAtZero: true,
+                        max: 55,
+                        ticks: {
+                            font: { size: 9.5 },
+                            color: '#64748b',
+                            callback: function(val) { return val + '%'; }
                         }
                     }
                 }
+            }
+        });
+    }
+
+    // 4. Donut Chart: Anomaly Vector Composition
+    const dData = data.anomalyDonut || { labels: [], data: [] };
+    const ctxDonut = document.getElementById('chartAnomalyDonut')?.getContext('2d');
+    if (ctxDonut) {
+        new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+                labels: dData.labels,
+                datasets: [
+                    {
+                        data: dData.data,
+                        backgroundColor: [
+                            '#dc2626',
+                            '#ea580c',
+                            '#d97706',
+                            '#2563eb',
+                            '#475569'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }
+                ]
             },
-            scales: {
-                x: { grid: { display: false } },
-                y: {
-                    grid: { color: '#f1f5f9' },
-                    ticks: {
-                        callback: function(val) { return val + '%'; }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { boxWidth: 10, padding: 12, font: { size: 10 } }
+                    },
+                    tooltip: {
+                        backgroundColor: '#0f172a',
+                        padding: 8,
+                        callbacks: {
+                            label: function(context) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const pct = total > 0 ? ((context.parsed / total) * 100).toFixed(1) : 0;
+                                return `${context.label}: ${context.parsed.toLocaleString()} (${pct}%)`;
+                            }
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    }
+}
 
-    // 4. Donut Chart: Anomaly Vector Composition
-    const ctxDonut = document.getElementById('chartAnomalyDonut').getContext('2d');
-    new Chart(ctxDonut, {
-        type: 'doughnut',
-        data: {
-            labels: ['Completion Delay (>200%)', 'Amount Deviation', 'Spatial Outlier', 'Agency Risk', 'UC Mismatch'],
-            datasets: [
-                {
-                    data: [245, 182, 114, 89, 54],
-                    backgroundColor: [
-                        '#dc2626',
-                        '#ea580c',
-                        '#d97706',
-                        '#2563eb',
-                        '#475569'
-                    ],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: '70%',
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: { boxWidth: 10, padding: 12, font: { size: 10 } }
-                },
-                tooltip: {
-                    backgroundColor: '#0f172a',
-                    padding: 8
-                }
-            }
-        }
-    });
-});
+function renderAgencyMatrix(agencies) {
+    const tbody = document.getElementById("agency-matrix-tbody");
+    if (!tbody) return;
+
+    if (!agencies || agencies.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="py-4 text-center text-slate-500">No agency data available.</td></tr>`;
+        return;
+    }
+
+    tbody.innerHTML = agencies.map(a => {
+        const isHigh = a.anomalyRate >= 50;
+        const isMed = a.anomalyRate >= 20 && a.anomalyRate < 50;
+        const ratingBadge = isHigh ? 
+            `<span class="px-2 py-0.5 rounded bg-red-100 text-red-900 border border-red-200 text-[10px] font-bold">HIGH RISK VENDOR</span>` :
+            isMed ? 
+            `<span class="px-2 py-0.5 rounded bg-orange-100 text-orange-900 border border-orange-200 text-[10px] font-bold">WATCHLIST</span>` :
+            `<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-200 text-[10px] font-bold">COMPLIANT</span>`;
+
+        return `
+            <tr class="hover:bg-slate-50/80 transition-colors">
+                <td class="py-3 px-4 font-bold text-slate-900">${a.agency}</td>
+                <td class="py-3 px-4 text-right font-mono">${a.totalWorks.toLocaleString()}</td>
+                <td class="py-3 px-4 text-right font-mono font-bold">₹${a.sanctionedCr} Cr</td>
+                <td class="py-3 px-4 text-right font-mono text-slate-600">₹${a.avgSizeLakhs} L</td>
+                <td class="py-3 px-4 text-right font-mono font-bold ${isHigh ? 'text-red-700' : isMed ? 'text-orange-700' : 'text-slate-700'}">${a.flaggedCount.toLocaleString()}</td>
+                <td class="py-3 px-4 text-right font-mono font-bold ${isHigh ? 'text-red-700' : isMed ? 'text-orange-700' : 'text-emerald-700'}">${a.anomalyRate}%</td>
+                <td class="py-3 px-4 text-center">
+                    ${ratingBadge}
+                </td>
+                <td class="py-3 px-4 text-center">
+                    <button onclick="showToast('Physical audit requested for ${a.agency.replace(/'/g, "\\'")}.', 'info')" class="px-2 py-1 rounded bg-slate-900 text-white font-bold text-[10px] hover:bg-slate-800 transition-colors">Audit Node</button>
+                </td>
+            </tr>
+        `;
+    }).join("");
+}
+
+function exportAgencyTableToCSV(filename) {
+    const list = globalAnalyticsData?.agencyMatrix || [];
+    if (!list.length) return;
+    const headers = ["Implementing Agency", "Total Works", "Sanctioned Value (Cr)", "Avg Work Size (Lakhs)", "Flagged Count", "Anomaly Rate (%)", "Rating"];
+    const rows = list.map(a => [
+        `"${a.agency}"`,
+        a.totalWorks,
+        a.sanctionedCr,
+        a.avgSizeLakhs,
+        a.flaggedCount,
+        a.anomalyRate,
+        `"${a.rating}"`
+    ]);
+    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+    const link = document.createElement("a");
+    link.setAttribute("href", encodeURI(csvContent));
+    link.setAttribute("download", filename || "agency-scrutiny-matrix.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function switchAnalyticsTab(tab) {
+    const isCharts = tab === 'charts';
+    document.getElementById('view-charts')?.classList.toggle('hidden', !isCharts);
+    document.getElementById('view-matrix')?.classList.toggle('hidden', isCharts);
+
+    const btnCharts = document.getElementById('tab-charts');
+    const btnMatrix = document.getElementById('tab-matrix');
+    if (btnCharts && btnMatrix) {
+        btnCharts.className = `px-3 py-1 rounded ${isCharts ? 'bg-white shadow-2xs text-slate-900 font-bold' : 'text-slate-500 hover:text-slate-900 font-medium'} flex items-center gap-1.5 transition-all`;
+        btnMatrix.className = `px-3 py-1 rounded ${!isCharts ? 'bg-white shadow-2xs text-slate-900 font-bold' : 'text-slate-500 hover:text-slate-900 font-medium'} flex items-center gap-1.5 transition-all`;
+    }
+}
+
+function filterAgencyTable(q) {
+    const term = (q || '').toLowerCase().trim();
+    const rows = globalAnalyticsData?.agencyMatrix || [];
+    if (!term) {
+        renderAgencyMatrix(rows);
+        return;
+    }
+    const filtered = rows.filter(r => (r.agency || '').toLowerCase().includes(term));
+    renderAgencyMatrix(filtered);
+}
 
 function updateAnalyticsTimespan(val) {
     showToast(`Adjusted audit analytical horizon to: ${val.toUpperCase()}`, 'info');
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    initAnalytics();
+});
 </script>
 </body>
 </html>
