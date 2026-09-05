@@ -10,7 +10,6 @@
     let isOpen = false;
     let isMinimized = false;
     let isGenerating = false;
-    let isSettingsOpen = false;
     let includeContext = true;
     let assistantMode = 'online'; // 'online' | 'demo'
     let conversationHistory = [];
@@ -18,7 +17,6 @@
     // Storage Keys
     const STORAGE_KEY_MSGS = 'nidhi_assistant_messages_v1';
     const STORAGE_KEY_OPEN = 'nidhi_assistant_open_v1';
-    const STORAGE_KEY_API_KEY = 'nidhi_client_nvidia_key';
 
     // Load persisted session
     try {
@@ -129,9 +127,6 @@
                         <button id="nidhi-btn-new-chat" type="button" title="New Conversation" class="p-1 hover:text-white hover:bg-slate-800 rounded transition-colors cursor-pointer">
                             <span class="material-symbols-outlined text-base">restart_alt</span>
                         </button>
-                        <button id="nidhi-btn-settings" type="button" title="Hosted API Key Settings" class="p-1 hover:text-white hover:bg-slate-800 rounded transition-colors cursor-pointer">
-                            <span class="material-symbols-outlined text-base">key</span>
-                        </button>
                         <button id="nidhi-btn-minimize" type="button" title="Minimize Drawer" class="p-1 hover:text-white hover:bg-slate-800 rounded transition-colors cursor-pointer">
                             <span class="material-symbols-outlined text-base">expand_more</span>
                         </button>
@@ -139,26 +134,6 @@
                             <span class="material-symbols-outlined text-base">close</span>
                         </button>
                     </div>
-                </div>
-
-                <!-- Settings Bar (Expandable for Hosted Site API Key Configuration) -->
-                <div id="nidhi-settings-panel" class="hidden p-3 bg-slate-900 border-b border-slate-800 text-white text-xs shrink-0 transition-all">
-                    <div class="flex items-center justify-between mb-1.5">
-                        <span class="font-bold text-slate-200 flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm text-amber-400">vpn_key</span>
-                            Hosted Site API Configuration
-                        </span>
-                        <button id="nidhi-btn-close-settings" class="text-slate-400 hover:text-white">✕</button>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mb-2 leading-relaxed">
-                        If hosting statically on <strong>GitHub Pages</strong>, enter your NVIDIA API key below (saved only in your browser). When hosting on <strong>Render/Railway</strong>, set <code class="text-amber-300">NVIDIA_API_KEY</code> in environment variables instead.
-                    </p>
-                    <div class="flex items-center gap-1.5">
-                        <input id="nidhi-api-key-input" type="password" placeholder="nvapi-..." class="flex-1 px-2 py-1 bg-slate-800 border border-slate-700 rounded text-slate-100 text-xs font-mono placeholder:text-slate-500 outline-none focus:border-blue-500" />
-                        <button id="nidhi-btn-save-key" class="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded text-xs transition-colors cursor-pointer">Save</button>
-                        <button id="nidhi-btn-clear-key" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs transition-colors cursor-pointer">Clear</button>
-                    </div>
-                    <div id="nidhi-key-status" class="text-[9.5px] mt-1.5 text-emerald-400 font-mono hidden"></div>
                 </div>
 
                 <!-- Messages Container -->
@@ -349,24 +324,10 @@
         const toggleBtn = document.getElementById('nidhi-assistant-toggle');
         const closeBtn = document.getElementById('nidhi-btn-close');
         const minBtn = document.getElementById('nidhi-btn-minimize');
-        const newChatBtn = document.getElementById('nidhi-btn-new-chat');
-        const settingsBtn = document.getElementById('nidhi-btn-settings');
-        const closeSettingsBtn = document.getElementById('nidhi-btn-close-settings');
-        const saveKeyBtn = document.getElementById('nidhi-btn-save-key');
-        const clearKeyBtn = document.getElementById('nidhi-btn-clear-key');
-        const form = document.getElementById('nidhi-input-form');
-        const input = document.getElementById('nidhi-user-input');
-        const toggleCtxBtn = document.getElementById('nidhi-toggle-context');
-
         toggleBtn?.addEventListener('click', toggleDrawer);
         closeBtn?.addEventListener('click', closeDrawer);
         minBtn?.addEventListener('click', closeDrawer);
         newChatBtn?.addEventListener('click', startNewChat);
-
-        settingsBtn?.addEventListener('click', toggleSettings);
-        closeSettingsBtn?.addEventListener('click', toggleSettings);
-        saveKeyBtn?.addEventListener('click', handleSaveApiKey);
-        clearKeyBtn?.addEventListener('click', handleClearApiKey);
 
         toggleCtxBtn?.addEventListener('click', () => {
             includeContext = !includeContext;
@@ -424,55 +385,6 @@
         drawer.classList.remove('opacity-100', 'scale-100');
     }
 
-    function toggleSettings() {
-        const panel = document.getElementById('nidhi-settings-panel');
-        const keyInput = document.getElementById('nidhi-api-key-input');
-        const keyStatus = document.getElementById('nidhi-key-status');
-        if (!panel) return;
-
-        isSettingsOpen = !isSettingsOpen;
-        if (isSettingsOpen) {
-            panel.classList.remove('hidden');
-            const saved = localStorage.getItem(STORAGE_KEY_API_KEY) || '';
-            if (keyInput) keyInput.value = saved;
-            if (keyStatus) {
-                if (saved) {
-                    keyStatus.innerText = 'Key configured (' + saved.substring(0, 10) + '...)';
-                    keyStatus.classList.remove('hidden');
-                } else {
-                    keyStatus.classList.add('hidden');
-                }
-            }
-        } else {
-            panel.classList.add('hidden');
-        }
-    }
-
-    function handleSaveApiKey() {
-        const keyInput = document.getElementById('nidhi-api-key-input');
-        const keyStatus = document.getElementById('nidhi-key-status');
-        const val = (keyInput?.value || '').trim();
-        if (val) {
-            localStorage.setItem(STORAGE_KEY_API_KEY, val);
-            if (keyStatus) {
-                keyStatus.innerText = 'Key saved! NIDHI will use this key on static hosts.';
-                keyStatus.className = 'text-[9.5px] mt-1.5 text-emerald-400 font-mono';
-                keyStatus.classList.remove('hidden');
-            }
-        }
-    }
-
-    function handleClearApiKey() {
-        localStorage.removeItem(STORAGE_KEY_API_KEY);
-        const keyInput = document.getElementById('nidhi-api-key-input');
-        const keyStatus = document.getElementById('nidhi-key-status');
-        if (keyInput) keyInput.value = '';
-        if (keyStatus) {
-            keyStatus.innerText = 'Key removed from browser storage.';
-            keyStatus.className = 'text-[9.5px] mt-1.5 text-amber-400 font-mono';
-            keyStatus.classList.remove('hidden');
-        }
-    }
 
     function startNewChat() {
         conversationHistory = [];
@@ -795,11 +707,9 @@ NIDHI TRACE continuously monitors **198,116 registered MPLAD works** totaling **
         setGeneratingState(true);
 
         const pageContext = includeContext ? extractCurrentPageContext() : { page: 'detached' };
-        const clientNvidiaKey = localStorage.getItem(STORAGE_KEY_API_KEY) || '';
-
         let answered = false;
 
-        // 1. Try Backend API first (when running on localhost or full-stack cloud server)
+        // 1. Send query to backend (Vercel Serverless Function or Python Server)
         try {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 18000);
@@ -831,47 +741,7 @@ NIDHI TRACE continuously monitors **198,116 registered MPLAD works** totaling **
             console.warn("[NIDHI Assistant] Backend endpoint not reachable, engaging client copilot.");
         }
 
-        // 2. If backend was unreachable (e.g. GitHub Pages) and user provided client NVIDIA key
-        if (!answered && clientNvidiaKey && clientNvidiaKey.startsWith('nvapi-')) {
-            try {
-                const nvRes = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${clientNvidiaKey}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        model: 'meta/llama-3.2-11b-vision-instruct',
-                        messages: [
-                            {
-                                role: 'system',
-                                content: 'You are NIDHI Assistant, an AI Audit Copilot for NIDHI TRACE and MPLAD data. Explain anomalies, risk scores, and project data factually and neutrally using institutional audit tone.'
-                            },
-                            { role: 'user', content: text }
-                        ],
-                        max_tokens: 600,
-                        temperature: 0.2
-                    })
-                });
-
-                if (nvRes.ok) {
-                    const nvData = await nvRes.json();
-                    const content = nvData.choices?.[0]?.message?.content;
-                    if (content) {
-                        conversationHistory.push({
-                            role: 'assistant',
-                            content: content,
-                            source: 'NVIDIA Cloud (Direct Hosted Client)'
-                        });
-                        answered = true;
-                    }
-                }
-            } catch (nvErr) {
-                console.warn("[NIDHI Assistant] Client NVIDIA call failed, falling back to local engine:", nvErr);
-            }
-        }
-
-        // 3. Guaranteed Client Knowledge Engine (Works 100% offline, on GitHub Pages, zero errors)
+        // 2. Guaranteed Client Knowledge Engine (Institutional audit facts with zero errors)
         if (!answered) {
             const fallback = generateClientAuditAnswer(text, pageContext);
             conversationHistory.push({
