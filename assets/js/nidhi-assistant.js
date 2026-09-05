@@ -17,11 +17,14 @@
     // Storage Keys
     const STORAGE_KEY_MSGS = 'nidhi_assistant_messages_v1';
 
-    // Load persisted session
+    // Purge any legacy open state to guarantee the drawer is never auto-opened
     try {
         const savedMsgs = sessionStorage.getItem(STORAGE_KEY_MSGS);
         if (savedMsgs) conversationHistory = JSON.parse(savedMsgs);
         sessionStorage.removeItem('nidhi_assistant_open_v1');
+        sessionStorage.removeItem('nidhi_assistant_open');
+        localStorage.removeItem('nidhi_assistant_open_v1');
+        localStorage.removeItem('nidhi_assistant_open');
     } catch (e) {
         conversationHistory = [];
     }
@@ -92,6 +95,14 @@
         root.className = 'nidhi-assistant-wrapper font-sans text-slate-800 antialiased';
 
         root.innerHTML = `
+            <style>
+                #nidhi-assistant-drawer {
+                    display: none !important;
+                }
+                #nidhi-assistant-drawer.nidhi-drawer-open {
+                    display: flex !important;
+                }
+            </style>
             <!-- Floating Assistant Trigger Button (Draggable, positioned above pagination) -->
             <div id="nidhi-floating-container" class="fixed z-[9990] flex items-center gap-2 group touch-none" style="bottom: 76px; right: 24px; cursor: grab;">
                 <!-- Tooltip Label -->
@@ -105,7 +116,7 @@
             </div>
 
             <!-- Floating Chat Panel Drawer (380-420px, max 82vh) -->
-            <div id="nidhi-assistant-drawer" class="fixed bottom-20 right-5 z-[9995] w-[410px] max-w-[calc(100vw-24px)] h-[600px] max-h-[82vh] bg-white rounded-xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden transition-all duration-200 transform origin-bottom-right opacity-0 scale-95 pointer-events-none">
+            <div id="nidhi-assistant-drawer" style="display: none !important;" class="fixed bottom-20 right-5 z-[9995] w-[410px] max-w-[calc(100vw-24px)] h-[600px] max-h-[82vh] bg-white rounded-xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden transition-all duration-200 transform origin-bottom-right opacity-0 scale-95 pointer-events-none">
                 
                 <!-- Drawer Header (Draggable Handle) -->
                 <div id="nidhi-drawer-header" class="px-4 py-3 bg-brand-900 border-b border-slate-800 text-white flex items-center justify-between shrink-0 select-none touch-none" style="cursor: grab;" title="Click and drag to move drawer">
@@ -205,14 +216,8 @@
             }
         } catch (e) {}
 
-        // Restore Drawer Position
-        try {
-            const savedDrawerPos = localStorage.getItem(STORAGE_KEY_DRAWER_POS);
-            if (savedDrawerPos) {
-                const pos = JSON.parse(savedDrawerPos);
-                applyPosition(drawer, pos.x, pos.y);
-            }
-        } catch (e) {}
+        // Note: Drawer position is restored in restoreDrawerPosition() when opened,
+        // to avoid incorrect coordinate calculation while hidden.
 
         // Make Floating Button Draggable
         setupDrag(floatingContainer, floatingContainer, (x, y) => {
@@ -223,6 +228,18 @@
         setupDrag(drawerHeader, drawer, (x, y) => {
             localStorage.setItem(STORAGE_KEY_DRAWER_POS, JSON.stringify({ x, y }));
         }, true);
+    }
+
+    function restoreDrawerPosition() {
+        const drawer = document.getElementById('nidhi-assistant-drawer');
+        if (!drawer) return;
+        try {
+            const savedDrawerPos = localStorage.getItem(STORAGE_KEY_DRAWER_POS);
+            if (savedDrawerPos) {
+                const pos = JSON.parse(savedDrawerPos);
+                applyPosition(drawer, pos.x, pos.y);
+            }
+        } catch (e) {}
     }
 
     function applyPosition(el, x, y) {
@@ -392,6 +409,13 @@
         if (!drawer) return;
         isOpen = true;
 
+        drawer.classList.add('nidhi-drawer-open');
+        drawer.style.setProperty('display', 'flex', 'important');
+        restoreDrawerPosition();
+
+        // Trigger browser reflow before transition
+        void drawer.offsetHeight;
+
         drawer.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
         drawer.classList.add('opacity-100', 'scale-100');
         updateContextLabel();
@@ -406,6 +430,13 @@
 
         drawer.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
         drawer.classList.remove('opacity-100', 'scale-100');
+
+        setTimeout(() => {
+            if (!isOpen && drawer) {
+                drawer.classList.remove('nidhi-drawer-open');
+                drawer.style.setProperty('display', 'none', 'important');
+            }
+        }, 220);
     }
 
 
