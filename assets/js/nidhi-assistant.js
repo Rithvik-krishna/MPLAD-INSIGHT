@@ -94,8 +94,8 @@
         root.className = 'nidhi-assistant-wrapper font-sans text-slate-800 antialiased';
 
         root.innerHTML = `
-            <!-- Floating Assistant Trigger Button (Bottom-Right) -->
-            <div class="fixed bottom-5 right-5 z-[9990] flex items-center gap-2 group">
+            <!-- Floating Assistant Trigger Button (Draggable) -->
+            <div id="nidhi-floating-container" class="fixed z-[9990] flex items-center gap-2 group touch-none" style="bottom: 24px; right: 24px; cursor: grab;">
                 <!-- Tooltip Label -->
                 <span class="px-2.5 py-1 bg-slate-900/90 text-white text-xs font-semibold rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                     Ask NIDHI Assistant
@@ -109,13 +109,13 @@
             <!-- Floating Chat Panel Drawer (380-420px, max 82vh) -->
             <div id="nidhi-assistant-drawer" class="fixed bottom-20 right-5 z-[9995] w-[410px] max-w-[calc(100vw-24px)] h-[600px] max-h-[82vh] bg-white rounded-xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden transition-all duration-200 transform origin-bottom-right opacity-0 scale-95 pointer-events-none">
                 
-                <!-- Drawer Header -->
-                <div class="px-4 py-3 bg-brand-900 border-b border-slate-800 text-white flex items-center justify-between shrink-0">
+                <!-- Drawer Header (Draggable Handle) -->
+                <div id="nidhi-drawer-header" class="px-4 py-3 bg-brand-900 border-b border-slate-800 text-white flex items-center justify-between shrink-0 select-none touch-none" style="cursor: grab;" title="Click and drag to move drawer">
                     <div class="flex items-center gap-2.5 min-w-0">
                         <div class="w-7 h-7 rounded-lg bg-blue-600/20 border border-blue-400/40 flex items-center justify-center text-blue-400 shrink-0">
                             <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
                         </div>
-                        <div class="flex flex-col min-w-0">
+                        <div class="flex flex-col min-w-0 flex-1">
                             <div class="flex items-center gap-1.5 leading-tight">
                                 <span class="font-extrabold text-xs tracking-wider text-white">NIDHI Assistant</span>
                                 <span id="nidhi-drawer-status" class="px-1.5 py-0.2 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800 text-[8.5px] font-mono font-bold">● Online</span>
@@ -197,6 +197,7 @@
 
         document.body.appendChild(root);
         bindEvents();
+        initDraggableElements();
         checkBackendStatus();
         renderConversation();
     }
@@ -204,6 +205,145 @@
     // =========================================================================
     // 3. UI INTERACTION & EVENT BINDINGS
     // =========================================================================
+
+    
+    // =========================================================================
+    // 2.5 DRAG AND DROP HANDLERS (Button & Drawer)
+    // =========================================================================
+
+    const STORAGE_KEY_BTN_POS = 'nidhi_assistant_btn_pos_v1';
+    const STORAGE_KEY_DRAWER_POS = 'nidhi_assistant_drawer_pos_v1';
+
+    function initDraggableElements() {
+        const floatingContainer = document.getElementById('nidhi-floating-container');
+        const drawer = document.getElementById('nidhi-assistant-drawer');
+        const drawerHeader = document.getElementById('nidhi-drawer-header');
+
+        if (!floatingContainer || !drawer || !drawerHeader) return;
+
+        // Restore Button Position
+        try {
+            const savedBtnPos = localStorage.getItem(STORAGE_KEY_BTN_POS);
+            if (savedBtnPos) {
+                const pos = JSON.parse(savedBtnPos);
+                applyPosition(floatingContainer, pos.x, pos.y);
+            }
+        } catch (e) {}
+
+        // Restore Drawer Position
+        try {
+            const savedDrawerPos = localStorage.getItem(STORAGE_KEY_DRAWER_POS);
+            if (savedDrawerPos) {
+                const pos = JSON.parse(savedDrawerPos);
+                applyPosition(drawer, pos.x, pos.y);
+            }
+        } catch (e) {}
+
+        // Make Floating Button Draggable
+        setupDrag(floatingContainer, floatingContainer, (x, y) => {
+            localStorage.setItem(STORAGE_KEY_BTN_POS, JSON.stringify({ x, y }));
+        });
+
+        // Make Drawer Draggable via Header
+        setupDrag(drawerHeader, drawer, (x, y) => {
+            localStorage.setItem(STORAGE_KEY_DRAWER_POS, JSON.stringify({ x, y }));
+        }, true);
+    }
+
+    function applyPosition(el, x, y) {
+        if (!el) return;
+        const maxX = window.innerWidth - el.offsetWidth - 8;
+        const maxY = window.innerHeight - el.offsetHeight - 8;
+        const clampedX = Math.max(8, Math.min(x, maxX));
+        const clampedY = Math.max(8, Math.min(y, maxY));
+
+        el.style.left = `${clampedX}px`;
+        el.style.top = `${clampedY}px`;
+        el.style.right = 'auto';
+        el.style.bottom = 'auto';
+    }
+
+    function setupDrag(handle, target, onSave, isDrawer = false) {
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let origLeft = 0;
+        let origTop = 0;
+        let hasMoved = false;
+
+        function onPointerDown(e) {
+            // Ignore if clicking action buttons inside the header
+            if (e.target.closest('button') || e.target.closest('input')) return;
+
+            e.preventDefault();
+            isDragging = true;
+            hasMoved = false;
+
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+            startX = clientX;
+            startY = clientY;
+
+            const rect = target.getBoundingClientRect();
+            origLeft = rect.left;
+            origTop = rect.top;
+
+            handle.style.cursor = 'grabbing';
+            document.body.style.userSelect = 'none';
+
+            window.addEventListener('pointermove', onPointerMove, { passive: false });
+            window.addEventListener('pointerup', onPointerUp);
+            window.addEventListener('touchmove', onPointerMove, { passive: false });
+            window.addEventListener('touchend', onPointerUp);
+        }
+
+        function onPointerMove(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+
+            const dx = clientX - startX;
+            const dy = clientY - startY;
+
+            if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+                hasMoved = true;
+                if (target.dataset) target.dataset.dragged = "true";
+            }
+
+            if (hasMoved) {
+                const newLeft = origLeft + dx;
+                const newTop = origTop + dy;
+                applyPosition(target, newLeft, newTop);
+            }
+        }
+
+        function onPointerUp(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            handle.style.cursor = 'grab';
+            document.body.style.userSelect = '';
+
+            window.removeEventListener('pointermove', onPointerMove);
+            window.removeEventListener('pointerup', onPointerUp);
+            window.removeEventListener('touchmove', onPointerMove);
+            window.removeEventListener('touchend', onPointerUp);
+
+            if (hasMoved) {
+                const rect = target.getBoundingClientRect();
+                if (onSave) onSave(rect.left, rect.top);
+                // Keep flag temporarily to prevent click toggle
+                setTimeout(() => {
+                    if (target.dataset) delete target.dataset.dragged;
+                }, 100);
+            }
+        }
+
+        handle.addEventListener('pointerdown', onPointerDown);
+        handle.addEventListener('touchstart', onPointerDown, { passive: false });
+    }
 
     function bindEvents() {
         const toggleBtn = document.getElementById('nidhi-assistant-toggle');
@@ -250,6 +390,10 @@
     }
 
     function toggleDrawer() {
+        const btnContainer = document.getElementById('nidhi-floating-container');
+        if (btnContainer && btnContainer.dataset.dragged === "true") {
+            return; // Ignore click triggered at the end of a drag
+        }
         if (isOpen) {
             closeDrawer();
         } else {
