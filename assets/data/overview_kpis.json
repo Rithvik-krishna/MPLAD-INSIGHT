@@ -2,70 +2,107 @@
   "totalRegisteredWorks": 198116,
   "totalScannedWorks": 171890,
   "coveragePct": 86.8,
-  "flaggedCount": 23912,
-  "flaggedPct": 13.9,
+  "flaggedCount": 25483,
+  "flaggedPct": 14.8,
   "criticalCount": 1137,
-  "highCount": 5965,
-  "medCount": 15965,
-  "lowCount": 148823,
+  "highCount": 5507,
+  "medCount": 17761,
+  "lowCount": 147485,
   "totalSanctionedCr": 8501.1,
-  "scrutinyExposureCr": 1769.2,
+  "scrutinyExposureCr": 2001.2,
   "anomalyCategories": [
     {
       "name": "Completion Delay (>200% over timeline)",
       "type": "Delay",
       "count": 13435,
-      "pct": 56.2,
+      "pct": 52.7,
       "color": "#dc2626"
     },
     {
       "name": "Amount / Cost Outlier (Extreme z-score)",
       "type": "Cost",
       "count": 7000,
-      "pct": 29.3,
+      "pct": 27.5,
       "color": "#ea580c"
     },
     {
       "name": "Spatial / Cluster ML Outlier (Isolation Forest)",
       "type": "Spatial",
       "count": 8563,
-      "pct": 35.8,
+      "pct": 33.6,
       "color": "#d97706"
     },
     {
       "name": "MP Spending Habit Drift",
       "type": "MP Drift",
-      "count": 4110,
-      "pct": 17.2,
+      "count": 6223,
+      "pct": 24.4,
       "color": "#2563eb"
     },
     {
       "name": "Round Number Heuristic Anomaly",
       "type": "Round Number",
       "count": 1522,
-      "pct": 6.4,
+      "pct": 6.0,
       "color": "#475569"
     }
   ],
   "severityBreakdown": {
     "critical": {
       "count": 1137,
-      "pct": 4.8
+      "pct": 4.5
     },
     "high": {
-      "count": 5965,
-      "pct": 24.9
+      "count": 5507,
+      "pct": 21.6
     },
     "med": {
-      "count": 15965,
-      "pct": 66.8
+      "count": 17761,
+      "pct": 69.7
     },
     "low": {
-      "count": 148823,
-      "pct": 86.6
+      "count": 147485,
+      "pct": 85.8
     }
   },
   "immediateQueue": [
+    {
+      "id": "MPLAD-01515",
+      "score": 98,
+      "severity": "critical",
+      "title": "Supply of 434 Nos of Battery operated motorized Tricycles along with the other aids and appliances to the PwDs",
+      "location": "Vizianagaram, Andhra Pradesh",
+      "constituency": "Vizianagaram",
+      "state": "Andhra Pradesh",
+      "sector": "Public Infrastructure",
+      "mp": "Chandra Sekhar Bellana",
+      "sanctioned": "₹73.8 L",
+      "sanctioned_raw": 7378000.0,
+      "utilized": "₹67.9 L",
+      "anomaly": "Amount Outlier (z=4.2) & MP Baseline Drift (z=14.4)",
+      "anomalyType": "Agency",
+      "agency": "District Collector Vizianagaram",
+      "status": "Action Req",
+      "workStatus": "Work Completed",
+      "gapDays": 38,
+      "sanctionDate": "2023-08-16",
+      "recDate": "2023-07-09",
+      "flags": {
+        "rule_high_severity": true,
+        "flag_delay": false,
+        "flag_amount": true,
+        "flag_mp_drift": true,
+        "mp_baseline_eligible": true,
+        "mp_cat_mean": 334041.32,
+        "mp_cat_std": 489179.59,
+        "mp_cat_n": 247,
+        "iso_flag": true,
+        "flag_round_number": false,
+        "amount_zscore": 4.23,
+        "gap_zscore": -0.54,
+        "mp_drift_zscore": 14.4
+      }
+    },
     {
       "id": "MPLAD-00228",
       "score": 95,
@@ -79,7 +116,7 @@
       "sanctioned": "₹97.5 L",
       "sanctioned_raw": 9750000.0,
       "utilized": "₹91.9 L",
-      "anomaly": "Amount Outlier (z=4.6) & MP Spending Drift",
+      "anomaly": "Amount Outlier (z=4.6) & MP Baseline Drift (z=5.9)",
       "anomalyType": "Cost",
       "agency": "District Magistrate North Twenty Four Parganas",
       "status": "Action Req",
@@ -92,44 +129,15 @@
         "flag_delay": false,
         "flag_amount": true,
         "flag_mp_drift": true,
+        "mp_baseline_eligible": true,
+        "mp_cat_mean": 1007339.49,
+        "mp_cat_std": 1482669.1,
+        "mp_cat_n": 72,
         "iso_flag": true,
         "flag_round_number": false,
         "amount_zscore": 4.6,
         "gap_zscore": 0.64,
-        "mp_drift_zscore": 5.25
-      }
-    },
-    {
-      "id": "MPLAD-00266",
-      "score": 95,
-      "severity": "critical",
-      "title": "Construction of Children Park at Bissamcuttack under Bissamcuttack Block",
-      "location": "Koraput(St), Odisha",
-      "constituency": "Koraput(St)",
-      "state": "Odisha",
-      "sector": "Community & Public Spaces",
-      "mp": "Saptagiri Sankar Ulaka",
-      "sanctioned": "₹10.0 L",
-      "sanctioned_raw": 1000000.0,
-      "utilized": "₹8.3 L",
-      "anomaly": "Sanction Delay (409 days) & MP Spending Drift",
-      "anomalyType": "Agency",
-      "agency": "District Collector Rayagada",
-      "status": "Action Req",
-      "workStatus": "Physical Inspection",
-      "gapDays": 409,
-      "sanctionDate": "2024-07-20",
-      "recDate": "2023-06-07",
-      "flags": {
-        "rule_high_severity": true,
-        "flag_delay": true,
-        "flag_amount": false,
-        "flag_mp_drift": true,
-        "iso_flag": true,
-        "flag_round_number": false,
-        "amount_zscore": 1.59,
-        "gap_zscore": 4.01,
-        "mp_drift_zscore": 5.13
+        "mp_drift_zscore": 5.9
       }
     },
     {
@@ -145,7 +153,7 @@
       "sanctioned": "₹1.35 Cr",
       "sanctioned_raw": 13500000.0,
       "utilized": "₹1.14 Cr",
-      "anomaly": "Amount Outlier (z=5.0) & MP Spending Drift",
+      "anomaly": "Amount Outlier (z=5.0) & MP Baseline Drift (z=2.4)",
       "anomalyType": "Cost",
       "agency": "Deputy Commissioner Dimapur",
       "status": "Action Req",
@@ -158,11 +166,15 @@
         "flag_delay": false,
         "flag_amount": true,
         "flag_mp_drift": true,
+        "mp_baseline_eligible": true,
+        "mp_cat_mean": 3266666.67,
+        "mp_cat_std": 4346043.63,
+        "mp_cat_n": 15,
         "iso_flag": true,
         "flag_round_number": false,
         "amount_zscore": 5.03,
         "gap_zscore": -0.49,
-        "mp_drift_zscore": 4.33
+        "mp_drift_zscore": 2.35
       }
     },
     {
@@ -178,7 +190,7 @@
       "sanctioned": "₹65.2 L",
       "sanctioned_raw": 6521511.0,
       "utilized": "₹52.5 L",
-      "anomaly": "Amount Outlier (z=4.1) & MP Spending Drift",
+      "anomaly": "Amount Outlier (z=4.1) & MP Baseline Drift (z=3.7)",
       "anomalyType": "Cost",
       "agency": "District Magistrate North Twenty Four Parganas",
       "status": "Action Req",
@@ -191,44 +203,52 @@
         "flag_delay": false,
         "flag_amount": true,
         "flag_mp_drift": true,
+        "mp_baseline_eligible": true,
+        "mp_cat_mean": 1007339.49,
+        "mp_cat_std": 1482669.1,
+        "mp_cat_n": 72,
         "iso_flag": true,
         "flag_round_number": false,
         "amount_zscore": 4.07,
         "gap_zscore": 2.13,
-        "mp_drift_zscore": 4.54
+        "mp_drift_zscore": 3.72
       }
     },
     {
-      "id": "MPLAD-00239",
+      "id": "MPLAD-00266",
       "score": 94,
       "severity": "critical",
-      "title": "Construction of Luca roof with false ceiling with lighting for cultural activity",
-      "location": "Barasat, West Bengal",
-      "constituency": "Barasat",
-      "state": "West Bengal",
-      "sector": "Rural Electrification",
-      "mp": "Dr Kakoli Ghosh Dastidar",
-      "sanctioned": "₹50.0 L",
-      "sanctioned_raw": 5000000.0,
-      "utilized": "₹41.4 L",
-      "anomaly": "Amount Outlier (z=3.7) & MP Spending Drift",
-      "anomalyType": "Cost",
-      "agency": "District Magistrate North Twenty Four Parganas",
+      "title": "Construction of Children Park at Bissamcuttack under Bissamcuttack Block",
+      "location": "Koraput(St), Odisha",
+      "constituency": "Koraput(St)",
+      "state": "Odisha",
+      "sector": "Community & Public Spaces",
+      "mp": "Saptagiri Sankar Ulaka",
+      "sanctioned": "₹10.0 L",
+      "sanctioned_raw": 1000000.0,
+      "utilized": "₹8.3 L",
+      "anomaly": "Sanction Delay (409 days) & MP Baseline Drift (z=4.4)",
+      "anomalyType": "Agency",
+      "agency": "District Collector Rayagada",
       "status": "Action Req",
       "workStatus": "Physical Inspection",
-      "gapDays": 126,
-      "sanctionDate": "2023-09-14",
-      "recDate": "2023-05-11",
+      "gapDays": 409,
+      "sanctionDate": "2024-07-20",
+      "recDate": "2023-06-07",
       "flags": {
         "rule_high_severity": true,
-        "flag_delay": false,
-        "flag_amount": true,
+        "flag_delay": true,
+        "flag_amount": false,
         "flag_mp_drift": true,
+        "mp_baseline_eligible": true,
+        "mp_cat_mean": 318230.07,
+        "mp_cat_std": 154662.8,
+        "mp_cat_n": 612,
         "iso_flag": true,
         "flag_round_number": false,
-        "amount_zscore": 3.71,
-        "gap_zscore": 0.54,
-        "mp_drift_zscore": 4.07
+        "amount_zscore": 1.59,
+        "gap_zscore": 4.01,
+        "mp_drift_zscore": 4.41
       }
     }
   ]

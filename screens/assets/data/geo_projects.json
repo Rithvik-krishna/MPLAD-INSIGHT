@@ -108,7 +108,7 @@
     "risk": "critical",
     "riskScore": 94,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.1) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.1) & MP Baseline Drift (z=3.7)",
     "agency": "District Magistrate North Twenty Four Parganas"
   },
   {
@@ -122,7 +122,7 @@
     "risk": "critical",
     "riskScore": 95,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.6) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.6) & MP Baseline Drift (z=5.9)",
     "agency": "District Magistrate North Twenty Four Parganas"
   },
   {
@@ -148,9 +148,9 @@
     "lng": 88.442,
     "sanctioned": "₹50.0 L",
     "risk": "critical",
-    "riskScore": 94,
+    "riskScore": 93,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=3.7) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=3.7) & MP Baseline Drift (z=2.7)",
     "agency": "District Magistrate North Twenty Four Parganas"
   },
   {
@@ -162,9 +162,9 @@
     "lng": 85.0985,
     "sanctioned": "₹10.0 L",
     "risk": "critical",
-    "riskScore": 95,
+    "riskScore": 94,
     "type": "agency",
-    "anomaly": "Sanction Delay (409 days) & MP Spending Drift",
+    "anomaly": "Sanction Delay (409 days) & MP Baseline Drift (z=4.4)",
     "agency": "District Collector Rayagada"
   },
   {
@@ -176,9 +176,9 @@
     "lng": 85.0585,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 73,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.4) & ML Cluster Outlier",
     "agency": "District Collector Rayagada"
   },
   {
@@ -190,9 +190,9 @@
     "lng": 85.1385,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 73,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.4) & ML Cluster Outlier",
     "agency": "District Collector Koraput"
   },
   {
@@ -204,9 +204,9 @@
     "lng": 85.2585,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 73,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.4) & ML Cluster Outlier",
     "agency": "District Collector Rayagada"
   },
   {
@@ -218,9 +218,9 @@
     "lng": 85.1385,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 73,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.4) & ML Cluster Outlier",
     "agency": "District Collector Koraput"
   },
   {
@@ -232,9 +232,9 @@
     "lng": 85.1785,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 73,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.4) & ML Cluster Outlier",
     "agency": "District Collector Koraput"
   },
   {
@@ -249,20 +249,6 @@
     "riskScore": 76,
     "type": "delay",
     "anomaly": "Sanction Delay (426 days) & ML Cluster Outlier",
-    "agency": "District Magistrate North Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-00395",
-    "title": "Construction of community centre",
-    "city": "Barasat",
-    "state": "West Bengal",
-    "lat": 22.563,
-    "lng": 88.442,
-    "sanctioned": "₹40.0 L",
-    "risk": "high",
-    "riskScore": 71,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
     "agency": "District Magistrate North Twenty Four Parganas"
   },
   {
@@ -392,6 +378,34 @@
     "agency": "District Magistrate North Twenty Four Parganas"
   },
   {
+    "id": "MPLAD-01085",
+    "title": "Installation of CCTV Camera in different blocks at 38 locations that c",
+    "city": "Vaishali",
+    "state": "Bihar",
+    "lat": 25.2561,
+    "lng": 85.2331,
+    "sanctioned": "₹49.9 L",
+    "risk": "high",
+    "riskScore": 89,
+    "type": "cost",
+    "anomaly": "Amount Outlier (z=3.7) & MP Baseline Drift (z=5.5)",
+    "agency": "District Planning Officer Muzaffarpur"
+  },
+  {
+    "id": "MPLAD-01086",
+    "title": "Installation of CCTV Camera at 31 locations in different blocks and co",
+    "city": "Vaishali",
+    "state": "Bihar",
+    "lat": 25.2961,
+    "lng": 85.2731,
+    "sanctioned": "₹47.7 L",
+    "risk": "high",
+    "riskScore": 88,
+    "type": "cost",
+    "anomaly": "Amount Outlier (z=3.7) & MP Baseline Drift (z=5.1)",
+    "agency": "District Planning Officer Muzaffarpur"
+  },
+  {
     "id": "MPLAD-01302",
     "title": "Erection of 60 mts LT line with 2x25 + 25 Sq mm AB cable at Ragolu Vil",
     "city": "Vizianagaram",
@@ -456,9 +470,9 @@
     "lng": 79.66,
     "sanctioned": "₹73.8 L",
     "risk": "critical",
-    "riskScore": 94,
+    "riskScore": 98,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=4.2) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.2) & MP Baseline Drift (z=14.4)",
     "agency": "District Collector Vizianagaram"
   },
   {
@@ -470,9 +484,9 @@
     "lng": 75.1812,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 74,
+    "riskScore": 77,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=7.9) & ML Cluster Outlier",
     "agency": "Deputy Commissioner Ludhiana"
   },
   {
@@ -542,7 +556,7 @@
     "risk": "high",
     "riskScore": 75,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=5.3) & ML Cluster Outlier",
     "agency": "Deputy Commissioner Sahibzada Ajit Singh Nagar Mohali"
   },
   {
@@ -556,7 +570,7 @@
     "risk": "high",
     "riskScore": 77,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=8.4) & ML Cluster Outlier",
     "agency": "Deputy Commissioner Roopnagar"
   },
   {
@@ -574,6 +588,20 @@
     "agency": "District Magistrate Bijnor"
   },
   {
+    "id": "MPLAD-02397",
+    "title": "Construction of cement concrete road from Satberia Bishnu Mondal's hou",
+    "city": "Joynagar(Sc)",
+    "state": "West Bengal",
+    "lat": 23.0268,
+    "lng": 88.015,
+    "sanctioned": "₹26.0 L",
+    "risk": "high",
+    "riskScore": 74,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=4.8) & ML Cluster Outlier",
+    "agency": "District Magistrate South Twenty Four Parganas"
+  },
+  {
     "id": "MPLAD-02416",
     "title": "ganga guard wall and 5 steps at magna ganga Ghat.",
     "city": "Barrackpur",
@@ -582,9 +610,9 @@
     "lng": 87.735,
     "sanctioned": "₹87.6 L",
     "risk": "high",
-    "riskScore": 78,
+    "riskScore": 89,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.5) & ML Cluster Outlier",
+    "anomaly": "Amount Outlier (z=4.5) & MP Baseline Drift (z=3.6)",
     "agency": "District Magistrate North Twenty Four Parganas"
   },
   {
@@ -596,24 +624,10 @@
     "lng": 87.735,
     "sanctioned": "₹91.2 L",
     "risk": "high",
-    "riskScore": 79,
+    "riskScore": 89,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.5) & ML Cluster Outlier",
+    "anomaly": "Amount Outlier (z=4.5) & MP Baseline Drift (z=3.8)",
     "agency": "District Magistrate North Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-02528",
-    "title": "from pradhanpur picth road to AHSNV school cc road lenth 215 meter x 3",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 26.6867,
-    "lng": 81.1462,
-    "sanctioned": "₹17.8 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
   },
   {
     "id": "MPLAD-02535",
@@ -626,36 +640,8 @@
     "risk": "critical",
     "riskScore": 95,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=5.0) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=5.0) & MP Baseline Drift (z=2.4)",
     "agency": "Deputy Commissioner Dimapur"
-  },
-  {
-    "id": "MPLAD-02536",
-    "title": "drinking water RO plant in mukti dham",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 27.0067,
-    "lng": 80.9462,
-    "sanctioned": "₹17.0 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
-  },
-  {
-    "id": "MPLAD-02537",
-    "title": "from (SC, ST basti) main road to acchelal home (SC, ST, area) interloc",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 27.0467,
-    "lng": 80.9862,
-    "sanctioned": "₹16.9 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
   },
   {
     "id": "MPLAD-02538",
@@ -668,7 +654,7 @@
     "risk": "critical",
     "riskScore": 94,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.6) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.6) & MP Baseline Drift (z=1.5)",
     "agency": "Deputy Commissioner Dimapur"
   },
   {
@@ -682,7 +668,7 @@
     "risk": "critical",
     "riskScore": 94,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.8) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.8) & MP Baseline Drift (z=1.8)",
     "agency": "Deputy Commissioner Dimapur"
   },
   {
@@ -724,7 +710,7 @@
     "risk": "critical",
     "riskScore": 90,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-3.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-3.5) & MP Baseline Drift (z=-0.8)",
     "agency": "District Collector Villupuram"
   },
   {
@@ -738,7 +724,7 @@
     "risk": "critical",
     "riskScore": 90,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-3.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-3.5) & MP Baseline Drift (z=-0.8)",
     "agency": "District Collector Villupuram"
   },
   {
@@ -752,7 +738,7 @@
     "risk": "critical",
     "riskScore": 90,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-3.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-3.5) & MP Baseline Drift (z=-0.8)",
     "agency": "District Collector Villupuram"
   },
   {
@@ -766,7 +752,7 @@
     "risk": "critical",
     "riskScore": 90,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-5.0) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-5.0) & MP Baseline Drift (z=-0.8)",
     "agency": "District Collector Villupuram"
   },
   {
@@ -780,7 +766,7 @@
     "risk": "critical",
     "riskScore": 90,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-5.0) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-5.0) & MP Baseline Drift (z=-0.8)",
     "agency": "District Collector Villupuram"
   },
   {
@@ -794,7 +780,7 @@
     "risk": "critical",
     "riskScore": 90,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-5.0) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-5.0) & MP Baseline Drift (z=-0.8)",
     "agency": "District Collector Villupuram"
   },
   {
@@ -808,7 +794,7 @@
     "risk": "critical",
     "riskScore": 90,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-5.0) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-5.0) & MP Baseline Drift (z=-0.8)",
     "agency": "District Collector Villupuram"
   },
   {
@@ -848,9 +834,9 @@
     "lng": 85.3931,
     "sanctioned": "₹12.0 L",
     "risk": "high",
-    "riskScore": 76,
+    "riskScore": 73,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.5) & ML Cluster Outlier",
     "agency": "District Planning Officer Khagaria"
   },
   {
@@ -862,9 +848,9 @@
     "lng": 85.4331,
     "sanctioned": "₹9.8 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 71,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.5) & ML Cluster Outlier",
     "agency": "District Planning Officer Khagaria"
   },
   {
@@ -882,48 +868,6 @@
     "agency": "District Collector Khordha"
   },
   {
-    "id": "MPLAD-03456",
-    "title": "Construction of Concrete Road from PWD road near Gangamani Shishu Shik",
-    "city": "Mathurapur(Sc)",
-    "state": "West Bengal",
-    "lat": 23.2268,
-    "lng": 87.735,
-    "sanctioned": "₹16.0 L",
-    "risk": "high",
-    "riskScore": 73,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-03468",
-    "title": "2024/7206-Construction of roads, link roads, pathways or any other roa",
-    "city": "Akbarpur",
-    "state": "Uttar Pradesh",
-    "lat": 26.8867,
-    "lng": 80.7862,
-    "sanctioned": "₹20.4 L",
-    "risk": "high",
-    "riskScore": 72,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrae Kanpur Nagar"
-  },
-  {
-    "id": "MPLAD-03472",
-    "title": "2024/7210-Construction of roads, link roads, pathways or any other roa",
-    "city": "Akbarpur",
-    "state": "Uttar Pradesh",
-    "lat": 27.0467,
-    "lng": 80.9462,
-    "sanctioned": "₹20.2 L",
-    "risk": "high",
-    "riskScore": 72,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrae Kanpur Nagar"
-  },
-  {
     "id": "MPLAD-03473",
     "title": "2024/7211-Construction of roads, link roads, pathways or any other roa",
     "city": "Akbarpur",
@@ -932,9 +876,9 @@
     "lng": 80.9862,
     "sanctioned": "₹33.7 L",
     "risk": "high",
-    "riskScore": 76,
+    "riskScore": 74,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.7) & ML Cluster Outlier",
     "agency": "District Magistrae Kanpur Nagar"
   },
   {
@@ -978,90 +922,6 @@
     "type": "delay",
     "anomaly": "Standard Baseline",
     "agency": "District Planning Officer Madhubani"
-  },
-  {
-    "id": "MPLAD-03772",
-    "title": "New Construction School Building of Madarat Ishan Chandra Balika Vidya",
-    "city": "Jadavpur",
-    "state": "West Bengal",
-    "lat": 22.9468,
-    "lng": 87.895,
-    "sanctioned": "₹10.0 L",
-    "risk": "high",
-    "riskScore": 77,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-03773",
-    "title": "New Construction School Building for Library Room  of Baruipur High Sc",
-    "city": "Jadavpur",
-    "state": "West Bengal",
-    "lat": 22.9868,
-    "lng": 87.935,
-    "sanctioned": "₹7.0 L",
-    "risk": "high",
-    "riskScore": 76,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-03774",
-    "title": "Construction of New Building For Class Room HARAPUR JUNIOR HIGH SCHOOL",
-    "city": "Jadavpur",
-    "state": "West Bengal",
-    "lat": 23.0268,
-    "lng": 87.975,
-    "sanctioned": "₹8.0 L",
-    "risk": "high",
-    "riskScore": 77,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-03775",
-    "title": "New Construction Two Tire Concrete Brides to connect two Buildings ,th",
-    "city": "Jadavpur",
-    "state": "West Bengal",
-    "lat": 23.0668,
-    "lng": 88.015,
-    "sanctioned": "₹9.9 L",
-    "risk": "high",
-    "riskScore": 77,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-03776",
-    "title": "Construction of Black Top Road From Bhangar Bazar Old Post Office to K",
-    "city": "Jadavpur",
-    "state": "West Bengal",
-    "lat": 23.1068,
-    "lng": 88.055,
-    "sanctioned": "₹10.0 L",
-    "risk": "high",
-    "riskScore": 77,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-03777",
-    "title": "Construction of Black Top Road From Malancha Padmapukur Bus Stand Towa",
-    "city": "Jadavpur",
-    "state": "West Bengal",
-    "lat": 23.1468,
-    "lng": 88.095,
-    "sanctioned": "₹7.5 L",
-    "risk": "high",
-    "riskScore": 77,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
   },
   {
     "id": "MPLAD-03982",
@@ -1120,20 +980,6 @@
     "agency": "Deputy Commissioner Bangalore Urban"
   },
   {
-    "id": "MPLAD-04148",
-    "title": "Construction of Boundary wall besides Swaminarayan Mandir, Harinagar i",
-    "city": "Vadodara",
-    "state": "Gujarat",
-    "lat": 22.2987,
-    "lng": 71.1924,
-    "sanctioned": "₹20.3 L",
-    "risk": "high",
-    "riskScore": 73,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Vadodara"
-  },
-  {
     "id": "MPLAD-04171",
     "title": "Providing addl pole at road crossing in chittarapuram village of santh",
     "city": "Vizianagaram",
@@ -1176,20 +1022,6 @@
     "agency": "Deputy Commissioner Chikmagalur"
   },
   {
-    "id": "MPLAD-04424",
-    "title": "Building construction work for Bar Association in Sadar Tehsil Mau",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 26.9267,
-    "lng": 80.9462,
-    "sanctioned": "₹27.1 L",
-    "risk": "high",
-    "riskScore": 77,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
-  },
-  {
     "id": "MPLAD-04426",
     "title": "Building construction work for Bar Association in tehsil mohammadabad ",
     "city": "Ghosi",
@@ -1198,66 +1030,24 @@
     "lng": 81.0262,
     "sanctioned": "₹35.0 L",
     "risk": "high",
-    "riskScore": 77,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
-  },
-  {
-    "id": "MPLAD-04427",
-    "title": "Building construction work for Bar Association in Tehsil ghosi",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 27.0467,
-    "lng": 81.0662,
-    "sanctioned": "₹24.0 L",
-    "risk": "high",
-    "riskScore": 76,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
-  },
-  {
-    "id": "MPLAD-04435",
-    "title": "Interlocking road from Keshav rajbhar house to Mangru house in Block- ",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 26.6867,
-    "lng": 80.8662,
-    "sanctioned": "₹14.5 L",
-    "risk": "high",
-    "riskScore": 73,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
-  },
-  {
-    "id": "MPLAD-04437",
-    "title": "Construction work of interlocking road from Malti Devi's farm to Shivb",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 26.7667,
-    "lng": 80.9462,
-    "sanctioned": "₹11.8 L",
-    "risk": "high",
     "riskScore": 72,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.9) & ML Cluster Outlier",
     "agency": "District Magistrate Mau"
   },
   {
-    "id": "MPLAD-04501",
-    "title": "Interlocking road from bhrgunath's farm to manohar's house in Block- M",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 26.6067,
-    "lng": 80.9062,
-    "sanctioned": "₹12.0 L",
+    "id": "MPLAD-04448",
+    "title": "Makonahalli Late Huchchegowda Memorial Trust building work in Mudigere",
+    "city": "Udupi Chikmagalur",
+    "state": "Karnataka",
+    "lat": 14.9973,
+    "lng": 75.6339,
+    "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 72,
+    "riskScore": 89,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
+    "anomaly": "Sanction Delay (697 days) & MP Baseline Drift (z=3.6)",
+    "agency": "Deputy Commissioner Chikmagalur"
   },
   {
     "id": "MPLAD-04511",
@@ -1288,18 +1078,18 @@
     "agency": "District Collector Alwar"
   },
   {
-    "id": "MPLAD-04591",
-    "title": "Interlocking road from Banwari's house tube well to Lalchand's house i",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 26.8067,
-    "lng": 80.8662,
-    "sanctioned": "₹14.9 L",
+    "id": "MPLAD-04737",
+    "title": "Supply and installation of Slabs over drainage at various places in V.",
+    "city": "South Goa",
+    "state": "Goa",
+    "lat": 14.9793,
+    "lng": 74.164,
+    "sanctioned": "₹61.0 L",
     "risk": "high",
-    "riskScore": 73,
+    "riskScore": 86,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
+    "anomaly": "Amount Outlier (z=4.0) & MP Baseline Drift (z=4.2)",
+    "agency": "District Collector South Goa"
   },
   {
     "id": "MPLAD-04800",
@@ -1312,7 +1102,7 @@
     "risk": "critical",
     "riskScore": 93,
     "type": "delay",
-    "anomaly": "Sanction Delay (393 days) & MP Spending Drift",
+    "anomaly": "Sanction Delay (393 days) & MP Baseline Drift (z=-1.5)",
     "agency": "District Magistrate Dhalai"
   },
   {
@@ -1342,20 +1132,6 @@
     "type": "delay",
     "anomaly": "Sanction Delay (672 days) & ML Cluster Outlier",
     "agency": "District Magistrate North Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-05259",
-    "title": "Late Umanath Singh Swasi Autonomous State Medical College Siddikpur Ka",
-    "city": "Jaunpur",
-    "state": "Uttar Pradesh",
-    "lat": 25.8664,
-    "lng": 82.7637,
-    "sanctioned": "₹29.0 L",
-    "risk": "high",
-    "riskScore": 72,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Jaunpur"
   },
   {
     "id": "MPLAD-05412",
@@ -1408,9 +1184,9 @@
     "lng": 74.364,
     "sanctioned": "₹11,990",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.3) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.3) & MP Baseline Drift (z=-1.1)",
     "agency": "District Collector South Goa"
   },
   {
@@ -1436,52 +1212,24 @@
     "lng": 82.7637,
     "sanctioned": "₹94.1 L",
     "risk": "critical",
-    "riskScore": 96,
+    "riskScore": 98,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.6) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.6) & MP Baseline Drift (z=10.4)",
     "agency": "District Magistrate Jaunpur"
   },
   {
-    "id": "MPLAD-05911",
-    "title": "Construction of Anganwadi Building at Jayapuram in Tindivanam",
-    "city": "Viluppuram(Sc)",
-    "state": "Tamil Nadu",
-    "lat": 10.8071,
-    "lng": 78.8169,
-    "sanctioned": "₹14.0 L",
+    "id": "MPLAD-05876",
+    "title": "Construction work of Hall with Varanda in Sh. bahadur singh bhankanwar",
+    "city": "Churu",
+    "state": "Rajasthan",
+    "lat": 27.3438,
+    "lng": 74.0179,
+    "sanctioned": "₹18.7 L",
     "risk": "high",
-    "riskScore": 75,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Villupuram"
-  },
-  {
-    "id": "MPLAD-05912",
-    "title": "Construction of Anganwadi Building at Muslim I Habitation in Kottakupp",
-    "city": "Viluppuram(Sc)",
-    "state": "Tamil Nadu",
-    "lat": 10.8471,
-    "lng": 78.8569,
-    "sanctioned": "₹14.0 L",
-    "risk": "high",
-    "riskScore": 75,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Villupuram"
-  },
-  {
-    "id": "MPLAD-05913",
-    "title": "Construction of Anganwadi Building at Vazhudureddy Adi Dravidar Habita",
-    "city": "Viluppuram(Sc)",
-    "state": "Tamil Nadu",
-    "lat": 10.8871,
-    "lng": 78.8969,
-    "sanctioned": "₹14.0 L",
-    "risk": "high",
-    "riskScore": 75,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Villupuram"
+    "riskScore": 82,
+    "type": "agency",
+    "anomaly": "Sanction Delay (404 days) & MP Baseline Drift (z=3.4)",
+    "agency": "District Collector Churu"
   },
   {
     "id": "MPLAD-05916",
@@ -1492,37 +1240,9 @@
     "lng": 78.4969,
     "sanctioned": "₹21.5 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 70,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Villupuram"
-  },
-  {
-    "id": "MPLAD-05937",
-    "title": "Construction of Anganwadi Building at Thenneri Irular habitation in Ki",
-    "city": "Viluppuram(Sc)",
-    "state": "Tamil Nadu",
-    "lat": 11.1671,
-    "lng": 78.8169,
-    "sanctioned": "₹14.0 L",
-    "risk": "high",
-    "riskScore": 75,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Villupuram"
-  },
-  {
-    "id": "MPLAD-05938",
-    "title": "Construction of Anganwadi Building at Nannadu Panchayat",
-    "city": "Viluppuram(Sc)",
-    "state": "Tamil Nadu",
-    "lat": 11.2071,
-    "lng": 78.8569,
-    "sanctioned": "₹14.0 L",
-    "risk": "high",
-    "riskScore": 75,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.2) & ML Cluster Outlier",
     "agency": "District Collector Villupuram"
   },
   {
@@ -1534,9 +1254,9 @@
     "lng": 79.74,
     "sanctioned": "₹29.5 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 72,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.0) & ML Cluster Outlier",
     "agency": "District Collector Cuddapah"
   },
   {
@@ -1548,9 +1268,9 @@
     "lng": 79.78,
     "sanctioned": "₹25.5 L",
     "risk": "high",
-    "riskScore": 76,
+    "riskScore": 70,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.3) & ML Cluster Outlier",
     "agency": "District Collector Cuddapah"
   },
   {
@@ -1564,7 +1284,7 @@
     "risk": "high",
     "riskScore": 77,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=5.9) & ML Cluster Outlier",
     "agency": "District Collector Cuddapah"
   },
   {
@@ -1576,9 +1296,9 @@
     "lng": 79.62,
     "sanctioned": "₹28.4 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 71,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.8) & ML Cluster Outlier",
     "agency": "District Collector Cuddapah"
   },
   {
@@ -1596,32 +1316,18 @@
     "agency": "District Magistrae Varanasi"
   },
   {
-    "id": "MPLAD-06475",
-    "title": "Construction of additional classroom of Vivekananda Vidyaniketan (High",
-    "city": "Mathurapur(Sc)",
-    "state": "West Bengal",
-    "lat": 22.7868,
-    "lng": 87.695,
-    "sanctioned": "₹15.0 L",
+    "id": "MPLAD-06488",
+    "title": "PDS @ Shanmuga Nagar ward 5 in Nachikurichi Panchayat in Manikandam Un",
+    "city": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "lat": 11.4471,
+    "lng": 78.4969,
+    "sanctioned": "₹12.9 L",
     "risk": "high",
-    "riskScore": 73,
+    "riskScore": 82,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-06503",
-    "title": "Construction of RCC Road and Protection Wall at Bhadarva Village, Savl",
-    "city": "Vadodara",
-    "state": "Gujarat",
-    "lat": 22.4987,
-    "lng": 71.1124,
-    "sanctioned": "₹25.0 L",
-    "risk": "high",
-    "riskScore": 75,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Vadodara"
+    "anomaly": "Sanction Delay (393 days) & MP Baseline Drift (z=3.5)",
+    "agency": "District Collector Tiruchirappalli"
   },
   {
     "id": "MPLAD-06535",
@@ -1632,7 +1338,7 @@
     "lng": 71.3524,
     "sanctioned": "₹50.0 L",
     "risk": "critical",
-    "riskScore": 95,
+    "riskScore": 98,
     "type": "delay",
     "anomaly": "Sanction Delay (541 days) & Amount Outlier (z=3.7)",
     "agency": "District Collector Panchmahals"
@@ -1646,9 +1352,9 @@
     "lng": 85.4731,
     "sanctioned": "₹9.8 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 71,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.5) & ML Cluster Outlier",
     "agency": "District Planning Officer Khagaria"
   },
   {
@@ -1674,9 +1380,9 @@
     "lng": 75.2612,
     "sanctioned": "₹22.0 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 77,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=8.0) & ML Cluster Outlier",
     "agency": "Deputy Commissioner Moga"
   },
   {
@@ -1690,7 +1396,7 @@
     "risk": "critical",
     "riskScore": 94,
     "type": "delay",
-    "anomaly": "Sanction Delay (473 days) & MP Spending Drift",
+    "anomaly": "Sanction Delay (473 days) & MP Baseline Drift (z=-2.1)",
     "agency": "District Collector Nagaur"
   },
   {
@@ -1704,7 +1410,7 @@
     "risk": "critical",
     "riskScore": 94,
     "type": "agency",
-    "anomaly": "Sanction Delay (455 days) & MP Spending Drift",
+    "anomaly": "Sanction Delay (455 days) & MP Baseline Drift (z=-1.6)",
     "agency": "Zilla Ganganagar"
   },
   {
@@ -1718,7 +1424,7 @@
     "risk": "critical",
     "riskScore": 93,
     "type": "delay",
-    "anomaly": "Sanction Delay (389 days) & MP Spending Drift",
+    "anomaly": "Sanction Delay (389 days) & MP Baseline Drift (z=-1.2)",
     "agency": "District Planning Officer Rohtas"
   },
   {
@@ -1730,9 +1436,9 @@
     "lng": 87.615,
     "sanctioned": "₹70.0 L",
     "risk": "critical",
-    "riskScore": 98,
+    "riskScore": 97,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.2) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.2) & MP Baseline Drift (z=7.9)",
     "agency": "District Magistrate South Twenty Four Parganas"
   },
   {
@@ -1746,8 +1452,36 @@
     "risk": "med",
     "riskScore": 67,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=-1.0) & ML Cluster Outlier",
     "agency": "District Collector Neemuch"
+  },
+  {
+    "id": "MPLAD-07249",
+    "title": "Jhanjharpur loksabha ke antargat 46 vidyalao me pustakaly men books pu",
+    "city": "Jhanjharpur",
+    "state": "Bihar",
+    "lat": 25.2561,
+    "lng": 85.4331,
+    "sanctioned": "₹23.8 L",
+    "risk": "high",
+    "riskScore": 73,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=4.2) & ML Cluster Outlier",
+    "agency": "District Planning Officer Madhubani"
+  },
+  {
+    "id": "MPLAD-07541",
+    "title": "Purchasing of Xray Machine and Allied accessories at CHC Paika, Ward 1",
+    "city": "Kottayam",
+    "state": "Kerala",
+    "lat": 11.1305,
+    "lng": 76.1111,
+    "sanctioned": "₹28.9 L",
+    "risk": "high",
+    "riskScore": 74,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=4.7) & ML Cluster Outlier",
+    "agency": "District Collector Kottayam"
   },
   {
     "id": "MPLAD-07554",
@@ -1764,20 +1498,6 @@
     "agency": "District Collector Gwalior"
   },
   {
-    "id": "MPLAD-07630",
-    "title": "Construction work of CC road from Kolaura pitch road to interlocking r",
-    "city": "Ghosi",
-    "state": "Uttar Pradesh",
-    "lat": 26.6067,
-    "lng": 80.7062,
-    "sanctioned": "₹15.8 L",
-    "risk": "high",
-    "riskScore": 73,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Mau"
-  },
-  {
     "id": "MPLAD-07662",
     "title": "PURCHASE AND INSTALLATION OF MORTUARY REFRIGERATOR AT RAM BAGH, BARNAL",
     "city": "Sangrur",
@@ -1785,11 +1505,25 @@
     "lat": 30.8271,
     "lng": 75.3412,
     "sanctioned": "₹4.9 L",
-    "risk": "low",
-    "riskScore": 15,
+    "risk": "med",
+    "riskScore": 43,
     "type": "agency",
-    "anomaly": "Agency Monopoly (99%)",
+    "anomaly": "MP Baseline Drift (z=3.6) & Agency Monopoly (99%)",
     "agency": "Deputy Commissioner Barnala"
+  },
+  {
+    "id": "MPLAD-07666",
+    "title": "Installation and commissioning 100 number of 24 watt 6 mtr solar stree",
+    "city": "Joynagar(Sc)",
+    "state": "West Bengal",
+    "lat": 22.8268,
+    "lng": 88.015,
+    "sanctioned": "₹26.0 L",
+    "risk": "high",
+    "riskScore": 74,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=4.8) & ML Cluster Outlier",
+    "agency": "District Magistrate South Twenty Four Parganas"
   },
   {
     "id": "MPLAD-07733",
@@ -1814,9 +1548,9 @@
     "lng": 78.4969,
     "sanctioned": "₹14.7 L",
     "risk": "high",
-    "riskScore": 78,
+    "riskScore": 89,
     "type": "delay",
-    "anomaly": "Sanction Delay (477 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (477 days) & MP Baseline Drift (z=4.3)",
     "agency": "District Collector Tiruchirappalli"
   },
   {
@@ -1828,9 +1562,9 @@
     "lng": 79.78,
     "sanctioned": "₹87.2 L",
     "risk": "high",
-    "riskScore": 78,
+    "riskScore": 89,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=4.4) & ML Cluster Outlier",
+    "anomaly": "Amount Outlier (z=4.4) & MP Baseline Drift (z=3.3)",
     "agency": "District Collector Anakapalli"
   },
   {
@@ -1842,9 +1576,9 @@
     "lng": 79.54,
     "sanctioned": "₹28.3 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 71,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.8) & ML Cluster Outlier",
     "agency": "District Collector Cuddapah"
   },
   {
@@ -1898,9 +1632,9 @@
     "lng": 75.9256,
     "sanctioned": "₹11.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "agency",
-    "anomaly": "Sanction Delay (950 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (950 days) & MP Baseline Drift (z=3.6)",
     "agency": "Deputy Commissioner Hissar"
   },
   {
@@ -1912,7 +1646,7 @@
     "lng": 72.54,
     "sanctioned": "₹1.75 Cr",
     "risk": "critical",
-    "riskScore": 96,
+    "riskScore": 98,
     "type": "delay",
     "anomaly": "Sanction Delay (444 days) & Amount Outlier (z=5.4)",
     "agency": "District Collector Ahmadabad"
@@ -1926,9 +1660,9 @@
     "lng": 76.0456,
     "sanctioned": "₹11.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "agency",
-    "anomaly": "Sanction Delay (986 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (986 days) & MP Baseline Drift (z=3.6)",
     "agency": "Deputy Commissioner Hissar"
   },
   {
@@ -1996,9 +1730,9 @@
     "lng": 71.0724,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "delay",
-    "anomaly": "Sanction Delay (585 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (585 days) & MP Baseline Drift (z=5.0)",
     "agency": "District Collector Ahmadabad"
   },
   {
@@ -2010,9 +1744,9 @@
     "lng": 71.3124,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "delay",
-    "anomaly": "Sanction Delay (582 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (582 days) & MP Baseline Drift (z=5.0)",
     "agency": "District Collector Ahmadabad"
   },
   {
@@ -2024,9 +1758,9 @@
     "lng": 71.0324,
     "sanctioned": "₹8.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "delay",
-    "anomaly": "Sanction Delay (582 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (582 days) & MP Baseline Drift (z=3.8)",
     "agency": "District Collector Ahmadabad"
   },
   {
@@ -2038,9 +1772,9 @@
     "lng": 71.0724,
     "sanctioned": "₹8.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "delay",
-    "anomaly": "Sanction Delay (582 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (582 days) & MP Baseline Drift (z=3.8)",
     "agency": "District Collector Ahmadabad"
   },
   {
@@ -2052,9 +1786,9 @@
     "lng": 71.1124,
     "sanctioned": "₹8.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "delay",
-    "anomaly": "Sanction Delay (600 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (600 days) & MP Baseline Drift (z=3.8)",
     "agency": "District Collector Ahmadabad"
   },
   {
@@ -2066,9 +1800,9 @@
     "lng": 71.1524,
     "sanctioned": "₹8.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "delay",
-    "anomaly": "Sanction Delay (585 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (585 days) & MP Baseline Drift (z=3.8)",
     "agency": "District Collector Ahmadabad"
   },
   {
@@ -2094,9 +1828,9 @@
     "lng": 78.1079,
     "sanctioned": "₹9.8 L",
     "risk": "high",
-    "riskScore": 75,
+    "riskScore": 74,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.9) & ML Cluster Outlier",
     "agency": "District Collector Anuppur"
   },
   {
@@ -2108,9 +1842,9 @@
     "lng": 77.2534,
     "sanctioned": "₹17.0 L",
     "risk": "high",
-    "riskScore": 72,
+    "riskScore": 77,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=10.2) & ML Cluster Outlier",
     "agency": "Deputy Commissioner L And S"
   },
   {
@@ -2150,9 +1884,9 @@
     "lng": 87.695,
     "sanctioned": "₹43.1 L",
     "risk": "critical",
-    "riskScore": 93,
+    "riskScore": 98,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=3.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=3.5) & MP Baseline Drift (z=8.6)",
     "agency": "District Magistrate South Twenty Four Parganas"
   },
   {
@@ -2164,9 +1898,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2178,9 +1912,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2192,9 +1926,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2206,9 +1940,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2220,9 +1954,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2234,9 +1968,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2248,9 +1982,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2262,9 +1996,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2276,9 +2010,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2290,9 +2024,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2304,9 +2038,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2318,9 +2052,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2332,9 +2066,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2346,9 +2080,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2360,9 +2094,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2374,9 +2108,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2388,9 +2122,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2402,9 +2136,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2416,9 +2150,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2430,9 +2164,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2444,9 +2178,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2458,9 +2192,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2472,9 +2206,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2486,9 +2220,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2500,9 +2234,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2514,9 +2248,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2528,9 +2262,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2542,9 +2276,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2556,9 +2290,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2570,9 +2304,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2584,9 +2318,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2598,9 +2332,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2612,9 +2346,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2626,9 +2360,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2640,9 +2374,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2654,9 +2388,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2668,9 +2402,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2682,9 +2416,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2696,9 +2430,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2710,9 +2444,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2724,9 +2458,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2738,9 +2472,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2752,9 +2486,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2766,9 +2500,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2780,9 +2514,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2794,9 +2528,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2808,9 +2542,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2822,9 +2556,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2836,9 +2570,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2850,9 +2584,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2864,9 +2598,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2878,9 +2612,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2892,9 +2626,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2906,9 +2640,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2920,9 +2654,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2934,9 +2668,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2948,9 +2682,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2962,9 +2696,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2976,9 +2710,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.5)",
     "agency": "District Collector Mandsaur"
   },
   {
@@ -2990,9 +2724,9 @@
     "lng": 85.2731,
     "sanctioned": "₹48.8 L",
     "risk": "critical",
-    "riskScore": 94,
+    "riskScore": 97,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=3.7) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=3.7) & MP Baseline Drift (z=7.8)",
     "agency": "District Planning Officer Gopalganj"
   },
   {
@@ -3004,9 +2738,9 @@
     "lng": 85.3131,
     "sanctioned": "₹48.8 L",
     "risk": "critical",
-    "riskScore": 94,
+    "riskScore": 97,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=3.7) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=3.7) & MP Baseline Drift (z=7.8)",
     "agency": "District Planning Officer Gopalganj"
   },
   {
@@ -3066,20 +2800,6 @@
     "agency": "District Collector Kheda"
   },
   {
-    "id": "MPLAD-09207",
-    "title": "2024/16452-Construction of roads, link roads, pathways or any other ro",
-    "city": "Fatehpur Sikri",
-    "state": "Uttar Pradesh",
-    "lat": 26.8067,
-    "lng": 81.0662,
-    "sanctioned": "₹31.4 L",
-    "risk": "high",
-    "riskScore": 71,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrae Agra"
-  },
-  {
     "id": "MPLAD-09234",
     "title": "Books in  Middle Schools",
     "city": "Balaghat",
@@ -3088,9 +2808,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3102,9 +2822,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3116,9 +2836,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3130,9 +2850,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3144,9 +2864,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3158,9 +2878,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3172,9 +2892,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3186,9 +2906,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3200,9 +2920,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3214,9 +2934,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3228,9 +2948,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3242,9 +2962,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3256,9 +2976,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3270,9 +2990,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3284,9 +3004,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3298,9 +3018,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3312,9 +3032,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3326,9 +3046,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3340,9 +3060,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3354,9 +3074,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3368,9 +3088,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3382,9 +3102,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3396,9 +3116,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3410,9 +3130,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3424,9 +3144,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3438,9 +3158,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3452,9 +3172,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3466,9 +3186,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3480,9 +3200,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3494,9 +3214,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3508,9 +3228,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3522,9 +3242,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3536,9 +3256,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3550,9 +3270,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3564,9 +3284,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3578,9 +3298,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3592,9 +3312,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3606,9 +3326,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3620,9 +3340,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3634,9 +3354,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3648,9 +3368,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3662,9 +3382,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3676,9 +3396,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3690,9 +3410,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3704,9 +3424,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3718,9 +3438,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3732,9 +3452,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3746,9 +3466,9 @@
     "lng": 77.9079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3760,9 +3480,9 @@
     "lng": 77.9479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3774,9 +3494,9 @@
     "lng": 77.9879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3788,9 +3508,9 @@
     "lng": 78.0279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3802,9 +3522,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3816,9 +3536,9 @@
     "lng": 78.1079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3830,9 +3550,9 @@
     "lng": 78.1479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3844,9 +3564,9 @@
     "lng": 78.1879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3858,9 +3578,9 @@
     "lng": 77.7079,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3872,9 +3592,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3886,9 +3606,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3900,9 +3620,9 @@
     "lng": 77.8279,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3914,9 +3634,9 @@
     "lng": 77.8679,
     "sanctioned": "₹10,000",
     "risk": "critical",
-    "riskScore": 90,
+    "riskScore": 91,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=-4.5) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=-4.5) & MP Baseline Drift (z=-1.4)",
     "agency": "District Collector Seoni"
   },
   {
@@ -3970,38 +3690,10 @@
     "lng": 74.2979,
     "sanctioned": "₹15.0 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 89,
     "type": "agency",
-    "anomaly": "Sanction Delay (460 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (460 days) & MP Baseline Drift (z=3.6)",
     "agency": "District Collector Rajsamand"
-  },
-  {
-    "id": "MPLAD-09698",
-    "title": "Construction of auto stand of concrete pavement with boundary wall and",
-    "city": "Mathurapur(Sc)",
-    "state": "West Bengal",
-    "lat": 22.8668,
-    "lng": 87.855,
-    "sanctioned": "₹27.0 L",
-    "risk": "high",
-    "riskScore": 76,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
-  },
-  {
-    "id": "MPLAD-09700",
-    "title": "Construction of a concrete foot bridge at Ujilbaria(Deula) under Usthi",
-    "city": "Mathurapur(Sc)",
-    "state": "West Bengal",
-    "lat": 22.9468,
-    "lng": 87.935,
-    "sanctioned": "₹15.0 L",
-    "risk": "high",
-    "riskScore": 73,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate South Twenty Four Parganas"
   },
   {
     "id": "MPLAD-09785",
@@ -4018,20 +3710,6 @@
     "agency": "District Collector Anakapalli"
   },
   {
-    "id": "MPLAD-09796",
-    "title": "Construction of ground floor prayer hall (part-2) of Subdi Sitanath Vi",
-    "city": "Tamluk",
-    "state": "West Bengal",
-    "lat": 23.2668,
-    "lng": 88.015,
-    "sanctioned": "₹10.2 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Purba Medinipur"
-  },
-  {
     "id": "MPLAD-09865",
     "title": "Samudayik Bhawan (Sansad Utsav Dham)",
     "city": "Tikamgarh(Sc)",
@@ -4040,9 +3718,9 @@
     "lng": 77.7479,
     "sanctioned": "₹10.4 L",
     "risk": "high",
-    "riskScore": 73,
+    "riskScore": 70,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.4) & ML Cluster Outlier",
     "agency": "District Collector Niwari"
   },
   {
@@ -4054,9 +3732,9 @@
     "lng": 77.7879,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 72,
+    "riskScore": 70,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.2) & ML Cluster Outlier",
     "agency": "District Collector Niwari"
   },
   {
@@ -4068,23 +3746,9 @@
     "lng": 87.815,
     "sanctioned": "₹15.2 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 71,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Purba Medinipur"
-  },
-  {
-    "id": "MPLAD-09883",
-    "title": "Construction of cycle stand of Sonachura K.C.A Milan Vidyamandir at Vi",
-    "city": "Tamluk",
-    "state": "West Bengal",
-    "lat": 22.6668,
-    "lng": 87.855,
-    "sanctioned": "₹12.5 L",
-    "risk": "high",
-    "riskScore": 76,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.7) & ML Cluster Outlier",
     "agency": "District Magistrate Purba Medinipur"
   },
   {
@@ -4096,9 +3760,9 @@
     "lng": 87.895,
     "sanctioned": "₹20.0 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 75,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=5.3) & ML Cluster Outlier",
     "agency": "District Magistrate Purba Medinipur"
   },
   {
@@ -4110,9 +3774,9 @@
     "lng": 87.935,
     "sanctioned": "₹14.5 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 71,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.5) & ML Cluster Outlier",
     "agency": "District Magistrate Purba Medinipur"
   },
   {
@@ -4124,9 +3788,9 @@
     "lng": 87.975,
     "sanctioned": "₹15.9 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 72,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.0) & ML Cluster Outlier",
     "agency": "District Magistrate Purba Medinipur"
   },
   {
@@ -4306,9 +3970,9 @@
     "lng": 87.975,
     "sanctioned": "₹59.1 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 89,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=3.9) & ML Cluster Outlier",
+    "anomaly": "Amount Outlier (z=3.9) & MP Baseline Drift (z=4.8)",
     "agency": "District Magistrate Purba Medinipur"
   },
   {
@@ -4336,7 +4000,7 @@
     "risk": "high",
     "riskScore": 72,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.1) & ML Cluster Outlier",
     "agency": "Deputy Commissioner Faridkot"
   },
   {
@@ -4348,9 +4012,9 @@
     "lng": 78.1879,
     "sanctioned": "₹52.3 L",
     "risk": "high",
-    "riskScore": 76,
+    "riskScore": 89,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=3.8) & ML Cluster Outlier",
+    "anomaly": "Amount Outlier (z=3.8) & MP Baseline Drift (z=5.4)",
     "agency": "District Collector Rewa"
   },
   {
@@ -4390,9 +4054,9 @@
     "lng": 78.0679,
     "sanctioned": "₹10.0 L",
     "risk": "high",
-    "riskScore": 81,
+    "riskScore": 89,
     "type": "agency",
-    "anomaly": "Sanction Delay (601 days) & ML Cluster Outlier",
+    "anomaly": "Sanction Delay (601 days) & MP Baseline Drift (z=4.1)",
     "agency": "District Collector Badwani"
   },
   {
@@ -4418,9 +4082,9 @@
     "lng": 93.0176,
     "sanctioned": "₹20.0 L",
     "risk": "high",
-    "riskScore": 71,
+    "riskScore": 72,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.0) & ML Cluster Outlier",
     "agency": "Deputy Commissioner Dhemaji"
   },
   {
@@ -4464,6 +4128,20 @@
     "type": "agency",
     "anomaly": "Sanction Delay (979 days) & ML Cluster Outlier",
     "agency": "District Collector Kota"
+  },
+  {
+    "id": "MPLAD-11375",
+    "title": "Rajkiya Uchh Madyamik Vidyalay Keshorai Patan Patan Mai Khel Maidan Vi",
+    "city": "Kota",
+    "state": "Rajasthan",
+    "lat": 27.1438,
+    "lng": 74.0179,
+    "sanctioned": "₹25.0 L",
+    "risk": "high",
+    "riskScore": 73,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=4.2) & ML Cluster Outlier",
+    "agency": "District Collector Bundi"
   },
   {
     "id": "MPLAD-11387",
@@ -4516,10 +4194,24 @@
     "lng": 88.095,
     "sanctioned": "₹37.0 L",
     "risk": "high",
-    "riskScore": 72,
+    "riskScore": 77,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=6.8) & ML Cluster Outlier",
     "agency": "District Magistrate South Twenty Four Parganas"
+  },
+  {
+    "id": "MPLAD-11520",
+    "title": "Construction of 4 high mask lights in Harihar Shubramanyam Stadium (Ga",
+    "city": "Gaya (Sc)",
+    "state": "Bihar",
+    "lat": 24.8961,
+    "lng": 85.1931,
+    "sanctioned": "₹34.8 L",
+    "risk": "high",
+    "riskScore": 76,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=5.8) & ML Cluster Outlier",
+    "agency": "District Planning Officer Gaya"
   },
   {
     "id": "MPLAD-11725",
@@ -4586,9 +4278,9 @@
     "lng": 88.015,
     "sanctioned": "₹20.2 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 75,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=5.4) & ML Cluster Outlier",
     "agency": "District Magistrate Purba Medinipur"
   },
   {
@@ -4606,6 +4298,20 @@
     "agency": "District Magistrate Sonbhadra"
   },
   {
+    "id": "MPLAD-12741",
+    "title": "1. Ghosi Mohalla - 663000\t 2- Ghosi handiya - 194700\t 3- Ghosi Khanna ",
+    "city": "Meerut",
+    "state": "Uttar Pradesh",
+    "lat": 28.6645,
+    "lng": 77.5464,
+    "sanctioned": "₹40.4 L",
+    "risk": "high",
+    "riskScore": 70,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=3.4) & ML Cluster Outlier",
+    "agency": "District Magistrate Meerut"
+  },
+  {
     "id": "MPLAD-12781",
     "title": "1. Harinagar Inderpal - 998000 2. Harinagar HS Mehra - 989000 3. Harin",
     "city": "Meerut",
@@ -4614,9 +4320,9 @@
     "lng": 77.5864,
     "sanctioned": "₹77.4 L",
     "risk": "critical",
-    "riskScore": 94,
+    "riskScore": 97,
     "type": "cost",
-    "anomaly": "Amount Outlier (z=4.3) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.3) & MP Baseline Drift (z=7.2)",
     "agency": "District Magistrate Meerut"
   },
   {
@@ -4684,9 +4390,9 @@
     "lng": 85.3531,
     "sanctioned": "₹9.0 L",
     "risk": "high",
-    "riskScore": 74,
+    "riskScore": 70,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.0) & ML Cluster Outlier",
     "agency": "District Planning Officer Saharsa"
   },
   {
@@ -4698,9 +4404,9 @@
     "lng": 85.4331,
     "sanctioned": "₹13.0 L",
     "risk": "high",
-    "riskScore": 77,
+    "riskScore": 75,
     "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=5.0) & ML Cluster Outlier",
     "agency": "District Planning Officer Khagaria"
   },
   {
@@ -4718,76 +4424,6 @@
     "agency": "Nrlm , Pithoragarh"
   },
   {
-    "id": "MPLAD-13775",
-    "title": "Construction of CC Drains at Prakash Nagar H/o Kothapalli GP of Prodda",
-    "city": "Kadapa",
-    "state": "Andhra Pradesh",
-    "lat": 16.1529,
-    "lng": 79.86,
-    "sanctioned": "₹19.8 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Cuddapah"
-  },
-  {
-    "id": "MPLAD-13776",
-    "title": "Construction of CC Drains at Prakash Nagar H/o Kothapalli GP of Prodda",
-    "city": "Kadapa",
-    "state": "Andhra Pradesh",
-    "lat": 16.1929,
-    "lng": 79.9,
-    "sanctioned": "₹20.0 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Cuddapah"
-  },
-  {
-    "id": "MPLAD-13777",
-    "title": "Construction of CC Drains at Prakash Nagar H/o Kothapalli GP of Prodda",
-    "city": "Kadapa",
-    "state": "Andhra Pradesh",
-    "lat": 16.2329,
-    "lng": 79.94,
-    "sanctioned": "₹20.0 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Cuddapah"
-  },
-  {
-    "id": "MPLAD-13778",
-    "title": "Construction of CC Drains at Prakash Nagar H/o Kothapalli GP of Prodda",
-    "city": "Kadapa",
-    "state": "Andhra Pradesh",
-    "lat": 15.5929,
-    "lng": 79.98,
-    "sanctioned": "₹20.0 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Cuddapah"
-  },
-  {
-    "id": "MPLAD-13779",
-    "title": "Construction of CC Drains at Prakash Nagar H/o Kothapalli GP of Prodda",
-    "city": "Kadapa",
-    "state": "Andhra Pradesh",
-    "lat": 15.6329,
-    "lng": 79.5,
-    "sanctioned": "₹20.0 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "agency",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Collector Cuddapah"
-  },
-  {
     "id": "MPLAD-13885",
     "title": "Construction of buildings for community cultural activities",
     "city": "Vidisha",
@@ -4796,9 +4432,9 @@
     "lng": 77.7879,
     "sanctioned": "₹12.0 L",
     "risk": "high",
-    "riskScore": 74,
+    "riskScore": 71,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=3.6) & ML Cluster Outlier",
     "agency": "District Collector Vidisha"
   },
   {
@@ -4810,9 +4446,9 @@
     "lng": 77.7079,
     "sanctioned": "₹15.0 L",
     "risk": "high",
-    "riskScore": 76,
+    "riskScore": 74,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
+    "anomaly": "MP Baseline Drift (z=4.9) & ML Cluster Outlier",
     "agency": "District Collector Sehore"
   },
   {
@@ -4838,9 +4474,9 @@
     "lng": 78.5369,
     "sanctioned": "₹75.0 L",
     "risk": "critical",
-    "riskScore": 94,
+    "riskScore": 97,
     "type": "agency",
-    "anomaly": "Amount Outlier (z=4.3) & MP Spending Drift",
+    "anomaly": "Amount Outlier (z=4.3) & MP Baseline Drift (z=7.0)",
     "agency": "District Collector Kanniyakumari"
   },
   {
@@ -4872,20 +4508,6 @@
     "agency": "District Collector Vidisha"
   },
   {
-    "id": "MPLAD-14487",
-    "title": "Purchase of an ambulance for Basulia Uttar Palli Gandhi Sporting Club,",
-    "city": "Tamluk",
-    "state": "West Bengal",
-    "lat": 22.9868,
-    "lng": 87.695,
-    "sanctioned": "₹9.7 L",
-    "risk": "high",
-    "riskScore": 74,
-    "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Purba Medinipur"
-  },
-  {
     "id": "MPLAD-14488",
     "title": "Construction of two class rooms of Chakdwipa High School, Mouza- Chakd",
     "city": "Tamluk",
@@ -4894,9 +4516,387 @@
     "lng": 87.735,
     "sanctioned": "₹15.9 L",
     "risk": "high",
+    "riskScore": 72,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=4.0) & ML Cluster Outlier",
+    "agency": "District Magistrate Purba Medinipur"
+  },
+  {
+    "id": "MPLAD-14512",
+    "title": "Development of playfields and sports grounds",
+    "city": "Vidisha",
+    "state": "Madhya Pradesh",
+    "lat": 23.7933,
+    "lng": 77.7479,
+    "sanctioned": "₹12.0 L",
+    "risk": "high",
+    "riskScore": 71,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=3.6) & ML Cluster Outlier",
+    "agency": "District Collector Vidisha"
+  },
+  {
+    "id": "MPLAD-14624",
+    "title": "Installation of 100 number of  electric street light at  Chandaneswar ",
+    "city": "Joynagar(Sc)",
+    "state": "West Bengal",
+    "lat": 23.0268,
+    "lng": 87.975,
+    "sanctioned": "₹30.0 L",
+    "risk": "high",
+    "riskScore": 76,
+    "type": "delay",
+    "anomaly": "MP Baseline Drift (z=5.7) & ML Cluster Outlier",
+    "agency": "District Magistrate South Twenty Four Parganas"
+  },
+  {
+    "id": "MPLAD-14652",
+    "title": "Devbhumi Shiksha Prasar samiti Vill. Kacchi Khamaria,  Post.- Lalpur, ",
+    "city": "Nainital Udham Singh Nag.",
+    "state": "Uttarakhand",
+    "lat": 29.8668,
+    "lng": 79.2193,
+    "sanctioned": "₹20.0 L",
+    "risk": "high",
+    "riskScore": 77,
+    "type": "agency",
+    "anomaly": "MP Baseline Drift (z=11.0) & ML Cluster Outlier",
+    "agency": "District Magistrate Udhamsingh Nagar"
+  },
+  {
+    "id": "MPLAD-14787",
+    "title": "Construction of Class Room Building for Chennai Corporation Primary Sc",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 10.8871,
+    "lng": 78.5369,
+    "sanctioned": "₹20.0 L",
+    "risk": "critical",
+    "riskScore": 95,
+    "type": "delay",
+    "anomaly": "Sanction Delay (542 days) & MP Baseline Drift (z=1.0)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14788",
+    "title": "Construction of Class Room Building for Athipattu Government Higher Se",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 10.9271,
+    "lng": 78.5769,
+    "sanctioned": "₹20.0 L",
+    "risk": "critical",
+    "riskScore": 94,
+    "type": "delay",
+    "anomaly": "Sanction Delay (488 days) & MP Baseline Drift (z=1.0)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14790",
+    "title": "Construction of 2 Class Room Buildings for Corporation Middle School, ",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.0071,
+    "lng": 78.6569,
+    "sanctioned": "₹54.6 L",
+    "risk": "critical",
+    "riskScore": 97,
+    "type": "delay",
+    "anomaly": "Sanction Delay (718 days) & Amount Outlier (z=3.8)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14827",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.1271,
+    "lng": 78.5769,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14828",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.1671,
+    "lng": 78.6169,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14829",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.2071,
+    "lng": 78.6569,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14830",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.2471,
+    "lng": 78.6969,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14831",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.2871,
+    "lng": 78.7369,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14832",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.3271,
+    "lng": 78.7769,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14833",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.3671,
+    "lng": 78.8169,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14834",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.4071,
+    "lng": 78.8569,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14835",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 11.4471,
+    "lng": 78.8969,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14836",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 10.8071,
+    "lng": 78.4169,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14837",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 10.8471,
+    "lng": 78.4569,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14838",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 10.8871,
+    "lng": 78.4969,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14839",
+    "title": "Providing Three Wheeler Petrol Scooter for Physically Challenged Benef",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 10.9271,
+    "lng": 78.5369,
+    "sanctioned": "₹96,011",
+    "risk": "critical",
+    "riskScore": 96,
+    "type": "delay",
+    "anomaly": "Sanction Delay (579 days) & MP Baseline Drift (z=-0.7)",
+    "agency": "Commissioner Muncipal Corporation Chennai"
+  },
+  {
+    "id": "MPLAD-14853",
+    "title": "Construction of Public Library Building",
+    "city": "Sriperumbudur",
+    "state": "Tamil Nadu",
+    "lat": 10.8071,
+    "lng": 78.5769,
+    "sanctioned": "₹14.1 L",
+    "risk": "high",
     "riskScore": 77,
     "type": "delay",
-    "anomaly": "MP Spending Drift & ML Cluster Outlier",
-    "agency": "District Magistrate Purba Medinipur"
+    "anomaly": "Sanction Delay (475 days) & ML Cluster Outlier",
+    "agency": "District Collector Kancheepuram"
+  },
+  {
+    "id": "MPLAD-14879",
+    "title": "RADHA KRISHAN MANDIR KE PAS HIGH MAST",
+    "city": "Kushi Nagar",
+    "state": "Uttar Pradesh",
+    "lat": 26.8867,
+    "lng": 80.8662,
+    "sanctioned": "₹2.4 L",
+    "risk": "low",
+    "riskScore": 15,
+    "type": "delay",
+    "anomaly": "Standard Baseline",
+    "agency": "District Magistrate Kushinagar Padrauna"
+  },
+  {
+    "id": "MPLAD-15096",
+    "title": "Const. of Dirak Sumoni Sluice Gate in Na Dihing River Embankment",
+    "city": "Lakhimpur",
+    "state": "Assam",
+    "lat": 26.0806,
+    "lng": 92.6976,
+    "sanctioned": "₹10.0 L",
+    "risk": "high",
+    "riskScore": 78,
+    "type": "delay",
+    "anomaly": "Sanction Delay (499 days) & ML Cluster Outlier",
+    "agency": "Dc Tinsukia"
+  },
+  {
+    "id": "MPLAD-15253",
+    "title": "Construction of buildings for community cultural activities",
+    "city": "Damoh",
+    "state": "Madhya Pradesh",
+    "lat": 23.5133,
+    "lng": 77.7479,
+    "sanctioned": "₹3.0 L",
+    "risk": "high",
+    "riskScore": 81,
+    "type": "delay",
+    "anomaly": "Sanction Delay (966 days) & ML Cluster Outlier",
+    "agency": "District Collector Sagar"
+  },
+  {
+    "id": "MPLAD-15256",
+    "title": "Construction of Low level Culvert across Penna river on the road from ",
+    "city": "Anantapur",
+    "state": "Andhra Pradesh",
+    "lat": 16.0729,
+    "lng": 79.66,
+    "sanctioned": "₹85.0 L",
+    "risk": "critical",
+    "riskScore": 97,
+    "type": "agency",
+    "anomaly": "Amount Outlier (z=4.4) & MP Baseline Drift (z=7.3)",
+    "agency": "District Collector Anantapur"
+  },
+  {
+    "id": "MPLAD-15257",
+    "title": "Construction of Low Level Culvert across Penna River on the road from ",
+    "city": "Anantapur",
+    "state": "Andhra Pradesh",
+    "lat": 16.1129,
+    "lng": 79.7,
+    "sanctioned": "₹95.0 L",
+    "risk": "critical",
+    "riskScore": 98,
+    "type": "agency",
+    "anomaly": "Amount Outlier (z=4.6) & MP Baseline Drift (z=8.3)",
+    "agency": "District Collector Anantapur"
+  },
+  {
+    "id": "MPLAD-15258",
+    "title": "Construction of buildings for community cultural activities",
+    "city": "Damoh",
+    "state": "Madhya Pradesh",
+    "lat": 23.7133,
+    "lng": 77.9479,
+    "sanctioned": "₹3.0 L",
+    "risk": "high",
+    "riskScore": 81,
+    "type": "delay",
+    "anomaly": "Sanction Delay (911 days) & ML Cluster Outlier",
+    "agency": "District Collector Sagar"
+  },
+  {
+    "id": "MPLAD-15329",
+    "title": "Mandir ke pass Hand pump utkhanan",
+    "city": "Hoshangabad",
+    "state": "Madhya Pradesh",
+    "lat": 23.1533,
+    "lng": 78.1879,
+    "sanctioned": "₹75,000",
+    "risk": "low",
+    "riskScore": 15,
+    "type": "delay",
+    "anomaly": "Standard Baseline",
+    "agency": "District Collector Narsinghpur"
   }
 ]

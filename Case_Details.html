@@ -199,6 +199,12 @@ th.sticky-col-right {
         </div>
 
         <div class="flex items-center gap-3">
+            <!-- Alert Bell -->
+            <button class="relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded transition-colors" title="Live Vigilance Notifications">
+                <span class="material-symbols-outlined text-lg">notifications</span>
+                <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-red-600 rounded-full ring-2 ring-white"></span>
+            </button>
+
             <button onclick="exportDossierReport()" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 text-white rounded-md text-xs font-semibold hover:bg-slate-800 transition-colors shadow-xs">
                 <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
                 <span>Export Dossier (Print/PDF)</span>
@@ -648,19 +654,81 @@ let currentCase = null;
 
 async function loadCaseDossier() {
     const params = new URLSearchParams(window.location.search);
-    const caseId = params.get('id') || 'MPLAD-00227';
+    const caseId = (params.get('id') || 'MPLAD-03983').trim();
 
     try {
         const res = await fetch('assets/data/cases_index.json?v=' + Date.now(), { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to load cases index');
         const cases = await res.json();
 
-        currentCase = cases[caseId];
+        // 1. Direct exact key match
+        currentCase = cases[caseId] || cases[caseId.toUpperCase()];
+
+        // 2. Normalized numerical match (e.g. MPLAD-03983 vs MPLAD-3983 vs 3983)
         if (!currentCase) {
-            // fallback: first case or matched partial
+            const numPart = caseId.replace(/\D/g, '');
+            if (numPart) {
+                const paddedId = `MPLAD-${numPart.padStart(5, '0')}`;
+                currentCase = cases[paddedId];
+                if (!currentCase) {
+                    const foundKey = Object.keys(cases).find(k => k.replace(/\D/g, '') === numPart || k.endsWith(numPart));
+                    if (foundKey) currentCase = cases[foundKey];
+                }
+            }
+        }
+
+        // 3. Fallback: Query flagged_cases.json
+        if (!currentCase) {
+            try {
+                const fcRes = await fetch('assets/data/flagged_cases.json?v=' + Date.now());
+                if (fcRes.ok) {
+                    const fcList = await fcRes.json();
+                    currentCase = fcList.find(c => c.id === caseId || c.id.toLowerCase() === caseId.toLowerCase() || (caseId.replace(/\D/g, '') && c.id.replace(/\D/g, '') === caseId.replace(/\D/g, '')));
+                }
+            } catch(err) {
+                console.warn("Could not check flagged_cases.json", err);
+            }
+        }
+
+        // 4. Fallback: Query ledger_works.json
+        if (!currentCase) {
+            try {
+                const lwRes = await fetch('assets/data/ledger_works.json?v=' + Date.now());
+                if (lwRes.ok) {
+                    const lwList = await lwRes.json();
+                    const foundLedger = lwList.find(w => w.id === caseId || (caseId.replace(/\D/g, '') && w.id.replace(/\D/g, '') === caseId.replace(/\D/g, '')));
+                    if (foundLedger) {
+                        currentCase = {
+                            id: foundLedger.id,
+                            title: foundLedger.title,
+                            location: foundLedger.location,
+                            mp: foundLedger.mp,
+                            sanctioned: foundLedger.sanctioned,
+                            utilized: foundLedger.expended || foundLedger.released || '₹0',
+                            agency: foundLedger.agency,
+                            sector: foundLedger.sector,
+                            score: 35,
+                            severity: 'low',
+                            status: foundLedger.progress || 'Sanctioned',
+                            flags: {
+                                flag_delay: false,
+                                flag_amount: false,
+                                flag_mp_drift: false,
+                                iso_flag: false,
+                                flag_round_number: false
+                            }
+                        };
+                    }
+                }
+            } catch(err) {
+                console.warn("Could not check ledger_works.json", err);
+            }
+        }
+
+        // 5. Final fallback
+        if (!currentCase) {
             const keys = Object.keys(cases);
-            const foundKey = keys.find(k => k.includes(caseId)) || keys[0];
-            currentCase = cases[foundKey];
+            currentCase = cases[keys[0]];
         }
 
         if (currentCase) {
@@ -789,11 +857,14 @@ function renderFlagsList(c) {
     }
 
     if (f.flag_mp_drift) {
+        const catMeanStr = f.mp_cat_mean ? ` • MP Baseline Mean: ₹${Number(f.mp_cat_mean).toLocaleString('en-IN')}` : '';
+        const catNStr = f.mp_cat_n ? ` (${f.mp_cat_n} historical projects in sector)` : '';
+        const zStr = f.mp_drift_zscore !== undefined ? `z-score: ${Number(f.mp_drift_zscore).toFixed(2)}` : 'z-score: 2.5+';
         flags.push({
             color: 'amber',
             icon: 'trending_up',
-            title: 'MP Allocation Drift Detected',
-            desc: `Significant shift in fund recommendation velocity and sector preference detected (drift z-score: ${f.mp_drift_zscore ? f.mp_drift_zscore.toFixed(2) : '1.8+'}).`
+            title: 'MP Baseline Drift & Econometric Allocation Anomaly',
+            desc: `Significant deviation from MP's historical category spending baseline detected (${zStr}${catMeanStr}${catNStr}). Econometric baseline drift model flagged abnormal capital distribution.`
         });
     }
 

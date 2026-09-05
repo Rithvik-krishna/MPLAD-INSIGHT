@@ -221,7 +221,7 @@ def calculate_expenditure_and_progress(work_status, is_high_sev, amt, seed_idx):
     rel_amount = amt * (rel_pct / 100.0)
     return exp_pct, progress, exp_amount, rel_amount
 
-def calculate_risk_score(val_row, benford_row=None):
+def calculate_risk_score(val_row, benford_row=None, mp_row=None):
     """
     Calculate an intelligent composite risk score (0-100) based on algorithmic indicators.
     """
@@ -229,8 +229,8 @@ def calculate_risk_score(val_row, benford_row=None):
     if val_row.get('rule_high_severity') == 'True':
         amt_z = safe_float(val_row.get('amount_robust_z'))
         gap_z = safe_float(val_row.get('gap_robust_z'))
-        mp_z = safe_float(val_row.get('mp_drift_robust_z'))
-        bonus = min(8, int(max(amt_z, gap_z, mp_z)))
+        mp_z = safe_float(mp_row.get('mp_drift_zscore') if mp_row else val_row.get('mp_drift_robust_z'))
+        bonus = min(8, int(max(amt_z, gap_z, abs(mp_z))))
         return 90 + bonus, 'critical'
         
     score = 15.0
@@ -248,11 +248,12 @@ def calculate_risk_score(val_row, benford_row=None):
         amt_z = safe_float(val_row.get('amount_robust_z'))
         score += 28.0 + min(12.0, max(0.0, amt_z - 2.0) * 3)
 
-    # 4. MP spending drift
-    if val_row.get('flag_mp_drift') == 'True':
+    # 4. MP spending baseline drift (from mp_baseline_flags or validation_results)
+    is_mp_drift = (mp_row and mp_row.get('flag_mp_drift') == 'True') or (val_row.get('flag_mp_drift') == 'True')
+    if is_mp_drift:
         flags_triggered += 1
-        mp_z = safe_float(val_row.get('mp_drift_robust_z'))
-        score += 24.0 + min(10.0, max(0.0, mp_z - 2.0) * 2.5)
+        mp_z = safe_float(mp_row.get('mp_drift_zscore') if mp_row and mp_row.get('mp_drift_zscore') else val_row.get('mp_drift_robust_z'))
+        score += 24.0 + min(10.0, max(0.0, abs(mp_z) - 2.0) * 2.5)
 
     # 5. Isolation forest ML flag
     if val_row.get('iso_flag') == 'True':
@@ -278,7 +279,7 @@ def calculate_risk_score(val_row, benford_row=None):
         
     return score, severity
 
-def get_anomaly_breakdown(val_row, benford_row=None):
+def get_anomaly_breakdown(val_row, benford_row=None, mp_row=None):
     """Determine primary anomaly label and type."""
     reasons = []
     anomaly_type = "Verified"
@@ -294,8 +295,13 @@ def get_anomaly_breakdown(val_row, benford_row=None):
         if anomaly_type == "Verified":
             anomaly_type = "Cost"
             
-    if val_row.get('flag_mp_drift') == 'True':
-        reasons.append("MP Spending Drift")
+    is_mp_drift = (mp_row and mp_row.get('flag_mp_drift') == 'True') or (val_row.get('flag_mp_drift') == 'True')
+    if is_mp_drift:
+        z_str = ""
+        if mp_row and mp_row.get('mp_drift_zscore'):
+            z_val = safe_float(mp_row.get('mp_drift_zscore'))
+            z_str = f" (z={z_val:.1f})"
+        reasons.append(f"MP Baseline Drift{z_str}")
         if anomaly_type == "Verified":
             anomaly_type = "MP Drift"
             
@@ -346,10 +352,11 @@ def main():
 
     print(f"Loaded category results: {len(benford_categories)} Benford, {len(round_categories)} Round Number.")
 
-    # 2. Stream & Correlate merged_works.csv, validation_results.csv, and benford_roundnumber_flags.csv
+    # 2. Stream & Correlate merged_works.csv, validation_results.csv, benford_roundnumber_flags.csv, and mp_baseline_flags.csv
     val_file = os.path.join(PROCESSED_DIR, 'validation_results.csv')
     mrg_file = os.path.join(PROCESSED_DIR, 'merged_works.csv')
     bnf_file = os.path.join(PROCESSED_DIR, 'benford_roundnumber_flags.csv')
+    mpf_file = os.path.join(PROCESSED_DIR, 'mp_baseline_flags.csv')
 
     print("Correlating datasets across 171,890 works...")
 
@@ -384,11 +391,13 @@ def main():
 
     with open(mrg_file, 'r', encoding='utf-8', errors='ignore') as fm, \
          open(val_file, 'r', encoding='utf-8', errors='ignore') as fv, \
-         open(bnf_file, 'r', encoding='utf-8', errors='ignore') as fb:
+         open(bnf_file, 'r', encoding='utf-8', errors='ignore') as fb, \
+         open(mpf_file, 'r', encoding='utf-8', errors='ignore') as fmp:
 
         rm = csv.DictReader(fm)
         rv = csv.DictReader(fv)
         rb = csv.DictReader(fb)
+        rmp = csv.DictReader(fmp)
 
         # Count total registered works in merged_works.csv
         for row_m in rm:
@@ -424,6 +433,7 @@ def main():
 
             row_v = next(rv)
             row_b = next(rb)
+            row_mp = next(rmp)
             total_scanned_works += 1
 
             amt = float(amt_str)
@@ -443,20 +453,21 @@ def main():
             agency_stats[agency_key]['works'] += 1
             agency_stats[agency_key]['amount'] += amt
 
-            # Anomaly Checks
+            # Anomaly Checks with Econometric MP Baseline Drift Model
             is_combined_flag = row_v.get('combined_flag') == 'True'
             is_rule_flag = row_v.get('rule_any_flag') == 'True'
             is_high_sev = row_v.get('rule_high_severity') == 'True'
-            is_flagged = is_combined_flag or is_rule_flag or is_high_sev
+            is_mp_drift = (row_mp.get('flag_mp_drift') == 'True') or (row_v.get('flag_mp_drift') == 'True')
+            is_flagged = is_combined_flag or is_rule_flag or is_high_sev or is_mp_drift
 
-            score, severity = calculate_risk_score(row_v, row_b)
-            anomaly_label, anomaly_type = get_anomaly_breakdown(row_v, row_b)
+            score, severity = calculate_risk_score(row_v, row_b, row_mp)
+            anomaly_label, anomaly_type = get_anomaly_breakdown(row_v, row_b, row_mp)
 
             if row_v.get('flag_delay') == 'True':
                 anomaly_counts['delay'] += 1
             if row_v.get('flag_amount') == 'True':
                 anomaly_counts['amount'] += 1
-            if row_v.get('flag_mp_drift') == 'True':
+            if is_mp_drift:
                 anomaly_counts['mp_drift'] += 1
             if row_v.get('iso_flag') == 'True':
                 anomaly_counts['spatial'] += 1
@@ -548,12 +559,16 @@ def main():
                     "rule_high_severity": row_v.get('rule_high_severity') == 'True',
                     "flag_delay": row_v.get('flag_delay') == 'True',
                     "flag_amount": row_v.get('flag_amount') == 'True',
-                    "flag_mp_drift": row_v.get('flag_mp_drift') == 'True',
+                    "flag_mp_drift": is_mp_drift,
+                    "mp_baseline_eligible": row_mp.get('mp_baseline_eligible') == 'True',
+                    "mp_cat_mean": round(safe_float(row_mp.get('mp_cat_mean')), 2),
+                    "mp_cat_std": round(safe_float(row_mp.get('mp_cat_std')), 2),
+                    "mp_cat_n": safe_int(row_mp.get('mp_cat_n')),
                     "iso_flag": row_v.get('iso_flag') == 'True',
                     "flag_round_number": row_b.get('flag_round_number') == 'True',
                     "amount_zscore": round(safe_float(row_v.get('amount_robust_z')), 2),
                     "gap_zscore": round(safe_float(row_v.get('gap_robust_z')), 2),
-                    "mp_drift_zscore": round(safe_float(row_v.get('mp_drift_robust_z')), 2)
+                    "mp_drift_zscore": round(safe_float(row_mp.get('mp_drift_zscore') if row_mp.get('mp_drift_zscore') else row_v.get('mp_drift_robust_z')), 2)
                 }
             }
 
@@ -786,11 +801,20 @@ def main():
     print(f"Saved assets/data/geo_projects.json ({len(geo_projects)} geocoded projects)")
 
     # F. cases_index.json
-    # Store the top 1,000 cases index for Case_Details.html
-    top_index = {k: v for i, (k, v) in enumerate(cases_index.items()) if i < 1000 or v['severity'] == 'critical'}
+    # Ensure 100% of flagged cases have indexed dossiers, plus immediate queue,
+    # plus sampled works, so any clicked dossier card resolves immediately without fallback.
+    indexed_dossiers = {}
+    for c in flagged_cases:
+        indexed_dossiers[c['id']] = c
+    for c in immediate_queue:
+        indexed_dossiers[c['id']] = c
+    for k, v in cases_index.items():
+        if k not in indexed_dossiers and len(indexed_dossiers) < 5500:
+            indexed_dossiers[k] = v
+
     with open(os.path.join(OUTPUT_DIR, 'cases_index.json'), 'w', encoding='utf-8') as f:
-        json.dump(top_index, f, indent=2, ensure_ascii=False)
-    print(f"Saved assets/data/cases_index.json ({len(top_index)} indexed dossiers)")
+        json.dump(indexed_dossiers, f, indent=2, ensure_ascii=False)
+    print(f"Saved assets/data/cases_index.json ({len(indexed_dossiers)} indexed dossiers)")
 
     print("=" * 60)
     print("All Dashboard Datasets Successfully Generated!")

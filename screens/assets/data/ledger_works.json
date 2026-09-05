@@ -11,7 +11,7 @@
     "expRate": "92.0%",
     "agency": "District Collector Khordha",
     "progress": "Completed",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-00090",
@@ -921,7 +921,7 @@
     "expRate": "79.0%",
     "agency": "District Magistrate Hapur",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-02798",
@@ -1327,7 +1327,7 @@
     "expRate": "79.0%",
     "agency": "Deputy Commissioner Kapurthala",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-04058",
@@ -1342,6 +1342,20 @@
     "agency": "District Planning Office Saran Chapra",
     "progress": "Physical Inspection",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-04068",
+    "title": "Gram Sumal  Khera block Dilari Main Wajid pahalvan ke makan se shamsher Ali Miyan ki mazar ki o",
+    "sector": "Roads & Bridges",
+    "location": "Moradabad, Uttar Pradesh",
+    "mp": "Seyed Tufail Hasan",
+    "sanctioned": "₹10.9 L",
+    "released": "₹9.5 L",
+    "expended": "₹8.7 L",
+    "expRate": "79.8%",
+    "agency": "District Magistrate Moradabad",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-04103",
@@ -2265,7 +2279,7 @@
     "expRate": "52.0%",
     "agency": "District Collector Kurnool",
     "progress": "In Progress",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-06977",
@@ -2545,7 +2559,7 @@
     "expRate": "79.0%",
     "agency": "Deputy Commissioner Barnala",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-07707",
@@ -2728,6 +2742,20 @@
     "agency": "Deputy Commissioner Jind",
     "progress": "In Progress",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-08172",
+    "title": "Construction of toilets in litigant block and purchase of books in liabrary of District Court B",
+    "sector": "Sanitation & Drainage",
+    "location": "Hisar, Haryana",
+    "mp": "Brijendra Singh",
+    "sanctioned": "₹10.9 L",
+    "released": "₹9.6 L",
+    "expended": "₹8.7 L",
+    "expRate": "79.8%",
+    "agency": "Dc Cum Nodal Officer Mplads Bhiwani",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-08207",
@@ -3106,6 +3134,20 @@
     "agency": "District Magistrae Agra",
     "progress": "Physical Inspection",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-09225",
+    "title": "Samest Brahman Sabha Meham Road Bhiwani for Const. of hall in Bhagwan Parsuram Bhawan, Bad Chow",
+    "sector": "Roads & Bridges",
+    "location": "Bhiwani Mahendragarh, Haryana",
+    "mp": "Shri  Dharambir Singh (17th Lok Sabha)",
+    "sanctioned": "₹19.0 L",
+    "released": "₹17.5 L",
+    "expended": "₹16.0 L",
+    "expRate": "84.2%",
+    "agency": "Dc Cum Nodal Officer Mplads Bhiwani",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-09245",
@@ -3696,6 +3738,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-10840",
+    "title": "Constructions of 671 Feet PCC Road in Lalbangla, Akash Ganga Colony form Smt Sunita Devi House ",
+    "sector": "Roads & Bridges",
+    "location": "Dhanbad, Jharkhand",
+    "mp": "Pashupati Nath Singh",
+    "sanctioned": "₹7.0 L",
+    "released": "₹6.4 L",
+    "expended": "₹5.8 L",
+    "expRate": "83.5%",
+    "agency": "Deputy Commissioner Dhanbad",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-10870",
     "title": "Construction of community hall in village Lepa at Kewat Mohalla (Punarwas)",
     "sector": "Community & Public Spaces",
@@ -3861,7 +3917,21 @@
     "expRate": "79.0%",
     "agency": "District Magistrae Shahjahanapur",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
+  },
+  {
+    "id": "MPLAD-11330",
+    "title": "Construction of Bus Sheds or Bus Stop near gauhavar tirahe pr",
+    "sector": "Community & Public Spaces",
+    "location": "Shahjahanpur(Sc), Uttar Pradesh",
+    "mp": "Shri Arun Kumar Sagar (17th Lok Sabha)",
+    "sanctioned": "₹6.6 L",
+    "released": "₹5.8 L",
+    "expended": "₹5.3 L",
+    "expRate": "79.8%",
+    "agency": "District Magistrae Shahjahanapur",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-11365",
@@ -4984,6 +5054,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-14764",
+    "title": "Samudaik bhawan nirman, ishwar prasad dhurandra ward 5, bhatapara",
+    "sector": "Community & Public Spaces",
+    "location": "Raipur, Chhattisgarh",
+    "mp": "Sunil Kumar Soni",
+    "sanctioned": "₹9.9 L",
+    "released": "₹8.8 L",
+    "expended": "₹8.0 L",
+    "expRate": "80.5%",
+    "agency": "Collector Baloda Bazar",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-14789",
     "title": "Munai Village in Rain Basera Work",
     "sector": "Education & Schools",
@@ -5052,6 +5136,20 @@
     "agency": "District Collector Adilabad",
     "progress": "In Progress",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-15009",
+    "title": "Construction of class room building of Saraswati Shishu  Mandir, Darlipali",
+    "sector": "Education & Schools",
+    "location": "Sundargarh (St), Odisha",
+    "mp": "Shri Jual Oram (17th Lok Sabha)",
+    "sanctioned": "₹10.0 L",
+    "released": "₹9.0 L",
+    "expended": "₹8.2 L",
+    "expRate": "82.0%",
+    "agency": "District Collector Sundargarh",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-15014",
@@ -5876,6 +5974,20 @@
     "expended": "₹15,753",
     "expRate": "79.0%",
     "agency": "District Magistrate Barabanki",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
+    "id": "MPLAD-16971",
+    "title": "gram mohammadgarh panchyat barol ke sarvjanik samsanghat ki chardivari nirman work",
+    "sector": "Community & Public Spaces",
+    "location": "Ajmer, Rajasthan",
+    "mp": "Bhagirath Chaudhary(17th Lok Sabha)",
+    "sanctioned": "₹15.0 L",
+    "released": "₹13.3 L",
+    "expended": "₹12.1 L",
+    "expRate": "80.5%",
+    "agency": "District Collector Ajmer",
     "progress": "Physical Inspection",
     "isFlagged": true
   },
@@ -6958,6 +7070,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-19912",
+    "title": "Please make efforts to release an amount of Rs 1,000,000/- (ten lakh rupees) from the Local Are",
+    "sector": "Education & Schools",
+    "location": "Barabanki(Sc), Uttar Pradesh",
+    "mp": "Upendra Singh Rawat(17th Lok Sabha)",
+    "sanctioned": "₹10.0 L",
+    "released": "₹3.1 L",
+    "expended": "₹2.3 L",
+    "expRate": "23.0%",
+    "agency": "District Magistrate Barabanki",
+    "progress": "Tendering",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-19922",
     "title": "GARM PANCHTA IDRA ME SVCHTA VAHAN TAMPU",
     "sector": "Public Infrastructure",
@@ -6969,7 +7095,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Chittorgarh",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-19967",
@@ -6983,7 +7109,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Parbhani",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-20013",
@@ -8271,7 +8397,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Kottayam",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-23890",
@@ -8468,6 +8594,20 @@
     "agency": "Deputy Commissioner Patiala",
     "progress": "Physical Inspection",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-24436",
+    "title": "Purchase of School Bus for Governmnet UP School, Thekkil West (Maximum 32 Seats, Good Brand)",
+    "sector": "Education & Schools",
+    "location": "Kasaragod, Kerala",
+    "mp": "Shri Rajmohan Unnithan (17th Lok Sabha)",
+    "sanctioned": "₹21.5 L",
+    "released": "₹19.5 L",
+    "expended": "₹17.8 L",
+    "expRate": "82.8%",
+    "agency": "District Collector Kasaragod",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-24476",
@@ -9296,6 +9436,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-26783",
+    "title": "Renovation of Community Bar Room (District Bar Association) Solan Executive Agency DRDA Solan",
+    "sector": "Education & Schools",
+    "location": "Shimla (Sc), Himachal Pradesh",
+    "mp": "Suresh Kumar Kashyap",
+    "sanctioned": "₹5.0 L",
+    "released": "₹4.4 L",
+    "expended": "₹4.0 L",
+    "expRate": "79.8%",
+    "agency": "Deputy Commissioner Solan",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-26818",
     "title": "Prakhand Lakri Nabiganj Gram Jagatpur Devi Rai ke tola ke Nahar Bandh se Abdesh singh ke ghar k",
     "sector": "Roads & Bridges",
@@ -9965,7 +10119,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Bhavnagar",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-28674",
@@ -10595,7 +10749,7 @@
     "expRate": "79.0%",
     "agency": "District Magistrate Malda",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-30285",
@@ -11508,6 +11662,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-32563",
+    "title": "CONSTRUCTION OF CONCRETE SLAB AT COMMUNITY HALL",
+    "sector": "Community & Public Spaces",
+    "location": "Amritsar, Punjab",
+    "mp": "Shri Gurjeet Singh Aujla (17th Lok Sabha)",
+    "sanctioned": "₹10.0 L",
+    "released": "₹9.2 L",
+    "expended": "₹8.4 L",
+    "expRate": "84.2%",
+    "agency": "Deputy Commissioner Amritsar",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-32585",
     "title": "PROVIDING CC ROAD WITH UNDER GROUND DRAIN FROM PASALAPUDI SRI VEERA RAGHAVARAO (H) TO MATTAPART",
     "sector": "Roads & Bridges",
@@ -11928,6 +12096,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-33685",
+    "title": "Construction of Kalyan Mandap Including one Concrete Gate at Deogaon GP Bonai",
+    "sector": "Community & Public Spaces",
+    "location": "Sundargarh (St), Odisha",
+    "mp": "Shri Jual Oram (17th Lok Sabha)",
+    "sanctioned": "₹10.0 L",
+    "released": "₹10.0 L",
+    "expended": "₹9.3 L",
+    "expRate": "93.5%",
+    "agency": "District Collector Sundargarh",
+    "progress": "Completed",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-33710",
     "title": "6- Block Dhanpatganj ke Gram Panchayat Phattepur me Shri Ramu Kori ke ghar se Shri Balram Mishr",
     "sector": "Roads & Bridges",
@@ -11982,6 +12164,20 @@
     "agency": "Deputy Commissioner Cachar",
     "progress": "Physical Inspection",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-33825",
+    "title": "Drilling of Borewells with Dual Pumpsets at Mudem Venkat Reddy Colony in Mellacheruvu",
+    "sector": "Drinking Water",
+    "location": "Nalgonda, Telangana",
+    "mp": "Uttam Kumar Nalamada Reddy(17th Lok Sabha)",
+    "sanctioned": "₹90,000",
+    "released": "₹20,025",
+    "expended": "₹12,825",
+    "expRate": "14.2%",
+    "agency": "District Collector Suryapet",
+    "progress": "Sanctioned",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-33845",
@@ -12555,7 +12751,7 @@
     "expRate": "52.0%",
     "agency": "Deputy Commissioner Koppal",
     "progress": "In Progress",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-35465",
@@ -12779,7 +12975,7 @@
     "expRate": "92.0%",
     "agency": "District Collector Yadadri Bhuvanagiri",
     "progress": "Completed",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-36185",
@@ -14137,7 +14333,7 @@
     "expRate": "52.0%",
     "agency": "Deputy Commissioner Chickkaballapur",
     "progress": "In Progress",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-39926",
@@ -15190,6 +15386,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-42968",
+    "title": "Gram Kamalpur me Puliya Nirman Hetu ...",
+    "sector": "Roads & Bridges",
+    "location": "Dewas(Sc), Madhya Pradesh",
+    "mp": "Mahendra Singh Solanky(17th Lok Sabha)",
+    "sanctioned": "₹15.0 L",
+    "released": "₹15.0 L",
+    "expended": "₹14.6 L",
+    "expRate": "97.2%",
+    "agency": "District Collector Shajapur",
+    "progress": "Completed",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-42988",
     "title": "Providing of gravity system of water at gurthedu village & post .",
     "sector": "Drinking Water",
@@ -15313,7 +15523,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Baragarh",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-43394",
@@ -16153,7 +16363,7 @@
     "expRate": "79.0%",
     "agency": "District Magistrate Rampur",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-45375",
@@ -18396,6 +18606,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-51138",
+    "title": "Kigga-Chatagani – Magodu road development work in  Merkal Gram Panchayat of Sringeri Taluk.",
+    "sector": "Roads & Bridges",
+    "location": "Udupi Chikmagalur, Karnataka",
+    "mp": "Km Shobha Karandlaje (17th Lok Sabha)",
+    "sanctioned": "₹10.0 L",
+    "released": "₹10.0 L",
+    "expended": "₹9.8 L",
+    "expRate": "98.0%",
+    "agency": "Deputy Commissioner Chikmagalur",
+    "progress": "Completed",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-51148",
     "title": "Construction of road at Maranayakanahalli Akkayamma Betta, at Bytarayanapura Assembly Const. Ja",
     "sector": "Roads & Bridges",
@@ -20311,7 +20535,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Nagarkurnool",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-56598",
@@ -21784,6 +22008,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-60774",
+    "title": "Construction of Additional Class Room at Dharanidharpali Saraswati Shishu Mandir, GP Kenaveta, ",
+    "sector": "Education & Schools",
+    "location": "Sundargarh (St), Odisha",
+    "mp": "Shri Jual Oram (17th Lok Sabha)",
+    "sanctioned": "₹10.0 L",
+    "released": "₹10.0 L",
+    "expended": "₹9.4 L",
+    "expRate": "94.2%",
+    "agency": "District Collector Sundargarh",
+    "progress": "Completed",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-60789",
     "title": "Solar light work in Hiteshbhai Solanki's faliya",
     "sector": "Rural Electrification",
@@ -22957,7 +23195,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Chhindwara",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-64101",
@@ -24749,7 +24987,7 @@
     "expRate": "92.0%",
     "agency": "Deputy Commissioner Uttarkannada Karwar",
     "progress": "Completed",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-68854",
@@ -24862,6 +25100,20 @@
     "agency": "District Planning Officer Nalanda",
     "progress": "Physical Inspection",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-69149",
+    "title": "Construction of PCC Road from K K M College to the house of Shivnarayan in Ward No.5 Pakur Naga",
+    "sector": "Roads & Bridges",
+    "location": "Rajmahal(St), Jharkhand",
+    "mp": "Vijay Kumar Hansdak",
+    "sanctioned": "₹5.0 L",
+    "released": "₹5.0 L",
+    "expended": "₹4.9 L",
+    "expRate": "97.2%",
+    "agency": "Deputy Commissioner Pakur",
+    "progress": "Completed",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-69169",
@@ -25578,6 +25830,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-71075",
+    "title": "Construction of PCC Road in Santhal Tolla, Vill. Jaynagra,  Panchayat Jainagar, Block Maheshpur",
+    "sector": "Roads & Bridges",
+    "location": "Rajmahal(St), Jharkhand",
+    "mp": "Vijay Kumar Hansdak",
+    "sanctioned": "₹5.0 L",
+    "released": "₹5.0 L",
+    "expended": "₹4.8 L",
+    "expRate": "96.5%",
+    "agency": "Deputy Commissioner Pakur",
+    "progress": "Completed",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-71105",
     "title": "Finacial assistance in favour of Jawahar Novodaya Vidyalaya, kendrikoma, Mahendraganj for infra",
     "sector": "Education & Schools",
@@ -25589,7 +25855,7 @@
     "expRate": "79.0%",
     "agency": "Deputy Commissioner South West Garo Hills Ampati",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-71150",
@@ -26275,7 +26541,7 @@
     "expRate": "17.0%",
     "agency": "District Magistrate Shravasti",
     "progress": "Tendering",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-73184",
@@ -26584,6 +26850,20 @@
     "agency": "Deputy Commissioner Shimla",
     "progress": "In Progress",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-74025",
+    "title": "Financial assistance for construction of Building in favour of Tura Christian Hospital, Tura",
+    "sector": "Education & Schools",
+    "location": "Tura, Meghalaya",
+    "mp": "Kum Agatha K Sangma(17th Lok Sabha)",
+    "sanctioned": "₹10.0 L",
+    "released": "₹8.9 L",
+    "expended": "₹8.1 L",
+    "expRate": "81.2%",
+    "agency": "Deputy Commissioner West Garo Hills",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-74040",
@@ -27172,6 +27452,20 @@
     "agency": "District Collector Keonjhar",
     "progress": "Sanctioned",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-75672",
+    "title": "Financial assistance for construction of Mini stadium in favour of Don Bosco Higher Secondary S",
+    "sector": "Education & Schools",
+    "location": "Tura, Meghalaya",
+    "mp": "Kum Agatha K Sangma(17th Lok Sabha)",
+    "sanctioned": "₹18.0 L",
+    "released": "₹15.8 L",
+    "expended": "₹14.4 L",
+    "expRate": "79.8%",
+    "agency": "Deputy Commissioner West Garo Hills",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-75707",
@@ -27956,6 +28250,20 @@
     "agency": "District Magistrate Kushinagar Padrauna",
     "progress": "Completed",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-77706",
+    "title": "SAMUDAYIK SWASTHYA KENDRA NARPATTPUR BLOCK CHIRAIGAW ME PHYSIOTHERAPY MACHINE",
+    "sector": "Healthcare & Medical",
+    "location": "Chandauli, Uttar Pradesh",
+    "mp": "Mahendra Nath Pandey(17th Lok Sabha)",
+    "sanctioned": "₹15.0 L",
+    "released": "₹13.7 L",
+    "expended": "₹12.5 L",
+    "expRate": "83.5%",
+    "agency": "District Magistrae Varanasi",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-77736",
@@ -35826,6 +36134,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-02049",
+    "title": "Construction of dressing room, toilet and shed in the playground in village Deori Block Roberts",
+    "sector": "Sanitation & Drainage",
+    "location": "Robertsganj(Sc), Uttar Pradesh",
+    "mp": "CHHOTELAL",
+    "sanctioned": "₹16.5 L",
+    "released": "₹5.0 L",
+    "expended": "₹3.7 L",
+    "expRate": "22.2%",
+    "agency": "District Magistrate Sonbhadra",
+    "progress": "Tendering",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-02069",
     "title": "Installation of high mast light at a public place near village Baghi Durga Mandir Block Naugarh",
     "sector": "Rural Electrification",
@@ -37646,6 +37968,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-07597",
+    "title": "udupi district, karkala taluk, nallur grama panchayath, nalluru neladabettu road development wo",
+    "sector": "Roads & Bridges",
+    "location": "Udupi Chikmagalur, Karnataka",
+    "mp": "KOTA SRINIVAS POOJARY",
+    "sanctioned": "₹10.0 L",
+    "released": "₹9.1 L",
+    "expended": "₹8.3 L",
+    "expRate": "82.8%",
+    "agency": "Deputy Commissioner Udupi",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-07637",
     "title": "BHADAURA BUS STAND KE PAS",
     "sector": "Community & Public Spaces",
@@ -37909,7 +38245,7 @@
     "expRate": "79.0%",
     "agency": "District Magistrate Rampur",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-08595",
@@ -38021,7 +38357,7 @@
     "expRate": "9.0%",
     "agency": "Deputy Commissioner Shahid Bhagat Singh Nagar_ida",
     "progress": "Sanctioned",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-08972",
@@ -38441,7 +38777,7 @@
     "expRate": "2.0%",
     "agency": "District Magistrate Mau",
     "progress": "Planning",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-09936",
@@ -39183,7 +39519,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Vadodara",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-12621",
@@ -39550,6 +39886,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-13674",
+    "title": "CONSTRUCTION OF CC ROAD AND DRAIN FROM MAJID MIYAN’S HOUSE TOWARDS  ABID KHAN’S HOUSE IN THE VI",
+    "sector": "Roads & Bridges",
+    "location": "Rampur, Uttar Pradesh",
+    "mp": "MOHIBBULLAH",
+    "sanctioned": "₹9.5 L",
+    "released": "₹8.7 L",
+    "expended": "₹7.9 L",
+    "expRate": "83.5%",
+    "agency": "District Magistrate Rampur",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-13704",
     "title": "Block-Jatni, Construction of Public Library Hall at village-Uttarmundamuhan, GP-Janla",
     "sector": "Education & Schools",
@@ -39603,7 +39953,7 @@
     "expRate": "79.0%",
     "agency": "District Magistrate Rampur",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-13855",
@@ -39883,7 +40233,7 @@
     "expRate": "52.0%",
     "agency": "District Magistrate Sant Kabir Nagar_2",
     "progress": "In Progress",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-14765",
@@ -40572,6 +40922,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-15915",
+    "title": "Construction of community centers  at Village DHAHE",
+    "sector": "Community & Public Spaces",
+    "location": "Anandpur Sahib, Punjab",
+    "mp": "MALVINDER SINGH KANG",
+    "sanctioned": "₹10.0 L",
+    "released": "₹6.6 L",
+    "expended": "₹5.8 L",
+    "expRate": "58.0%",
+    "agency": "Deputy Commissioner Roopnagar",
+    "progress": "In Progress",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-16302",
     "title": "constraction of Rangmanch at khami janpad amarwara",
     "sector": "Community & Public Spaces",
@@ -40667,7 +41031,7 @@
     "expRate": "79.0%",
     "agency": "District Collector Ashoknagar",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-16512",
@@ -41818,6 +42182,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-19084",
+    "title": "Construction of Road or Pathway near Krishna River at Kankanawadi village",
+    "sector": "Roads & Bridges",
+    "location": "Bagalkot, Karnataka",
+    "mp": "Parvatagouda Chandanagouda Gaddigoudar",
+    "sanctioned": "₹10.0 L",
+    "released": "₹8.8 L",
+    "expended": "₹8.1 L",
+    "expRate": "80.5%",
+    "agency": "Deputy Commissioner Bagalkot",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-19591",
     "title": "Construction of boundary wall to existing community hall near  Bantu munnurukapu sangham, Borga",
     "sector": "Community & Public Spaces",
@@ -42294,6 +42672,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-20973",
+    "title": "Installation of Electric Semi High Mast Light by UP Laghu Udyog Nigam Ltd Kanpur at the followi",
+    "sector": "Rural Electrification",
+    "location": "Ghazipur, Uttar Pradesh",
+    "mp": "AFZAL ANSARI",
+    "sanctioned": "₹23.1 L",
+    "released": "₹21.4 L",
+    "expended": "₹19.6 L",
+    "expRate": "85.0%",
+    "agency": "District Magistrae Ghazipur",
+    "progress": "Physical Inspection",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-20985",
     "title": "Installation of India Mark II Handpump by UP Laghu Udyog Nigam Ltd, Kanpur at the following pla",
     "sector": "Drinking Water",
@@ -42756,6 +43148,20 @@
     "isFlagged": false
   },
   {
+    "id": "MPLAD-21568",
+    "title": "Providing All in One Computer to Almijaan Urdu Primary School Qty 20 Nos",
+    "sector": "Education & Schools",
+    "location": "Shirdi(Sc), Maharashtra",
+    "mp": "BHAUSAHEB RAJARAM WAKCHAURE",
+    "sanctioned": "₹15.0 L",
+    "released": "₹15.0 L",
+    "expended": "₹14.7 L",
+    "expRate": "98.0%",
+    "agency": "District Collector Ahmednagar",
+    "progress": "Completed",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-22249",
     "title": "Laying of Tiles (lane) from main road to Kuldeep Singh House Mohalla Miyan Ward No. 03 village ",
     "sector": "Roads & Bridges",
@@ -43006,6 +43412,20 @@
     "agency": "District Magistrae Saharanpur",
     "progress": "Physical Inspection",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-23104",
+    "title": "GRAM GARGHI ME GARGHI SALEMPUR ADDE KE PASS SARVJANIK STHAL PAR STAINLESS STEEL YATRI SHED KA N",
+    "sector": "Community & Public Spaces",
+    "location": "Moradabad, Uttar Pradesh",
+    "mp": "RUCHI VIRA",
+    "sanctioned": "₹8.9 L",
+    "released": "₹7.9 L",
+    "expended": "₹7.2 L",
+    "expRate": "81.2%",
+    "agency": "District Magistrate Moradabad",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-23119",
@@ -44699,7 +45119,7 @@
     "expRate": "79.0%",
     "agency": "District Magistrae Varanasi",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-28083",
@@ -45427,7 +45847,7 @@
     "expRate": "79.0%",
     "agency": "District Magistrae Kanpur Nagar",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-30121",
@@ -46002,6 +46422,20 @@
     "agency": "District Collector Anand",
     "progress": "Physical Inspection",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-31177",
+    "title": "Block Auraiya M Satteshvar Sarvice Road se Deepu Singh Dhan Meel Se Budd Singh Saxena Ke Ghar H",
+    "sector": "Roads & Bridges",
+    "location": "Etawah(Sc), Uttar Pradesh",
+    "mp": "JITENDRA KUMAR DOHARE",
+    "sanctioned": "₹20.0 L",
+    "released": "₹20.0 L",
+    "expended": "₹19.3 L",
+    "expRate": "96.5%",
+    "agency": "District Magistrate Auraiya",
+    "progress": "Completed",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-31251",
@@ -47570,6 +48004,20 @@
     "agency": "Deputy Commissioner Pathankot",
     "progress": "Sanctioned",
     "isFlagged": false
+  },
+  {
+    "id": "MPLAD-35880",
+    "title": "LABORATORY SETUP",
+    "sector": "Public Infrastructure",
+    "location": "Siwan, Bihar",
+    "mp": "VIJAYLAKSHMI DEVI",
+    "sanctioned": "₹5.9 L",
+    "released": "₹5.4 L",
+    "expended": "₹5.0 L",
+    "expRate": "84.2%",
+    "agency": "District Planning Officer Siwan",
+    "progress": "Physical Inspection",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-36284",
@@ -50834,6 +51282,20 @@
     "isFlagged": true
   },
   {
+    "id": "MPLAD-45701",
+    "title": "Hajipur Nagar Parishad Ke Ward No. 31 Me Chandeshwar Paswan ke Ghar Se Dev Kumar Chaurasia Ke a",
+    "sector": "Roads & Bridges",
+    "location": "Hajipur(Sc), Bihar",
+    "mp": "CHIRAG PASWAN",
+    "sanctioned": "₹5.0 L",
+    "released": "₹1.1 L",
+    "expended": "₹75,000",
+    "expRate": "15.0%",
+    "agency": "District Planning Officer Vaishali",
+    "progress": "Sanctioned",
+    "isFlagged": true
+  },
+  {
     "id": "MPLAD-45713",
     "title": "Ralaj Gam Shalama Navin Orda nu Bandhkam nu Kam",
     "sector": "Education & Schools",
@@ -51601,7 +52063,7 @@
     "expRate": "9.0%",
     "agency": "District Collector Surat",
     "progress": "Sanctioned",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-47865",
@@ -53295,7 +53757,21 @@
     "expRate": "9.0%",
     "agency": "District Collector Kheda",
     "progress": "Sanctioned",
-    "isFlagged": false
+    "isFlagged": true
+  },
+  {
+    "id": "MPLAD-53093",
+    "title": "Outdoor Gym equipment installation Paver Block Flouring with 50mm sand bd of area 30 sqm to cov",
+    "sector": "Education & Schools",
+    "location": "Kheda, Gujarat",
+    "mp": "Devusinh Jesingbhai Chauhan",
+    "sanctioned": "₹10.0 L",
+    "released": "₹1.8 L",
+    "expended": "₹97,168",
+    "expRate": "9.8%",
+    "agency": "District Collector Kheda",
+    "progress": "Sanctioned",
+    "isFlagged": true
   },
   {
     "id": "MPLAD-53443",
@@ -54429,7 +54905,7 @@
     "expRate": "79.0%",
     "agency": "Deputy Commsioner Kodagu_ida",
     "progress": "Physical Inspection",
-    "isFlagged": false
+    "isFlagged": true
   },
   {
     "id": "MPLAD-56573",
@@ -55522,481 +55998,5 @@
     "agency": "District Magistrate Basti",
     "progress": "Tendering",
     "isFlagged": true
-  },
-  {
-    "id": "MPLAD-59030",
-    "title": "dev works in SHAKTI UPASANA TRUST Model town Hisar",
-    "sector": "Education & Schools",
-    "location": "Hisar, Haryana",
-    "mp": "JAI PARKASH",
-    "sanctioned": "₹5.0 L",
-    "released": "₹84,637",
-    "expended": "₹44,808",
-    "expRate": "9.0%",
-    "agency": "Deputy Commissioner Hissar",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60077",
-    "title": "Construction of Street and Drains",
-    "sector": "Roads & Bridges",
-    "location": "Hoshiarpur(Sc), Punjab",
-    "mp": "DR. RAJ KUMAR CHABBEWAL",
-    "sanctioned": "₹3.0 L",
-    "released": "₹75,000",
-    "expended": "₹51,000",
-    "expRate": "17.0%",
-    "agency": "Deputy Commissioner Hoshiarpur",
-    "progress": "Tendering",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60138",
-    "title": "Solar Street Lights",
-    "sector": "Rural Electrification",
-    "location": "Rewa, Madhya Pradesh",
-    "mp": "Janardan Mishra",
-    "sanctioned": "₹15.0 L",
-    "released": "₹3.7 L",
-    "expended": "₹2.5 L",
-    "expRate": "17.0%",
-    "agency": "District Collector Mauganj",
-    "progress": "Tendering",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60179",
-    "title": "Construction Of Rungmanch At Birsa Munda Colony Siddhi Vinayak Ward No.10 Mahuatola",
-    "sector": "Community & Public Spaces",
-    "location": "Chhindwara, Madhya Pradesh",
-    "mp": "BUNTY VIVEK SAHU",
-    "sanctioned": "₹2.0 L",
-    "released": "₹34,000",
-    "expended": "₹18,000",
-    "expRate": "9.0%",
-    "agency": "District Collector Chhindwara",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-54612",
-    "title": "Construction of CC Road from SIP Road to MGNRGA Park At-Baura in Rajabasa GP BLOCk- Baripada Ex",
-    "sector": "Roads & Bridges",
-    "location": "Mayurbhanj (St), Odisha",
-    "mp": "NABA CHARAN MAJHI",
-    "sanctioned": "₹7.0 L",
-    "released": "₹1.2 L",
-    "expended": "₹63,000",
-    "expRate": "9.0%",
-    "agency": "District Collector Mayurbhanj",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-59907",
-    "title": "janpad kanpur nagar ke vidhan sabha govind nagar me 11 nag semi highmast light ka adhisthapan.",
-    "sector": "Rural Electrification",
-    "location": "Kanpur, Uttar Pradesh",
-    "mp": "RAMESH AWASTHI",
-    "sanctioned": "₹23.2 L",
-    "released": "₹20.2 L",
-    "expended": "₹18.3 L",
-    "expRate": "79.0%",
-    "agency": "District Magistrae Kanpur Nagar",
-    "progress": "Physical Inspection",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60289",
-    "title": "Street lights in Gram Panchayat Navan Tehna",
-    "sector": "Rural Electrification",
-    "location": "Faridkot(Sc), Punjab",
-    "mp": "SARABJEET SINGH KHALSA",
-    "sanctioned": "₹1.5 L",
-    "released": "₹1.3 L",
-    "expended": "₹1.2 L",
-    "expRate": "79.0%",
-    "agency": "Deputy Commissioner Faridkot",
-    "progress": "Physical Inspection",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-59839",
-    "title": "Construction of a concrete road from the house of Tapas Samanta to the house of Sukumar Samanta",
-    "sector": "Roads & Bridges",
-    "location": "Tamluk, West Bengal",
-    "mp": "ABHIJIT GANGOPADHYAY",
-    "sanctioned": "₹5.4 L",
-    "released": "₹4.7 L",
-    "expended": "₹4.3 L",
-    "expRate": "79.0%",
-    "agency": "District Magistrate Purba Medinipur",
-    "progress": "Physical Inspection",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60366",
-    "title": "Construction of Bhagabat Mandap Community center near Bhagabat Mandap of Harijan Sahi of Babalp",
-    "sector": "Community & Public Spaces",
-    "location": "Jajpur(Sc), Odisha",
-    "mp": "RABINDRA NARAYAN BEHERA",
-    "sanctioned": "₹5.0 L",
-    "released": "₹3.0 L",
-    "expended": "₹2.6 L",
-    "expRate": "52.0%",
-    "agency": "District Collector Jajpur",
-    "progress": "In Progress",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-58635",
-    "title": "Providing 1 Nos of Mini Highmast Light.",
-    "sector": "Rural Electrification",
-    "location": "Sriperumbudur, Tamil Nadu",
-    "mp": "Thalikkottai Rajuthevar Baalu",
-    "sanctioned": "₹4.2 L",
-    "released": "₹3.7 L",
-    "expended": "₹3.4 L",
-    "expRate": "79.0%",
-    "agency": "District Collector Kancheepuram",
-    "progress": "Physical Inspection",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60449",
-    "title": "vijaynagar game prathimik shala no 1 ane 2 ma pawer block tatha procation wall temaj get nu kam",
-    "sector": "Community & Public Spaces",
-    "location": "Sabarkantha, Gujarat",
-    "mp": "SHOBHANABEN MAHENDRASINH BARAIYA",
-    "sanctioned": "₹5.0 L",
-    "released": "₹85,000",
-    "expended": "₹45,000",
-    "expRate": "9.0%",
-    "agency": "District Collector Sabarkantha",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60419",
-    "title": "Construction of interlocking road from near the ITI College Choraha  to Village Khojanpur (140 ",
-    "sector": "Roads & Bridges",
-    "location": "Rae Bareli, Uttar Pradesh",
-    "mp": "RAHUL GANDHI",
-    "sanctioned": "₹8.2 L",
-    "released": "₹5.0 L",
-    "expended": "₹4.3 L",
-    "expRate": "52.0%",
-    "agency": "District Magistrate Rae Bareli",
-    "progress": "In Progress",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60594",
-    "title": "Creation of 63kv transformer at Yatoo Mohalla Chanderhama.",
-    "sector": "Community & Public Spaces",
-    "location": "Baramullah, Jammu And Kashmir",
-    "mp": "ABDUL RASHID SHEIKH",
-    "sanctioned": "₹7.6 L",
-    "released": "₹1.3 L",
-    "expended": "₹68,220",
-    "expRate": "9.0%",
-    "agency": "Deputy Commissioner Baramullah",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-56572",
-    "title": "Work of shifting 11KV line from above the house near Chirodi ration distribution area to anothe",
-    "sector": "Public Infrastructure",
-    "location": "Ghaziabad, Uttar Pradesh",
-    "mp": "ATUL GARG",
-    "sanctioned": "₹2.0 L",
-    "released": "₹52,720",
-    "expended": "₹36,341",
-    "expRate": "17.8%",
-    "agency": "District Magistrae Ghaziabad",
-    "progress": "Tendering",
-    "isFlagged": true
-  },
-  {
-    "id": "MPLAD-60527",
-    "title": "Installation of street light 4 numbers at kaliahata chowk, kaliahata gp, telkoi block",
-    "sector": "Rural Electrification",
-    "location": "Keonjhar(St), Odisha",
-    "mp": "ANANTA NAYAK",
-    "sanctioned": "₹2.6 L",
-    "released": "₹44,200",
-    "expended": "₹23,400",
-    "expRate": "9.0%",
-    "agency": "District Collector Keonjhar",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60697",
-    "title": "Construction of boundary wall of Kabristan in Vill. Ayali Kalan,Block Ludhiana-1, Distt. Ludhia",
-    "sector": "Community & Public Spaces",
-    "location": "Ludhiana, Punjab",
-    "mp": "AMRINDER SINGH RAJA WARRING",
-    "sanctioned": "₹10.0 L",
-    "released": "₹1.7 L",
-    "expended": "₹90,000",
-    "expRate": "9.0%",
-    "agency": "Deputy Commissioner Ludhiana",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60616",
-    "title": "Prakhand- Daudnagar, Panchayat- Tarari, Gram- Bhakharuan Daudnagar- Gaya Road se Sanjay Yadav k",
-    "sector": "Roads & Bridges",
-    "location": "Karakat, Bihar",
-    "mp": "RAJA RAM SINGH",
-    "sanctioned": "₹6.0 L",
-    "released": "₹1.5 L",
-    "expended": "₹1.0 L",
-    "expRate": "17.0%",
-    "agency": "District Planning Officer Aurangabad",
-    "progress": "Tendering",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60771",
-    "title": "SIHAULI CHAURAHA SE (HARI YADAV KE MAKAN) PUBLIC INTER COLLEGE TAK HYUM PYPE",
-    "sector": "Drinking Water",
-    "location": "Machhlishahr(Sc), Uttar Pradesh",
-    "mp": "PRIYA SAROJ",
-    "sanctioned": "₹19.5 L",
-    "released": "₹12.6 L",
-    "expended": "₹11.0 L",
-    "expRate": "56.5%",
-    "agency": "District Magistrate Jaunpur",
-    "progress": "In Progress",
-    "isFlagged": true
-  },
-  {
-    "id": "MPLAD-60833",
-    "title": "Purchase of IT systems, including hardware and software for educational purposes Suhanpur Proje",
-    "sector": "Education & Schools",
-    "location": "Jagatsinghpur(Sc), Odisha",
-    "mp": "BIBHU PRASAD TARAI",
-    "sanctioned": "₹9.9 L",
-    "released": "₹5.9 L",
-    "expended": "₹5.1 L",
-    "expRate": "52.0%",
-    "agency": "District Collector Puri",
-    "progress": "In Progress",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60817",
-    "title": "Providing of Internal CC roads at new colony in Salapadu (V), Chebrolu (M)",
-    "sector": "Roads & Bridges",
-    "location": "Guntur, Andhra Pradesh",
-    "mp": "Dr Chandra Sekhar Pemmasani",
-    "sanctioned": "₹7.0 L",
-    "released": "₹1.2 L",
-    "expended": "₹63,000",
-    "expRate": "9.0%",
-    "agency": "District Collector Guntur",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60872",
-    "title": "Providing Electrical Poles and Line in Madhura Sastrulapeta (Chettuvanipeta),  Peddapdu GP of S",
-    "sector": "Rural Electrification",
-    "location": "Srikakulam, Andhra Pradesh",
-    "mp": "Kinjarapu Ram Mohan Naidu",
-    "sanctioned": "₹5.0 L",
-    "released": "₹1.2 L",
-    "expended": "₹85,000",
-    "expRate": "17.0%",
-    "agency": "District Collector Srikakulam",
-    "progress": "Tendering",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-59778",
-    "title": "baswar me samim ulla ke ghar ke pas light",
-    "sector": "Rural Electrification",
-    "location": "Faizabad, Uttar Pradesh",
-    "mp": "AWADHESH PRASAD",
-    "sanctioned": "₹2.5 L",
-    "released": "₹2.1 L",
-    "expended": "₹1.9 L",
-    "expRate": "79.0%",
-    "agency": "District Magistrae Faizabad",
-    "progress": "Physical Inspection",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60780",
-    "title": "Construction of PCC Road from the house of Santosh Murmu to Ahilya Hansdak in Gram Gokulpur, Pa",
-    "sector": "Roads & Bridges",
-    "location": "Rajmahal(St), Jharkhand",
-    "mp": "Vijay Kumar Hansdak",
-    "sanctioned": "₹2.0 L",
-    "released": "₹34,170",
-    "expended": "₹18,090",
-    "expRate": "9.0%",
-    "agency": "Deputy Commissioner Pakur",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60986",
-    "title": "HIGH MAST LIGHT WITH FOUR LED RECOMMENDED IN MY CONSTITUENCY NAGINA BY IMPLEMNETING AGENCY PCCD",
-    "sector": "Rural Electrification",
-    "location": "Nagina(Sc), Uttar Pradesh",
-    "mp": "CHANDRA SHEKHAR",
-    "sanctioned": "₹1.1 L",
-    "released": "₹26,725",
-    "expended": "₹18,173",
-    "expRate": "17.0%",
-    "agency": "District Magistrate Bijnor",
-    "progress": "Tendering",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-61033",
-    "title": "HIGH MAST LIGHT WITH FOUR LED RECOMMENDED IN MY CONSTITUENCY NAGINA BY IMPLEMNETING AGENCY PCCD",
-    "sector": "Rural Electrification",
-    "location": "Nagina(Sc), Uttar Pradesh",
-    "mp": "CHANDRA SHEKHAR",
-    "sanctioned": "₹1.1 L",
-    "released": "₹26,725",
-    "expended": "₹18,173",
-    "expRate": "17.0%",
-    "agency": "District Magistrate Bijnor",
-    "progress": "Tendering",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-61078",
-    "title": "HIGH MAST LIGHT WITH FOUR LED RECOMMENDED IN MY CONSTITUENCY NAGINA BY IMPLEMNETING AGENCY PCCD",
-    "sector": "Rural Electrification",
-    "location": "Nagina(Sc), Uttar Pradesh",
-    "mp": "CHANDRA SHEKHAR",
-    "sanctioned": "₹1.1 L",
-    "released": "₹26,725",
-    "expended": "₹18,173",
-    "expRate": "17.0%",
-    "agency": "District Magistrate Bijnor",
-    "progress": "Tendering",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-61123",
-    "title": "CONSTRUCTION OF BUS-SHEDS RECOMMENDED IN MY CONSTITUENCY NAGINA BY IMPLEMNETING AGENCY PCCD BIJ",
-    "sector": "Community & Public Spaces",
-    "location": "Nagina(Sc), Uttar Pradesh",
-    "mp": "CHANDRA SHEKHAR",
-    "sanctioned": "₹7.9 L",
-    "released": "₹2.0 L",
-    "expended": "₹1.3 L",
-    "expRate": "17.0%",
-    "agency": "District Magistrate Bijnor",
-    "progress": "Tendering",
-    "isFlagged": true
-  },
-  {
-    "id": "MPLAD-55619",
-    "title": "Installation of 4nos of New 90 watt LED street light with sensor board and wire 30 mtr fitting ",
-    "sector": "Rural Electrification",
-    "location": "Bhadrak(Sc), Odisha",
-    "mp": "AVIMANYU SETHI",
-    "sanctioned": "₹44,000",
-    "released": "₹7,480",
-    "expended": "₹3,960",
-    "expRate": "9.0%",
-    "agency": "District Collector Baleshwar",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-57264",
-    "title": "Installation of 3 nos of New 90 watt LED street light with sensor board and wire 30 mtr fitting",
-    "sector": "Rural Electrification",
-    "location": "Bhadrak(Sc), Odisha",
-    "mp": "AVIMANYU SETHI",
-    "sanctioned": "₹33,000",
-    "released": "₹5,610",
-    "expended": "₹2,970",
-    "expRate": "9.0%",
-    "agency": "District Collector Baleshwar",
-    "progress": "Sanctioned",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-60927",
-    "title": "Paver block work on public space around Ramdevji temple",
-    "sector": "Roads & Bridges",
-    "location": "Mahesana, Gujarat",
-    "mp": "HARIBHAI PATEL",
-    "sanctioned": "₹3.0 L",
-    "released": "₹2.6 L",
-    "expended": "₹2.4 L",
-    "expRate": "79.0%",
-    "agency": "District Collector Mahesana",
-    "progress": "Physical Inspection",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-61159",
-    "title": "Contruction of Waiting Shed for Patients at Primary Health centre, Kanai",
-    "sector": "Education & Schools",
-    "location": "Viluppuram(Sc), Tamil Nadu",
-    "mp": "D Ravikumar",
-    "sanctioned": "₹10.0 L",
-    "released": "₹2.3 L",
-    "expended": "₹1.5 L",
-    "expRate": "15.0%",
-    "agency": "District Collector Villupuram",
-    "progress": "Sanctioned",
-    "isFlagged": true
-  },
-  {
-    "id": "MPLAD-61171",
-    "title": "Construction of culvert and retaining wall across Mangala vagu",
-    "sector": "Roads & Bridges",
-    "location": "Vijayawada, Andhra Pradesh",
-    "mp": "Sivanath Kesineni",
-    "sanctioned": "₹20.0 L",
-    "released": "₹12.0 L",
-    "expended": "₹10.4 L",
-    "expRate": "52.0%",
-    "agency": "District Collector Ntr",
-    "progress": "In Progress",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-59865",
-    "title": "HIGH MAST LIGHT WITH FOUR LED RECOMMENDED IN MY CONSTITUENCY RAMPUR BY IA UPSIC MORADABAD (VILL",
-    "sector": "Rural Electrification",
-    "location": "Rampur, Uttar Pradesh",
-    "mp": "MOHIBBULLAH",
-    "sanctioned": "₹1.7 L",
-    "released": "₹1.5 L",
-    "expended": "₹1.4 L",
-    "expRate": "79.0%",
-    "agency": "District Magistrate Rampur",
-    "progress": "Physical Inspection",
-    "isFlagged": false
-  },
-  {
-    "id": "MPLAD-61206",
-    "title": "Block saradarnagar gram-ramapur rakaba (post ooffice tola) mein pich sadak se CC road nirman.",
-    "sector": "Roads & Bridges",
-    "location": "Bansgaon(Sc), Uttar Pradesh",
-    "mp": "Kamlesh Paswan",
-    "sanctioned": "₹10.5 L",
-    "released": "₹2.6 L",
-    "expended": "₹1.8 L",
-    "expRate": "17.0%",
-    "agency": "District Magistrate Gorakhpur",
-    "progress": "Tendering",
-    "isFlagged": false
   }
 ]
