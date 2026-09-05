@@ -229,9 +229,9 @@ th.sticky-col-right {
         </div>
 
         <div class="flex items-center gap-2 font-mono text-[11px]">
-            <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-300 text-slate-800 font-bold">TOTAL CORPUS: ₹8,501 Cr</span>
-            <span class="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-800 font-bold">UTILIZATION: 71.6%</span>
-            <span class="px-2 py-0.5 rounded bg-red-50 border border-red-200 text-red-800 font-bold">SCRUTINY: ₹1,769 Cr</span>
+            <span id="badge-total-corpus" class="px-2 py-0.5 rounded bg-slate-100 border border-slate-300 text-slate-800 font-bold">TOTAL CORPUS: ₹8,501.1 Cr</span>
+            <span id="badge-utilization" class="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-800 font-bold">UTILIZATION: 71.6%</span>
+            <span id="badge-scrutiny" class="px-2 py-0.5 rounded bg-red-50 border border-red-200 text-red-800 font-bold">SCRUTINY: ₹2,001.2 Cr</span>
         </div>
     </div>
 
@@ -347,6 +347,10 @@ th.sticky-col-right {
 <!-- Chart.js Real Forensic Visualizations Initializer -->
 <script>
 let globalAnalyticsData = null;
+let chartUtilInstance = null;
+let chartRiskInstance = null;
+let chartStateInstance = null;
+let chartDonutInstance = null;
 
 async function initAnalytics() {
     Chart.defaults.font.family = "'Inter', sans-serif";
@@ -358,8 +362,8 @@ async function initAnalytics() {
         if (!res.ok) throw new Error('Failed to load analytics data');
         globalAnalyticsData = await res.json();
         
-        renderCharts(globalAnalyticsData);
-        renderAgencyMatrix(globalAnalyticsData.agencyMatrix || []);
+        // Initial render with 'all'
+        updateAnalyticsTimespan('all', false);
     } catch (e) {
         console.error("Error loading analytics:", e);
     }
@@ -370,7 +374,11 @@ function renderCharts(data) {
     const qData = data.quarterlyTrajectory || { labels: [], allocated: [], released: [], utilized: [] };
     const ctxUtil = document.getElementById('chartUtilization')?.getContext('2d');
     if (ctxUtil) {
-        new Chart(ctxUtil, {
+        if (chartUtilInstance) {
+            chartUtilInstance.destroy();
+            chartUtilInstance = null;
+        }
+        chartUtilInstance = new Chart(ctxUtil, {
             type: 'line',
             data: {
                 labels: qData.labels,
@@ -447,7 +455,11 @@ function renderCharts(data) {
     const mData = data.monthlyRiskTrend || { labels: [], critical: [], high: [] };
     const ctxRisk = document.getElementById('chartRiskTrend')?.getContext('2d');
     if (ctxRisk) {
-        new Chart(ctxRisk, {
+        if (chartRiskInstance) {
+            chartRiskInstance.destroy();
+            chartRiskInstance = null;
+        }
+        chartRiskInstance = new Chart(ctxRisk, {
             type: 'line',
             data: {
                 labels: mData.labels,
@@ -504,7 +516,11 @@ function renderCharts(data) {
     const sData = data.stateComparison || { labels: [], flaggedRates: [], criticalRates: [] };
     const ctxState = document.getElementById('chartStateComparison')?.getContext('2d');
     if (ctxState) {
-        new Chart(ctxState, {
+        if (chartStateInstance) {
+            chartStateInstance.destroy();
+            chartStateInstance = null;
+        }
+        chartStateInstance = new Chart(ctxState, {
             type: 'bar',
             data: {
                 labels: sData.labels,
@@ -571,7 +587,11 @@ function renderCharts(data) {
     const dData = data.anomalyDonut || { labels: [], data: [] };
     const ctxDonut = document.getElementById('chartAnomalyDonut')?.getContext('2d');
     if (ctxDonut) {
-        new Chart(ctxDonut, {
+        if (chartDonutInstance) {
+            chartDonutInstance.destroy();
+            chartDonutInstance = null;
+        }
+        chartDonutInstance = new Chart(ctxDonut, {
             type: 'doughnut',
             data: {
                 labels: dData.labels,
@@ -612,7 +632,6 @@ function renderCharts(data) {
                     }
                 }
             }
-        });
     }
 }
 
@@ -699,8 +718,35 @@ function filterAgencyTable(q) {
     renderAgencyMatrix(filtered);
 }
 
-function updateAnalyticsTimespan(val) {
-    showToast(`Adjusted audit analytical horizon to: ${val.toUpperCase()}`, 'info');
+function updateAnalyticsTimespan(val, notify = true) {
+    if (!globalAnalyticsData) return;
+    const horizonData = (globalAnalyticsData.horizons && globalAnalyticsData.horizons[val]) 
+        ? globalAnalyticsData.horizons[val] 
+        : globalAnalyticsData;
+    if (!horizonData) return;
+
+    // 1. Update Sub-Header Metric Badges
+    const summary = horizonData.summary || {};
+    const corpusEl = document.getElementById('badge-total-corpus');
+    const utilEl = document.getElementById('badge-utilization');
+    const scrutinyEl = document.getElementById('badge-scrutiny');
+
+    if (corpusEl) corpusEl.innerText = `TOTAL CORPUS: ₹${(summary.totalCorpusCr || 0).toLocaleString()} Cr`;
+    if (utilEl) utilEl.innerText = `UTILIZATION: ${summary.utilizationPct || 0}%`;
+    if (scrutinyEl) scrutinyEl.innerText = `SCRUTINY: ₹${(summary.scrutinyCr || 0).toLocaleString()} Cr`;
+
+    // 2. Re-render all 4 forensic models
+    renderCharts(horizonData);
+
+    // 3. Re-render Implementing Agency Risk Matrix
+    renderAgencyMatrix(horizonData.agencyMatrix || []);
+
+    if (notify) {
+        const horizonLabel = val === '18ls' ? '18th Lok Sabha (2024–26 Current)' : 
+                             val === '17ls' ? '17th Lok Sabha (2019–24)' : 
+                             '17th & 18th Lok Sabha (2019–26)';
+        showToast(`Audit analytical horizon adjusted to: ${horizonLabel}`, 'info');
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

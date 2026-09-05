@@ -198,7 +198,7 @@ th.sticky-col-right {
                 <kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded border border-slate-300 bg-white text-[10px] font-mono text-slate-400">⌘K</kbd>
             </div>
         </div>
-
+        <div class="flex items-center gap-3">
             <!-- Alert Bell -->
             <button onclick="toggleVigilanceNotifications(event)" class="notification-bell-btn relative p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-md transition-colors cursor-pointer" title="Live Vigilance Notifications">
                 <span class="material-symbols-outlined text-xl">notifications</span>
@@ -223,7 +223,7 @@ th.sticky-col-right {
     </header>
 
     <!-- Map Body -->
-    <main class="flex-1 relative w-full h-full flex bg-slate-100">
+    <main class="flex-1 min-h-0 relative w-full h-full flex bg-slate-100 overflow-hidden">
         <!-- Open Leaflet Basemap (CartoDB Positron / OSM Keyless) -->
         <div id="map" class="absolute inset-0 z-0"></div>
 
@@ -415,6 +415,9 @@ async function initMapData() {
         if (geoProjects.length > 0) {
             selectMapProject(geoProjects[0]);
         }
+        setTimeout(() => {
+            if (map) map.invalidateSize();
+        }, 200);
     } catch (e) {
         console.error("Failed to load map data:", e);
     }
@@ -504,7 +507,7 @@ function renderMapMarkers() {
         const size = isUrgent ? 28 : 22;
 
         const iconHtml = `
-            <div class="relative w-[${size}px] h-[${size}px] flex items-center justify-center custom-pin">
+            <div class="relative flex items-center justify-center custom-pin" style="width:${size}px; height:${size}px;">
                 ${isUrgent ? `<div class="pulse-ring" style="background:${style.pulse};"></div>` : ''}
                 <div style="background:${style.bg}; width:${size}px; height:${size}px; border:2.5px solid ${style.border}; border-radius:50%; box-shadow:0 3px 8px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">
                     <span style="color:#ffffff; font-family:'JetBrains Mono', monospace; font-size:10px; font-weight:800;">${p.riskScore}</span>

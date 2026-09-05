@@ -389,6 +389,17 @@ def main():
     quarterly_expenditure = defaultdict(lambda: {'allocated': 0.0, 'utilized': 0.0, 'count': 0})
     monthly_risk_trend = defaultdict(lambda: {'critical': 0, 'high': 0, 'med': 0})
 
+    # Multi-horizon tracking for Analytics timespan toggle (all, 18ls, 17ls)
+    horizons = ['all', '18ls', '17ls']
+    h_totals = {h: {'scanned': 0, 'sanctioned': 0.0, 'scrutiny': 0.0, 'flagged': 0, 'crit': 0, 'high': 0, 'med': 0} for h in horizons}
+    h_anomalies = {h: Counter() for h in horizons}
+    h_state_works = {h: Counter() for h in horizons}
+    h_state_flagged = {h: Counter() for h in horizons}
+    h_state_critical = {h: Counter() for h in horizons}
+    h_agency_stats = {h: defaultdict(lambda: {'works': 0, 'flagged': 0, 'amount': 0.0}) for h in horizons}
+    h_quarterly = {h: defaultdict(lambda: {'allocated': 0.0, 'utilized': 0.0, 'count': 0}) for h in horizons}
+    h_monthly_risk = {h: defaultdict(lambda: {'critical': 0, 'high': 0, 'med': 0}) for h in horizons}
+
     with open(mrg_file, 'r', encoding='utf-8', errors='ignore') as fm, \
          open(val_file, 'r', encoding='utf-8', errors='ignore') as fv, \
          open(bnf_file, 'r', encoding='utf-8', errors='ignore') as fb, \
@@ -492,11 +503,72 @@ def main():
             else:
                 low_count += 1
 
-            # Track Quarterly & Monthly Expenditure Trends
+            # Multi-Horizon Accumulation (all, 18ls, 17ls)
             sdate = row_m.get('Sanction Date_san') or row_m.get('Sanction Date') or ''
+            active_horizons = ['all', '18ls' if sdate >= '2024-06-01' else '17ls']
+
+            for h in active_horizons:
+                h_totals[h]['scanned'] += 1
+                h_totals[h]['sanctioned'] += amt
+                h_state_works[h][state] += 1
+                h_agency_stats[h][agency_key]['works'] += 1
+                h_agency_stats[h][agency_key]['amount'] += amt
+
+                if row_v.get('flag_delay') == 'True':
+                    h_anomalies[h]['delay'] += 1
+                if row_v.get('flag_amount') == 'True':
+                    h_anomalies[h]['amount'] += 1
+                if is_mp_drift:
+                    h_anomalies[h]['mp_drift'] += 1
+                if row_v.get('iso_flag') == 'True':
+                    h_anomalies[h]['spatial'] += 1
+                if row_b.get('flag_round_number') == 'True':
+                    h_anomalies[h]['round_number'] += 1
+
+                if is_flagged:
+                    h_totals[h]['flagged'] += 1
+                    h_totals[h]['scrutiny'] += amt
+                    h_state_flagged[h][state] += 1
+                    h_agency_stats[h][agency_key]['flagged'] += 1
+
+                    if severity == 'critical':
+                        h_totals[h]['crit'] += 1
+                        h_state_critical[h][state] += 1
+                    elif severity == 'high':
+                        h_totals[h]['high'] += 1
+                    elif severity == 'med':
+                        h_totals[h]['med'] += 1
+
+                if sdate and len(sdate) >= 7:
+                    year = sdate[:4]
+                    if year in ['2021', '2022', '2023', '2024', '2025', '2026']:
+                        month = sdate[5:7]
+                        quarter = f"{year}-Q{(int(month)-1)//3 + 1}"
+                        h_quarterly[h][quarter]['allocated'] += amt
+                        if work_status == 'Work Completed':
+                            util = amt * 0.95
+                        elif work_status == 'Work partially Completed':
+                            util = amt * 0.65
+                        elif work_status == 'Physical Inspection':
+                            util = amt * 0.82
+                        else:
+                            util = amt * 0.30
+                        h_quarterly[h][quarter]['utilized'] += util
+                        h_quarterly[h][quarter]['count'] += 1
+
+                        if is_flagged:
+                            month_key = f"{year}-{month}"
+                            if severity == 'critical':
+                                h_monthly_risk[h][month_key]['critical'] += 1
+                            elif severity == 'high':
+                                h_monthly_risk[h][month_key]['high'] += 1
+                            else:
+                                h_monthly_risk[h][month_key]['med'] += 1
+
+            # Track Quarterly & Monthly Expenditure Trends for overall
             if sdate and len(sdate) >= 7:
                 year = sdate[:4]
-                if year in ['2021', '2022', '2023', '2024', '2025']:
+                if year in ['2021', '2022', '2023', '2024', '2025', '2026']:
                     month = sdate[5:7]
                     quarter = f"{year}-Q{(int(month)-1)//3 + 1}"
                     quarterly_expenditure[quarter]['allocated'] += amt
@@ -716,77 +788,121 @@ def main():
     print(f"Saved assets/data/ledger_works.json ({len(ledger_works)} works)")
 
     # D. analytics_data.json
-    # Format quarterly expenditure
-    sorted_quarters = sorted([q for q in quarterly_expenditure.keys() if q >= '2022-Q1'])[-12:]
-    labels_q = [q.replace('-', ' ') for q in sorted_quarters]
-    allocated_series = [round(quarterly_expenditure[q]['allocated'] / 10000000, 1) for q in sorted_quarters]
-    utilized_series = [round(quarterly_expenditure[q]['utilized'] / 10000000, 1) for q in sorted_quarters]
-    released_series = [round(a * 0.92, 1) for a in allocated_series]
+    def build_horizon_analytics(h_key):
+        h_q = h_quarterly[h_key]
+        if h_key == '18ls':
+            sorted_q = sorted([q for q in h_q.keys() if q >= '2024-Q2'])
+        elif h_key == '17ls':
+            sorted_q = sorted([q for q in h_q.keys() if '2019-Q1' <= q < '2024-Q3'])[-12:]
+        else:
+            sorted_q = sorted([q for q in h_q.keys() if q >= '2022-Q1'])[-12:]
 
-    # Format monthly risk trend
-    sorted_months = sorted([m for m in monthly_risk_trend.keys() if m >= '2023-01'])[-12:]
-    month_labels = [datetime.strptime(m, "%Y-%m").strftime("%b %y") for m in sorted_months]
-    crit_monthly = [monthly_risk_trend[m]['critical'] for m in sorted_months]
-    high_monthly = [monthly_risk_trend[m]['high'] for m in sorted_months]
+        if not sorted_q:
+            sorted_q = sorted(h_q.keys())[-8:]
 
-    # Format State Comparison (Top 8 states)
-    top_states = [s for s, _ in state_works.most_common(12) if s and s != 'Unknown'][:8]
-    state_names = top_states
-    flagged_rates = [round((state_flagged[s] / state_works[s]) * 100, 1) if state_works[s] else 0 for s in top_states]
-    critical_rates = [round((state_critical[s] / state_works[s]) * 100, 1) if state_works[s] else 0 for s in top_states]
+        labels_q = [q.replace('-', ' ') for q in sorted_q]
+        allocated_s = [round(h_q[q]['allocated'] / 10000000, 1) for q in sorted_q]
+        utilized_s = [round(h_q[q]['utilized'] / 10000000, 1) for q in sorted_q]
+        released_s = [round(a * 0.92, 1) for a in allocated_s]
 
-    # Format Agency Scrutiny Matrix (Top 10 agencies)
-    sorted_agencies = sorted(agency_stats.items(), key=lambda x: x[1]['works'], reverse=True)[:10]
-    agency_matrix = []
-    for agency_name, stats in sorted_agencies:
-        w_cnt = stats['works']
-        f_cnt = stats['flagged']
-        amt_cr = round(stats['amount'] / 10000000, 1)
-        avg_lakhs = round((stats['amount'] / w_cnt) / 100000, 1) if w_cnt else 0
-        rate = round((f_cnt / w_cnt) * 100, 1) if w_cnt else 0
-        rating = "HIGH RISK VENDOR" if rate > 18 or f_cnt > 150 else "MODERATE RISK" if rate > 8 else "COMPLIANT / LOW RISK"
-        agency_matrix.append({
-            "agency": agency_name,
-            "totalWorks": w_cnt,
-            "sanctionedCr": amt_cr,
-            "avgSizeLakhs": avg_lakhs,
-            "flaggedCount": f_cnt,
-            "anomalyRate": rate,
-            "rating": rating
-        })
+        # Monthly risk trend
+        h_m = h_monthly_risk[h_key]
+        if h_key == '18ls':
+            sorted_m = sorted([m for m in h_m.keys() if m >= '2024-06'])
+        elif h_key == '17ls':
+            sorted_m = sorted([m for m in h_m.keys() if m < '2024-06'])[-12:]
+        else:
+            sorted_m = sorted([m for m in h_m.keys() if m >= '2023-01'])[-12:]
+
+        if not sorted_m:
+            sorted_m = sorted(h_m.keys())[-8:]
+
+        m_labels = [datetime.strptime(m, "%Y-%m").strftime("%b %y") for m in sorted_m]
+        crit_m = [h_m[m]['critical'] for m in sorted_m]
+        high_m = [h_m[m]['high'] for m in sorted_m]
+
+        # State comparison (top 8 states for this horizon)
+        h_sw = h_state_works[h_key]
+        h_sf = h_state_flagged[h_key]
+        h_sc = h_state_critical[h_key]
+        top_s = [s for s, _ in h_sw.most_common(12) if s and s != 'Unknown'][:8]
+        fl_rates = [round((h_sf[s] / h_sw[s]) * 100, 1) if h_sw[s] else 0 for s in top_s]
+        cr_rates = [round((h_sc[s] / h_sw[s]) * 100, 1) if h_sw[s] else 0 for s in top_s]
+
+        # Agency matrix (top 10 agencies for this horizon)
+        h_ag = h_agency_stats[h_key]
+        sorted_ag = sorted(h_ag.items(), key=lambda x: x[1]['works'], reverse=True)[:10]
+        ag_matrix = []
+        for ag_name, stats in sorted_ag:
+            w_cnt = stats['works']
+            f_cnt = stats['flagged']
+            amt_cr = round(stats['amount'] / 10000000, 1)
+            avg_lakhs = round((stats['amount'] / w_cnt) / 100000, 1) if w_cnt else 0
+            rate = round((f_cnt / w_cnt) * 100, 1) if w_cnt else 0
+            rating = "HIGH RISK VENDOR" if rate > 18 or f_cnt > 150 else "MODERATE RISK" if rate > 8 else "COMPLIANT / LOW RISK"
+            ag_matrix.append({
+                "agency": ag_name,
+                "totalWorks": w_cnt,
+                "sanctionedCr": amt_cr,
+                "avgSizeLakhs": avg_lakhs,
+                "flaggedCount": f_cnt,
+                "anomalyRate": rate,
+                "rating": rating
+            })
+
+        h_tot = h_totals[h_key]
+        h_anom = h_anomalies[h_key]
+        total_sanctioned_cr = round(h_tot['sanctioned'] / 10000000, 1)
+        scrutiny_cr = round(h_tot['scrutiny'] / 10000000, 1)
+        utilization_pct = round((sum(utilized_s) / max(1, sum(allocated_s))) * 100, 1) if allocated_s and sum(allocated_s) > 0 else 0
+
+        return {
+            "summary": {
+                "totalCorpusCr": total_sanctioned_cr,
+                "scrutinyCr": scrutiny_cr,
+                "utilizationPct": utilization_pct,
+                "totalWorks": h_tot['scanned'],
+                "flaggedWorks": h_tot['flagged'],
+                "criticalCount": h_tot['crit']
+            },
+            "quarterlyTrajectory": {
+                "labels": labels_q,
+                "allocated": allocated_s,
+                "released": released_s,
+                "utilized": utilized_s
+            },
+            "monthlyRiskTrend": {
+                "labels": m_labels,
+                "critical": crit_m,
+                "high": high_m
+            },
+            "stateComparison": {
+                "labels": top_s,
+                "flaggedRates": fl_rates,
+                "criticalRates": cr_rates
+            },
+            "anomalyDonut": {
+                "labels": ["Completion Delay", "Amount Outlier", "Spatial / Cluster ML", "MP Drift", "Round Number"],
+                "data": [
+                    h_anom['delay'],
+                    h_anom['amount'],
+                    h_anom['spatial'],
+                    h_anom['mp_drift'],
+                    h_anom['round_number']
+                ]
+            },
+            "agencyMatrix": ag_matrix
+        }
+
+    horizons_data = {
+        "all": build_horizon_analytics('all'),
+        "18ls": build_horizon_analytics('18ls'),
+        "17ls": build_horizon_analytics('17ls')
+    }
 
     analytics_data = {
-        "summary": {
-            "totalCorpusCr": round(total_sanctioned_amount / 10000000, 1),
-            "utilizationPct": round((sum(utilized_series) / max(1, sum(allocated_series))) * 100, 1)
-        },
-        "quarterlyTrajectory": {
-            "labels": labels_q,
-            "allocated": allocated_series,
-            "released": released_series,
-            "utilized": utilized_series
-        },
-        "monthlyRiskTrend": {
-            "labels": month_labels,
-            "critical": crit_monthly,
-            "high": high_monthly
-        },
-        "stateComparison": {
-            "labels": state_names,
-            "flaggedRates": flagged_rates,
-            "criticalRates": critical_rates
-        },
-        "anomalyDonut": {
-            "labels": ["Completion Delay", "Amount Outlier", "Spatial / Cluster ML", "MP Drift", "Round Number"],
-            "data": [
-                anomaly_counts['delay'],
-                anomaly_counts['amount'],
-                anomaly_counts['spatial'],
-                anomaly_counts['mp_drift'],
-                anomaly_counts['round_number']
-            ]
-        },
-        "agencyMatrix": agency_matrix,
+        **horizons_data["all"],
+        "horizons": horizons_data,
         "benfordResults": benford_categories,
         "roundNumberResults": round_categories
     }
