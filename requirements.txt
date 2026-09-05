@@ -1,0 +1,2 @@
+# NIDHI TRACE Vercel Python Runtime
+# The backend assistant service uses standard library modules only
