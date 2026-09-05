@@ -356,15 +356,27 @@ async function initLedger() {
 function populateFilterOptions(data) {
     const sectors = new Set();
     const states = new Set();
+    const unionTerritories = new Set();
     const statuses = new Set();
+
+    const UT_SET = new Set([
+        'Andaman And Nicobar Islands', 'Chandigarh', 'Dadra and Nagar Haveli and Daman and Diu',
+        'Delhi', 'Jammu And Kashmir', 'Ladakh', 'Lakshadweep', 'Puducherry'
+    ]);
 
     data.forEach(item => {
         if (item.sector) sectors.add(item.sector);
         if (item.progress) statuses.add(item.progress);
         if (item.location && item.location.includes(',')) {
             const parts = item.location.split(',');
-            const state = parts[parts.length - 1].trim();
-            if (state) states.add(state);
+            const locName = parts[parts.length - 1].trim();
+            if (locName) {
+                if (UT_SET.has(locName)) {
+                    unionTerritories.add(locName);
+                } else {
+                    states.add(locName);
+                }
+            }
         }
     });
 
@@ -379,9 +391,22 @@ function populateFilterOptions(data) {
     const stateSelect = document.getElementById("filter-state");
     if (stateSelect) {
         const currentVal = stateSelect.value;
-        stateSelect.innerHTML = `<option value="all">All States (${states.size})</option>` +
-            Array.from(states).sort().map(s => `<option value="${s}">${s}</option>`).join('');
-        if (Array.from(states).includes(currentVal)) stateSelect.value = currentVal;
+        const sortedStates = Array.from(states).sort();
+        const sortedUTs = Array.from(unionTerritories).sort();
+
+        let html = `<option value="all">All States (${states.size})</option>`;
+        if (sortedStates.length > 0) {
+            html += `<optgroup label="28 States of India">`;
+            sortedStates.forEach(s => html += `<option value="${s}">${s}</option>`);
+            html += `</optgroup>`;
+        }
+        if (sortedUTs.length > 0) {
+            html += `<optgroup label="Union Territories (${unionTerritories.size})">`;
+            sortedUTs.forEach(u => html += `<option value="${u}">${u}</option>`);
+            html += `</optgroup>`;
+        }
+        stateSelect.innerHTML = html;
+        if (currentVal && currentVal !== 'all') stateSelect.value = currentVal;
     }
 
     const statusSelect = document.getElementById("filter-status");

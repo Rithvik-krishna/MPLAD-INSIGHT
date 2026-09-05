@@ -9,7 +9,7 @@ Serves:
 import sys
 import os
 import json
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 
 # Ensure project root is in sys.path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -107,7 +107,7 @@ class NidhiTraceRequestHandler(SimpleHTTPRequestHandler):
 
 def run_server(port=3000):
     server_address = ('', port)
-    httpd = HTTPServer(server_address, NidhiTraceRequestHandler)
+    httpd = ThreadingHTTPServer(server_address, NidhiTraceRequestHandler)
     print(f"==================================================")
     print(f"  NIDHI TRACE Institutional Platform & Assistant  ")
     print(f"==================================================")

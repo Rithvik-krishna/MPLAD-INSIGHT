@@ -55998,5 +55998,47 @@
     "agency": "District Magistrate Basti",
     "progress": "Tendering",
     "isFlagged": true
+  },
+  {
+    "id": "MPLAD-02535",
+    "title": "WS/MP368/2023-2024/5877-Construction of roads, link roads, pathways or any other road with or without drainage",
+    "sector": "Roads & Bridges",
+    "location": "Dimapur, Nagaland",
+    "mp": "Shri  Tokheho (17th Lok Sabha)",
+    "sanctioned": "₹1.35 Cr",
+    "released": "₹1.35 Cr",
+    "expended": "₹1.14 Cr",
+    "expRate": "75%",
+    "agency": "Deputy Commissioner Dimapur",
+    "progress": "In Progress",
+    "isFlagged": true
+  },
+  {
+    "id": "MPLAD-02538",
+    "title": "WS/MP368/2023-2024/5882-Construction of roads, link roads, pathways or any other road with or without drainage",
+    "sector": "Roads & Bridges",
+    "location": "Dimapur, Nagaland",
+    "mp": "Shri  Tokheho (17th Lok Sabha)",
+    "sanctioned": "₹1.00 Cr",
+    "released": "₹1.00 Cr",
+    "expended": "₹79.8 L",
+    "expRate": "75%",
+    "agency": "Deputy Commissioner Dimapur",
+    "progress": "In Progress",
+    "isFlagged": true
+  },
+  {
+    "id": "MPLAD-02539",
+    "title": "WS/MP368/2023-2024/5883-Construction of roads, link roads, pathways or any other road with or without drainage",
+    "sector": "Roads & Bridges",
+    "location": "Dimapur, Nagaland",
+    "mp": "Shri  Tokheho (17th Lok Sabha)",
+    "sanctioned": "₹1.10 Cr",
+    "released": "₹1.10 Cr",
+    "expended": "₹88.5 L",
+    "expRate": "75%",
+    "agency": "Deputy Commissioner Dimapur",
+    "progress": "In Progress",
+    "isFlagged": true
   }
 ]

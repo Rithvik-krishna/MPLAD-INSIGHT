@@ -647,8 +647,8 @@ def handle_chat_request(body: dict, client_ip: str = "127.0.0.1") -> dict:
                 method="POST"
             )
 
-            # Use 15s per model attempt to keep UI snappy
-            model_timeout = min(NVIDIA_TIMEOUT_SECONDS, 15)
+            # Snappy 8-second timeout per model to prevent browser fetch timeouts
+            model_timeout = min(NVIDIA_TIMEOUT_SECONDS, 8)
             with urllib.request.urlopen(req, timeout=model_timeout) as resp:
                 resp_body = resp.read().decode('utf-8')
                 resp_json = json.loads(resp_body)
