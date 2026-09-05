@@ -48,9 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Skip buttons with an explicit inline onclick, no-toast-intercept, or print/dossier actions
+        if (btn.hasAttribute('onclick') ||
+            btn.classList.contains('no-toast-intercept') ||
+            btn.closest('[data-custom-handler]') ||
+            text.includes('dossier') ||
+            text.includes('print') ||
+            text.includes('pdf')) {
+            return;
+        }
+
         if (!href || href === '#' || href === 'javascript:void(0)') {
             btn.addEventListener('click', (e) => {
                 if (btn.classList.contains('no-toast-intercept') || btn.closest('[data-custom-handler]')) return;
+                if (text.includes('dossier') || text.includes('print') || text.includes('pdf')) return;
                 e.preventDefault();
                 
                 if (text.includes('export') || text.includes('download')) {
