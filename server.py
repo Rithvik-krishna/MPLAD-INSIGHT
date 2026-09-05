@@ -11,11 +11,20 @@ import os
 import json
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 
-# Ensure project root is in sys.path
+# Ensure project root and backend are in sys.path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.join(BASE_DIR, 'backend'))
 
 from backend.assistant_service import handle_chat_request, get_assistant_status
+
+try:
+    from app.main import app as fastapi_app
+    from fastapi.testclient import TestClient
+    fastapi_client = TestClient(fastapi_app)
+except Exception as e:
+    fastapi_client = None
+    print(f"[NIDHI Server] FastAPI bridge initialization: {e}")
 
 class NidhiTraceRequestHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -44,6 +53,20 @@ class NidhiTraceRequestHandler(SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(resp_bytes)
             return
+
+        # FastAPI Unified Routes (/health, /api/works, /api/anomalies)
+        if url_path == '/health' or url_path.startswith('/api/works') or url_path.startswith('/api/anomalies'):
+            if fastapi_client:
+                f_resp = fastapi_client.get(self.path)
+                self.send_response(f_resp.status_code)
+                for k, v in f_resp.headers.items():
+                    if k.lower() not in ('content-length', 'server', 'date'):
+                        self.send_header(k, v)
+                self._set_cors_headers()
+                self.send_header('Content-Length', str(len(f_resp.content)))
+                self.end_headers()
+                self.wfile.write(f_resp.content)
+                return
 
         # Default static file handling
         return super().do_GET()
